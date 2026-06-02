@@ -1,0 +1,374 @@
+openapi: 3.1.0
+info:
+  title: FPDS Analytics API
+  version: "2026-06-02"
+  summary: Public read-only API over Kenosa's FPDS analytics schemas.
+  description: |
+    Dataset-oriented API for FPDS procurement analytics report views.
+    The API exposes curated analytics datasets and dimensions only; it does not expose arbitrary SQL or raw FPDS tables.
+servers:
+  - url: https://api.example.com
+    description: Production placeholder
+  - url: http://localhost:8000
+    description: Local development
+security:
+  - ApiKeyAuth: []
+paths:
+  /v1:
+    get:
+      summary: Service metadata
+      security: []
+      responses:
+        "200":
+          description: Service metadata.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServiceMetadata"
+
+  /v1/health:
+    get:
+      summary: Health check
+      security: []
+      responses:
+        "200":
+          description: Service is healthy.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Health"
+
+  /v1/catalog:
+    get:
+      summary: List public datasets and dimensions
+      security: []
+      parameters:
+        - name: domain
+          in: query
+          schema:
+            type: string
+            enum: [pricing, concentration, competition, naics, geography]
+      responses:
+        "200":
+          description: Dataset catalog.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [data, meta]
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Dataset"
+                  meta:
+                    $ref: "#/components/schemas/ResponseMeta"
+
+  /v1/datasets/{dataset_id}:
+    get:
+      summary: Describe one dataset
+      security: []
+      parameters:
+        - $ref: "#/components/parameters/DatasetId"
+      responses:
+        "200":
+          description: Dataset metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [data, meta]
+                properties:
+                  data:
+                    $ref: "#/components/schemas/Dataset"
+                  meta:
+                    $ref: "#/components/schemas/ResponseMeta"
+        "404":
+          $ref: "#/components/responses/Error"
+
+  /v1/datasets/{dataset_id}/rows:
+    get:
+      summary: Query rows from an approved dataset
+      description: |
+        Canonical row endpoint. Filters, fields, and sort keys are allowlisted per dataset.
+        Unsupported filters are rejected instead of silently ignored.
+      parameters:
+        - $ref: "#/components/parameters/DatasetId"
+        - name: fiscal_year
+          in: query
+          schema: { type: integer, minimum: 1958, maximum: 2026 }
+        - name: fiscal_year_min
+          in: query
+          schema: { type: integer, minimum: 1958, maximum: 2026 }
+        - name: fiscal_year_max
+          in: query
+          schema: { type: integer, minimum: 1958, maximum: 2026 }
+        - name: contracting_dept_id
+          in: query
+          schema: { type: string }
+        - name: contracting_agency_id
+          in: query
+          schema: { type: string }
+        - name: principal_naics_code
+          in: query
+          schema: { type: string, pattern: "^[0-9]{6}$" }
+        - name: sector_code
+          in: query
+          schema: { type: string, pattern: "^[0-9]{2}$" }
+        - name: pop_state_code
+          in: query
+          schema: { type: string, minLength: 2, maxLength: 2 }
+        - name: uei
+          in: query
+          schema: { type: string, minLength: 12, maxLength: 12 }
+        - name: scope
+          in: query
+          schema: { type: string }
+        - name: fields
+          in: query
+          description: Comma-separated subset of public fields.
+          schema: { type: string }
+        - name: sort
+          in: query
+          description: Allowlisted field; prefix with '-' for descending order.
+          schema: { type: string }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 100, minimum: 1, maximum: 1000 }
+        - name: cursor
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: Dataset rows.
+          headers:
+            X-RateLimit-Limit:
+              schema: { type: integer }
+            X-RateLimit-Remaining:
+              schema: { type: integer }
+            X-RateLimit-Reset:
+              schema: { type: string, format: date-time }
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RowsResponse"
+        "400":
+          $ref: "#/components/responses/Error"
+        "401":
+          $ref: "#/components/responses/Error"
+        "403":
+          $ref: "#/components/responses/Error"
+        "429":
+          $ref: "#/components/responses/Error"
+
+  /v1/dimensions/{dimension_id}:
+    get:
+      summary: Query dimension/code lookup rows
+      security: []
+      parameters:
+        - name: dimension_id
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [pricing_codes, competition_codes, business_size_codes, bundling_codes, financing_codes, naics, states]
+        - name: q
+          in: query
+          description: Optional text search for dimensions that support it.
+          schema: { type: string }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 100, minimum: 1, maximum: 1000 }
+        - name: cursor
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: Dimension rows.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RowsResponse"
+
+  /v1/exports:
+    post:
+      summary: Create a bounded async export
+      description: Optional phase-2 endpoint. Exports must use the same dataset registry restrictions as row queries.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExportRequest"
+      responses:
+        "202":
+          description: Export accepted.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExportJob"
+
+  /v1/exports/{export_id}:
+    get:
+      summary: Fetch export status
+      parameters:
+        - name: export_id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Export status.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExportJob"
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+  parameters:
+    DatasetId:
+      name: dataset_id
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+          - pricing.trend_fy
+          - pricing.agency_profile_fy
+          - pricing.kpi_summary
+          - pricing.risk_scorecard
+          - pricing.dept_year_summary
+          - concentration.trend_fy
+          - concentration.agency_profile
+          - concentration.vendor_market_leaders
+          - concentration.small_biz_health_fy
+          - concentration.kpi_summary
+          - competition.trend_fy
+          - competition.agency_profile_fy
+          - competition.kpi_summary
+          - competition.sole_source_hotspots
+          - naics.trend_fy
+          - naics.agency_profile_fy
+          - naics.growth_leaders
+          - naics.kpi_summary
+          - geography.state_trend_fy
+          - geography.regional_summary_fy
+          - geography.mismatch_leaders
+          - geography.kpi_summary
+  schemas:
+    ServiceMetadata:
+      type: object
+      required: [name, api_version, status]
+      properties:
+        name: { type: string, example: "FPDS Analytics API" }
+        api_version: { type: string, example: "2026-06-02" }
+        status: { type: string, example: "ok" }
+        documentation_url: { type: string }
+    Health:
+      type: object
+      required: [status]
+      properties:
+        status: { type: string, enum: [ok, degraded, unavailable] }
+        database: { type: string, enum: [ok, degraded, unavailable] }
+        catalog_version: { type: string }
+    Dataset:
+      type: object
+      required: [id, title, domain, grain, filters, sortable, fields]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        domain: { type: string }
+        grain: { type: string }
+        filters:
+          type: array
+          items: { type: string }
+        sortable:
+          type: array
+          items: { type: string }
+        fields:
+          type: array
+          items: { type: string }
+        default_sort: { type: string }
+        max_limit: { type: integer }
+        caveats:
+          type: array
+          items: { type: string }
+    RowsResponse:
+      type: object
+      required: [data, pagination, meta]
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        pagination:
+          $ref: "#/components/schemas/Pagination"
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+    Pagination:
+      type: object
+      required: [limit]
+      properties:
+        limit: { type: integer }
+        next_cursor: { type: [string, "null"] }
+    ResponseMeta:
+      type: object
+      properties:
+        request_id: { type: string }
+        api_version: { type: string }
+        dataset_id: { type: string }
+        source: { type: string, example: "FPDS analytics schema" }
+        source_fiscal_years:
+          type: array
+          items: { type: integer }
+        last_refreshed_at: { type: string, format: date-time }
+        row_count: { type: integer }
+        caveats:
+          type: array
+          items: { type: string }
+    ExportRequest:
+      type: object
+      required: [dataset_id, format]
+      properties:
+        dataset_id: { type: string }
+        format: { type: string, enum: [jsonl, csv] }
+        filters:
+          type: object
+          additionalProperties: true
+        fields:
+          type: array
+          items: { type: string }
+    ExportJob:
+      type: object
+      required: [export_id, status]
+      properties:
+        export_id: { type: string }
+        status: { type: string, enum: [queued, running, complete, failed, expired] }
+        download_url: { type: [string, "null"] }
+        expires_at: { type: [string, "null"], format: date-time }
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [type, code, message, request_id]
+          properties:
+            type: { type: string }
+            code: { type: string }
+            message: { type: string }
+            param: { type: [string, "null"] }
+            request_id: { type: string }
+  responses:
+    Error:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"

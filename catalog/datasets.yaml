@@ -1,0 +1,294 @@
+version: "2026-06-02"
+source_reference: "docs/analytics-schema-reference.md"
+notes:
+  - "Initial public API catalog exposes report-deck views first."
+  - "The source reference headline says 21 report views; this catalog includes 22 because naics_breakdown.report_deck_naics_kpi_summary is defined in the migration."
+  - "Numeric money fields should be serialized as strings by the API service."
+
+defaults:
+  limit: 100
+  max_limit: 1000
+  order: "-fiscal_year"
+  required_filters: []
+  caveats:
+    - "FPDS obligations can include negative de-obligations."
+    - "Fiscal years follow the federal October-September convention."
+
+datasets:
+  - id: "pricing.trend_fy"
+    title: "Pricing Trend By Fiscal Year"
+    domain: "pricing"
+    backing_view: "analytics_api.pricing_trend_fy"
+    source_view: "contract_pricing.report_deck_pricing_trend_fy"
+    grain: "fiscal_year"
+    public_access: "api_key"
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
+    sortable: ["fiscal_year", "total_obligated", "fixed_price_obligation_share", "cost_type_obligation_share", "tm_obligation_share"]
+    default_sort: "fiscal_year"
+    fields: ["fiscal_year", "is_current_fiscal_year_ytd", "fixed_price_action_count", "fixed_price_obligated", "cost_type_action_count", "cost_type_obligated", "tm_action_count", "tm_obligated", "other_action_count", "other_obligated", "total_action_count", "total_obligated", "fixed_price_action_share", "cost_type_action_share", "tm_action_share", "fixed_price_obligation_share", "cost_type_obligation_share", "tm_obligation_share"]
+
+  - id: "pricing.agency_profile_fy"
+    title: "Pricing Agency Profile By Fiscal Year"
+    domain: "pricing"
+    backing_view: "analytics_api.pricing_agency_profile_fy"
+    source_view: "contract_pricing.report_deck_pricing_agency_profile_fy"
+    grain: "contracting_dept_id x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["fiscal_year", "contracting_dept_id"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id"]
+    sortable: ["fiscal_year", "contracting_dept_id", "total_obligated_amount", "cost_type_obligation_share", "tm_obligation_share"]
+    default_sort: "-total_obligated_amount"
+    fields: ["contracting_dept_id", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "total_obligated_amount", "fixed_price_action_count", "fixed_price_obligated", "cost_type_action_count", "cost_type_obligated", "tm_action_count", "tm_obligated", "other_action_count", "other_obligated", "fixed_price_action_share", "cost_type_action_share", "tm_action_share", "fixed_price_obligation_share", "cost_type_obligation_share", "tm_obligation_share"]
+
+  - id: "pricing.kpi_summary"
+    title: "Pricing KPI Summary"
+    domain: "pricing"
+    backing_view: "analytics_api.pricing_kpi_summary"
+    source_view: "contract_pricing.report_deck_pricing_kpi_summary"
+    grain: "scope"
+    public_access: "api_key"
+    filters: ["scope_name"]
+    sortable: ["scope_name", "total_obligated", "fixed_price_obligation_share", "cost_type_obligation_share", "tm_obligation_share"]
+    default_sort: "scope_name"
+    fields: ["scope_name", "total_actions", "total_obligated", "fixed_price_actions", "cost_type_actions", "tm_actions", "fixed_price_action_share", "cost_type_action_share", "tm_action_share", "fixed_price_obligated", "cost_type_obligated", "tm_obligated", "fixed_price_obligation_share", "cost_type_obligation_share", "tm_obligation_share"]
+
+  - id: "pricing.risk_scorecard"
+    title: "Pricing Risk Scorecard"
+    domain: "pricing"
+    backing_view: "analytics_api.pricing_risk_scorecard"
+    source_view: "contract_pricing.report_deck_pricing_risk_scorecard"
+    grain: "contracting_dept_id over recent three fiscal years"
+    public_access: "api_key"
+    filters: ["contracting_dept_id"]
+    sortable: ["risk_score", "total_obligated_3yr", "cost_type_obligation_share", "tm_obligation_share"]
+    default_sort: "-risk_score"
+    fields: ["contracting_dept_id", "cost_type_obligation_share", "tm_obligation_share", "risk_score", "total_obligated_3yr", "cost_type_obligated_3yr", "tm_obligated_3yr", "total_action_count_3yr"]
+
+  - id: "pricing.dept_year_summary"
+    title: "Pricing Department-Year Summary"
+    domain: "pricing"
+    backing_view: "analytics_api.pricing_dept_year_summary"
+    source_view: "contract_pricing.mv_fpds_pricing_dept_year_summary_with_shares"
+    grain: "contracting_dept_id x fiscal_year"
+    public_access: "api_key"
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id"]
+    sortable: ["fiscal_year", "contracting_dept_id", "total_obligated", "cost_type_obligation_share", "tm_obligation_share"]
+    default_sort: "-total_obligated"
+    fields: ["contracting_dept_id", "fiscal_year", "fixed_price_action_count", "fixed_price_obligated", "cost_type_action_count", "cost_type_obligated", "tm_action_count", "tm_obligated", "other_action_count", "other_obligated", "total_action_count", "total_obligated", "multi_year_action_count", "pbc_action_count", "fixed_price_action_share", "cost_type_action_share", "tm_action_share", "fixed_price_obligation_share", "cost_type_obligation_share", "tm_obligation_share"]
+
+  - id: "concentration.trend_fy"
+    title: "Market Concentration Trend By Fiscal Year"
+    domain: "concentration"
+    backing_view: "analytics_api.concentration_trend_fy"
+    source_view: "vendor_concentration.report_deck_concentration_trend_fy"
+    grain: "fiscal_year"
+    public_access: "api_key"
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
+    sortable: ["fiscal_year", "avg_hhi", "highly_concentrated_markets", "competitive_markets"]
+    default_sort: "fiscal_year"
+    fields: ["fiscal_year", "is_current_fiscal_year_ytd", "analyzed_markets", "highly_concentrated_markets", "moderately_concentrated_markets", "competitive_markets", "highly_concentrated_pct", "avg_hhi", "avg_top_vendor_share_pct", "avg_top_3_vendor_share_pct", "avg_vendors_per_market", "small_biz_obligation_share_pct", "avg_small_biz_vendors_per_market", "total_market_obligation"]
+    caveats:
+      - "Concentration markets require at least two distinct vendors and positive total obligation."
+
+  - id: "concentration.agency_profile"
+    title: "Concentration Agency Profile"
+    domain: "concentration"
+    backing_view: "analytics_api.concentration_agency_profile"
+    source_view: "vendor_concentration.report_deck_concentration_agency_profile"
+    grain: "contracting_agency_id"
+    public_access: "api_key"
+    filters: ["contracting_agency_id"]
+    sortable: ["contracting_agency_id", "analyzed_markets", "avg_hhi", "monopoly_market_pct", "total_market_obligation"]
+    default_sort: "-total_market_obligation"
+    fields: ["contracting_agency_id", "analyzed_markets", "monopoly_markets", "monopoly_market_pct", "avg_hhi", "avg_top_vendor_share_pct", "avg_vendors_per_market", "small_biz_obligation_share_pct", "total_market_obligation", "avg_market_size", "latest_fiscal_year"]
+
+  - id: "concentration.vendor_market_leaders"
+    title: "Vendor Market Leaders"
+    domain: "concentration"
+    backing_view: "analytics_api.concentration_vendor_market_leaders"
+    source_view: "vendor_concentration.report_deck_vendor_market_leaders"
+    grain: "uei"
+    public_access: "api_key"
+    required_filters_any: []
+    filters: ["uei", "is_small_business_ever"]
+    sortable: ["lifetime_total_obligated", "agencies_served", "avg_tenure_years", "avg_annual_obligated"]
+    default_sort: "-lifetime_total_obligated"
+    max_limit: 500
+    fields: ["uei", "vendor_name", "is_small_business_ever", "agencies_served", "lifetime_total_obligated", "avg_annual_obligated", "avg_tenure_years", "avg_year_span", "long_incumbent_agencies", "last_active_year", "first_active_year"]
+    caveats:
+      - "Vendor datasets exclude rows with missing UEI, agency, or signed_date."
+
+  - id: "concentration.small_biz_health_fy"
+    title: "Small Business Health By Fiscal Year"
+    domain: "concentration"
+    backing_view: "analytics_api.concentration_small_biz_health_fy"
+    source_view: "vendor_concentration.report_deck_small_biz_health_fy"
+    grain: "fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
+    sortable: ["fiscal_year", "small_biz_obligation_share_pct", "small_biz_vendor_share_pct", "new_small_biz_entrants"]
+    default_sort: "fiscal_year"
+    fields: ["fiscal_year", "is_current_fiscal_year_ytd", "small_biz_vendor_count", "total_vendor_count", "small_biz_vendor_share_pct", "small_biz_obligation_total", "total_obligation", "small_biz_obligation_share_pct", "small_biz_action_count", "total_action_count", "small_biz_action_share_pct", "new_small_biz_entrants"]
+    caveats:
+      - "Small-business flags reflect FPDS award records, not necessarily current SAM registration status."
+
+  - id: "concentration.kpi_summary"
+    title: "Concentration KPI Summary"
+    domain: "concentration"
+    backing_view: "analytics_api.concentration_kpi_summary"
+    source_view: "vendor_concentration.report_deck_concentration_kpi_summary"
+    grain: "scope"
+    public_access: "api_key"
+    filters: ["metric_period"]
+    sortable: ["metric_period", "current_fy_avg_hhi", "current_fy_highly_concentrated_pct", "current_fy_small_biz_share_pct"]
+    default_sort: "metric_period"
+    fields: ["metric_period", "current_fiscal_year", "current_fy_markets_analyzed", "current_fy_avg_hhi", "current_fy_highly_concentrated_pct", "three_year_avg_hhi", "current_fy_avg_vendors_per_market", "current_fy_small_biz_share_pct"]
+
+  - id: "competition.trend_fy"
+    title: "Competition Trend By Fiscal Year"
+    domain: "competition"
+    backing_view: "analytics_api.competition_trend_fy"
+    source_view: "competition_dynamics.report_deck_competition_trend_fy"
+    grain: "fiscal_year"
+    public_access: "api_key"
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
+    sortable: ["fiscal_year", "total_obligated", "competed_action_share", "not_competed_action_share", "bundled_action_share", "avg_offers_received"]
+    default_sort: "fiscal_year"
+    fields: ["fiscal_year", "is_current_fiscal_year_ytd", "competed_action_count", "competed_obligated", "not_competed_action_count", "not_competed_obligated", "full_competition_action_count", "full_competition_obligated", "limited_competition_action_count", "limited_competition_obligated", "bundled_action_count", "bundled_obligated", "consolidated_action_count", "consolidated_obligated", "total_action_count", "total_obligated", "competed_action_share", "not_competed_action_share", "full_competition_action_share", "limited_competition_action_share", "competed_obligation_share", "not_competed_obligation_share", "bundled_action_share", "bundled_obligation_share", "consolidated_action_share", "consolidated_obligation_share", "avg_offers_received"]
+
+  - id: "competition.agency_profile_fy"
+    title: "Competition Agency Profile By Fiscal Year"
+    domain: "competition"
+    backing_view: "analytics_api.competition_agency_profile_fy"
+    source_view: "competition_dynamics.report_deck_competition_agency_profile_fy"
+    grain: "contracting_dept_id x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["fiscal_year", "contracting_dept_id"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id"]
+    sortable: ["fiscal_year", "total_obligated", "competed_action_share", "not_competed_action_share", "bundled_action_share", "avg_offers_received"]
+    default_sort: "-total_obligated"
+    fields: ["contracting_dept_id", "fiscal_year", "is_current_fiscal_year_ytd", "competed_action_count", "competed_obligated", "not_competed_action_count", "not_competed_obligated", "full_competition_action_count", "full_competition_obligated", "limited_competition_action_count", "limited_competition_obligated", "bundled_action_count", "bundled_obligated", "consolidated_action_count", "consolidated_obligated", "total_action_count", "total_obligated", "competed_action_share", "not_competed_action_share", "bundled_action_share", "competed_obligation_share", "not_competed_obligation_share", "bundled_obligation_share", "consolidated_obligation_share", "avg_offers_received"]
+
+  - id: "competition.kpi_summary"
+    title: "Competition KPI Summary"
+    domain: "competition"
+    backing_view: "analytics_api.competition_kpi_summary"
+    source_view: "competition_dynamics.report_deck_competition_kpi_summary"
+    grain: "scope"
+    public_access: "api_key"
+    filters: ["scope_name"]
+    sortable: ["scope_name", "competed_action_share", "not_competed_action_share", "bundled_action_share", "avg_offers_received"]
+    default_sort: "scope_name"
+    fields: ["scope_name", "total_actions", "total_obligated", "competed_actions", "not_competed_actions", "full_competition_actions", "limited_competition_actions", "competed_action_share", "not_competed_action_share", "full_competition_action_share", "limited_competition_action_share", "competed_obligated", "not_competed_obligated", "competed_obligation_share", "not_competed_obligation_share", "bundled_actions", "consolidated_actions", "bundled_obligated", "consolidated_obligated", "bundled_action_share", "consolidated_action_share", "bundled_obligation_share", "consolidated_obligation_share", "avg_offers_received"]
+
+  - id: "competition.sole_source_hotspots"
+    title: "Sole Source Hotspots"
+    domain: "competition"
+    backing_view: "analytics_api.competition_sole_source_hotspots"
+    source_view: "competition_dynamics.report_deck_sole_source_hotspots"
+    grain: "contracting_dept_id over recent three fiscal years"
+    public_access: "api_key"
+    filters: ["contracting_dept_id"]
+    sortable: ["not_competed_obligation_share_3yr", "not_competed_obligated_3yr", "total_obligated_3yr"]
+    default_sort: "-not_competed_obligation_share_3yr"
+    fields: ["contracting_dept_id", "not_competed_action_count_3yr", "not_competed_obligated_3yr", "total_action_count_3yr", "total_obligated_3yr", "not_competed_action_share_3yr", "not_competed_obligation_share_3yr", "avg_offers_received_3yr", "bundled_action_count_3yr", "bundled_action_share_3yr"]
+
+  - id: "naics.trend_fy"
+    title: "NAICS Sector Trend By Fiscal Year"
+    domain: "naics"
+    backing_view: "analytics_api.naics_trend_fy"
+    source_view: "naics_breakdown.report_deck_naics_trend_fy"
+    grain: "sector_code x fiscal_year"
+    public_access: "api_key"
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "sector_code"]
+    sortable: ["fiscal_year", "sector_code", "total_obligated", "sector_obligation_share_of_total", "total_distinct_vendors"]
+    default_sort: "-total_obligated"
+    fields: ["fiscal_year", "sector_code", "sector_label", "is_current_fiscal_year_ytd", "total_action_count", "total_obligated", "contract_scope_action_count", "contract_scope_obligated", "total_distinct_naics", "total_distinct_vendors", "sector_obligation_share_of_total"]
+
+  - id: "naics.agency_profile_fy"
+    title: "NAICS Agency Profile By Fiscal Year"
+    domain: "naics"
+    backing_view: "analytics_api.naics_agency_profile_fy"
+    source_view: "naics_breakdown.report_deck_naics_agency_profile_fy"
+    grain: "contracting_dept_id x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id"]
+    sortable: ["fiscal_year", "contracting_dept_id", "total_obligated", "distinct_naics_count", "top_naics_obligation_share", "top_sector_obligation_share"]
+    default_sort: "-total_obligated"
+    fields: ["contracting_dept_id", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "total_obligated", "distinct_naics_count", "distinct_sector_count", "distinct_subsector_count", "distinct_vendor_count", "top_naics_code_by_obligation", "top_naics_obligation_share", "naics_diversity_ratio", "top_sector_code", "top_sector_obligation_share"]
+
+  - id: "naics.growth_leaders"
+    title: "NAICS Growth Leaders"
+    domain: "naics"
+    backing_view: "analytics_api.naics_growth_leaders"
+    source_view: "naics_breakdown.report_deck_naics_growth_leaders"
+    grain: "principal_naics_code"
+    public_access: "api_key"
+    filters: ["principal_naics_code", "sector_code"]
+    sortable: ["obligation_growth_rate", "obligation_change", "current_fy_obligated", "prior_fy_obligated"]
+    default_sort: "-obligation_growth_rate"
+    max_limit: 500
+    fields: ["principal_naics_code", "naics_desc", "sector_code", "current_fy_obligated", "prior_fy_obligated", "obligation_change", "obligation_growth_rate", "current_fy_actions", "prior_fy_actions"]
+
+  - id: "naics.kpi_summary"
+    title: "NAICS KPI Summary"
+    domain: "naics"
+    backing_view: "analytics_api.naics_kpi_summary"
+    source_view: "naics_breakdown.report_deck_naics_kpi_summary"
+    grain: "scope"
+    public_access: "api_key"
+    filters: ["scope_name"]
+    sortable: ["scope_name", "distinct_naics_count", "distinct_sector_count", "avg_vendors_per_naics", "avg_obligation_per_naics"]
+    default_sort: "scope_name"
+    fields: ["scope_name", "distinct_naics_count", "distinct_sector_count", "total_obligated", "dept_count", "vendor_interactions", "avg_vendors_per_naics", "avg_obligation_per_naics"]
+
+  - id: "geography.state_trend_fy"
+    title: "Geographic State Trend By Fiscal Year"
+    domain: "geography"
+    backing_view: "analytics_api.geography_state_trend_fy"
+    source_view: "geographic_analysis.report_deck_geo_state_trend_fy"
+    grain: "pop_state_code x fiscal_year"
+    public_access: "api_key"
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "pop_state_code", "census_region", "census_division", "is_state"]
+    sortable: ["fiscal_year", "pop_state_code", "total_obligated", "total_distinct_vendor_count", "distinct_agency_count"]
+    default_sort: "-total_obligated"
+    fields: ["pop_state_code", "pop_state_name", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "total_obligated", "contract_scope_obligated", "distinct_agency_count", "total_distinct_vendor_count", "is_domestic", "census_region", "census_division", "is_state"]
+
+  - id: "geography.regional_summary_fy"
+    title: "Geographic Regional Summary By Fiscal Year"
+    domain: "geography"
+    backing_view: "analytics_api.geography_regional_summary_fy"
+    source_view: "geographic_analysis.report_deck_geo_regional_summary_fy"
+    grain: "census_region x fiscal_year"
+    public_access: "api_key"
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "census_region"]
+    sortable: ["fiscal_year", "census_region", "total_obligated", "state_count", "total_distinct_vendor_count"]
+    default_sort: "-total_obligated"
+    fields: ["census_region", "fiscal_year", "is_current_fiscal_year_ytd", "state_count", "total_action_count", "total_obligated", "contract_scope_obligated", "total_distinct_vendor_count", "total_distinct_agency_count"]
+
+  - id: "geography.mismatch_leaders"
+    title: "Vendor-State To Performance-State Mismatch Leaders"
+    domain: "geography"
+    backing_view: "analytics_api.geography_mismatch_leaders"
+    source_view: "geographic_analysis.report_deck_geo_mismatch_leaders"
+    grain: "vendor_state_code x pop_state_code over recent three fiscal years"
+    public_access: "api_key"
+    filters: ["vendor_state_code", "pop_state_code", "is_in_state"]
+    sortable: ["total_obligated", "total_action_count", "total_distinct_vendor_count"]
+    default_sort: "-total_obligated"
+    max_limit: 500
+    fields: ["vendor_state_code", "pop_state_code", "vendor_state_name", "pop_state_name", "total_action_count", "total_obligated", "total_distinct_vendor_count", "is_in_state", "vendor_census_region", "pop_census_region"]
+
+  - id: "geography.kpi_summary"
+    title: "Geographic KPI Summary"
+    domain: "geography"
+    backing_view: "analytics_api.geography_kpi_summary"
+    source_view: "geographic_analysis.report_deck_geo_kpi_summary"
+    grain: "scope"
+    public_access: "api_key"
+    filters: ["scope_name"]
+    sortable: ["scope_name", "domestic_obligated_share", "international_obligated_share", "in_state_obligated_share"]
+    default_sort: "scope_name"
+    fields: ["scope_name", "state_count", "total_actions", "total_obligated", "domestic_obligated", "international_obligated", "domestic_obligated_share", "international_obligated_share", "in_state_obligated", "in_state_obligated_share"]

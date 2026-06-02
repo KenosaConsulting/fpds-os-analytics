@@ -1,0 +1,54 @@
+version: "2026-06-02"
+source_reference: "docs/analytics-schema-reference.md"
+
+dimensions:
+  - id: "pricing_codes"
+    title: "FPDS Contract Pricing Codes"
+    backing_view: "analytics_api.dim_pricing_codes"
+    source_table: "analytics_dims.fpds_contract_pricing_map"
+    key: "raw_code"
+    fields: ["raw_code", "raw_desc", "pricing_family", "risk_profile", "is_fixed_price", "is_cost_type", "is_time_and_materials", "is_order_dependent", "sort_order", "notes"]
+
+  - id: "competition_codes"
+    title: "FPDS Extent Competed Codes"
+    backing_view: "analytics_api.dim_competition_codes"
+    source_table: "analytics_dims.fpds_extent_competed_map"
+    key: "raw_code"
+    fields: ["raw_code", "raw_desc", "competition_family", "is_competed", "is_full_competition", "is_limited_competition", "is_not_competed", "sort_order", "notes"]
+
+  - id: "business_size_codes"
+    title: "FPDS Business Size Determination Codes"
+    backing_view: "analytics_api.dim_business_size_codes"
+    source_table: "analytics_dims.fpds_business_size_map"
+    key: "size_determination_code"
+    fields: ["size_determination_code", "size_determination_desc", "size_category", "is_small", "is_other_than_small", "sort_order", "notes"]
+
+  - id: "bundling_codes"
+    title: "FPDS Contract Bundling Codes"
+    backing_view: "analytics_api.dim_bundling_codes"
+    source_table: "analytics_dims.fpds_contract_bundling_map"
+    key: "raw_code"
+    fields: ["raw_code", "raw_desc", "bundling_severity", "is_bundled", "sort_order", "notes"]
+
+  - id: "financing_codes"
+    title: "FPDS Contract Financing Codes"
+    backing_view: "analytics_api.dim_financing_codes"
+    source_table: "analytics_dims.fpds_contract_financing_map"
+    key: "raw_code"
+    fields: ["raw_code", "raw_desc", "is_financed", "sort_order", "notes"]
+
+  - id: "naics"
+    title: "Observed FPDS NAICS Hierarchy"
+    backing_view: "analytics_api.dim_naics"
+    source_table: "analytics_dims.fpds_naics_hierarchy_map"
+    key: "naics_code"
+    filters: ["naics_code", "sector_code", "subsector_code"]
+    fields: ["naics_code", "naics_desc", "sector_code", "subsector_code", "sector_label", "subsector_label", "sort_order", "notes"]
+
+  - id: "states"
+    title: "US States, Territories, Military Postal Codes, And FPDS Placeholders"
+    backing_view: "analytics_api.dim_states"
+    source_table: "analytics_dims.fpds_us_state_map"
+    key: "state_code"
+    filters: ["state_code", "census_region", "census_division", "is_state"]
+    fields: ["state_code", "state_name", "census_region", "census_division", "is_state", "sort_order", "notes"]
