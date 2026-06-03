@@ -293,6 +293,25 @@ datasets:
     default_sort: "scope_name"
     fields: ["scope_name", "state_count", "total_actions", "total_obligated", "domestic_obligated", "international_obligated", "domestic_obligated_share", "international_obligated_share", "in_state_obligated", "in_state_obligated_share"]
 
+  # ── Competition Dynamics enrichment ────────────────────────────────────
+
+  - id: "competition.not_competed_reasons_fy"
+    title: "Non-Competed Reasons By Fiscal Year"
+    domain: "competition"
+    backing_view: "analytics_api.competition_not_competed_reasons_fy"
+    source_view: "competition_dynamics.report_deck_not_competed_reasons_fy"
+    grain: "contracting_dept_id x reason_code x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["fiscal_year", "contracting_dept_id", "reason_code", "reason_family"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "reason_code", "reason_family", "is_sole_source", "is_statutory"]
+    sortable: ["fiscal_year", "contracting_dept_id", "net_obligated_amount", "action_count", "reason_family"]
+    default_sort: "-net_obligated_amount"
+    fields: ["contracting_dept_id", "fiscal_year", "reason_code", "reason_label", "reason_family", "far_reference", "is_sole_source", "is_statutory", "is_market_driven", "is_procedural", "action_count", "net_obligated_amount", "positive_obligated_amount", "distinct_vendor_count", "distinct_agency_count"]
+    caveats:
+      - "Only ~16% of all actions have a reason_not_competed code — specifically those that are not competed."
+      - "Reason codes explain the legal or procedural basis for non-competition, not the business rationale."
+      - "Follow-on contracts (FOC) are a strong incumbency indicator — the existing contractor is retained without competition."
+
   # ── Package 6: Set-Aside & Socioeconomic Programs ──────────────────────
 
   - id: "set_aside.trend_fy"

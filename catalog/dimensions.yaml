@@ -53,6 +53,14 @@ dimensions:
     filters: ["state_code", "census_region", "census_division", "is_state"]
     fields: ["state_code", "state_name", "census_region", "census_division", "is_state", "sort_order", "notes"]
 
+  - id: "reason_not_competed_codes"
+    title: "FPDS Reason Not Competed Codes"
+    backing_view: "analytics_api.dim_reason_not_competed_codes"
+    source_table: "analytics_dims.fpds_reason_not_competed_map"
+    key: "raw_code"
+    filters: ["raw_code", "reason_family", "is_sole_source", "is_statutory"]
+    fields: ["raw_code", "label", "reason_family", "far_reference", "is_sole_source", "is_statutory", "is_market_driven", "is_procedural", "sort_order", "notes"]
+
   - id: "set_aside_codes"
     title: "FPDS Set-Aside Type Codes"
     backing_view: "analytics_api.dim_set_aside_codes"
