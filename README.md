@@ -115,7 +115,7 @@ The API is dataset-first.
 Set the API base URL first. Do not use the examples below as-is until the hosted service is live.
 
 ```bash
-export FPDS_ANALYTICS_API_BASE_URL="https://your-live-fpds-analytics-api-domain"
+export FPDS_ANALYTICS_API_BASE_URL="https://analytics-api.kenosaconsulting.com"
 ```
 
 Start by listing the available datasets:
@@ -154,7 +154,7 @@ Most users do not need to write code first. They can give an AI assistant the AP
 
 ```text
 Use the FPDS Analytics API to help me understand federal procurement customers.
-Start here: PASTE_THE_LIVE_API_BASE_URL_HERE/v1/ai-assistant-guide
+Start here: https://analytics-api.kenosaconsulting.com/v1/ai-assistant-guide
 
 First inspect the catalog, then choose the right dataset for my question.
 Use only documented filters, sorts, and fields.
@@ -162,7 +162,7 @@ Explain what the data means for customer targeting, market entry, teaming, or ca
 Include caveats and do not invent data.
 ```
 
-Important: `PASTE_THE_LIVE_API_BASE_URL_HERE` must be the real hosted service URL from Kenosa Consulting. Reserved placeholder domains will not work and AI assistants will correctly ignore them.
+Important: `https://analytics-api.kenosaconsulting.com` must resolve to the hosted API before this prompt will work in ChatGPT, Claude, Gemini, or similar assistants.
 
 If the assistant can make HTTP requests, it should start with:
 
@@ -215,6 +215,7 @@ The goal is to help answer:
 | [docs/DATASETS.md](docs/DATASETS.md) | Dataset-by-dataset field, filter, and sort reference |
 | [docs/QUICKSTART.md](docs/QUICKSTART.md) | First API calls |
 | [docs/CAVEATS.md](docs/CAVEATS.md) | Data limitations and interpretation notes |
+| [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Production domain, hosting, DNS, and verification checklist |
 | [docs/PACKAGING.md](docs/PACKAGING.md) | GitHub/open-source packaging plan |
 | [docs/LAUNCH_CHECKLIST.md](docs/LAUNCH_CHECKLIST.md) | Practical steps before public launch |
 | [docs/LLM_INTEGRATIONS.md](docs/LLM_INTEGRATIONS.md) | ChatGPT, Claude/MCP, and Gemini integration plan |

@@ -4,11 +4,11 @@ This guide shows the first API calls a user should make.
 
 ## Use An AI Assistant First
 
-If you want ChatGPT, Claude, Gemini, or another assistant to guide the analysis, paste this into the assistant after replacing `PASTE_THE_LIVE_API_BASE_URL_HERE` with the real hosted API URL:
+If you want ChatGPT, Claude, Gemini, or another assistant to guide the analysis, paste this into the assistant after the hosted API is live:
 
 ```text
 Use the FPDS Analytics API to help me understand federal procurement customers.
-Start here: PASTE_THE_LIVE_API_BASE_URL_HERE/v1/ai-assistant-guide
+Start here: https://analytics-api.kenosaconsulting.com/v1/ai-assistant-guide
 
 First inspect the catalog, then choose the right dataset for my question.
 Use only documented filters, sorts, and fields.
@@ -21,7 +21,7 @@ Then ask your business question in normal language.
 ## 1. See What The API Offers
 
 ```bash
-export FPDS_ANALYTICS_API_BASE_URL="https://your-live-fpds-analytics-api-domain"
+export FPDS_ANALYTICS_API_BASE_URL="https://analytics-api.kenosaconsulting.com"
 curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/catalog" | jq '.data[].id'
 ```
 

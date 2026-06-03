@@ -7,12 +7,8 @@ info:
     Dataset-oriented API for FPDS procurement analytics report views.
     The API exposes curated analytics datasets and dimensions only; it does not expose arbitrary SQL or raw FPDS tables.
 servers:
-  - url: https://{apiHost}
+  - url: https://analytics-api.kenosaconsulting.com
     description: Hosted deployment
-    variables:
-      apiHost:
-        default: your-live-fpds-analytics-api-domain
-        description: Replace with the real hosted FPDS Analytics API domain before use.
   - url: http://localhost:8000
     description: Local development
 security:
