@@ -293,6 +293,22 @@ datasets:
     default_sort: "scope_name"
     fields: ["scope_name", "state_count", "total_actions", "total_obligated", "domestic_obligated", "international_obligated", "domestic_obligated_share", "international_obligated_share", "in_state_obligated", "in_state_obligated_share"]
 
+  - id: "competition.commercial_mix_fy"
+    title: "Commercial vs Non-Commercial Acquisition Mix By Fiscal Year"
+    domain: "competition"
+    backing_view: "analytics_api.competition_commercial_mix_fy"
+    source_view: "competition_dynamics.report_deck_commercial_mix_fy"
+    grain: "contracting_dept_id x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["fiscal_year", "contracting_dept_id"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id"]
+    sortable: ["fiscal_year", "contracting_dept_id", "total_obligated", "commercial_obligation_share", "commercial_action_share"]
+    default_sort: "-total_obligated"
+    fields: ["contracting_dept_id", "fiscal_year", "commercial_action_count", "commercial_obligated", "non_commercial_action_count", "non_commercial_obligated", "unknown_commercial_action_count", "total_action_count", "total_obligated", "commercial_action_share", "commercial_obligation_share", "commercial_competed_count", "commercial_competed_obligated", "commercial_not_competed_count", "commercial_not_competed_obligated", "non_commercial_competed_count", "non_commercial_competed_obligated", "commercial_distinct_vendors", "non_commercial_distinct_vendors"]
+    caveats:
+      - "Commercial items use FAR Part 12 simplified acquisition procedures with lower barriers to entry."
+      - "Shares are computed against known-status (non-unknown) actions to avoid data quality deflation."
+
   # ── Competition Dynamics enrichment ────────────────────────────────────
 
   - id: "competition.not_competed_reasons_fy"
