@@ -22,6 +22,8 @@ Example:
 GET /v1/datasets/competition.sole_source_hotspots/rows?limit=25
 ```
 
+Public bounded row queries do not require an API key. API keys are for paid, partner, or higher-volume access.
+
 The value is not that users can run SQL. The value is that they can quickly answer questions like:
 
 - Which agencies are buying in ways that create risk?

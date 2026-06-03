@@ -5,10 +5,17 @@ from __future__ import annotations
 import hashlib
 import hmac
 import os
+from dataclasses import dataclass
 
 from fastapi import Header
 
 from .errors import APIError
+
+
+@dataclass(frozen=True)
+class APIAccess:
+    key_id: str
+    is_authenticated: bool
 
 
 def _configured_keys() -> list[str]:
@@ -25,12 +32,29 @@ def _auth_required() -> bool:
     return os.environ.get("FPDS_ANALYTICS_REQUIRE_AUTH", "1") != "0"
 
 
+def public_rows_enabled() -> bool:
+    return os.environ.get("FPDS_ANALYTICS_PUBLIC_ROWS_ENABLED", "1") != "0"
+
+
+def public_row_limit() -> int:
+    return int(os.environ.get("FPDS_ANALYTICS_PUBLIC_ROW_LIMIT", "25"))
+
+
 def _is_placeholder(value: str) -> bool:
     return "replace_me" in value.lower() or value.lower().startswith("example_")
 
 
+def optional_api_access(x_api_key: str | None = Header(default=None, alias="X-Api-Key")) -> APIAccess:
+    """Allow public access without a key, but validate keys when supplied."""
+    if not x_api_key:
+        if public_rows_enabled():
+            return APIAccess(key_id="public", is_authenticated=False)
+        return APIAccess(key_id=require_api_key(x_api_key), is_authenticated=True)
+    return APIAccess(key_id=require_api_key(x_api_key), is_authenticated=True)
+
+
 def require_api_key(x_api_key: str | None = Header(default=None, alias="X-Api-Key")) -> str:
-    """Require an API key unless auth is explicitly disabled for local dev."""
+    """Require an API key for paid/higher-volume or non-public endpoints."""
     if not _auth_required():
         return "local-dev"
 

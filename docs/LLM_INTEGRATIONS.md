@@ -47,8 +47,8 @@ Fastest path: host the API, then create a Custom GPT Action using `openapi.yaml`
 Recommended setup:
 
 - Action schema: import `openapi.yaml`.
-- Authentication: API key.
-- Header name: `X-Api-Key`.
+- Authentication: no key required for public bounded use; optional API key.
+- Header name for paid or higher-volume access: `X-Api-Key`.
 - GPT instructions: tell the model to call `list_datasets` first unless it already knows the right dataset.
 - Response behavior: summarize the returned data, cite dataset caveats, and avoid overclaiming causality.
 
@@ -80,7 +80,8 @@ MCP tools should be thin wrappers:
 
 MCP server rules:
 
-- Require an API key or OAuth before calling data endpoints.
+- Do not require an API key for bounded public row queries.
+- Accept an API key or OAuth only for paid, partner, or higher-volume access.
 - Enforce the same dataset IDs, filters, sorts, and limits as the API.
 - Return structured JSON, not prose.
 - Let Claude write the analysis from the data.

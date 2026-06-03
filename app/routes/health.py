@@ -55,7 +55,8 @@ def ai_assistant_guide() -> dict[str, object]:
         "assistant_instructions": [
             "Start with /v1/catalog unless the user already named a dataset.",
             "Use /v1/datasets/{dataset_id} to inspect fields, filters, sort options, and caveats before querying rows.",
-            "Use /v1/datasets/{dataset_id}/rows for bounded data retrieval. Include X-Api-Key when required.",
+            "Use /v1/datasets/{dataset_id}/rows for bounded public data retrieval. Do not ask for an API key for first-use analysis.",
+            "Include X-Api-Key only when the user has a paid or partner key for higher-volume access.",
             "Prefer small, targeted requests with relevant filters instead of broad pulls.",
             "Explain results in plain English for customer targeting, market entry, teaming, or capture planning.",
             "Include caveats from the API response and do not claim causality that the data does not support.",
@@ -65,7 +66,7 @@ def ai_assistant_guide() -> dict[str, object]:
             {"name": "service_metadata", "method": "GET", "path": "/v1", "api_key_required": False},
             {"name": "list_datasets", "method": "GET", "path": "/v1/catalog", "api_key_required": False},
             {"name": "describe_dataset", "method": "GET", "path": "/v1/datasets/{dataset_id}", "api_key_required": False},
-            {"name": "query_dataset", "method": "GET", "path": "/v1/datasets/{dataset_id}/rows", "api_key_required": True},
+            {"name": "query_dataset", "method": "GET", "path": "/v1/datasets/{dataset_id}/rows", "api_key_required": False},
             {"name": "list_dimensions", "method": "GET", "path": "/v1/dimensions", "api_key_required": False},
             {"name": "lookup_dimension", "method": "GET", "path": "/v1/dimensions/{dimension_id}", "api_key_required": False},
         ],
@@ -84,6 +85,7 @@ def ai_assistant_guide() -> dict[str, object]:
         ),
         "auth": {
             "header": "X-Api-Key",
-            "note": "Discovery endpoints are public. Dataset row endpoints require an API key unless a deployment disables auth for local testing.",
+            "note": "Discovery and bounded dataset row endpoints are public. API keys are for paid, partner, or higher-volume access.",
+            "public_row_limit": 25,
         },
     }

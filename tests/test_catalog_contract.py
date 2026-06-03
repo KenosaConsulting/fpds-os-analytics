@@ -13,7 +13,7 @@ sys.path.insert(0, str(SERVICE_ROOT))
 from app.catalog import load_catalog  # noqa: E402
 from app.errors import APIError  # noqa: E402
 from app.query_builder import build_rows_query  # noqa: E402
-from app.auth import require_api_key  # noqa: E402
+from app.auth import optional_api_access, require_api_key  # noqa: E402
 from app.main import _allowed_origins  # noqa: E402
 from app.rate_limit import MemoryRateLimitStore, RateLimit, _hashed_token  # noqa: E402
 from app.routes.health import ai_assistant_guide, metadata  # noqa: E402
@@ -110,6 +110,28 @@ def test_limit_cap_is_enforced() -> None:
         raise AssertionError("Expected limit_too_large")
 
 
+def test_public_limit_override_caps_no_key_queries() -> None:
+    catalog = load_catalog()
+    dataset = catalog.get_dataset("pricing.risk_scorecard")
+    sql, values, limit, offset = build_rows_query(dataset, {"_max_limit_override": "25"})
+    assert 'from "analytics_api"."pricing_risk_scorecard"' in sql
+    assert values[-2:] == [26, 0]
+    assert limit == 25
+    assert offset == 0
+
+
+def test_public_limit_override_rejects_large_no_key_queries() -> None:
+    catalog = load_catalog()
+    dataset = catalog.get_dataset("pricing.risk_scorecard")
+    try:
+        build_rows_query(dataset, {"limit": "100", "_max_limit_override": "25"})
+    except APIError as exc:
+        assert exc.detail["code"] == "limit_too_large"
+        assert "25" in exc.detail["message"]
+    else:
+        raise AssertionError("Expected limit_too_large")
+
+
 def test_naics_growth_leaders_uses_live_facade_fields() -> None:
     catalog = load_catalog()
     dataset = catalog.get_dataset("naics.growth_leaders")
@@ -152,6 +174,15 @@ def test_placeholder_api_keys_fail_closed(monkeypatch) -> None:
         assert exc.detail["code"] == "api_key_store_unconfigured"
     else:
         raise AssertionError("Expected placeholder API key config to fail closed")
+
+
+def test_missing_api_key_gets_public_access(monkeypatch) -> None:
+    monkeypatch.setenv("FPDS_ANALYTICS_PUBLIC_ROWS_ENABLED", "1")
+    monkeypatch.delenv("FPDS_ANALYTICS_API_KEYS", raising=False)
+    monkeypatch.delenv("FPDS_ANALYTICS_API_KEY_HASHES", raising=False)
+    access = optional_api_access(None)
+    assert access.key_id == "public"
+    assert access.is_authenticated is False
 
 
 def test_cors_is_not_wildcard_by_default(monkeypatch) -> None:

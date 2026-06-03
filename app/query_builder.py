@@ -12,7 +12,7 @@ from .errors import APIError
 
 
 IDENT_RE = re.compile(r"^[a-z][a-z0-9_]*$")
-CONTROL_PARAMS = {"fields", "sort", "limit", "cursor"}
+CONTROL_PARAMS = {"fields", "sort", "limit", "cursor", "_max_limit_override"}
 KNOWN_FILTERS = {
     "fiscal_year",
     "fiscal_year_min",
@@ -128,6 +128,9 @@ def build_rows_query(dataset: dict[str, Any], params: dict[str, str]) -> tuple[s
     validate_required_filters(dataset, params)
     max_limit = int(dataset.get("max_limit") or 1000)
     default_limit = int(dataset.get("limit") or 100)
+    if "_max_limit_override" in params:
+        max_limit = min(max_limit, int(params["_max_limit_override"]))
+        default_limit = min(default_limit, max_limit)
     limit = parse_limit(params.get("limit"), max_limit, default_limit)
     offset = decode_cursor(params.get("cursor"))
     fields = selected_fields(dataset, params.get("fields"))

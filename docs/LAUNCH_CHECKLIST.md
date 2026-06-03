@@ -23,6 +23,8 @@ Use this checklist to move FPDS Analytics API from local testing to a public fre
 - Deploy behind HTTPS.
 - Use `https://analytics-api.kenosaconsulting.com` as the public base URL.
 - Keep `FPDS_ANALYTICS_REQUIRE_AUTH=1`.
+- Keep `FPDS_ANALYTICS_PUBLIC_ROWS_ENABLED=1` for bounded free access.
+- Set `FPDS_ANALYTICS_PUBLIC_ROW_LIMIT=25` or another conservative public limit.
 - Set `FPDS_ANALYTICS_API_KEYS` from secret storage.
 - Prefer `FPDS_ANALYTICS_API_KEY_HASHES` over plaintext keys in production.
 - Set `ANALYTICS_DATABASE_URL` from secret storage.

@@ -134,19 +134,17 @@ Then query rows:
 
 ```bash
 curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/competition.sole_source_hotspots/rows?limit=25" \
-  -H "X-Api-Key: $FPDS_API_KEY" \
-  -H "X-Api-Version: 2026-06-02" \
   | jq '.data'
 ```
 
 Example: find NAICS sector demand for Professional, Scientific, and Technical Services:
 
 ```bash
-curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/naics.trend_fy/rows?sector_code=54&fiscal_year_min=2022" \
-  -H "X-Api-Key: $FPDS_API_KEY" \
-  -H "X-Api-Version: 2026-06-02" \
+curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/naics.trend_fy/rows?sector_code=54&fiscal_year_min=2022&limit=25" \
   | jq '.data'
 ```
+
+Public row queries are free and do not require an API key. API keys are for paid, partner, or higher-volume access.
 
 ## Use With ChatGPT, Claude, Gemini, Or Other AI Assistants
 
@@ -186,7 +184,7 @@ Read the full AI usage guide: [docs/AI_ASSISTANT_GUIDE.md](docs/AI_ASSISTANT_GUI
 | AI assistant guide | `GET /v1/ai-assistant-guide` | No | Copy/paste guidance for ChatGPT, Claude, Gemini, and similar tools |
 | List datasets | `GET /v1/catalog` | No | Discover available analytics |
 | Describe dataset | `GET /v1/datasets/{dataset_id}` | No | See fields, filters, sort options, and caveats |
-| Query dataset | `GET /v1/datasets/{dataset_id}/rows` | Yes | Return analytics rows |
+| Query dataset | `GET /v1/datasets/{dataset_id}/rows` | No | Return bounded public analytics rows; API key optional for higher-volume access |
 | List dimensions | `GET /v1/dimensions` | No | Discover code lookup tables |
 | Query dimension | `GET /v1/dimensions/{dimension_id}` | No | Explain FPDS codes |
 | Export data | `POST /v1/exports` | Yes | Planned phase-2 bounded exports |
@@ -224,9 +222,9 @@ The goal is to help answer:
 
 ## Access
 
-Discovery endpoints are public so users can understand what the API offers before requesting a key.
+Discovery endpoints are public so users can understand what the API offers immediately.
 
-Dataset row endpoints require an API key. The API is dataset-first: users choose a documented dataset, apply documented filters, and receive bounded JSON rows.
+Dataset row endpoints are public with bounded row and rate limits. API keys are for paid, partner, or higher-volume access. The API is dataset-first: users choose a documented dataset, apply documented filters, and receive bounded JSON rows.
 
 The API does not provide arbitrary SQL or bulk database access.
 

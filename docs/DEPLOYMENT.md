@@ -12,6 +12,8 @@ Set these in the hosting platform's secret manager:
 
 ```env
 FPDS_ANALYTICS_REQUIRE_AUTH=1
+FPDS_ANALYTICS_PUBLIC_ROWS_ENABLED=1
+FPDS_ANALYTICS_PUBLIC_ROW_LIMIT=25
 FPDS_ANALYTICS_API_KEY_HASHES=sha256_hex_digest
 FPDS_ANALYTICS_ALLOWED_ORIGINS=https://kenosaconsulting.com
 ANALYTICS_DATABASE_URL=postgresql://fpds_analytics_api_readonly:PASSWORD@HOST:5432/postgres
@@ -65,10 +67,16 @@ curl -s https://analytics-api.kenosaconsulting.com/v1/ai-assistant-guide
 curl -s https://analytics-api.kenosaconsulting.com/v1/catalog
 ```
 
-Then test an authenticated row query:
+Then test a public row query:
 
 ```bash
-curl -s "https://analytics-api.kenosaconsulting.com/v1/datasets/competition.sole_source_hotspots/rows?limit=5" \
+curl -s "https://analytics-api.kenosaconsulting.com/v1/datasets/competition.sole_source_hotspots/rows?limit=5"
+```
+
+Then test an API-key row query for paid or higher-volume access:
+
+```bash
+curl -s "https://analytics-api.kenosaconsulting.com/v1/datasets/competition.sole_source_hotspots/rows?limit=100" \
   -H "X-Api-Key: $FPDS_API_KEY"
 ```
 

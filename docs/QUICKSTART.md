@@ -53,8 +53,6 @@ This tells you:
 
 ```bash
 curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/competition.sole_source_hotspots/rows?limit=25" \
-  -H "X-Api-Key: $FPDS_API_KEY" \
-  -H "X-Api-Version: 2026-06-02" \
   | jq '.data'
 ```
 
@@ -62,8 +60,6 @@ curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/competition.sole_source_hotspo
 
 ```bash
 curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/competition.trend_fy/rows?fiscal_year_min=2020&fiscal_year_max=2025" \
-  -H "X-Api-Key: $FPDS_API_KEY" \
-  -H "X-Api-Version: 2026-06-02" \
   | jq '.data'
 ```
 
@@ -73,10 +69,10 @@ NAICS sector `54` is Professional, Scientific, and Technical Services.
 
 ```bash
 curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/naics.trend_fy/rows?sector_code=54&fiscal_year_min=2022" \
-  -H "X-Api-Key: $FPDS_API_KEY" \
-  -H "X-Api-Version: 2026-06-02" \
   | jq '.data'
 ```
+
+Public row queries are free and bounded. API keys are for paid, partner, or higher-volume access.
 
 ## 6. Look Up Codes
 

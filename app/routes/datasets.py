@@ -5,7 +5,7 @@ from __future__ import annotations
 from fastapi import APIRouter, Depends, Request
 from psycopg2 import errors as pg_errors
 
-from app.auth import require_api_key
+from app.auth import APIAccess, optional_api_access, public_row_limit
 from app.catalog import load_catalog
 from app.db import db_cursor
 from app.errors import APIError
@@ -19,11 +19,13 @@ router = APIRouter(prefix="/v1")
 def dataset_rows(
     dataset_id: str,
     request: Request,
-    _api_key_id: str = Depends(require_api_key),
+    access: APIAccess = Depends(optional_api_access),
 ) -> dict[str, object]:
     catalog = load_catalog()
     dataset = catalog.get_dataset(dataset_id)
     params = {key: value for key, value in request.query_params.items()}
+    if not access.is_authenticated:
+        params["_max_limit_override"] = str(public_row_limit())
     sql, values, limit, offset = build_rows_query(dataset, params)
     try:
         with db_cursor() as cur:
@@ -57,5 +59,7 @@ def dataset_rows(
             "source_fiscal_years": [1958, 2026],
             "row_count": len(data),
             "caveats": dataset.get("caveats", []),
+            "access": "api_key" if access.is_authenticated else "public",
+            "api_key_id": access.key_id if access.is_authenticated else None,
         },
     }

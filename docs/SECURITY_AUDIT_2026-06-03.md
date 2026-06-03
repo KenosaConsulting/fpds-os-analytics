@@ -39,8 +39,8 @@ Do not launch broadly until the remaining launch blockers are resolved.
 
 | Control | Result |
 |---|---|
-| Dataset rows require API key by default | Pass |
-| Missing API key returns 401 | Pass |
+| Dataset rows allow bounded public access | Pass |
+| API keys unlock higher-volume access path | Pass |
 | Invalid API key returns 403 | Pass |
 | Placeholder key config fails closed | Pass |
 | Hashed API key config works | Pass |
@@ -127,7 +127,7 @@ Recommendation:
 ## Launch Blockers
 
 - Rotate the analytics read-only database password before hosted launch.
-- Deploy behind HTTPS with `FPDS_ANALYTICS_REQUIRE_AUTH=1`.
+- Deploy behind HTTPS with bounded public row access and API keys for higher-volume access.
 - Configure production API keys as hashes, not plaintext values.
 - Configure Redis-backed or edge/API-gateway rate limits.
 - Resolve or isolate from remaining unrelated Supabase advisor warnings.

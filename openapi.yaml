@@ -107,6 +107,11 @@ paths:
       description: |
         Canonical row endpoint. Filters, fields, and sort keys are allowlisted per dataset.
         Unsupported filters are rejected instead of silently ignored.
+        Public requests do not require an API key and are capped to a small row limit.
+        Provide X-Api-Key for paid, partner, or higher-volume access.
+      security:
+        - {}
+        - ApiKeyAuth: []
       parameters:
         - $ref: "#/components/parameters/DatasetId"
         - name: fiscal_year
@@ -149,7 +154,8 @@ paths:
           schema: { type: string }
         - name: limit
           in: query
-          schema: { type: integer, default: 100, minimum: 1, maximum: 1000 }
+          description: Public no-key requests are capped by deployment policy, default 25. API-key requests can use the dataset maximum.
+          schema: { type: integer, default: 25, minimum: 1, maximum: 1000 }
         - name: cursor
           in: query
           schema: { type: string }
@@ -168,8 +174,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/RowsResponse"
         "400":
-          $ref: "#/components/responses/Error"
-        "401":
           $ref: "#/components/responses/Error"
         "403":
           $ref: "#/components/responses/Error"
@@ -337,6 +341,7 @@ components:
               method: { type: string }
               path: { type: string }
               api_key_required: { type: boolean }
+              public_row_limit: { type: integer }
         common_user_goals:
           type: array
           items:

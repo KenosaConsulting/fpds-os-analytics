@@ -14,7 +14,7 @@ Start here: https://analytics-api.kenosaconsulting.com/v1/ai-assistant-guide
 
 First inspect the catalog, then choose the right dataset for my question.
 Use only documented filters, sorts, and fields.
-When data access requires a key, ask me for the API key and send it as X-Api-Key.
+Do not ask me for an API key for normal first-use analysis; public bounded row queries are allowed.
 Explain what the data means for customer targeting, market entry, teaming, or capture strategy.
 Include caveats and do not invent data.
 Do not ask for arbitrary SQL or raw database access.
@@ -42,7 +42,7 @@ The assistant should follow this sequence:
 2. Read `GET /v1/catalog` to see available analytics datasets.
 3. Pick the dataset that best matches the user's question.
 4. Read `GET /v1/datasets/{dataset_id}` to understand fields, filters, sorts, and caveats.
-5. Query `GET /v1/datasets/{dataset_id}/rows` with a small limit and relevant filters.
+5. Query `GET /v1/datasets/{dataset_id}/rows` with `limit=25` and relevant filters.
 6. Explain the result in plain English.
 7. Include caveats from the API response.
 
@@ -65,18 +65,19 @@ The assistant should not use arbitrary SQL, raw tables, admin endpoints, or undo
 
 ## If The Assistant Can Call APIs
 
-Give it the API base URL and your API key when needed.
+Give it the API base URL. An API key is not needed for normal bounded row queries.
 
-Discovery endpoints do not require a key:
+These endpoints do not require a key:
 
 ```text
 GET https://analytics-api.kenosaconsulting.com/v1/ai-assistant-guide
 GET https://analytics-api.kenosaconsulting.com/v1/catalog
 GET https://analytics-api.kenosaconsulting.com/v1/datasets/competition.sole_source_hotspots
 GET https://analytics-api.kenosaconsulting.com/v1/dimensions
+GET https://analytics-api.kenosaconsulting.com/v1/datasets/competition.sole_source_hotspots/rows?limit=25
 ```
 
-Dataset row endpoints require an API key:
+API keys are optional and reserved for paid, partner, or higher-volume access:
 
 ```text
 GET https://analytics-api.kenosaconsulting.com/v1/datasets/competition.sole_source_hotspots/rows?limit=25
@@ -93,7 +94,7 @@ Use this manual flow:
 4. Open the dataset detail URL the assistant recommends.
 5. Paste that response into the assistant.
 6. Ask it to build the row query URL.
-7. Run the row query with your API key.
+7. Run the row query.
 8. Paste the result back into the assistant for interpretation.
 
 ## Good User Prompts
