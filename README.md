@@ -112,10 +112,13 @@ Datasets:
 
 The API is dataset-first.
 
-Set the API base URL first. Do not use the examples below as-is until the hosted service is live.
+Set the API base URL for your environment first. The examples below assume the
+service is deployed and reachable.
 
 ```bash
-export FPDS_ANALYTICS_API_BASE_URL="https://analytics-api.kenosaconsulting.com"
+export FPDS_ANALYTICS_API_BASE_URL="https://YOUR_HOST"
+# or, for authorized local maintainer testing:
+# export FPDS_ANALYTICS_API_BASE_URL="http://127.0.0.1:8010"
 ```
 
 Start by listing the available datasets:
@@ -144,7 +147,38 @@ curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/naics.trend_fy/rows?sector_cod
   | jq '.data'
 ```
 
-Public row queries are free and do not require an API key. API keys are for paid, partner, or higher-volume access.
+Free access includes catalog discovery, dataset metadata, dimension lookups, and
+capped row samples. API-key access may provide higher rate limits, larger
+bounded responses, exports, or support. No access tier exposes arbitrary SQL,
+raw source tables, or write operations.
+
+## Sample Response
+
+```json
+{
+  "notice": "FPDS analytics are decision-support indicators, not a complete procurement universe.",
+  "data": [
+    {
+      "contracting_dept_id": "9700",
+      "fiscal_year": 2025,
+      "total_action_count": 42,
+      "total_obligated": "125000000.00",
+      "distinct_naics_count": 12,
+      "top_naics_code_by_obligation": "541330"
+    }
+  ],
+  "pagination": {
+    "limit": 25,
+    "next_cursor": null
+  },
+  "meta": {
+    "dataset_id": "naics.trend_fy",
+    "source": "FPDS analytics schema",
+    "row_count": 1,
+    "access": "public"
+  }
+}
+```
 
 ## Use With ChatGPT, Claude, Gemini, Or Other AI Assistants
 
@@ -152,7 +186,7 @@ Most users do not need to write code first. They can give an AI assistant the AP
 
 ```text
 Use the FPDS Analytics API to help me understand federal procurement customers.
-Start here: https://analytics-api.kenosaconsulting.com/v1/ai-assistant-guide
+Start here: https://YOUR_HOST/v1/ai-assistant-guide
 
 First inspect the catalog, then choose the right dataset for my question.
 Use only documented filters, sorts, and fields.
@@ -160,7 +194,8 @@ Explain what the data means for customer targeting, market entry, teaming, or ca
 Include the API response notice, caveats, and notices, and do not invent data.
 ```
 
-Important: `https://analytics-api.kenosaconsulting.com` must resolve to the hosted API before this prompt will work in ChatGPT, Claude, Gemini, or similar assistants.
+Replace `https://YOUR_HOST` with the hosted API URL for the environment you are
+using.
 
 If the assistant can make HTTP requests, it should start with:
 
@@ -213,20 +248,21 @@ The goal is to help answer:
 | [docs/DATASETS.md](docs/DATASETS.md) | Dataset-by-dataset field, filter, and sort reference |
 | [docs/QUICKSTART.md](docs/QUICKSTART.md) | First API calls |
 | [docs/CAVEATS.md](docs/CAVEATS.md) | Data limitations and interpretation notes |
-| [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Production domain, hosting, DNS, and verification checklist |
-| [docs/PACKAGING.md](docs/PACKAGING.md) | GitHub/open-source packaging plan |
-| [docs/LAUNCH_CHECKLIST.md](docs/LAUNCH_CHECKLIST.md) | Practical steps before public launch |
 | [docs/LLM_INTEGRATIONS.md](docs/LLM_INTEGRATIONS.md) | ChatGPT, Claude/MCP, and Gemini integration plan |
-| [docs/SECURITY_AUDIT_2026-06-03.md](docs/SECURITY_AUDIT_2026-06-03.md) | Current security audit and launch blockers |
+| [SECURITY.md](SECURITY.md) | Security boundary and responsible disclosure |
 | [openapi.yaml](openapi.yaml) | Machine-readable API contract |
 
 ## Access
 
-Discovery endpoints are public so users can understand what the API offers immediately.
+Discovery endpoints are public so users can understand what the API offers
+immediately.
 
-Dataset row endpoints are public with bounded row and rate limits. API keys are for paid, partner, or higher-volume access. The API is dataset-first: users choose a documented dataset, apply documented filters, and receive bounded JSON rows.
+Free access includes catalog discovery, dataset metadata, dimension lookups, and
+capped row samples. API-key access may provide higher rate limits, larger
+bounded responses, exports, or support.
 
-The API does not provide arbitrary SQL or bulk database access.
+The API does not provide arbitrary SQL, raw source table access, bulk database
+access, or write operations.
 
 ## Developer Setup
 

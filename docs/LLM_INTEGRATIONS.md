@@ -5,10 +5,13 @@ This API is intentionally shaped for LLM tool use: fixed datasets, allowed filte
 For non-technical users, the first integration is not a plugin. It is a clear URL and instruction block:
 
 ```text
-https://analytics-api.kenosaconsulting.com/v1/ai-assistant-guide
+https://YOUR_HOST/v1/ai-assistant-guide
 ```
 
-Users should be able to paste the hosted URL into ChatGPT, Claude, Gemini, or a similar assistant and ask it to follow the guide. Placeholder domains will not work and will cause assistants to route around the product.
+Users should replace `https://YOUR_HOST` with the hosted API URL for their
+environment, then paste that URL into ChatGPT, Claude, Gemini, or a similar
+assistant and ask it to follow the guide. Placeholder domains will not work and
+will cause assistants to route around the product.
 
 The core idea is simple:
 
@@ -48,7 +51,7 @@ Recommended setup:
 
 - Action schema: import `openapi.yaml`.
 - Authentication: no key required for public bounded use; optional API key.
-- Header name for paid or higher-volume access: `X-Api-Key`.
+- Header name for partner or higher-volume access: `X-Api-Key`.
 - GPT instructions: tell the model to call `list_datasets` first unless it already knows the right dataset.
 - Response behavior: summarize the returned data, cite dataset caveats, and avoid overclaiming causality.
 
@@ -81,7 +84,8 @@ MCP tools should be thin wrappers:
 MCP server rules:
 
 - Do not require an API key for bounded public row queries.
-- Accept an API key or OAuth only for paid, partner, or higher-volume access.
+- Accept an API key or OAuth only for partner access, higher rate limits,
+  larger bounded responses, exports, or support.
 - Enforce the same dataset IDs, filters, sorts, and limits as the API.
 - Return structured JSON, not prose.
 - Let Claude write the analysis from the data.

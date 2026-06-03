@@ -4,11 +4,13 @@ This guide shows the first API calls a user should make.
 
 ## Use An AI Assistant First
 
-If you want ChatGPT, Claude, Gemini, or another assistant to guide the analysis, paste this into the assistant after the hosted API is live:
+If you want ChatGPT, Claude, Gemini, or another assistant to guide the analysis,
+replace `https://YOUR_HOST` with your hosted API URL and paste this into the
+assistant:
 
 ```text
 Use the FPDS Analytics API to help me understand federal procurement customers.
-Start here: https://analytics-api.kenosaconsulting.com/v1/ai-assistant-guide
+Start here: https://YOUR_HOST/v1/ai-assistant-guide
 
 First inspect the catalog, then choose the right dataset for my question.
 Use only documented filters, sorts, and fields.
@@ -21,7 +23,7 @@ Then ask your business question in normal language.
 ## 1. See What The API Offers
 
 ```bash
-export FPDS_ANALYTICS_API_BASE_URL="https://analytics-api.kenosaconsulting.com"
+export FPDS_ANALYTICS_API_BASE_URL="https://YOUR_HOST"
 curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/catalog" | jq '.data[].id'
 ```
 
@@ -72,7 +74,10 @@ curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/naics.trend_fy/rows?sector_cod
   | jq '.data'
 ```
 
-Public row queries are free and bounded. API keys are for paid, partner, or higher-volume access.
+Free access includes catalog discovery, dataset metadata, dimension lookups, and
+capped row samples. API-key access may provide higher rate limits, larger
+bounded responses, exports, or support. No access tier exposes arbitrary SQL,
+raw source tables, or write operations.
 
 Every API response includes a top-level `notice` with the short data-completeness warning. Row responses also include `meta.caveats` and `meta.notices` with more detailed dataset-specific limitations.
 

@@ -6,11 +6,12 @@ The goal is simple: let the assistant help you choose the right procurement anal
 
 ## What To Paste Into Your Assistant
 
-This prompt only works after `https://analytics-api.kenosaconsulting.com` is hosted and reachable.
+This prompt only works after you replace `https://YOUR_HOST` with a hosted API
+URL that is reachable from the assistant or tool runtime.
 
 ```text
 Use the FPDS Analytics API to help me understand federal procurement customers.
-Start here: https://analytics-api.kenosaconsulting.com/v1/ai-assistant-guide
+Start here: https://YOUR_HOST/v1/ai-assistant-guide
 
 First inspect the catalog, then choose the right dataset for my question.
 Use only documented filters, sorts, and fields.
@@ -20,7 +21,8 @@ Include the API response notice, caveats, and notices, and do not invent data.
 Do not ask for arbitrary SQL or raw database access.
 ```
 
-Do not paste placeholder domains into an assistant. The prompt must include the real hosted API URL.
+Do not paste placeholder domains into an assistant. The prompt must include the
+real hosted API URL for the environment you are using.
 
 ## What The API Helps You Understand
 
@@ -74,17 +76,18 @@ Give it the API base URL. An API key is not needed for normal bounded row querie
 These endpoints do not require a key:
 
 ```text
-GET https://analytics-api.kenosaconsulting.com/v1/ai-assistant-guide
-GET https://analytics-api.kenosaconsulting.com/v1/catalog
-GET https://analytics-api.kenosaconsulting.com/v1/datasets/competition.sole_source_hotspots
-GET https://analytics-api.kenosaconsulting.com/v1/dimensions
-GET https://analytics-api.kenosaconsulting.com/v1/datasets/competition.sole_source_hotspots/rows?limit=25
+GET https://YOUR_HOST/v1/ai-assistant-guide
+GET https://YOUR_HOST/v1/catalog
+GET https://YOUR_HOST/v1/datasets/competition.sole_source_hotspots
+GET https://YOUR_HOST/v1/dimensions
+GET https://YOUR_HOST/v1/datasets/competition.sole_source_hotspots/rows?limit=25
 ```
 
-API keys are optional and reserved for paid, partner, or higher-volume access:
+API keys are optional and reserved for partner access, higher rate limits,
+larger bounded responses, exports, or support:
 
 ```text
-GET https://analytics-api.kenosaconsulting.com/v1/datasets/competition.sole_source_hotspots/rows?limit=25
+GET https://YOUR_HOST/v1/datasets/competition.sole_source_hotspots/rows?limit=25
 Header: X-Api-Key: YOUR_API_KEY
 ```
 
@@ -92,7 +95,7 @@ Header: X-Api-Key: YOUR_API_KEY
 
 Use this manual flow:
 
-1. Open `https://analytics-api.kenosaconsulting.com/v1/catalog`.
+1. Open `https://YOUR_HOST/v1/catalog`.
 2. Paste the catalog response into the assistant.
 3. Ask: "Which dataset should I use for my question?"
 4. Open the dataset detail URL the assistant recommends.

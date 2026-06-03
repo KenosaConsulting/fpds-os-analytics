@@ -7,9 +7,9 @@ info:
     Dataset-oriented API for FPDS procurement analytics report views.
     The API exposes curated analytics datasets and dimensions only; it does not expose arbitrary SQL or raw FPDS tables.
 servers:
-  - url: https://analytics-api.kenosaconsulting.com
-    description: Hosted deployment
-  - url: http://localhost:8000
+  - url: https://YOUR_HOST
+    description: Hosted deployment placeholder
+  - url: http://127.0.0.1:8010
     description: Local development
 security:
   - ApiKeyAuth: []
@@ -111,8 +111,9 @@ paths:
       description: |
         Canonical row endpoint. Filters, fields, and sort keys are allowlisted per dataset.
         Unsupported filters are rejected instead of silently ignored.
-        Public requests do not require an API key and are capped to a small row limit.
-        Provide X-Api-Key for paid, partner, or higher-volume access.
+        Public requests are capped to a small row limit.
+        Provide X-Api-Key for partner access, higher rate limits, larger bounded
+        responses, exports, or support.
       security:
         - {}
         - ApiKeyAuth: []

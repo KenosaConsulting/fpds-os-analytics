@@ -22,7 +22,10 @@ Example:
 GET /v1/datasets/competition.sole_source_hotspots/rows?limit=25
 ```
 
-Public bounded row queries do not require an API key. API keys are for paid, partner, or higher-volume access.
+Free access includes catalog discovery, dataset metadata, dimension lookups, and
+capped row samples. API-key access may provide higher rate limits, larger
+bounded responses, exports, or support. No access tier exposes arbitrary SQL,
+raw source tables, or write operations.
 
 Every successful API response includes a top-level `notice` with the short data-completeness warning. Row responses also include `meta.caveats` and `meta.notices`; assistants and downstream tools should surface both. Notices include data-completeness limitations, `9700`/DoD coding limitations, and place-of-performance limitations where relevant.
 
