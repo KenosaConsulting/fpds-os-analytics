@@ -35,4 +35,5 @@ The public API should not expose:
 
 Do not open public issues for suspected secrets, data exposure, auth bypasses, or infrastructure vulnerabilities.
 
-Report security issues privately to Kenosa Consulting. Add the preferred security email here before public launch.
+Use GitHub Private Vulnerability Reporting for this repository when available.
+If private reporting is unavailable, contact Kenosa Consulting privately before public disclosure.

@@ -4,7 +4,7 @@ Use this checklist to move FPDS Analytics API from local testing to a public fre
 
 ## 1. Repository
 
-- Decide and add the open-source license.
+- Keep the open-source license in place.
 - Confirm the public README says exactly who the API helps and what questions it answers.
 - Keep `openapi.yaml`, `catalog/datasets.yaml`, and `docs/DATASETS.md` in sync.
 - Keep SQL templates free of credentials.
@@ -23,8 +23,9 @@ Use this checklist to move FPDS Analytics API from local testing to a public fre
 - Deploy behind HTTPS.
 - Keep `FPDS_ANALYTICS_REQUIRE_AUTH=1`.
 - Set `FPDS_ANALYTICS_API_KEYS` from secret storage.
+- Prefer `FPDS_ANALYTICS_API_KEY_HASHES` over plaintext keys in production.
 - Set `ANALYTICS_DATABASE_URL` from secret storage.
-- Add edge/WAF rate limits by API key and IP.
+- Configure Redis-backed app rate limiting with `FPDS_ANALYTICS_REDIS_URL` or add edge/WAF rate limits by API key and IP.
 - Add request logging with non-secret API key IDs only.
 - Add uptime monitoring on `/v1/health`.
 
@@ -52,5 +53,6 @@ Use this checklist to move FPDS Analytics API from local testing to a public fre
 
 - Decide whether exports remain phase 2 or are hidden until implemented.
 - Add a changelog before versioned public releases.
-- Add a security contact before broader distribution.
-- Address the Supabase/Postgres collation-version warning during database maintenance.
+- Keep GitHub Private Vulnerability Reporting enabled.
+- Rotate the analytics read-only database password before public launch.
+- Address remaining Supabase advisor warnings that belong to the shared project before using it for broad public traffic.

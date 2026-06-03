@@ -12,6 +12,7 @@ from fastapi.responses import JSONResponse
 
 from app.catalog import load_catalog
 from app.errors import APIError
+from app.rate_limit import RateLimitMiddleware
 from app.routes import catalog, datasets, dimensions, exports, health
 
 
@@ -27,6 +28,8 @@ app = FastAPI(
     version=load_catalog().version,
     description="Read-only public API over curated FPDS analytics datasets.",
 )
+
+app.add_middleware(RateLimitMiddleware)
 
 app.add_middleware(
     CORSMiddleware,

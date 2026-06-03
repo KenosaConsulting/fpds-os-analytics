@@ -12,12 +12,11 @@ Out of scope:
 
 - Full penetration test
 - Load test
-- Formal dependency CVE scan with an external scanner
 - Remediation of unrelated Supabase schemas used by other services
 
 ## Summary
 
-The API is safe enough to continue toward hosted testing if it is deployed with the documented read-only database role, API-key auth enabled, and edge rate limits.
+The API is safe enough to continue toward hosted testing if it is deployed with the documented read-only database role, API-key auth enabled, and rate limits backed by Redis or an edge gateway.
 
 Do not launch broadly until the remaining launch blockers are resolved.
 
@@ -30,6 +29,11 @@ Do not launch broadly until the remaining launch blockers are resolved.
 - Added tests for hashed API keys, placeholder key rejection, and CORS defaults.
 - Changed the Docker image to run as a non-root user.
 - Added Dependabot for Python and GitHub Actions updates.
+- Added Redis-compatible app rate limiting with a local in-memory fallback.
+- Added `pip-audit` dependency scanning to CI.
+- Added the MIT license and GitHub Private Vulnerability Reporting guidance.
+- Enabled RLS on live `public` tables and revoked `anon`/`authenticated` `SELECT` from live `public` objects.
+- Set explicit `search_path` on the live `v2.hybrid_search`, `v2.normalize_set_aside`, and `v2.renorm_weight` functions.
 
 ## Verified Controls
 
@@ -46,9 +50,11 @@ Do not launch broadly until the remaining launch blockers are resolved.
 | Limit caps are enforced | Pass |
 | Expensive datasets require narrowing filters | Pass |
 | Query timeout is enforced | Pass |
+| App-level rate limits are enabled by default | Pass |
 | CORS is not wildcard by default | Pass |
 | Container runs as non-root | Pass |
 | GitHub CI runs tests | Pass |
+| GitHub CI runs dependency audit | Pass |
 
 ## Supabase Facade Verification
 
@@ -63,44 +69,41 @@ This confirms the intended API facade isolation for the free product path.
 
 ## Findings
 
-### High: Broader Supabase project has unrelated exposed-schema advisor findings
+### Medium: Shared Supabase project still has advisor warnings outside this API
 
-Supabase security advisors still report pre-existing issues outside this API product, including RLS-disabled tables in exposed schemas and GraphQL object visibility for unrelated public/v2 objects.
+Supabase security advisors still report pre-existing issues outside this API product, including `v2` GraphQL object visibility, extensions installed in `public`, and Auth leaked-password protection being disabled.
 
 Impact:
 
 - This is not caused by the `fpds-os-analytics` API facade.
-- It is still a launch risk if the same Supabase project is used for the public product.
+- It is still a launch risk if the same shared Supabase project is used for broad public product traffic without isolating this free API.
 
 Recommendation:
 
 - Prefer a separate public analytics database/project or a materialized analytics data mart for launch.
-- If using the current project, resolve exposed-schema RLS and GraphQL grants before broad public distribution.
+- If using the current project, resolve the remaining shared-project advisor warnings before broad public distribution.
 - Do not change unrelated schemas casually because other agents/services may depend on them.
 
-### Medium: No app-level distributed rate limiter
+Notes from remediation:
 
-The app enforces per-request limits and query timeouts, but does not include a distributed rate limiter.
+- The previous `rls_disabled_in_public` finding was resolved by enabling RLS on live `public` tables.
+- The remaining `rls_enabled_no_policy` entries are informational and mean those tables deny access by default unless a policy is added.
+- The previous public GraphQL object visibility warnings were resolved by revoking `SELECT` from `anon` and `authenticated` on live `public` objects.
+- The previous mutable `search_path` warnings were resolved by setting explicit paths on the flagged `v2` functions.
+- Remaining `v2` authenticated GraphQL visibility was not changed because revoking those grants could affect existing authenticated Supabase clients.
+
+### Low: Rate limiter needs production backing store
+
+The app now includes rate limiting. Without `FPDS_ANALYTICS_REDIS_URL`, limits are process-local and suitable only for local testing or a single-worker deployment.
 
 Impact:
 
-- A valid API key can still generate high request volume.
-- Public launch should not rely on app-level query caps alone.
+- A multi-worker or multi-instance deployment needs Redis or an equivalent edge/API-gateway limiter to avoid per-process bypass.
 
 Recommendation:
 
-- Enforce rate limits at the edge/API gateway by API key and IP.
+- Configure `FPDS_ANALYTICS_REDIS_URL` in hosted environments, or enforce equivalent limits at the edge/API gateway by API key and IP.
 - Add request logging using non-secret key IDs.
-- Consider a shared Redis-backed limiter if the host does not provide gateway limits.
-
-### Medium: Dependency CVE scan not yet run with a dedicated scanner
-
-`pytest` and compile checks pass, and Dependabot is configured. A dedicated dependency audit tool was not available in the local environment.
-
-Recommendation:
-
-- Add `pip-audit` or equivalent to CI before broad launch.
-- Fail CI on high/critical vulnerabilities once the dependency baseline is stable.
 
 ### Low: API key hashes are unsalted
 
@@ -123,20 +126,18 @@ Recommendation:
 
 ## Launch Blockers
 
-- Choose a license.
-- Add a real private security contact.
 - Rotate the analytics read-only database password before hosted launch.
 - Deploy behind HTTPS with `FPDS_ANALYTICS_REQUIRE_AUTH=1`.
 - Configure production API keys as hashes, not plaintext values.
-- Configure edge/API-gateway rate limits.
-- Resolve or isolate from unrelated Supabase advisor findings.
-- Add dependency CVE scanning to CI.
+- Configure Redis-backed or edge/API-gateway rate limits.
+- Resolve or isolate from remaining unrelated Supabase advisor warnings.
 
 ## Audit Commands Run
 
 ```bash
 python -m pytest tests -q
 python -m py_compile app/*.py app/routes/*.py
+python -m pip_audit -r requirements.txt
 rg -n "<credential-patterns>" .
 ```
 
@@ -144,3 +145,4 @@ Supabase MCP checks:
 
 - Facade grant verification query.
 - Security advisor scan.
+- Public-schema RLS and grant verification query.

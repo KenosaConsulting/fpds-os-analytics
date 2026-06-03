@@ -15,6 +15,7 @@ from app.errors import APIError  # noqa: E402
 from app.query_builder import build_rows_query  # noqa: E402
 from app.auth import require_api_key  # noqa: E402
 from app.main import _allowed_origins  # noqa: E402
+from app.rate_limit import MemoryRateLimitStore, RateLimit, _hashed_token  # noqa: E402
 
 
 def test_catalog_has_expected_dataset_count() -> None:
@@ -130,3 +131,21 @@ def test_cors_all_origins_requires_explicit_flag(monkeypatch) -> None:
     monkeypatch.setenv("FPDS_ANALYTICS_ALLOW_ALL_ORIGINS", "1")
     monkeypatch.delenv("FPDS_ANALYTICS_ALLOWED_ORIGINS", raising=False)
     assert _allowed_origins() == ["*"]
+
+
+def test_memory_rate_limit_store_counts_within_window() -> None:
+    store = MemoryRateLimitStore()
+    key = "test-key"
+    first_count, first_ttl = store.increment(key, 60)
+    second_count, second_ttl = store.increment(key, 60)
+    assert first_count == 1
+    assert second_count == 2
+    assert first_ttl > 0
+    assert second_ttl > 0
+
+
+def test_rate_limit_config_shape() -> None:
+    limit = RateLimit(requests=10, window_seconds=60)
+    assert limit.requests == 10
+    assert limit.window_seconds == 60
+    assert len(_hashed_token("fpds_test_key")) == 24

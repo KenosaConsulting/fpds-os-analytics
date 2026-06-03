@@ -247,6 +247,10 @@ ANALYTICS_DATABASE_URL="postgresql://fpds_analytics_api_readonly:PASSWORD@HOST:5
 | `Dockerfile` | Container image |
 | `.env.example` | Runtime environment variables |
 
+## License
+
+MIT. See [LICENSE](LICENSE).
+
 ## Validation
 
 Run tests:
