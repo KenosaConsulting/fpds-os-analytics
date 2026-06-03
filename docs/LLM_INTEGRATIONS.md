@@ -5,10 +5,10 @@ This API is intentionally shaped for LLM tool use: fixed datasets, allowed filte
 For non-technical users, the first integration is not a plugin. It is a clear URL and instruction block:
 
 ```text
-https://api.example.com/v1/ai-assistant-guide
+PASTE_THE_LIVE_API_BASE_URL_HERE/v1/ai-assistant-guide
 ```
 
-Users should be able to paste that URL into ChatGPT, Claude, Gemini, or a similar assistant and ask it to follow the guide.
+Users should be able to paste the real hosted URL into ChatGPT, Claude, Gemini, or a similar assistant and ask it to follow the guide. Placeholder domains will not work and will cause assistants to route around the product.
 
 The core idea is simple:
 

@@ -4,11 +4,11 @@ This guide shows the first API calls a user should make.
 
 ## Use An AI Assistant First
 
-If you want ChatGPT, Claude, Gemini, or another assistant to guide the analysis, paste this into the assistant:
+If you want ChatGPT, Claude, Gemini, or another assistant to guide the analysis, paste this into the assistant after replacing `PASTE_THE_LIVE_API_BASE_URL_HERE` with the real hosted API URL:
 
 ```text
 Use the FPDS Analytics API to help me understand federal procurement customers.
-Start here: https://api.example.com/v1/ai-assistant-guide
+Start here: PASTE_THE_LIVE_API_BASE_URL_HERE/v1/ai-assistant-guide
 
 First inspect the catalog, then choose the right dataset for my question.
 Use only documented filters, sorts, and fields.
@@ -21,7 +21,8 @@ Then ask your business question in normal language.
 ## 1. See What The API Offers
 
 ```bash
-curl -s https://api.example.com/v1/catalog | jq '.data[].id'
+export FPDS_ANALYTICS_API_BASE_URL="https://your-live-fpds-analytics-api-domain"
+curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/catalog" | jq '.data[].id'
 ```
 
 This returns dataset IDs such as:
@@ -37,7 +38,7 @@ geography.state_trend_fy
 ## 2. Understand One Dataset
 
 ```bash
-curl -s https://api.example.com/v1/datasets/competition.sole_source_hotspots | jq
+curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/competition.sole_source_hotspots" | jq
 ```
 
 This tells you:
@@ -51,7 +52,7 @@ This tells you:
 ## 3. Query Rows
 
 ```bash
-curl -s "https://api.example.com/v1/datasets/competition.sole_source_hotspots/rows?limit=25" \
+curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/competition.sole_source_hotspots/rows?limit=25" \
   -H "X-Api-Key: $FPDS_API_KEY" \
   -H "X-Api-Version: 2026-06-02" \
   | jq '.data'
@@ -60,7 +61,7 @@ curl -s "https://api.example.com/v1/datasets/competition.sole_source_hotspots/ro
 ## 4. Filter By Fiscal Year
 
 ```bash
-curl -s "https://api.example.com/v1/datasets/competition.trend_fy/rows?fiscal_year_min=2020&fiscal_year_max=2025" \
+curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/competition.trend_fy/rows?fiscal_year_min=2020&fiscal_year_max=2025" \
   -H "X-Api-Key: $FPDS_API_KEY" \
   -H "X-Api-Version: 2026-06-02" \
   | jq '.data'
@@ -71,7 +72,7 @@ curl -s "https://api.example.com/v1/datasets/competition.trend_fy/rows?fiscal_ye
 NAICS sector `54` is Professional, Scientific, and Technical Services.
 
 ```bash
-curl -s "https://api.example.com/v1/datasets/naics.trend_fy/rows?sector_code=54&fiscal_year_min=2022" \
+curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/naics.trend_fy/rows?sector_code=54&fiscal_year_min=2022" \
   -H "X-Api-Key: $FPDS_API_KEY" \
   -H "X-Api-Version: 2026-06-02" \
   | jq '.data'
@@ -80,7 +81,7 @@ curl -s "https://api.example.com/v1/datasets/naics.trend_fy/rows?sector_code=54&
 ## 6. Look Up Codes
 
 ```bash
-curl -s "https://api.example.com/v1/dimensions/pricing_codes" | jq '.data'
+curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/dimensions/pricing_codes" | jq '.data'
 ```
 
 Use dimension endpoints when a code needs explanation.

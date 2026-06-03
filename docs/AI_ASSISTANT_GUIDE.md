@@ -6,11 +6,11 @@ The goal is simple: let the assistant help you choose the right procurement anal
 
 ## What To Paste Into Your Assistant
 
-Replace `https://api.example.com` with the hosted API URL.
+This prompt only works after the API is hosted. Replace `PASTE_THE_LIVE_API_BASE_URL_HERE` with the real API URL from Kenosa Consulting before giving it to an assistant.
 
 ```text
 Use the FPDS Analytics API to help me understand federal procurement customers.
-Start here: https://api.example.com/v1/ai-assistant-guide
+Start here: PASTE_THE_LIVE_API_BASE_URL_HERE/v1/ai-assistant-guide
 
 First inspect the catalog, then choose the right dataset for my question.
 Use only documented filters, sorts, and fields.
@@ -19,6 +19,8 @@ Explain what the data means for customer targeting, market entry, teaming, or ca
 Include caveats and do not invent data.
 Do not ask for arbitrary SQL or raw database access.
 ```
+
+Do not paste placeholder domains into an assistant. The prompt must include the real hosted API URL.
 
 ## What The API Helps You Understand
 
@@ -68,16 +70,16 @@ Give it the API base URL and your API key when needed.
 Discovery endpoints do not require a key:
 
 ```text
-GET https://api.example.com/v1/ai-assistant-guide
-GET https://api.example.com/v1/catalog
-GET https://api.example.com/v1/datasets/competition.sole_source_hotspots
-GET https://api.example.com/v1/dimensions
+GET PASTE_THE_LIVE_API_BASE_URL_HERE/v1/ai-assistant-guide
+GET PASTE_THE_LIVE_API_BASE_URL_HERE/v1/catalog
+GET PASTE_THE_LIVE_API_BASE_URL_HERE/v1/datasets/competition.sole_source_hotspots
+GET PASTE_THE_LIVE_API_BASE_URL_HERE/v1/dimensions
 ```
 
 Dataset row endpoints require an API key:
 
 ```text
-GET https://api.example.com/v1/datasets/competition.sole_source_hotspots/rows?limit=25
+GET PASTE_THE_LIVE_API_BASE_URL_HERE/v1/datasets/competition.sole_source_hotspots/rows?limit=25
 Header: X-Api-Key: YOUR_API_KEY
 ```
 
@@ -85,7 +87,7 @@ Header: X-Api-Key: YOUR_API_KEY
 
 Use this manual flow:
 
-1. Open `https://api.example.com/v1/catalog`.
+1. Open `PASTE_THE_LIVE_API_BASE_URL_HERE/v1/catalog`.
 2. Paste the catalog response into the assistant.
 3. Ask: "Which dataset should I use for my question?"
 4. Open the dataset detail URL the assistant recommends.

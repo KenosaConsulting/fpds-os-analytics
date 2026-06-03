@@ -112,22 +112,28 @@ Datasets:
 
 The API is dataset-first.
 
+Set the API base URL first. Do not use the examples below as-is until the hosted service is live.
+
+```bash
+export FPDS_ANALYTICS_API_BASE_URL="https://your-live-fpds-analytics-api-domain"
+```
+
 Start by listing the available datasets:
 
 ```bash
-curl -s https://api.example.com/v1/catalog | jq '.data[].id'
+curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/catalog" | jq '.data[].id'
 ```
 
 Then inspect one dataset:
 
 ```bash
-curl -s https://api.example.com/v1/datasets/competition.sole_source_hotspots | jq
+curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/competition.sole_source_hotspots" | jq
 ```
 
 Then query rows:
 
 ```bash
-curl -s "https://api.example.com/v1/datasets/competition.sole_source_hotspots/rows?limit=25" \
+curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/competition.sole_source_hotspots/rows?limit=25" \
   -H "X-Api-Key: $FPDS_API_KEY" \
   -H "X-Api-Version: 2026-06-02" \
   | jq '.data'
@@ -136,7 +142,7 @@ curl -s "https://api.example.com/v1/datasets/competition.sole_source_hotspots/ro
 Example: find NAICS sector demand for Professional, Scientific, and Technical Services:
 
 ```bash
-curl -s "https://api.example.com/v1/datasets/naics.trend_fy/rows?sector_code=54&fiscal_year_min=2022" \
+curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/naics.trend_fy/rows?sector_code=54&fiscal_year_min=2022" \
   -H "X-Api-Key: $FPDS_API_KEY" \
   -H "X-Api-Version: 2026-06-02" \
   | jq '.data'
@@ -148,13 +154,15 @@ Most users do not need to write code first. They can give an AI assistant the AP
 
 ```text
 Use the FPDS Analytics API to help me understand federal procurement customers.
-Start here: https://api.example.com/v1/ai-assistant-guide
+Start here: PASTE_THE_LIVE_API_BASE_URL_HERE/v1/ai-assistant-guide
 
 First inspect the catalog, then choose the right dataset for my question.
 Use only documented filters, sorts, and fields.
 Explain what the data means for customer targeting, market entry, teaming, or capture strategy.
 Include caveats and do not invent data.
 ```
+
+Important: `PASTE_THE_LIVE_API_BASE_URL_HERE` must be the real hosted service URL from Kenosa Consulting. Reserved placeholder domains will not work and AI assistants will correctly ignore them.
 
 If the assistant can make HTTP requests, it should start with:
 
