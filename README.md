@@ -40,7 +40,7 @@ This API packages those answers into simple datasets that can be queried, visual
 
 ## Analysis Packages
 
-The API is grouped into five packages.
+The API is grouped into six packages.
 
 ### 1. Pricing Strategy
 
@@ -227,6 +227,8 @@ If the assistant cannot make HTTP requests directly, the user can paste response
 Read the full AI usage guide: [docs/AI_ASSISTANT_GUIDE.md](docs/AI_ASSISTANT_GUIDE.md).
 
 ## API Functions
+
+The recommended analyst workflow below explains how to combine them.
 
 | Function | Endpoint | Key required? | Purpose |
 |---|---|---:|---|
