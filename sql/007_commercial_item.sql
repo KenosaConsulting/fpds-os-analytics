@@ -37,57 +37,51 @@ ON CONFLICT (raw_code) DO NOTHING;
 -- ─── Report view: commercial vs non-commercial by department and FY ─────────
 
 CREATE OR REPLACE VIEW competition_dynamics.report_deck_commercial_mix_fy AS
-WITH base AS (
-    SELECT
-        fa.contracting_dept_id,
-        CASE
-            WHEN EXTRACT(month FROM fa.signed_date::timestamp) >= 10
-            THEN EXTRACT(year FROM fa.signed_date::timestamp)::integer + 1
-            ELSE EXTRACT(year FROM fa.signed_date::timestamp)::integer
-        END AS fiscal_year,
-        COALESCE(cm.is_commercial, false) AS is_commercial,
-        COALESCE(cm.commercial_family, 'Unknown') AS commercial_family,
-        ecm.is_competed,
-        ecm.is_not_competed,
-        NULLIF(fa.obligated_amount, '')::numeric AS obligated
-    FROM public.fpds_actions fa
-    LEFT JOIN analytics_dims.fpds_commercial_item_map cm
-        ON COALESCE(fa.commercial_item_acquisition_procedures, 'UNKNOWN') = cm.raw_code
-    LEFT JOIN analytics_dims.fpds_extent_competed_map ecm
-        ON fa.extent_competed = ecm.raw_code
-    WHERE fa.signed_date IS NOT NULL AND fa.signed_date != ''
-)
 SELECT
-    contracting_dept_id,
-    fiscal_year,
+    fa.contracting_dept_id,
+    CASE
+        WHEN EXTRACT(month FROM fa.signed_date::timestamp) >= 10
+        THEN EXTRACT(year FROM fa.signed_date::timestamp)::integer + 1
+        ELSE EXTRACT(year FROM fa.signed_date::timestamp)::integer
+    END AS fiscal_year,
     -- Commercial totals
-    COUNT(*) FILTER (WHERE is_commercial) AS commercial_action_count,
-    SUM(obligated) FILTER (WHERE is_commercial) AS commercial_obligated,
-    COUNT(*) FILTER (WHERE NOT is_commercial AND commercial_family != 'Unknown') AS non_commercial_action_count,
-    SUM(obligated) FILTER (WHERE NOT is_commercial AND commercial_family != 'Unknown') AS non_commercial_obligated,
-    COUNT(*) FILTER (WHERE commercial_family = 'Unknown') AS unknown_commercial_action_count,
+    COUNT(*) FILTER (WHERE COALESCE(cm.is_commercial, false)) AS commercial_action_count,
+    SUM(NULLIF(fa.obligated_amount, '')::numeric) FILTER (WHERE COALESCE(cm.is_commercial, false)) AS commercial_obligated,
+    COUNT(*) FILTER (WHERE NOT COALESCE(cm.is_commercial, false) AND COALESCE(cm.commercial_family, 'Unknown') != 'Unknown') AS non_commercial_action_count,
+    SUM(NULLIF(fa.obligated_amount, '')::numeric) FILTER (WHERE NOT COALESCE(cm.is_commercial, false) AND COALESCE(cm.commercial_family, 'Unknown') != 'Unknown') AS non_commercial_obligated,
+    COUNT(*) FILTER (WHERE COALESCE(cm.commercial_family, 'Unknown') = 'Unknown') AS unknown_commercial_action_count,
     -- Total
     COUNT(*) AS total_action_count,
-    SUM(obligated) AS total_obligated,
+    SUM(NULLIF(fa.obligated_amount, '')::numeric) AS total_obligated,
     -- Shares
-    ROUND(COUNT(*) FILTER (WHERE is_commercial)::numeric
-        / NULLIF(COUNT(*) FILTER (WHERE commercial_family != 'Unknown'), 0), 4) AS commercial_action_share,
-    ROUND(SUM(obligated) FILTER (WHERE is_commercial)
-        / NULLIF(SUM(obligated) FILTER (WHERE commercial_family != 'Unknown'), 0), 4) AS commercial_obligation_share,
+    ROUND(COUNT(*) FILTER (WHERE COALESCE(cm.is_commercial, false))::numeric
+        / NULLIF(COUNT(*) FILTER (WHERE COALESCE(cm.commercial_family, 'Unknown') != 'Unknown'), 0), 4) AS commercial_action_share,
+    ROUND(SUM(NULLIF(fa.obligated_amount, '')::numeric) FILTER (WHERE COALESCE(cm.is_commercial, false))
+        / NULLIF(SUM(NULLIF(fa.obligated_amount, '')::numeric) FILTER (WHERE COALESCE(cm.commercial_family, 'Unknown') != 'Unknown'), 0), 4) AS commercial_obligation_share,
     -- Commercial + competed
-    COUNT(*) FILTER (WHERE is_commercial AND is_competed) AS commercial_competed_count,
-    SUM(obligated) FILTER (WHERE is_commercial AND is_competed) AS commercial_competed_obligated,
-    COUNT(*) FILTER (WHERE is_commercial AND is_not_competed) AS commercial_not_competed_count,
-    SUM(obligated) FILTER (WHERE is_commercial AND is_not_competed) AS commercial_not_competed_obligated,
+    COUNT(*) FILTER (WHERE COALESCE(cm.is_commercial, false) AND ecm.is_competed) AS commercial_competed_count,
+    SUM(NULLIF(fa.obligated_amount, '')::numeric) FILTER (WHERE COALESCE(cm.is_commercial, false) AND ecm.is_competed) AS commercial_competed_obligated,
+    COUNT(*) FILTER (WHERE COALESCE(cm.is_commercial, false) AND ecm.is_not_competed) AS commercial_not_competed_count,
+    SUM(NULLIF(fa.obligated_amount, '')::numeric) FILTER (WHERE COALESCE(cm.is_commercial, false) AND ecm.is_not_competed) AS commercial_not_competed_obligated,
     -- Non-commercial + competed
-    COUNT(*) FILTER (WHERE NOT is_commercial AND commercial_family != 'Unknown' AND is_competed) AS non_commercial_competed_count,
-    SUM(obligated) FILTER (WHERE NOT is_commercial AND commercial_family != 'Unknown' AND is_competed) AS non_commercial_competed_obligated,
+    COUNT(*) FILTER (WHERE NOT COALESCE(cm.is_commercial, false) AND COALESCE(cm.commercial_family, 'Unknown') != 'Unknown' AND ecm.is_competed) AS non_commercial_competed_count,
+    SUM(NULLIF(fa.obligated_amount, '')::numeric) FILTER (WHERE NOT COALESCE(cm.is_commercial, false) AND COALESCE(cm.commercial_family, 'Unknown') != 'Unknown' AND ecm.is_competed) AS non_commercial_competed_obligated,
     -- Distinct vendors
-    COUNT(DISTINCT fa.uei) FILTER (WHERE is_commercial) AS commercial_distinct_vendors,
-    COUNT(DISTINCT fa.uei) FILTER (WHERE NOT is_commercial AND commercial_family != 'Unknown') AS non_commercial_distinct_vendors
-FROM base fa  -- alias for FILTER clarity; fa.uei references still need the original table
-GROUP BY contracting_dept_id, fiscal_year
-ORDER BY contracting_dept_id, fiscal_year;
+    COUNT(DISTINCT fa.uei) FILTER (WHERE COALESCE(cm.is_commercial, false)) AS commercial_distinct_vendors,
+    COUNT(DISTINCT fa.uei) FILTER (WHERE NOT COALESCE(cm.is_commercial, false) AND COALESCE(cm.commercial_family, 'Unknown') != 'Unknown') AS non_commercial_distinct_vendors
+FROM public.fpds_actions fa
+LEFT JOIN analytics_dims.fpds_commercial_item_map cm
+    ON COALESCE(fa.commercial_item_acquisition_procedures, 'UNKNOWN') = cm.raw_code
+LEFT JOIN analytics_dims.fpds_extent_competed_map ecm
+    ON fa.extent_competed = ecm.raw_code
+WHERE fa.signed_date IS NOT NULL AND fa.signed_date != ''
+GROUP BY fa.contracting_dept_id,
+    CASE
+        WHEN EXTRACT(month FROM fa.signed_date::timestamp) >= 10
+        THEN EXTRACT(year FROM fa.signed_date::timestamp)::integer + 1
+        ELSE EXTRACT(year FROM fa.signed_date::timestamp)::integer
+    END
+ORDER BY fa.contracting_dept_id, fiscal_year;
 
 COMMENT ON VIEW competition_dynamics.report_deck_commercial_mix_fy IS
 'Commercial vs. non-commercial acquisition mix by department and fiscal year. Shows the share of procurement using FAR Part 12 commercial procedures, with competition cross-tabs.';
