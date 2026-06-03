@@ -9,7 +9,7 @@ from app.auth import APIAccess, optional_api_access, public_row_limit
 from app.catalog import load_catalog
 from app.db import db_cursor
 from app.errors import APIError
-from app.notices import data_notices
+from app.notices import BRIEF_DATA_NOTICE, data_notices
 from app.query_builder import build_rows_query, page_rows
 
 
@@ -48,6 +48,7 @@ def dataset_rows(
         ) from exc
     data, next_cursor = page_rows(raw_rows, limit=limit, offset=offset)
     return {
+        "notice": BRIEF_DATA_NOTICE,
         "data": data,
         "pagination": {
             "limit": limit,

@@ -13,7 +13,7 @@ Start here: https://analytics-api.kenosaconsulting.com/v1/ai-assistant-guide
 First inspect the catalog, then choose the right dataset for my question.
 Use only documented filters, sorts, and fields.
 Explain what the data means for customer targeting, market entry, teaming, or capture strategy.
-Include caveats and notices from the API response and do not invent data.
+Include the API response notice, caveats, and notices, and do not invent data.
 ```
 
 Then ask your business question in normal language.
@@ -74,7 +74,7 @@ curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/naics.trend_fy/rows?sector_cod
 
 Public row queries are free and bounded. API keys are for paid, partner, or higher-volume access.
 
-Always read `meta.caveats` and `meta.notices` in row responses. They explain data completeness, department-code, and place-of-performance limitations.
+Every API response includes a top-level `notice` with the short data-completeness warning. Row responses also include `meta.caveats` and `meta.notices` with more detailed dataset-specific limitations.
 
 ## 6. Look Up Codes
 
@@ -100,6 +100,7 @@ Every row query returns:
 
 ```json
 {
+  "notice": "FPDS analytics are decision-support indicators, not a complete procurement universe. Do not treat department code 9700 as all DoD/Army opportunity, and do not treat place-of-performance or military postal codes as complete overseas spending.",
   "data": [],
   "pagination": {
     "limit": 100,

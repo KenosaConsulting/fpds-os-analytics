@@ -89,5 +89,5 @@ Use the FPDS Analytics API to help me understand what customers are palatable fo
 
 Start here: https://analytics-api.kenosaconsulting.com/v1/ai-assistant-guide
 
-First inspect the catalog, then choose the right dataset for my question. Use only documented filters, sorts, and fields. Explain what the data means for customer targeting, market entry, teaming, or capture strategy. Include caveats and notices from the API response and do not invent data.
+First inspect the catalog, then choose the right dataset for my question. Use only documented filters, sorts, and fields. Explain what the data means for customer targeting, market entry, teaming, or capture strategy. Include the API response notice, caveats, and notices, and do not invent data.
 ```

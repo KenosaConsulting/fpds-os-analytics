@@ -5,7 +5,7 @@ from __future__ import annotations
 from fastapi import APIRouter
 
 from app.catalog import load_catalog
-from app.notices import AGENCY_CODE_NOTICES, GEOGRAPHY_NOTICES, GLOBAL_DATA_NOTICES
+from app.notices import AGENCY_CODE_NOTICES, BRIEF_DATA_NOTICE, GEOGRAPHY_NOTICES, GLOBAL_DATA_NOTICES
 
 
 router = APIRouter()
@@ -15,6 +15,7 @@ router = APIRouter()
 def metadata() -> dict[str, object]:
     catalog = load_catalog()
     return {
+        "notice": BRIEF_DATA_NOTICE,
         "name": "FPDS Analytics API",
         "api_version": catalog.version,
         "status": "ok",
@@ -29,6 +30,7 @@ def metadata() -> dict[str, object]:
 def health() -> dict[str, object]:
     catalog = load_catalog()
     return {
+        "notice": BRIEF_DATA_NOTICE,
         "status": "ok",
         "catalog_version": catalog.version,
         "dataset_count": len(catalog.datasets),
@@ -40,6 +42,7 @@ def health() -> dict[str, object]:
 def ai_assistant_guide() -> dict[str, object]:
     catalog = load_catalog()
     return {
+        "notice": BRIEF_DATA_NOTICE,
         "name": "FPDS Analytics API AI Assistant Guide",
         "api_version": catalog.version,
         "purpose": (
@@ -60,7 +63,7 @@ def ai_assistant_guide() -> dict[str, object]:
             "Include X-Api-Key only when the user has a paid or partner key for higher-volume access.",
             "Prefer small, targeted requests with relevant filters instead of broad pulls.",
             "Explain results in plain English for customer targeting, market entry, teaming, or capture planning.",
-            "Include caveats and notices from the API response, especially data-completeness, DoD-code, and place-of-performance notices.",
+            "Include the top-level notice, plus caveats and notices from the API response, especially data-completeness, DoD-code, and place-of-performance notices.",
             "Do not treat department code 9700 as the complete universe of all DoD, Army, or military-base opportunity.",
             "Do not treat military postal codes or place-of-performance fields as a complete measure of overseas work.",
             "Do not claim causality that the data does not support.",
@@ -86,7 +89,7 @@ def ai_assistant_guide() -> dict[str, object]:
             "You are helping me use the FPDS Analytics API. First read the API guide at /v1/ai-assistant-guide, "
             "then use /v1/catalog to choose the right dataset. When you query data, use only documented filters, "
             "sorts, and fields. Explain what the results mean for customer targeting, market entry, teaming, "
-            "or capture strategy. Include caveats and notices, and do not invent data."
+            "or capture strategy. Include the API response notice, caveats, and notices, and do not invent data."
         ),
         "auth": {
             "header": "X-Api-Key",

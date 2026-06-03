@@ -70,8 +70,10 @@ paths:
             application/json:
               schema:
                 type: object
-                required: [data, meta]
+                required: [notice, data, meta]
                 properties:
+                  notice:
+                    type: string
                   data:
                     type: array
                     items:
@@ -92,8 +94,10 @@ paths:
             application/json:
               schema:
                 type: object
-                required: [data, meta]
+                required: [notice, data, meta]
                 properties:
+                  notice:
+                    type: string
                   data:
                     $ref: "#/components/schemas/Dataset"
                   meta:
@@ -191,8 +195,10 @@ paths:
             application/json:
               schema:
                 type: object
-                required: [data, meta]
+                required: [notice, data, meta]
                 properties:
+                  notice:
+                    type: string
                   data:
                     type: array
                     items:
@@ -302,8 +308,9 @@ components:
   schemas:
     ServiceMetadata:
       type: object
-      required: [name, api_version, status]
+      required: [notice, name, api_version, status]
       properties:
+        notice: { type: string }
         name: { type: string, example: "FPDS Analytics API" }
         api_version: { type: string, example: "2026-06-02" }
         status: { type: string, example: "ok" }
@@ -313,15 +320,17 @@ components:
         start_here: { type: string }
     Health:
       type: object
-      required: [status]
+      required: [notice, status]
       properties:
+        notice: { type: string }
         status: { type: string, enum: [ok, degraded, unavailable] }
         database: { type: string, enum: [ok, degraded, unavailable] }
         catalog_version: { type: string }
     AIAssistantGuide:
       type: object
-      required: [name, api_version, purpose, value, assistant_instructions, safe_endpoints]
+      required: [notice, name, api_version, purpose, value, assistant_instructions, safe_endpoints]
       properties:
+        notice: { type: string }
         name: { type: string }
         api_version: { type: string }
         purpose: { type: string }
@@ -397,8 +406,9 @@ components:
           items: { type: string }
     RowsResponse:
       type: object
-      required: [data, pagination, meta]
+      required: [notice, data, pagination, meta]
       properties:
+        notice: { type: string }
         data:
           type: array
           items:

@@ -16,7 +16,7 @@ First inspect the catalog, then choose the right dataset for my question.
 Use only documented filters, sorts, and fields.
 Do not ask me for an API key for normal first-use analysis; public bounded row queries are allowed.
 Explain what the data means for customer targeting, market entry, teaming, or capture strategy.
-Include caveats and notices from the API response and do not invent data.
+Include the API response notice, caveats, and notices, and do not invent data.
 Do not ask for arbitrary SQL or raw database access.
 ```
 
@@ -44,7 +44,7 @@ The assistant should follow this sequence:
 4. Read `GET /v1/datasets/{dataset_id}` to understand fields, filters, sorts, and caveats.
 5. Query `GET /v1/datasets/{dataset_id}/rows` with `limit=25` and relevant filters.
 6. Explain the result in plain English.
-7. Include caveats and notices from the API response.
+7. Include the top-level `notice`, plus any `meta.caveats` and `meta.notices`, from the API response.
 
 The assistant should not use arbitrary SQL, raw tables, admin endpoints, or undocumented parameters.
 

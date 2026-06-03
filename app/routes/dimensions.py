@@ -6,7 +6,7 @@ from fastapi import APIRouter, Request
 
 from app.catalog import load_catalog
 from app.db import db_cursor
-from app.notices import dimension_notices
+from app.notices import BRIEF_DATA_NOTICE, dimension_notices
 from app.query_builder import build_rows_query, page_rows
 
 
@@ -34,6 +34,7 @@ def dimension_rows(dimension_id: str, request: Request) -> dict[str, object]:
         raw_rows = cur.fetchall()
     data, next_cursor = page_rows(raw_rows, limit=limit, offset=offset)
     return {
+        "notice": BRIEF_DATA_NOTICE,
         "data": data,
         "pagination": {
             "limit": limit,

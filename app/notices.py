@@ -5,6 +5,12 @@ from __future__ import annotations
 from typing import Any
 
 
+BRIEF_DATA_NOTICE = (
+    "FPDS analytics are decision-support indicators, not a complete procurement universe. "
+    "Do not treat department code 9700 as all DoD/Army opportunity, and do not treat "
+    "place-of-performance or military postal codes as complete overseas spending."
+)
+
 GLOBAL_DATA_NOTICES = [
     (
         "FPDS analytics are decision-support indicators, not a complete procurement universe. "

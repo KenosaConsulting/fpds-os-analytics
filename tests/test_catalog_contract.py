@@ -15,10 +15,10 @@ from app.errors import APIError  # noqa: E402
 from app.query_builder import build_rows_query  # noqa: E402
 from app.auth import optional_api_access, require_api_key  # noqa: E402
 from app.main import _allowed_origins  # noqa: E402
-from app.notices import data_notices, dimension_notices  # noqa: E402
+from app.notices import BRIEF_DATA_NOTICE, data_notices, dimension_notices  # noqa: E402
 from app.rate_limit import MemoryRateLimitStore, RateLimit, _hashed_token  # noqa: E402
 from app.routes.catalog import describe_dataset, list_catalog, list_dimensions  # noqa: E402
-from app.routes.health import ai_assistant_guide, metadata  # noqa: E402
+from app.routes.health import ai_assistant_guide, health, metadata  # noqa: E402
 
 
 def test_catalog_has_expected_dataset_count() -> None:
@@ -42,6 +42,8 @@ def test_openapi_documents_ai_assistant_guide() -> None:
     assert "/v1/ai-assistant-guide" in openapi["paths"]
     schema_ref = openapi["paths"]["/v1/ai-assistant-guide"]["get"]["responses"]["200"]["content"]["application/json"]["schema"]["$ref"]
     assert schema_ref == "#/components/schemas/AIAssistantGuide"
+    assert "notice" in openapi["components"]["schemas"]["AIAssistantGuide"]["required"]
+    assert "notice" in openapi["components"]["schemas"]["RowsResponse"]["required"]
 
 
 def test_openapi_documents_dimension_catalog() -> None:
@@ -54,14 +56,21 @@ def test_openapi_documents_dimension_catalog() -> None:
 
 def test_metadata_points_to_ai_assistant_guide() -> None:
     response = metadata()
+    assert response["notice"] == BRIEF_DATA_NOTICE
     assert response["ai_assistant_guide_url"] == "/v1/ai-assistant-guide"
     assert response["openapi_url"] == "/openapi.json"
+
+
+def test_health_includes_brief_notice() -> None:
+    response = health()
+    assert response["notice"] == BRIEF_DATA_NOTICE
 
 
 def test_ai_assistant_guide_defines_safe_workflow() -> None:
     response = ai_assistant_guide()
     safe_paths = {endpoint["path"] for endpoint in response["safe_endpoints"]}
     instructions = " ".join(response["assistant_instructions"])
+    assert response["notice"] == BRIEF_DATA_NOTICE
     assert "/v1/catalog" in safe_paths
     assert "/v1/datasets/{dataset_id}/rows" in safe_paths
     assert "arbitrary SQL" in instructions
@@ -155,6 +164,9 @@ def test_catalog_and_describe_responses_include_notices() -> None:
     catalog_response = list_catalog(domain=None)
     describe_response = describe_dataset("geography.state_trend_fy")
     dimensions_response = list_dimensions()
+    assert catalog_response["notice"] == BRIEF_DATA_NOTICE
+    assert describe_response["notice"] == BRIEF_DATA_NOTICE
+    assert dimensions_response["notice"] == BRIEF_DATA_NOTICE
     assert "9700" in " ".join(catalog_response["meta"]["notices"])
     assert "Place-of-performance" in " ".join(describe_response["meta"]["notices"])
     assert "9700" in " ".join(dimensions_response["meta"]["notices"])
