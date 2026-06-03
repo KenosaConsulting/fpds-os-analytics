@@ -28,6 +28,18 @@ For this reason, totals can move down as well as up.
 
 Vendor concentration datasets require usable vendor and agency keys. Records missing UEI, agency, or signed date are excluded from those vendor-specific aggregates.
 
+## Department And Agency Codes
+
+Department and agency codes reflect how records were coded in FPDS. They do not always map cleanly to the operational customer, installation, funding source, or end user of the work.
+
+Department code `9700` represents Department of Defense records as coded in FPDS. DoD-related work can also appear under other contracting departments, funding departments, interagency vehicles, or government-wide acquisition channels. Do not treat `9700` as the complete universe of defense, Army, or military-base opportunity.
+
+## Geography And Overseas Work
+
+Place-of-performance fields are reporting fields, not perfect location truth. Overseas or OCONUS work can be recorded to military postal codes, foreign locations, CONUS district offices, vendor/admin locations, or other reporting conventions.
+
+Use geography results as directional signals and verify against solicitations, award files, and source records before making customer-entry decisions.
+
 ## IDV And Contract Scope
 
 Some FPDS records contain indefinite-delivery vehicle ceiling values that can overstate actual obligated dollars. Where available, contract-scope measures should be used for real-money analysis.

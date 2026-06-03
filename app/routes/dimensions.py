@@ -6,6 +6,7 @@ from fastapi import APIRouter, Request
 
 from app.catalog import load_catalog
 from app.db import db_cursor
+from app.notices import dimension_notices
 from app.query_builder import build_rows_query, page_rows
 
 
@@ -42,5 +43,6 @@ def dimension_rows(dimension_id: str, request: Request) -> dict[str, object]:
             "api_version": catalog.version,
             "dimension_id": dimension_id,
             "row_count": len(data),
+            "notices": dimension_notices(dimension),
         },
     }

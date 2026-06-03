@@ -331,6 +331,9 @@ components:
         assistant_instructions:
           type: array
           items: { type: string }
+        critical_notices:
+          type: array
+          items: { type: string }
         safe_endpoints:
           type: array
           items:
@@ -373,6 +376,9 @@ components:
         default_sort: { type: string }
         max_limit: { type: integer }
         caveats:
+          type: array
+          items: { type: string }
+        notices:
           type: array
           items: { type: string }
     Dimension:
@@ -421,6 +427,9 @@ components:
         last_refreshed_at: { type: string, format: date-time }
         row_count: { type: integer }
         caveats:
+          type: array
+          items: { type: string }
+        notices:
           type: array
           items: { type: string }
     ExportRequest:

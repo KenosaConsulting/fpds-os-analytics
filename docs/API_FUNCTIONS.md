@@ -24,6 +24,8 @@ GET /v1/datasets/competition.sole_source_hotspots/rows?limit=25
 
 Public bounded row queries do not require an API key. API keys are for paid, partner, or higher-volume access.
 
+Every row response includes `meta.caveats` and `meta.notices`. Assistants and downstream tools should surface both. Notices include data-completeness limitations, `9700`/DoD coding limitations, and place-of-performance limitations where relevant.
+
 The value is not that users can run SQL. The value is that they can quickly answer questions like:
 
 - Which agencies are buying in ways that create risk?

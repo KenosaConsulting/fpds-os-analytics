@@ -16,7 +16,7 @@ First inspect the catalog, then choose the right dataset for my question.
 Use only documented filters, sorts, and fields.
 Do not ask me for an API key for normal first-use analysis; public bounded row queries are allowed.
 Explain what the data means for customer targeting, market entry, teaming, or capture strategy.
-Include caveats and do not invent data.
+Include caveats and notices from the API response and do not invent data.
 Do not ask for arbitrary SQL or raw database access.
 ```
 
@@ -44,9 +44,13 @@ The assistant should follow this sequence:
 4. Read `GET /v1/datasets/{dataset_id}` to understand fields, filters, sorts, and caveats.
 5. Query `GET /v1/datasets/{dataset_id}/rows` with `limit=25` and relevant filters.
 6. Explain the result in plain English.
-7. Include caveats from the API response.
+7. Include caveats and notices from the API response.
 
 The assistant should not use arbitrary SQL, raw tables, admin endpoints, or undocumented parameters.
+
+The assistant should not treat department code `9700` as the full universe of all DoD, Army, or military-base opportunity. DoD-related work can appear outside `9700` through other contracting departments, funding departments, interagency vehicles, or government-wide acquisition channels.
+
+The assistant should not treat military postal codes or place-of-performance fields as a complete measure of overseas work. OCONUS work can be coded to military postal codes, foreign locations, CONUS district offices, vendor/admin locations, or other reporting conventions.
 
 ## Common Starting Points
 
@@ -123,6 +127,7 @@ The assistant should translate returned rows into practical analysis:
 - Evidence: which fields support the conclusion.
 - Interpretation: what the pattern suggests for market entry or capture strategy.
 - Caveats: what the data cannot prove.
+- Notices: data completeness, coding, and place-of-performance limitations returned by the API.
 - Next query: what to inspect next.
 
 Example interpretation format:
@@ -138,6 +143,9 @@ How to approach the customer:
 ...
 
 Caveats:
+...
+
+Notices:
 ...
 
 Next useful query:

@@ -5,6 +5,7 @@ from __future__ import annotations
 from fastapi import APIRouter, Query
 
 from app.catalog import load_catalog, public_dataset, public_dimension
+from app.notices import GLOBAL_DATA_NOTICES, data_notices
 
 
 router = APIRouter(prefix="/v1")
@@ -19,6 +20,7 @@ def list_catalog(domain: str | None = Query(default=None)) -> dict[str, object]:
         "meta": {
             "api_version": catalog.version,
             "row_count": len(datasets),
+            "notices": GLOBAL_DATA_NOTICES,
         },
     }
 
@@ -33,6 +35,7 @@ def describe_dataset(dataset_id: str) -> dict[str, object]:
             "api_version": catalog.version,
             "dataset_id": dataset_id,
             "row_count": 1,
+            "notices": data_notices(catalog.get_dataset(dataset_id)),
         },
     }
 
@@ -46,5 +49,6 @@ def list_dimensions() -> dict[str, object]:
         "meta": {
             "api_version": catalog.version,
             "row_count": len(dimensions),
+            "notices": GLOBAL_DATA_NOTICES,
         },
     }

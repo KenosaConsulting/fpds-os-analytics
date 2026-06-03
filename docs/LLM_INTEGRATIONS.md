@@ -62,7 +62,7 @@ When a user asks about customer targeting, market openness, incumbent strength, 
 2. If uncertain, call list_datasets or describe_dataset first.
 3. Query only the fields and filters needed to answer the question.
 4. Explain the result in plain English.
-5. Include caveats from the API response.
+5. Include caveats and notices from the API response.
 6. Do not invent data that was not returned by the API.
 ```
 

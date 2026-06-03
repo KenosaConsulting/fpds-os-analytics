@@ -21,7 +21,7 @@ datasets:
     backing_view: "analytics_api.pricing_trend_fy"
     source_view: "contract_pricing.report_deck_pricing_trend_fy"
     grain: "fiscal_year"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
     sortable: ["fiscal_year", "total_obligated", "fixed_price_obligation_share", "cost_type_obligation_share", "tm_obligation_share"]
     default_sort: "fiscal_year"
@@ -33,7 +33,7 @@ datasets:
     backing_view: "analytics_api.pricing_agency_profile_fy"
     source_view: "contract_pricing.report_deck_pricing_agency_profile_fy"
     grain: "contracting_dept_id x fiscal_year"
-    public_access: "api_key"
+    public_access: "public_bounded"
     required_filters_any: ["fiscal_year", "contracting_dept_id"]
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id"]
     sortable: ["fiscal_year", "contracting_dept_id", "total_obligated_amount", "cost_type_obligation_share", "tm_obligation_share"]
@@ -46,7 +46,7 @@ datasets:
     backing_view: "analytics_api.pricing_kpi_summary"
     source_view: "contract_pricing.report_deck_pricing_kpi_summary"
     grain: "scope"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["scope_name"]
     sortable: ["scope_name", "total_obligated", "fixed_price_obligation_share", "cost_type_obligation_share", "tm_obligation_share"]
     default_sort: "scope_name"
@@ -58,7 +58,7 @@ datasets:
     backing_view: "analytics_api.pricing_risk_scorecard"
     source_view: "contract_pricing.report_deck_pricing_risk_scorecard"
     grain: "contracting_dept_id over recent three fiscal years"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["contracting_dept_id"]
     sortable: ["risk_score", "total_obligated_3yr", "cost_type_obligation_share", "tm_obligation_share"]
     default_sort: "-risk_score"
@@ -70,7 +70,7 @@ datasets:
     backing_view: "analytics_api.pricing_dept_year_summary"
     source_view: "contract_pricing.mv_fpds_pricing_dept_year_summary_with_shares"
     grain: "contracting_dept_id x fiscal_year"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id"]
     sortable: ["fiscal_year", "contracting_dept_id", "total_obligated", "cost_type_obligation_share", "tm_obligation_share"]
     default_sort: "-total_obligated"
@@ -82,7 +82,7 @@ datasets:
     backing_view: "analytics_api.concentration_trend_fy"
     source_view: "vendor_concentration.report_deck_concentration_trend_fy"
     grain: "fiscal_year"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
     sortable: ["fiscal_year", "avg_hhi", "highly_concentrated_markets", "competitive_markets"]
     default_sort: "fiscal_year"
@@ -96,7 +96,7 @@ datasets:
     backing_view: "analytics_api.concentration_agency_profile"
     source_view: "vendor_concentration.report_deck_concentration_agency_profile"
     grain: "contracting_agency_id"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["contracting_agency_id"]
     sortable: ["contracting_agency_id", "analyzed_markets", "avg_hhi", "monopoly_market_pct", "total_market_obligation"]
     default_sort: "-total_market_obligation"
@@ -108,7 +108,7 @@ datasets:
     backing_view: "analytics_api.concentration_vendor_market_leaders"
     source_view: "vendor_concentration.report_deck_vendor_market_leaders"
     grain: "uei"
-    public_access: "api_key"
+    public_access: "public_bounded"
     required_filters_any: []
     filters: ["uei", "is_small_business_ever"]
     sortable: ["lifetime_total_obligated", "agencies_served", "avg_tenure_years", "avg_annual_obligated"]
@@ -124,7 +124,7 @@ datasets:
     backing_view: "analytics_api.concentration_small_biz_health_fy"
     source_view: "vendor_concentration.report_deck_small_biz_health_fy"
     grain: "fiscal_year"
-    public_access: "api_key"
+    public_access: "public_bounded"
     required_filters_any: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
     sortable: ["fiscal_year", "small_biz_obligation_share_pct", "small_biz_vendor_share_pct", "new_small_biz_entrants"]
@@ -139,7 +139,7 @@ datasets:
     backing_view: "analytics_api.concentration_kpi_summary"
     source_view: "vendor_concentration.report_deck_concentration_kpi_summary"
     grain: "scope"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["metric_period"]
     sortable: ["metric_period", "current_fy_avg_hhi", "current_fy_highly_concentrated_pct", "current_fy_small_biz_share_pct"]
     default_sort: "metric_period"
@@ -151,7 +151,7 @@ datasets:
     backing_view: "analytics_api.competition_trend_fy"
     source_view: "competition_dynamics.report_deck_competition_trend_fy"
     grain: "fiscal_year"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
     sortable: ["fiscal_year", "total_obligated", "competed_action_share", "not_competed_action_share", "bundled_action_share", "avg_offers_received"]
     default_sort: "fiscal_year"
@@ -163,7 +163,7 @@ datasets:
     backing_view: "analytics_api.competition_agency_profile_fy"
     source_view: "competition_dynamics.report_deck_competition_agency_profile_fy"
     grain: "contracting_dept_id x fiscal_year"
-    public_access: "api_key"
+    public_access: "public_bounded"
     required_filters_any: ["fiscal_year", "contracting_dept_id"]
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id"]
     sortable: ["fiscal_year", "total_obligated", "competed_action_share", "not_competed_action_share", "bundled_action_share", "avg_offers_received"]
@@ -176,7 +176,7 @@ datasets:
     backing_view: "analytics_api.competition_kpi_summary"
     source_view: "competition_dynamics.report_deck_competition_kpi_summary"
     grain: "scope"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["scope_name"]
     sortable: ["scope_name", "competed_action_share", "not_competed_action_share", "bundled_action_share", "avg_offers_received"]
     default_sort: "scope_name"
@@ -188,7 +188,7 @@ datasets:
     backing_view: "analytics_api.competition_sole_source_hotspots"
     source_view: "competition_dynamics.report_deck_sole_source_hotspots"
     grain: "contracting_dept_id over recent three fiscal years"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["contracting_dept_id"]
     sortable: ["not_competed_obligation_share_3yr", "not_competed_obligated_3yr", "total_obligated_3yr"]
     default_sort: "-not_competed_obligation_share_3yr"
@@ -200,7 +200,7 @@ datasets:
     backing_view: "analytics_api.naics_trend_fy"
     source_view: "naics_breakdown.report_deck_naics_trend_fy"
     grain: "sector_code x fiscal_year"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "sector_code"]
     sortable: ["fiscal_year", "sector_code", "total_obligated", "sector_obligation_share_of_total", "total_distinct_vendors"]
     default_sort: "-total_obligated"
@@ -212,7 +212,7 @@ datasets:
     backing_view: "analytics_api.naics_agency_profile_fy"
     source_view: "naics_breakdown.report_deck_naics_agency_profile_fy"
     grain: "contracting_dept_id x fiscal_year"
-    public_access: "api_key"
+    public_access: "public_bounded"
     required_filters_any: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id"]
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id"]
     sortable: ["fiscal_year", "contracting_dept_id", "total_obligated", "distinct_naics_count", "top_naics_obligation_share", "top_sector_obligation_share"]
@@ -225,7 +225,7 @@ datasets:
     backing_view: "analytics_api.naics_growth_leaders"
     source_view: "naics_breakdown.report_deck_naics_growth_leaders"
     grain: "principal_naics_code"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["principal_naics_code", "sector_code"]
     sortable: ["obligation_growth_rate", "obligation_change", "current_fy_obligated", "prior_fy_obligated"]
     default_sort: "-obligation_growth_rate"
@@ -238,7 +238,7 @@ datasets:
     backing_view: "analytics_api.naics_kpi_summary"
     source_view: "naics_breakdown.report_deck_naics_kpi_summary"
     grain: "scope"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["scope_name"]
     sortable: ["scope_name", "distinct_naics_count", "distinct_sector_count", "avg_vendors_per_naics", "avg_obligation_per_naics"]
     default_sort: "scope_name"
@@ -250,7 +250,7 @@ datasets:
     backing_view: "analytics_api.geography_state_trend_fy"
     source_view: "geographic_analysis.report_deck_geo_state_trend_fy"
     grain: "pop_state_code x fiscal_year"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "pop_state_code", "census_region", "census_division", "is_state"]
     sortable: ["fiscal_year", "pop_state_code", "total_obligated", "total_distinct_vendor_count", "distinct_agency_count"]
     default_sort: "-total_obligated"
@@ -262,7 +262,7 @@ datasets:
     backing_view: "analytics_api.geography_regional_summary_fy"
     source_view: "geographic_analysis.report_deck_geo_regional_summary_fy"
     grain: "census_region x fiscal_year"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "census_region"]
     sortable: ["fiscal_year", "census_region", "total_obligated", "state_count", "total_distinct_vendor_count"]
     default_sort: "-total_obligated"
@@ -274,7 +274,7 @@ datasets:
     backing_view: "analytics_api.geography_mismatch_leaders"
     source_view: "geographic_analysis.report_deck_geo_mismatch_leaders"
     grain: "vendor_state_code x pop_state_code over recent three fiscal years"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["vendor_state_code", "pop_state_code", "is_in_state"]
     sortable: ["total_obligated", "total_action_count", "total_distinct_vendor_count"]
     default_sort: "-total_obligated"
@@ -287,7 +287,7 @@ datasets:
     backing_view: "analytics_api.geography_kpi_summary"
     source_view: "geographic_analysis.report_deck_geo_kpi_summary"
     grain: "scope"
-    public_access: "api_key"
+    public_access: "public_bounded"
     filters: ["scope_name"]
     sortable: ["scope_name", "domestic_obligated_share", "international_obligated_share", "in_state_obligated_share"]
     default_sort: "scope_name"

@@ -157,7 +157,7 @@ Start here: https://analytics-api.kenosaconsulting.com/v1/ai-assistant-guide
 First inspect the catalog, then choose the right dataset for my question.
 Use only documented filters, sorts, and fields.
 Explain what the data means for customer targeting, market entry, teaming, or capture strategy.
-Include caveats and do not invent data.
+Include caveats and notices from the API response and do not invent data.
 ```
 
 Important: `https://analytics-api.kenosaconsulting.com` must resolve to the hosted API before this prompt will work in ChatGPT, Claude, Gemini, or similar assistants.

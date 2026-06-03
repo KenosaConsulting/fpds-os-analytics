@@ -15,7 +15,9 @@ from app.errors import APIError  # noqa: E402
 from app.query_builder import build_rows_query  # noqa: E402
 from app.auth import optional_api_access, require_api_key  # noqa: E402
 from app.main import _allowed_origins  # noqa: E402
+from app.notices import data_notices, dimension_notices  # noqa: E402
 from app.rate_limit import MemoryRateLimitStore, RateLimit, _hashed_token  # noqa: E402
+from app.routes.catalog import describe_dataset, list_catalog, list_dimensions  # noqa: E402
 from app.routes.health import ai_assistant_guide, metadata  # noqa: E402
 
 
@@ -23,6 +25,7 @@ def test_catalog_has_expected_dataset_count() -> None:
     catalog = load_catalog()
     assert len(catalog.datasets) == 22
     assert len(catalog.dimensions) == 7
+    assert {item["public_access"] for item in catalog.datasets.values()} == {"public_bounded"}
 
 
 def test_openapi_dataset_enum_matches_catalog() -> None:
@@ -62,7 +65,11 @@ def test_ai_assistant_guide_defines_safe_workflow() -> None:
     assert "/v1/catalog" in safe_paths
     assert "/v1/datasets/{dataset_id}/rows" in safe_paths
     assert "arbitrary SQL" in instructions
+    assert "9700" in instructions
+    assert "place-of-performance" in instructions
+    assert "9700" in " ".join(response["critical_notices"])
     assert "customer targeting" in response["copy_paste_prompt"]
+    assert "notices" in response["copy_paste_prompt"]
 
 
 def test_query_builder_uses_facade_relation() -> None:
@@ -130,6 +137,27 @@ def test_public_limit_override_rejects_large_no_key_queries() -> None:
         assert "25" in exc.detail["message"]
     else:
         raise AssertionError("Expected limit_too_large")
+
+
+def test_dataset_notices_include_dod_and_geography_limitations() -> None:
+    catalog = load_catalog()
+    competition_notices = " ".join(data_notices(catalog.get_dataset("competition.sole_source_hotspots")))
+    geography_notices = " ".join(data_notices(catalog.get_dataset("geography.state_trend_fy")))
+    states_notices = " ".join(dimension_notices(catalog.get_dimension("states")))
+    assert "9700" in competition_notices
+    assert "complete universe" in competition_notices
+    assert "Place-of-performance" in geography_notices
+    assert "OCONUS" in geography_notices
+    assert "Place-of-performance" in states_notices
+
+
+def test_catalog_and_describe_responses_include_notices() -> None:
+    catalog_response = list_catalog(domain=None)
+    describe_response = describe_dataset("geography.state_trend_fy")
+    dimensions_response = list_dimensions()
+    assert "9700" in " ".join(catalog_response["meta"]["notices"])
+    assert "Place-of-performance" in " ".join(describe_response["meta"]["notices"])
+    assert "9700" in " ".join(dimensions_response["meta"]["notices"])
 
 
 def test_naics_growth_leaders_uses_live_facade_fields() -> None:
