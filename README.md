@@ -244,6 +244,9 @@ The goal is to help answer:
 | Document | Purpose |
 |---|---|
 | [docs/METHODOLOGY.md](docs/METHODOLOGY.md) | How every number is computed: source data, materialized views, report views, formulas |
+| [docs/IMPLEMENTATION_PLAN_V2.md](docs/IMPLEMENTATION_PLAN_V2.md) | V2 quick wins: set-aside promotion, dim labels, competition enrichment, commercial item, parent company |
+| [docs/ANALYTICS_SCHEMA_DESIGN.md](docs/ANALYTICS_SCHEMA_DESIGN.md) | Database schema design notes for future analytics expansion |
+| [docs/ANALYST_VIEW_IMPROVEMENTS.md](docs/ANALYST_VIEW_IMPROVEMENTS.md) | Product roadmap: analyst-facing view priorities and composite pages |
 | [docs/API_FUNCTIONS.md](docs/API_FUNCTIONS.md) | Plain-English explanation of each API package and function |
 | [docs/AI_ASSISTANT_GUIDE.md](docs/AI_ASSISTANT_GUIDE.md) | Instructions users can paste into ChatGPT, Claude, Gemini, or similar tools |
 | [docs/DATASETS.md](docs/DATASETS.md) | Dataset-by-dataset field, filter, and sort reference |
