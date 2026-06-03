@@ -15,6 +15,10 @@
 -- SCHEMA
 -- ═══════════════════════════════════════════════════════════════════════════
 
+-- Extend statement timeout for MV builds (99M row scan)
+SET statement_timeout = '7200s';
+SET work_mem = '256MB';
+
 CREATE SCHEMA IF NOT EXISTS customer_intelligence;
 COMMENT ON SCHEMA customer_intelligence IS
 'Office-level customer profiles, agency rollups, and funding flow analysis. The analyst-facing "who actually buys this?" layer.';
