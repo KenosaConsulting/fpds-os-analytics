@@ -230,37 +230,59 @@ The API does not provide arbitrary SQL or bulk database access.
 
 ## Developer Setup
 
+This repository does not include a public database dump, local seed data, or
+credentials for the Kenosa analytics database. That is intentional: the API
+runtime reads from a restricted Postgres/Supabase facade, and live credentials
+must not be committed, shared in issues, or documented in public setup steps.
+
+Unauthenticated contributors can work on the API contract, catalog metadata,
+query guardrails, documentation, and tests that do not require a database.
+
 Install dependencies:
 
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
-Run locally:
+Run the local validation suite:
 
 ```bash
-FPDS_ANALYTICS_REQUIRE_AUTH=0 \
-ANALYTICS_DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/postgres" \
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8010
+python -m pytest tests -q
 ```
 
-If you store the analytics database password in macOS Keychain, use the local
-runner after the `fpds-analytics-api-db-password` item has been created:
+To run the API server against data, use one of these paths:
+
+- Authorized maintainers may use a Kenosa-provisioned read-only database
+  credential from an approved secret store.
+- External developers may point the app at their own compatible Postgres
+  database that implements the `analytics_api` facade schema.
+
+The runtime requires either `ANALYTICS_DATABASE_URL`/`DATABASE_URL` or
+component settings (`DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`).
+Use only the restricted analytics API role for shared environments; never use a
+`postgres`, `service_role`, owner, or write-capable credential.
+
+Authorized maintainers who already have local secret access can use:
 
 ```bash
 ./run-local.sh
 ```
 
-To use a different Keychain item:
+The local runner does not supply database credentials from the repository. Set
+`ANALYTICS_DATABASE_URL`, or set `DB_HOST` and retrieve `DB_PASS` from your
+approved local secret store before launching. If your approved local secret
+store uses macOS Keychain:
 
 ```bash
-FPDS_ANALYTICS_KEYCHAIN_SERVICE=my-keychain-service ./run-local.sh
+FPDS_ANALYTICS_KEYCHAIN_SERVICE=my-keychain-service \
+FPDS_ANALYTICS_KEYCHAIN_ACCOUNT=my-keychain-account \
+./run-local.sh
 ```
 
-The runner connects as `fpds_analytics_api_readonly`, which can read only the
-`analytics_api` facade schema.
+By default the app connects as `fpds_analytics_api_readonly`, which should be
+granted read access only to the `analytics_api` facade schema.
 
 Production should keep auth enabled:
 
