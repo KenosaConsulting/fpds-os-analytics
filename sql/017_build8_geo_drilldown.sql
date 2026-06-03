@@ -14,6 +14,10 @@
 -- MATERIALIZED VIEW
 -- ═══════════════════════════════════════════════════════════════════════════
 
+-- Disable statement timeout for MV builds (99M row scans)
+SET statement_timeout = 0;
+SET work_mem = '256MB';
+
 CREATE MATERIALIZED VIEW geographic_analysis.mv_fpds_geo_place_agency_office_fy AS
 SELECT
     COALESCE(fa.pop_country_code, 'USA') AS pop_country_code,

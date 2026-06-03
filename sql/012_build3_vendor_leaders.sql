@@ -19,6 +19,10 @@
 -- NEW MATERIALIZED VIEW: vendor × office × fiscal year
 -- ═══════════════════════════════════════════════════════════════════════════
 
+-- Disable statement timeout for MV builds (99M row scans)
+SET statement_timeout = 0;
+SET work_mem = '256MB';
+
 CREATE MATERIALIZED VIEW vendor_concentration.mv_fpds_vendor_office_year AS
 SELECT
     fa.uei,

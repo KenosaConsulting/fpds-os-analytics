@@ -16,7 +16,7 @@
 -- ═══════════════════════════════════════════════════════════════════════════
 
 -- Extend statement timeout for MV builds (99M row scan)
-SET statement_timeout = '7200s';
+SET statement_timeout = 0;
 SET work_mem = '256MB';
 
 CREATE SCHEMA IF NOT EXISTS customer_intelligence;

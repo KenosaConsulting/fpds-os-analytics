@@ -15,6 +15,10 @@
 -- SCHEMA
 -- ═══════════════════════════════════════════════════════════════════════════
 
+-- Disable statement timeout for MV builds (99M row scans)
+SET statement_timeout = 0;
+SET work_mem = '256MB';
+
 CREATE SCHEMA IF NOT EXISTS psc_analysis;
 COMMENT ON SCHEMA psc_analysis IS
 'Product Service Code analysis: PSC trends, agency/office PSC profiles, and PSC × NAICS crosswalk.';

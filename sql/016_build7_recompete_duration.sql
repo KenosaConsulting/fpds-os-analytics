@@ -17,6 +17,10 @@
 -- SCHEMA
 -- ═══════════════════════════════════════════════════════════════════════════
 
+-- Disable statement timeout for MV builds (99M row scans)
+SET statement_timeout = 0;
+SET work_mem = '256MB';
+
 CREATE SCHEMA IF NOT EXISTS pipeline_intelligence;
 COMMENT ON SCHEMA pipeline_intelligence IS
 'Contract lifecycle intelligence: recompete watchlists, duration profiles, and expiration signals.';

@@ -14,6 +14,10 @@
 -- MATERIALIZED VIEW
 -- ═══════════════════════════════════════════════════════════════════════════
 
+-- Disable statement timeout for MV builds (99M row scans)
+SET statement_timeout = 0;
+SET work_mem = '256MB';
+
 CREATE MATERIALIZED VIEW naics_breakdown.mv_fpds_naics_agency_office_fy AS
 SELECT
     fa.contracting_dept_id,
