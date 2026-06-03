@@ -108,7 +108,7 @@ GROUP BY
 
 CREATE UNIQUE INDEX IF NOT EXISTS mv_office_profile_fy_uq
     ON customer_intelligence.mv_office_profile_fy
-    (contracting_office_id, fiscal_year);
+    (contracting_office_id, contracting_agency_id, contracting_dept_id, fiscal_year);
 
 CREATE INDEX IF NOT EXISTS mv_office_profile_fy_agency_idx
     ON customer_intelligence.mv_office_profile_fy

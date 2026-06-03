@@ -91,7 +91,7 @@ GROUP BY
 
 CREATE UNIQUE INDEX IF NOT EXISTS mv_vendor_office_year_uq
     ON vendor_concentration.mv_fpds_vendor_office_year
-    (uei, contracting_office_id, fiscal_year);
+    (uei, contracting_office_id, contracting_agency_id, contracting_dept_id, fiscal_year);
 
 CREATE INDEX IF NOT EXISTS mv_vendor_office_year_office_idx
     ON vendor_concentration.mv_fpds_vendor_office_year

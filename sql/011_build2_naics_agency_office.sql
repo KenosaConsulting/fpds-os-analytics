@@ -76,7 +76,7 @@ GROUP BY
 
 CREATE UNIQUE INDEX IF NOT EXISTS mv_naics_agency_office_fy_uq
     ON naics_breakdown.mv_fpds_naics_agency_office_fy
-    (contracting_agency_id, contracting_office_id, principal_naics_code, fiscal_year);
+    (contracting_dept_id, contracting_agency_id, contracting_office_id, principal_naics_code, fiscal_year);
 
 CREATE INDEX IF NOT EXISTS mv_naics_agency_office_fy_naics_idx
     ON naics_breakdown.mv_fpds_naics_agency_office_fy

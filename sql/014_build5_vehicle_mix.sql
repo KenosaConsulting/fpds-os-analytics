@@ -82,7 +82,7 @@ GROUP BY
 
 CREATE UNIQUE INDEX IF NOT EXISTS mv_vehicle_mix_uq
     ON competition_dynamics.mv_fpds_vehicle_mix_agency_office_fy
-    (contracting_agency_id, contracting_office_id, vehicle_family, referenced_type_code, fiscal_year);
+    (contracting_dept_id, contracting_agency_id, contracting_office_id, vehicle_family, referenced_type_code, fiscal_year);
 
 CREATE INDEX IF NOT EXISTS mv_vehicle_mix_family_idx
     ON competition_dynamics.mv_fpds_vehicle_mix_agency_office_fy

@@ -120,7 +120,7 @@ GROUP BY
 
 CREATE UNIQUE INDEX IF NOT EXISTS mv_psc_agency_office_fy_uq
     ON psc_analysis.mv_fpds_psc_agency_office_fy
-    (contracting_agency_id, contracting_office_id, product_or_service_code, fiscal_year);
+    (contracting_dept_id, contracting_agency_id, contracting_office_id, product_or_service_code, fiscal_year);
 
 CREATE INDEX IF NOT EXISTS mv_psc_agency_office_fy_psc_idx
     ON psc_analysis.mv_fpds_psc_agency_office_fy
