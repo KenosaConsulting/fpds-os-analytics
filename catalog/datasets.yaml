@@ -293,6 +293,51 @@ datasets:
     default_sort: "scope_name"
     fields: ["scope_name", "state_count", "total_actions", "total_obligated", "domestic_obligated", "international_obligated", "domestic_obligated_share", "international_obligated_share", "in_state_obligated", "in_state_obligated_share"]
 
+  # ── Package 7: Customer Intelligence ──────────────────────────────────
+
+  - id: "customer.office_profile_fy"
+    title: "Office Customer Profile By Fiscal Year"
+    domain: "customer"
+    backing_view: "analytics_api.customer_office_profile_fy"
+    source_view: "customer_intelligence.report_deck_office_profile_fy"
+    grain: "contracting_office_id x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["contracting_office_id", "contracting_agency_id", "contracting_dept_id"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "contracting_agency_id", "contracting_office_id"]
+    sortable: ["fiscal_year", "net_obligated_amount", "distinct_vendor_count", "competed_action_share", "small_biz_obligation_share"]
+    default_sort: "-net_obligated_amount"
+    fields: ["fiscal_year", "is_current_fiscal_year_ytd", "contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "contracting_office_id", "contracting_office_name", "office_is_active_recent", "office_name_confidence", "total_action_count", "contract_scope_action_count", "base_award_action_count", "modification_action_count", "net_obligated_amount", "positive_obligated_amount", "negative_obligated_amount", "base_and_all_options_value_sum", "distinct_vendor_count", "distinct_naics_count", "distinct_psc_count", "competed_action_count", "not_competed_action_count", "competed_obligated", "not_competed_obligated", "avg_offers_received", "competed_action_share", "competed_obligation_share", "small_biz_action_count", "small_biz_obligated", "positive_setaside_count", "small_biz_action_share", "small_biz_obligation_share", "commercial_action_count", "commercial_obligated", "commercial_action_share"]
+    caveats:
+      - "High-cardinality view (200K-500K rows). At least one customer filter is required."
+      - "Office names can drift over time. office_name_confidence indicates reliability."
+
+  - id: "customer.agency_profile_fy"
+    title: "Agency Customer Profile By Fiscal Year"
+    domain: "customer"
+    backing_view: "analytics_api.customer_agency_profile_fy"
+    source_view: "customer_intelligence.report_deck_agency_customer_profile_fy"
+    grain: "contracting_agency_id x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["fiscal_year", "contracting_agency_id", "contracting_dept_id"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "contracting_agency_id"]
+    sortable: ["fiscal_year", "net_obligated_amount", "distinct_office_count", "competed_action_share", "small_biz_obligation_share"]
+    default_sort: "-net_obligated_amount"
+    fields: ["fiscal_year", "is_current_fiscal_year_ytd", "contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "distinct_office_count", "total_action_count", "contract_scope_action_count", "base_award_action_count", "net_obligated_amount", "positive_obligated_amount", "base_and_all_options_value_sum", "competed_action_count", "not_competed_action_count", "competed_obligated", "not_competed_obligated", "competed_action_share", "competed_obligation_share", "small_biz_action_count", "small_biz_obligated", "small_biz_obligation_share", "commercial_action_count", "commercial_obligated", "commercial_action_share"]
+
+  - id: "customer.kpi_summary"
+    title: "Customer Intelligence KPI Summary"
+    domain: "customer"
+    backing_view: "analytics_api.customer_kpi_summary"
+    source_view: "customer_intelligence.report_deck_customer_kpi_summary"
+    grain: "scope"
+    public_access: "public_bounded"
+    filters: ["scope_name"]
+    sortable: ["scope_name", "total_obligated", "distinct_offices"]
+    default_sort: "scope_name"
+    fields: ["scope_name", "distinct_offices", "distinct_agencies", "total_actions", "total_obligated", "total_vendor_interactions", "competed_action_share", "small_biz_obligation_share"]
+
+  # ── Competition Dynamics enrichment ──────────────────────────────────────
+
   - id: "competition.commercial_mix_fy"
     title: "Commercial vs Non-Commercial Acquisition Mix By Fiscal Year"
     domain: "competition"
