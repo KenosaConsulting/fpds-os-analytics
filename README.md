@@ -243,6 +243,7 @@ The goal is to help answer:
 
 | Document | Purpose |
 |---|---|
+| [docs/METHODOLOGY.md](docs/METHODOLOGY.md) | How every number is computed: source data, materialized views, report views, formulas |
 | [docs/API_FUNCTIONS.md](docs/API_FUNCTIONS.md) | Plain-English explanation of each API package and function |
 | [docs/AI_ASSISTANT_GUIDE.md](docs/AI_ASSISTANT_GUIDE.md) | Instructions users can paste into ChatGPT, Claude, Gemini, or similar tools |
 | [docs/DATASETS.md](docs/DATASETS.md) | Dataset-by-dataset field, filter, and sort reference |
