@@ -385,6 +385,59 @@ datasets:
       - "Rankings based on recent 3 fiscal years. Current FY is year-to-date."
       - "NAICS code required. Use the naics dimension to discover codes."
 
+
+  # ── Incumbent / Vendor Leaders (Build 3) ─────────────────────────────────
+
+  - id: "incumbent.agency_vendor_leaders"
+    title: "Agency Vendor Leaders"
+    domain: "incumbent"
+    backing_view: "analytics_api.incumbent_agency_vendor_leaders"
+    source_view: "vendor_concentration.report_deck_agency_vendor_leaders"
+    grain: "contracting_agency_id x vendor_uei (3-year rollup)"
+    public_access: "api_key"
+    required_filters_any: ["contracting_agency_id", "contracting_dept_id", "uei"]
+    filters: ["contracting_dept_id", "contracting_agency_id", "uei", "is_small_business"]
+    sortable: ["recent_3yr_obligated", "total_obligated", "vendor_rank", "tenure_years", "active_fy_count"]
+    default_sort: "vendor_rank"
+    max_limit: 500
+    fields: ["contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "uei", "vendor_name", "is_small_business", "is_veteran_owned", "is_women_owned", "is_minority_owned", "total_obligated", "recent_3yr_obligated", "total_action_count", "first_active_fy", "last_active_fy", "active_fy_count", "tenure_years", "vendor_rank"]
+    caveats:
+      - "Rankings based on recent 3 fiscal years of positive obligation."
+      - "Socioeconomic flags reflect any self-certification during the vendor-agency relationship."
+
+  - id: "incumbent.office_vendor_leaders"
+    title: "Office Vendor Leaders"
+    domain: "incumbent"
+    backing_view: "analytics_api.incumbent_office_vendor_leaders"
+    source_view: "vendor_concentration.report_deck_office_vendor_leaders"
+    grain: "contracting_office_id x vendor_uei (3-year rollup)"
+    public_access: "api_key"
+    required_filters_any: ["contracting_office_id", "contracting_agency_id", "contracting_dept_id"]
+    filters: ["contracting_dept_id", "contracting_agency_id", "contracting_office_id", "uei", "is_small_business", "is_8a", "is_hubzone", "is_sdvosb"]
+    sortable: ["recent_3yr_obligated", "total_obligated", "vendor_rank", "tenure_years"]
+    default_sort: "vendor_rank"
+    max_limit: 500
+    fields: ["contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "contracting_office_id", "contracting_office_name", "uei", "vendor_name", "is_small_business", "is_veteran_owned", "is_women_owned", "is_minority_owned", "is_8a", "is_hubzone", "is_sdvosb", "total_obligated", "recent_3yr_obligated", "total_action_count", "first_active_fy", "last_active_fy", "active_fy_count", "tenure_years", "primary_naics_code", "primary_naics_description", "primary_psc_code", "vendor_rank"]
+    caveats:
+      - "High cardinality. At least one customer filter is required."
+      - "primary_naics_code and primary_psc_code are the most common codes for this vendor at this office."
+
+  - id: "incumbent.agency_naics_vendor_leaders"
+    title: "Agency NAICS Vendor Leaders"
+    domain: "incumbent"
+    backing_view: "analytics_api.incumbent_agency_naics_vendor_leaders"
+    source_view: "vendor_concentration.report_deck_agency_naics_vendor_leaders"
+    grain: "contracting_agency_id x principal_naics_code x vendor_uei (3-year rollup)"
+    public_access: "api_key"
+    required_filters_any: ["contracting_agency_id", "contracting_dept_id"]
+    filters: ["contracting_dept_id", "contracting_agency_id", "principal_naics_code", "uei", "is_small_business"]
+    sortable: ["recent_3yr_obligated", "total_obligated", "vendor_rank"]
+    default_sort: "vendor_rank"
+    max_limit: 500
+    fields: ["contracting_agency_id", "contracting_agency_name", "agency_short_name", "contracting_dept_id", "contracting_dept_name", "principal_naics_code", "principal_naics_description", "sector_label", "uei", "is_small_business", "total_obligated", "recent_3yr_obligated", "total_action_count", "first_active_fy", "last_active_fy", "active_fy_count", "vendor_rank"]
+    caveats:
+      - "Answers: who wins Army 541512? Requires agency filter + optional NAICS."
+
   # ── Competition Dynamics enrichment ──────────────────────────────────────
 
   - id: "competition.commercial_mix_fy"
