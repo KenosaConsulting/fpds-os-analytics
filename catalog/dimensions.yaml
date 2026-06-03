@@ -53,6 +53,49 @@ dimensions:
     filters: ["state_code", "census_region", "census_division", "is_state"]
     fields: ["state_code", "state_name", "census_region", "census_division", "is_state", "sort_order", "notes"]
 
+  - id: "departments"
+    title: "Federal Departments"
+    backing_view: "analytics_api.dim_departments"
+    source_table: "analytics_dims.fpds_department_map"
+    key: "department_id"
+    filters: ["department_id", "is_dod", "is_civilian", "is_active"]
+    fields: ["department_id", "department_name", "department_short_name", "is_dod", "is_civilian", "is_active", "sort_order", "notes"]
+
+  - id: "agencies"
+    title: "Federal Agencies And Bureaus"
+    backing_view: "analytics_api.dim_agencies"
+    source_table: "analytics_dims.fpds_agency_map"
+    key: "agency_id"
+    filters: ["agency_id", "parent_department_id", "is_active"]
+    fields: ["agency_id", "agency_name", "agency_short_name", "parent_department_id", "is_active", "sort_order", "notes"]
+
+  - id: "contracting_offices"
+    title: "Contracting Offices"
+    backing_view: "analytics_api.dim_contracting_offices"
+    source_table: "analytics_dims.fpds_contracting_office_map"
+    key: "contracting_office_id"
+    filters: ["contracting_office_id", "contracting_agency_id", "contracting_dept_id", "is_active_recent", "name_confidence"]
+    fields: ["contracting_office_id", "contracting_office_name", "normalized_office_name", "contracting_agency_id", "contracting_dept_id", "first_observed_fy", "last_observed_fy", "is_active_recent", "name_confidence", "notes"]
+    caveats:
+      - "High cardinality (~14K offices). Filter by agency, department, or active status before broad queries."
+      - "Office names drift over time. name_confidence indicates how stable the name is."
+
+  - id: "psc_codes"
+    title: "Product Service Codes"
+    backing_view: "analytics_api.dim_psc_codes"
+    source_table: "analytics_dims.fpds_psc_map"
+    key: "psc_code"
+    filters: ["psc_code", "psc_category_code", "psc_group", "is_service", "is_product", "is_r_and_d", "is_construction"]
+    fields: ["psc_code", "psc_description", "psc_category_code", "psc_category_label", "psc_group", "is_service", "is_product", "is_r_and_d", "is_construction", "sort_order", "notes"]
+
+  - id: "vehicle_type_codes"
+    title: "Vehicle And Acquisition Path Type Codes"
+    backing_view: "analytics_api.dim_vehicle_type_codes"
+    source_table: "analytics_dims.fpds_referenced_type_map"
+    key: "raw_code"
+    filters: ["raw_code", "vehicle_family", "is_gwac", "is_schedule", "is_idiq", "is_bpa", "is_open_market"]
+    fields: ["raw_code", "label", "vehicle_family", "is_gwac", "is_schedule", "is_idiq", "is_bpa", "is_boa", "is_open_market", "sort_order", "notes"]
+
   - id: "commercial_item_codes"
     title: "FPDS Commercial Item Acquisition Procedure Codes"
     backing_view: "analytics_api.dim_commercial_item_codes"
