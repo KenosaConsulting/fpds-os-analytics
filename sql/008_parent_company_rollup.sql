@@ -1,0 +1,113 @@
+-- Parent company rollup for vendor concentration.
+--
+-- IMPORTANT: This migration requires rebuilding mv_fpds_vendor_agency_year
+-- and mv_fpds_vendor_incumbent_analysis. Plan for a maintenance window —
+-- the rebuild scans 99M rows and takes 30-60 minutes.
+--
+-- ultimate_parent_uei is 100% populated in fpds_actions.
+
+-- ─── Step 1: Add parent UEI columns to vendor agency year MV ────────────────
+--
+-- This requires DROP + CREATE because you cannot ALTER a materialized view
+-- to add columns. The new definition includes:
+--   - ultimate_parent_uei
+--   - ultimate_parent_uei_name
+--
+-- BEFORE RUNNING: verify the current MV definition matches expectations.
+-- The DROP is destructive — back up if needed.
+
+-- DROP MATERIALIZED VIEW IF EXISTS vendor_concentration.mv_fpds_vendor_agency_year CASCADE;
+--
+-- Then recreate with the additional columns. The full CREATE statement
+-- should match the existing definition from pg_matviews with these additions
+-- to the SELECT list:
+--
+--   fa.ultimate_parent_uei,
+--   COALESCE(
+--       MIN(NULLIF(fa.ultimate_parent_uei_name, '')),
+--       MIN(NULLIF(fa.vendor_name, ''))
+--   ) AS ultimate_parent_name,
+--
+-- And add ultimate_parent_uei to the GROUP BY clause.
+--
+-- After rebuilding, recreate all dependent views and indexes.
+
+
+-- ─── Step 2: Parent company leaders report view ─────────────────────────────
+
+-- This view can be created now as a preview — it will work once Step 1
+-- completes. Until then, it will error on missing column.
+
+-- CREATE OR REPLACE VIEW vendor_concentration.report_deck_parent_company_leaders AS
+-- WITH parent_totals AS (
+--     SELECT
+--         contracting_agency_id,
+--         ultimate_parent_uei,
+--         ultimate_parent_name,
+--         COUNT(DISTINCT uei) AS subsidiary_count,
+--         SUM(net_obligated_amount) AS total_obligated,
+--         SUM(CASE WHEN fiscal_year >= (
+--             CASE WHEN EXTRACT(month FROM CURRENT_DATE)::int >= 10
+--                  THEN EXTRACT(year FROM CURRENT_DATE)::int + 1
+--                  ELSE EXTRACT(year FROM CURRENT_DATE)::int
+--             END - 2)
+--             THEN net_obligated_amount ELSE 0 END) AS recent_3yr_obligated,
+--         MIN(fiscal_year) AS first_active_fy,
+--         MAX(fiscal_year) AS last_active_fy,
+--         COUNT(DISTINCT fiscal_year) AS active_fy_count,
+--         SUM(action_count) AS total_action_count,
+--         SUM(contract_scope_action_count) AS total_contract_scope_actions,
+--         BOOL_OR(is_small_business) AS any_subsidiary_is_small,
+--         BOOL_OR(is_veteran_owned) AS any_subsidiary_is_veteran_owned,
+--         BOOL_OR(is_women_owned) AS any_subsidiary_is_women_owned,
+--         BOOL_OR(is_minority_owned) AS any_subsidiary_is_minority_owned
+--     FROM vendor_concentration.mv_fpds_vendor_agency_year
+--     WHERE net_obligated_amount > 0
+--     GROUP BY contracting_agency_id, ultimate_parent_uei, ultimate_parent_name
+-- )
+-- SELECT
+--     contracting_agency_id,
+--     ultimate_parent_uei,
+--     ultimate_parent_name,
+--     subsidiary_count,
+--     total_obligated,
+--     recent_3yr_obligated,
+--     first_active_fy,
+--     last_active_fy,
+--     active_fy_count,
+--     total_action_count,
+--     total_contract_scope_actions,
+--     any_subsidiary_is_small,
+--     any_subsidiary_is_veteran_owned,
+--     any_subsidiary_is_women_owned,
+--     any_subsidiary_is_minority_owned,
+--     ROW_NUMBER() OVER (
+--         PARTITION BY contracting_agency_id
+--         ORDER BY recent_3yr_obligated DESC
+--     ) AS parent_rank
+-- FROM parent_totals
+-- WHERE active_fy_count >= 2
+-- ORDER BY contracting_agency_id, recent_3yr_obligated DESC;
+
+
+-- ─── Step 3: Facade view ────────────────────────────────────────────────────
+
+-- CREATE OR REPLACE VIEW analytics_api.concentration_parent_company_leaders
+-- WITH (security_barrier = true) AS
+-- SELECT * FROM vendor_concentration.report_deck_parent_company_leaders;
+
+
+-- ─── Execution checklist ────────────────────────────────────────────────────
+--
+-- 1. [ ] Schedule maintenance window (MV rebuild: 30-60 min)
+-- 2. [ ] Back up current MV definition from pg_matviews
+-- 3. [ ] DROP MATERIALIZED VIEW vendor_concentration.mv_fpds_vendor_agency_year CASCADE
+-- 4. [ ] CREATE MATERIALIZED VIEW with ultimate_parent_uei columns
+-- 5. [ ] Recreate all indexes on the rebuilt MV
+-- 6. [ ] Recreate all dependent views (mv_fpds_vendor_incumbent_analysis,
+--        mv_fpds_concentration_agency_naics_year, all report_deck_* views)
+-- 7. [ ] Uncomment and run Step 2 (parent company leaders view)
+-- 8. [ ] Uncomment and run Step 3 (facade view)
+-- 9. [ ] Add catalog entry for concentration.parent_company_leaders
+-- 10.[ ] Verify API responses include parent UEI data
+-- 11.[ ] Run spot checks: Guidehouse subsidiaries should roll up correctly
