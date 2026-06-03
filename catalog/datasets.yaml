@@ -336,6 +336,55 @@ datasets:
     default_sort: "scope_name"
     fields: ["scope_name", "distinct_offices", "distinct_agencies", "total_actions", "total_obligated", "total_vendor_interactions", "competed_action_share", "small_biz_obligation_share"]
 
+
+  # ── NAICS Market Sizing (Build 2) ────────────────────────────────────────
+
+  - id: "market.agency_naics_fy"
+    title: "Agency NAICS Market Sizing By Fiscal Year"
+    domain: "market"
+    backing_view: "analytics_api.market_agency_naics_fy"
+    source_view: "naics_breakdown.report_deck_naics_agency_fy"
+    grain: "contracting_agency_id x principal_naics_code x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["contracting_agency_id", "contracting_dept_id", "principal_naics_code", "sector_code"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "contracting_agency_id", "principal_naics_code", "sector_code"]
+    sortable: ["fiscal_year", "net_obligated_amount", "distinct_vendor_count", "small_biz_obligation_share", "not_competed_action_share"]
+    default_sort: "-net_obligated_amount"
+    fields: ["contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "principal_naics_code", "principal_naics_description", "sector_code", "sector_label", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "contract_scope_action_count", "net_obligated_amount", "contract_scope_obligated", "distinct_vendor_count", "competed_action_count", "not_competed_action_count", "small_biz_obligated", "small_biz_obligation_share", "not_competed_action_share"]
+    caveats:
+      - "Rolled up from office-level data. For office detail use market.office_naics_fy."
+
+  - id: "market.office_naics_fy"
+    title: "Office NAICS Market Sizing By Fiscal Year"
+    domain: "market"
+    backing_view: "analytics_api.market_office_naics_fy"
+    source_view: "naics_breakdown.report_deck_naics_office_fy"
+    grain: "contracting_office_id x principal_naics_code x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["contracting_office_id", "contracting_agency_id", "contracting_dept_id"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "contracting_agency_id", "contracting_office_id", "principal_naics_code", "sector_code"]
+    sortable: ["fiscal_year", "net_obligated_amount", "distinct_vendor_count"]
+    default_sort: "-net_obligated_amount"
+    fields: ["contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "contracting_office_id", "contracting_office_name", "principal_naics_code", "principal_naics_description", "sector_code", "sector_label", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "contract_scope_action_count", "net_obligated_amount", "contract_scope_obligated", "distinct_vendor_count", "competed_action_count", "not_competed_action_count", "small_biz_obligated", "avg_offers_received", "small_biz_obligation_share", "not_competed_action_share"]
+    caveats:
+      - "High cardinality (2M-5M rows). At least one customer filter is required."
+
+  - id: "market.naics_customer_leaders"
+    title: "NAICS Customer Leaders (Recent 3-Year)"
+    domain: "market"
+    backing_view: "analytics_api.market_naics_customer_leaders"
+    source_view: "naics_breakdown.report_deck_naics_customer_leaders"
+    grain: "principal_naics_code x contracting_agency_id (3-year rollup)"
+    public_access: "api_key"
+    required_filters_any: ["principal_naics_code", "sector_code"]
+    filters: ["principal_naics_code", "sector_code", "contracting_dept_id", "contracting_agency_id"]
+    sortable: ["recent_3yr_obligated", "customer_rank", "recent_3yr_vendors", "small_biz_obligation_share"]
+    default_sort: "customer_rank"
+    fields: ["principal_naics_code", "principal_naics_description", "sector_label", "contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "recent_3yr_obligated", "recent_3yr_actions", "recent_3yr_vendors", "small_biz_obligation_share", "not_competed_action_share", "customer_rank"]
+    caveats:
+      - "Rankings based on recent 3 fiscal years. Current FY is year-to-date."
+      - "NAICS code required. Use the naics dimension to discover codes."
+
   # ── Competition Dynamics enrichment ──────────────────────────────────────
 
   - id: "competition.commercial_mix_fy"
