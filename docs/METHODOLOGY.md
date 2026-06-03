@@ -304,6 +304,74 @@ The in-state share uses the department-year summary (which computes the match at
 
 ---
 
+## Package 6: Set-Aside & Socioeconomic Programs
+
+**Question answered:** Does this customer use small-business set-asides, and which programs?
+
+### Dimension Table
+
+**`fpds_set_aside_code_map`** — 20 codes mapping FPDS `type_of_set_aside` values to human-readable labels and program families:
+
+| Family | Codes | Description |
+|---|---|---|
+| Small business | SBA, SBP, RSB, VSB, ESB | Total, partial, reserved, very small, emerging |
+| 8(a) | 8A, 8AN, 8AC, HS2, HS3 | Competed, sole source, SDB, HUBZone combo |
+| HUBZone | HZC, HZS | Set-aside and sole source |
+| SDVOSB | SDVOSBC, SDVOSBS, SDVOBS | Set-aside and sole source |
+| WOSB | WOSB | Women-owned small business |
+| Veteran-owned | VSA, VSS | VA-only set-aside and sole source |
+| No set aside | NONE | Explicitly no set-aside used |
+| Unknown | UNKNOWN | NULL, blank, or not reported |
+
+Each code carries `is_positive_set_aside` (true if an actual program was used) and `is_known_status` (true if the field was explicitly coded, even as NONE). Historical codes include `valid_from` and `valid_to` dates.
+
+### Materialized Views
+
+**`mv_fpds_setaside_agency_year_summary`** — One row per department × agency × fiscal year. 9,106 rows. The core set-aside fact table at the agency level. Joined to `fpds_set_aside_code_map`, `fpds_action_type_map`, `fpds_modification_reason_map`, and `fpds_value_bucket_map`.
+
+Key metrics:
+- `known_setaside_status_count` / `unknown_setaside_status_count` — data quality indicators
+- `no_setaside_action_count` / `positive_setaside_action_count` — actions with/without a set-aside program
+- `contract_scope_*` variants — same metrics filtered to contract-scope actions (excluding admin mods)
+- Pre-computed shares: `setaside_action_share_known`, `setaside_obligation_share_known`
+- Modification breakdown: `funding_only_mod_count`, `admin_mod_count`, `option_exercise_mod_count`, `scope_change_mod_count`, `cancellation_closeout_mod_count`
+- Value bucket distributions: counts of awards by base value and obligated value ranges
+
+**`mv_fpds_setaside_agency_year_award_type`** — One row per department × agency × fiscal year × award type × set-aside code. 125,541 rows. The detailed cross-tab showing which award types (delivery orders, definitive contracts, BPA calls, FSS orders, etc.) use which set-aside programs.
+
+**`mv_fpds_setaside_office_year_summary`** — One row per department × agency × office × fiscal year. 137,770 rows. Same metrics as the agency summary but at contracting-office granularity.
+
+**`mv_fpds_setaside_office_year_award_type`** — One row per department × agency × office × fiscal year × award type × set-aside code. 887,208 rows. The full detail cross-tab at office level.
+
+### Report Views
+
+**`set_aside.trend_fy`** — Government-wide set-aside trends. Aggregates `mv_fpds_setaside_agency_year_summary` across all agencies per fiscal year. Computes shares against known-status actions (not total) to avoid deflation from missing data:
+
+```
+setaside_action_share_known = positive_setaside_action_count / known_setaside_status_count
+setaside_obligation_share_known = positive_setaside_net_obligated / known_status_net_obligated
+```
+
+Also computes `unknown_status_share` as a data quality indicator.
+
+**`set_aside.family_trend_fy`** — Trends by set-aside family (8(a), Small Business, WOSB, HUBZone, SDVOSB, etc.). Shows each program's share of total set-aside activity.
+
+**`set_aside.agency_profile_fy`** — Per-agency profile with `friendliness_rank` — a ranking of agencies by the share of contract-scope known-status actions that use a positive set-aside. Higher rank means the agency directs more of its known procurement through small-business programs.
+
+**`set_aside.agency_mix_fy`** — Cross-tab of agency × set-aside code. Shows exactly how much each agency spends through each specific program (8(a) Competed vs. 8(a) Sole Source vs. HUBZone, etc.). Includes `agency_setaside_rank` ordering programs by obligation within each agency.
+
+**`set_aside.office_profile_fy`** — Same as agency profile but at contracting-office level. This is the highest-granularity set-aside view in the API — it answers "which office at Army is most friendly to small businesses?"
+
+**`set_aside.kpi_summary`** — Three-scope summary: all years, current FY, and recent 3-year contact activity.
+
+### Known Status vs. Total Actions
+
+FPDS set-aside coding has changed over time. Early records often lack set-aside classification entirely. The `unknown_status_share` metric tracks this: in recent fiscal years it is typically 10-15%, but in the current FY it can spike to 75%+ as records are still being coded.
+
+All set-aside shares are computed against **known-status actions**, not total actions, to avoid artificially deflating participation rates due to missing data. This is a deliberate methodology choice — it means rates are accurate for the subset of classified actions but may not represent the universe.
+
+---
+
 ## Computation Notes
 
 ### Obligation Amounts

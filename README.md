@@ -36,6 +36,7 @@ This API packages those answers into simple datasets that can be queried, visual
 | Who are the incumbents? | Vendor Concentration | Understand who already controls the market and how strong their position is |
 | What work is growing? | Industry / NAICS Demand | Find customer demand that matches your capabilities |
 | Where does the work happen? | Geography | Decide whether local presence, regional teaming, or national delivery matters |
+| Does this customer use small-business set-asides? | Set-Aside & Socioeconomic | Determine which programs (8(a), WOSB, HUBZone, SDVOSB) to pursue and which offices are friendliest |
 
 ## Analysis Packages
 
@@ -107,6 +108,21 @@ Datasets:
 - `geography.regional_summary_fy`
 - `geography.mismatch_leaders`
 - `geography.kpi_summary`
+
+### 6. Set-Aside & Socioeconomic Programs
+
+Shows which small-business set-aside programs agencies use: 8(a), WOSB, HUBZone, SDVOSB, total small business, and unrestricted.
+
+Use this to understand whether a customer uses set-asides, which programs they prefer, and which offices are most friendly to small businesses. Includes office-level granularity.
+
+Datasets:
+
+- `set_aside.trend_fy`
+- `set_aside.family_trend_fy`
+- `set_aside.agency_profile_fy`
+- `set_aside.agency_mix_fy`
+- `set_aside.office_profile_fy`
+- `set_aside.kpi_summary`
 
 ## How To Use It
 

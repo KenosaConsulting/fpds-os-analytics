@@ -1,4 +1,4 @@
-version: "2026-06-02"
+version: "2026-06-03"
 source_reference: "docs/analytics-schema-reference.md"
 notes:
   - "Initial public API catalog exposes report-deck views first."
@@ -292,3 +292,93 @@ datasets:
     sortable: ["scope_name", "domestic_obligated_share", "international_obligated_share", "in_state_obligated_share"]
     default_sort: "scope_name"
     fields: ["scope_name", "state_count", "total_actions", "total_obligated", "domestic_obligated", "international_obligated", "domestic_obligated_share", "international_obligated_share", "in_state_obligated", "in_state_obligated_share"]
+
+  # ── Package 6: Set-Aside & Socioeconomic Programs ──────────────────────
+
+  - id: "set_aside.trend_fy"
+    title: "Set-Aside Trend By Fiscal Year"
+    domain: "set_aside"
+    backing_view: "analytics_api.set_aside_trend_fy"
+    source_view: "set_aside_breakdown.report_deck_overall_trend_fy"
+    grain: "fiscal_year"
+    public_access: "public_bounded"
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
+    sortable: ["fiscal_year", "net_obligated_amount", "setaside_action_share_known", "setaside_obligation_share_known"]
+    default_sort: "fiscal_year"
+    fields: ["fiscal_year", "is_current_fiscal_year_ytd", "action_count", "contract_scope_action_count", "base_award_action_count", "modification_action_count", "known_setaside_status_count", "unknown_setaside_status_count", "no_setaside_action_count", "positive_setaside_action_count", "net_obligated_amount", "known_status_net_obligated_amount", "positive_setaside_net_obligated_amount", "contract_scope_net_obligated_amount", "contract_scope_positive_setaside_net_obligated_amount", "setaside_action_share_all", "setaside_action_share_known", "contract_scope_setaside_action_share_known", "setaside_obligation_share_known", "contract_scope_setaside_obligation_share_known", "unknown_status_share", "modification_share", "base_award_setaside_share_known"]
+    caveats:
+      - "Set-aside status coding in FPDS changed over time. The unknown_status_share field indicates data quality — higher values mean more actions lack set-aside classification."
+      - "Shares are computed against known-status actions only, not total actions, to avoid deflating rates due to missing data."
+
+  - id: "set_aside.family_trend_fy"
+    title: "Set-Aside Family Trend By Fiscal Year"
+    domain: "set_aside"
+    backing_view: "analytics_api.set_aside_family_trend_fy"
+    source_view: "set_aside_breakdown.report_deck_setaside_family_trend_fy"
+    grain: "fiscal_year x set_aside_family"
+    public_access: "public_bounded"
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "set_aside_family"]
+    sortable: ["fiscal_year", "set_aside_family", "net_obligated_amount", "share_of_positive_setaside_actions", "share_of_net_obligations"]
+    default_sort: "-net_obligated_amount"
+    fields: ["fiscal_year", "is_current_fiscal_year_ytd", "set_aside_family", "action_count", "contract_scope_action_count", "positive_setaside_action_count", "net_obligated_amount", "contract_scope_net_obligated_amount", "contract_scope_positive_setaside_net_obligated_amount", "total_action_count", "total_positive_setaside_action_count", "total_net_obligated_amount", "share_of_known_status_actions", "share_of_positive_setaside_actions", "share_of_net_obligations"]
+    caveats:
+      - "Set-aside families group related codes: 8(a) includes both competed and sole-source 8(a); Small Business includes total, partial, and emerging SB set-asides."
+
+  - id: "set_aside.agency_profile_fy"
+    title: "Set-Aside Agency Profile By Fiscal Year"
+    domain: "set_aside"
+    backing_view: "analytics_api.set_aside_agency_profile_fy"
+    source_view: "set_aside_breakdown.report_deck_agency_friendly_fy"
+    grain: "contracting_dept_id x contracting_agency_id x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["fiscal_year", "contracting_dept_id", "contracting_agency_id"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "contracting_agency_id"]
+    sortable: ["fiscal_year", "contracting_dept_id", "net_obligated_amount", "contract_scope_setaside_obligation_share_known", "friendliness_rank"]
+    default_sort: "friendliness_rank"
+    fields: ["fiscal_year", "is_current_fiscal_year_ytd", "contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "action_count", "contract_scope_total_action_count", "contract_scope_known_setaside_status_count", "contract_scope_positive_setaside_action_count", "net_obligated_amount", "contract_scope_net_obligated_amount", "contract_scope_known_status_net_obligated_amount", "contract_scope_positive_setaside_net_obligated_amount", "setaside_action_share_known", "contract_scope_setaside_action_share_known", "contract_scope_setaside_obligation_share_known", "unknown_status_share", "modification_share", "friendliness_rank"]
+    caveats:
+      - "Friendliness rank is based on the share of contract-scope known-status actions that use a positive set-aside. Higher rank = more small-business-friendly."
+
+  - id: "set_aside.agency_mix_fy"
+    title: "Set-Aside Agency Program Mix By Fiscal Year"
+    domain: "set_aside"
+    backing_view: "analytics_api.set_aside_agency_mix_fy"
+    source_view: "set_aside_breakdown.report_deck_agency_setaside_mix_fy"
+    grain: "contracting_dept_id x contracting_agency_id x set_aside_code x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["fiscal_year", "contracting_dept_id", "contracting_agency_id", "set_aside_code", "set_aside_family"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "contracting_agency_id", "set_aside_code", "set_aside_family"]
+    sortable: ["fiscal_year", "contracting_dept_id", "net_obligated_amount", "positive_setaside_action_count", "agency_setaside_rank"]
+    default_sort: "agency_setaside_rank"
+    fields: ["fiscal_year", "is_current_fiscal_year_ytd", "contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "set_aside_code", "set_aside_label", "set_aside_family", "positive_setaside_action_count", "net_obligated_amount", "base_and_all_options_value_sum", "total_estimated_order_value_sum", "contract_scope_action_count", "known_setaside_status_count", "agency_setaside_rank"]
+    caveats:
+      - "Rows only appear for agency x set-aside combinations with positive set-aside actions. Agencies with no set-aside activity in a given year do not appear."
+      - "agency_setaside_rank orders set-aside programs within each agency-year by obligation volume."
+
+  - id: "set_aside.office_profile_fy"
+    title: "Set-Aside Office Profile By Fiscal Year"
+    domain: "set_aside"
+    backing_view: "analytics_api.set_aside_office_profile_fy"
+    source_view: "set_aside_breakdown.report_deck_office_friendly_fy"
+    grain: "contracting_office_id x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["contracting_office_id", "contracting_agency_id", "contracting_dept_id"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "contracting_agency_id", "contracting_office_id"]
+    sortable: ["fiscal_year", "contracting_office_id", "net_obligated_amount", "contract_scope_setaside_obligation_share_known", "friendliness_rank"]
+    default_sort: "friendliness_rank"
+    fields: ["fiscal_year", "is_current_fiscal_year_ytd", "contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "contracting_office_id", "contracting_office_name", "action_count", "contract_scope_total_action_count", "contract_scope_known_setaside_status_count", "contract_scope_positive_setaside_action_count", "net_obligated_amount", "contract_scope_net_obligated_amount", "contract_scope_known_status_net_obligated_amount", "contract_scope_positive_setaside_net_obligated_amount", "setaside_action_share_known", "contract_scope_setaside_action_share_known", "contract_scope_setaside_obligation_share_known", "unknown_status_share", "modification_share", "friendliness_rank"]
+    caveats:
+      - "Office names in FPDS can be inconsistent — the same office may appear with slightly different names across years. Use contracting_office_id as the stable key."
+      - "High-cardinality view (137K+ rows). At least one customer filter is required."
+
+  - id: "set_aside.kpi_summary"
+    title: "Set-Aside KPI Summary"
+    domain: "set_aside"
+    backing_view: "analytics_api.set_aside_kpi_summary"
+    source_view: "set_aside_breakdown.report_deck_kpi_summary"
+    grain: "metric_scope"
+    public_access: "public_bounded"
+    filters: ["metric_scope"]
+    sortable: ["metric_scope", "net_obligated_amount", "setaside_action_share_known"]
+    default_sort: "metric_scope"
+    fields: ["metric_scope", "min_fiscal_year", "max_fiscal_year", "action_count", "known_setaside_status_count", "unknown_setaside_status_count", "no_setaside_action_count", "positive_setaside_action_count", "net_obligated_amount", "setaside_action_share_known", "unknown_status_share"]

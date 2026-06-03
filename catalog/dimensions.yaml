@@ -1,4 +1,4 @@
-version: "2026-06-02"
+version: "2026-06-03"
 source_reference: "docs/analytics-schema-reference.md"
 
 dimensions:
@@ -52,3 +52,11 @@ dimensions:
     key: "state_code"
     filters: ["state_code", "census_region", "census_division", "is_state"]
     fields: ["state_code", "state_name", "census_region", "census_division", "is_state", "sort_order", "notes"]
+
+  - id: "set_aside_codes"
+    title: "FPDS Set-Aside Type Codes"
+    backing_view: "analytics_api.dim_set_aside_codes"
+    source_table: "analytics_dims.fpds_set_aside_code_map"
+    key: "raw_code"
+    filters: ["raw_code", "family", "is_positive_set_aside", "is_known_status"]
+    fields: ["raw_code", "normalized_code", "label", "family", "status", "is_positive_set_aside", "is_known_status", "valid_from", "valid_to", "sort_order", "notes"]
