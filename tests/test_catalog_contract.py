@@ -16,6 +16,7 @@ from app.query_builder import build_rows_query  # noqa: E402
 from app.auth import require_api_key  # noqa: E402
 from app.main import _allowed_origins  # noqa: E402
 from app.rate_limit import MemoryRateLimitStore, RateLimit, _hashed_token  # noqa: E402
+from app.routes.health import ai_assistant_guide, metadata  # noqa: E402
 
 
 def test_catalog_has_expected_dataset_count() -> None:
@@ -30,6 +31,38 @@ def test_openapi_dataset_enum_matches_catalog() -> None:
         openapi = yaml.safe_load(fh)
     enum = openapi["components"]["parameters"]["DatasetId"]["schema"]["enum"]
     assert sorted(enum) == sorted(catalog.datasets)
+
+
+def test_openapi_documents_ai_assistant_guide() -> None:
+    with (SERVICE_ROOT / "openapi.yaml").open("r", encoding="utf-8") as fh:
+        openapi = yaml.safe_load(fh)
+    assert "/v1/ai-assistant-guide" in openapi["paths"]
+    schema_ref = openapi["paths"]["/v1/ai-assistant-guide"]["get"]["responses"]["200"]["content"]["application/json"]["schema"]["$ref"]
+    assert schema_ref == "#/components/schemas/AIAssistantGuide"
+
+
+def test_openapi_documents_dimension_catalog() -> None:
+    with (SERVICE_ROOT / "openapi.yaml").open("r", encoding="utf-8") as fh:
+        openapi = yaml.safe_load(fh)
+    assert "/v1/dimensions" in openapi["paths"]
+    item_ref = openapi["paths"]["/v1/dimensions"]["get"]["responses"]["200"]["content"]["application/json"]["schema"]["properties"]["data"]["items"]["$ref"]
+    assert item_ref == "#/components/schemas/Dimension"
+
+
+def test_metadata_points_to_ai_assistant_guide() -> None:
+    response = metadata()
+    assert response["ai_assistant_guide_url"] == "/v1/ai-assistant-guide"
+    assert response["openapi_url"] == "/openapi.json"
+
+
+def test_ai_assistant_guide_defines_safe_workflow() -> None:
+    response = ai_assistant_guide()
+    safe_paths = {endpoint["path"] for endpoint in response["safe_endpoints"]}
+    instructions = " ".join(response["assistant_instructions"])
+    assert "/v1/catalog" in safe_paths
+    assert "/v1/datasets/{dataset_id}/rows" in safe_paths
+    assert "arbitrary SQL" in instructions
+    assert "customer targeting" in response["copy_paste_prompt"]
 
 
 def test_query_builder_uses_facade_relation() -> None:

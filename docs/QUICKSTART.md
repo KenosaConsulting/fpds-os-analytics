@@ -2,6 +2,22 @@
 
 This guide shows the first API calls a user should make.
 
+## Use An AI Assistant First
+
+If you want ChatGPT, Claude, Gemini, or another assistant to guide the analysis, paste this into the assistant:
+
+```text
+Use the FPDS Analytics API to help me understand federal procurement customers.
+Start here: https://api.example.com/v1/ai-assistant-guide
+
+First inspect the catalog, then choose the right dataset for my question.
+Use only documented filters, sorts, and fields.
+Explain what the data means for customer targeting, market entry, teaming, or capture strategy.
+Include caveats and do not invent data.
+```
+
+Then ask your business question in normal language.
+
 ## 1. See What The API Offers
 
 ```bash

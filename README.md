@@ -142,12 +142,40 @@ curl -s "https://api.example.com/v1/datasets/naics.trend_fy/rows?sector_code=54&
   | jq '.data'
 ```
 
+## Use With ChatGPT, Claude, Gemini, Or Other AI Assistants
+
+Most users do not need to write code first. They can give an AI assistant the API base URL and ask it to follow the AI assistant guide:
+
+```text
+Use the FPDS Analytics API to help me understand federal procurement customers.
+Start here: https://api.example.com/v1/ai-assistant-guide
+
+First inspect the catalog, then choose the right dataset for my question.
+Use only documented filters, sorts, and fields.
+Explain what the data means for customer targeting, market entry, teaming, or capture strategy.
+Include caveats and do not invent data.
+```
+
+If the assistant can make HTTP requests, it should start with:
+
+```text
+GET /v1/ai-assistant-guide
+GET /v1/catalog
+GET /v1/datasets/{dataset_id}
+GET /v1/datasets/{dataset_id}/rows
+```
+
+If the assistant cannot make HTTP requests directly, the user can paste responses from `GET /v1/catalog` and `GET /v1/datasets/{dataset_id}` into the chat, then ask the assistant which row query to run.
+
+Read the full AI usage guide: [docs/AI_ASSISTANT_GUIDE.md](docs/AI_ASSISTANT_GUIDE.md).
+
 ## API Functions
 
 | Function | Endpoint | Key required? | Purpose |
 |---|---|---:|---|
 | Service metadata | `GET /v1` | No | Basic API information |
 | Health check | `GET /v1/health` | No | Service and catalog status |
+| AI assistant guide | `GET /v1/ai-assistant-guide` | No | Copy/paste guidance for ChatGPT, Claude, Gemini, and similar tools |
 | List datasets | `GET /v1/catalog` | No | Discover available analytics |
 | Describe dataset | `GET /v1/datasets/{dataset_id}` | No | See fields, filters, sort options, and caveats |
 | Query dataset | `GET /v1/datasets/{dataset_id}/rows` | Yes | Return analytics rows |
@@ -175,6 +203,7 @@ The goal is to help answer:
 | Document | Purpose |
 |---|---|
 | [docs/API_FUNCTIONS.md](docs/API_FUNCTIONS.md) | Plain-English explanation of each API package and function |
+| [docs/AI_ASSISTANT_GUIDE.md](docs/AI_ASSISTANT_GUIDE.md) | Instructions users can paste into ChatGPT, Claude, Gemini, or similar tools |
 | [docs/DATASETS.md](docs/DATASETS.md) | Dataset-by-dataset field, filter, and sort reference |
 | [docs/QUICKSTART.md](docs/QUICKSTART.md) | First API calls |
 | [docs/CAVEATS.md](docs/CAVEATS.md) | Data limitations and interpretation notes |

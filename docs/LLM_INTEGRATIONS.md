@@ -2,6 +2,14 @@
 
 This API is intentionally shaped for LLM tool use: fixed datasets, allowed filters, allowed sorts, bounded limits, and no arbitrary SQL.
 
+For non-technical users, the first integration is not a plugin. It is a clear URL and instruction block:
+
+```text
+https://api.example.com/v1/ai-assistant-guide
+```
+
+Users should be able to paste that URL into ChatGPT, Claude, Gemini, or a similar assistant and ask it to follow the guide.
+
 The core idea is simple:
 
 ```text
@@ -17,6 +25,7 @@ Expose only these functions to LLM clients:
 
 | Tool | API endpoint | Purpose |
 |---|---|---|
+| `read_ai_assistant_guide` | `GET /v1/ai-assistant-guide` | Understand how to use the API safely for customer targeting analysis |
 | `list_datasets` | `GET /v1/catalog` | Discover available analytics packages |
 | `describe_dataset` | `GET /v1/datasets/{dataset_id}` | Understand fields, filters, caveats, and sort options |
 | `query_dataset` | `GET /v1/datasets/{dataset_id}/rows` | Return bounded analytics rows |
@@ -121,10 +130,11 @@ Start with one function:
 Ship in this order:
 
 1. Hosted API with API-key auth and rate limits.
-2. ChatGPT Action using `openapi.yaml`.
-3. Remote MCP server wrapping the five safe functions.
-4. Gemini function declaration examples.
-5. A short analyst demo: "Find agencies where NAICS 54 is growing but competition is weak."
+2. Public AI assistant guide at `/v1/ai-assistant-guide` and a website page that points users to it.
+3. ChatGPT Action using `openapi.yaml`.
+4. Remote MCP server wrapping the safe functions.
+5. Gemini function declaration examples.
+6. A short analyst demo: "Find agencies where NAICS 54 is growing but competition is weak."
 
 ## Why This Works
 

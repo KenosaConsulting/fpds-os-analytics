@@ -18,6 +18,9 @@ def metadata() -> dict[str, object]:
         "api_version": catalog.version,
         "status": "ok",
         "documentation_url": "/docs",
+        "openapi_url": "/openapi.json",
+        "ai_assistant_guide_url": "/v1/ai-assistant-guide",
+        "start_here": "Use /v1/ai-assistant-guide for ChatGPT, Claude, Gemini, or other AI assistant instructions.",
     }
 
 
@@ -29,4 +32,58 @@ def health() -> dict[str, object]:
         "catalog_version": catalog.version,
         "dataset_count": len(catalog.datasets),
         "dimension_count": len(catalog.dimensions),
+    }
+
+
+@router.get("/v1/ai-assistant-guide")
+def ai_assistant_guide() -> dict[str, object]:
+    catalog = load_catalog()
+    return {
+        "name": "FPDS Analytics API AI Assistant Guide",
+        "api_version": catalog.version,
+        "purpose": (
+            "Help analysts, developers, contractors, capture teams, and business-development teams "
+            "understand federal procurement customers using curated FPDS analytics datasets."
+        ),
+        "value": [
+            "Identify whether a customer is open to new vendors or dominated by incumbents.",
+            "Understand how a customer buys: fixed price, cost type, time and materials, performance-based, or multi-year.",
+            "Find growing NAICS sectors and departments that buy the user's capabilities.",
+            "Spot sole-source-heavy agencies, competitive lanes, and geographic work patterns.",
+            "Turn procurement analytics into practical customer targeting and capture strategy.",
+        ],
+        "assistant_instructions": [
+            "Start with /v1/catalog unless the user already named a dataset.",
+            "Use /v1/datasets/{dataset_id} to inspect fields, filters, sort options, and caveats before querying rows.",
+            "Use /v1/datasets/{dataset_id}/rows for bounded data retrieval. Include X-Api-Key when required.",
+            "Prefer small, targeted requests with relevant filters instead of broad pulls.",
+            "Explain results in plain English for customer targeting, market entry, teaming, or capture planning.",
+            "Include caveats from the API response and do not claim causality that the data does not support.",
+            "Do not request arbitrary SQL, raw database tables, admin endpoints, or bulk exports.",
+        ],
+        "safe_endpoints": [
+            {"name": "service_metadata", "method": "GET", "path": "/v1", "api_key_required": False},
+            {"name": "list_datasets", "method": "GET", "path": "/v1/catalog", "api_key_required": False},
+            {"name": "describe_dataset", "method": "GET", "path": "/v1/datasets/{dataset_id}", "api_key_required": False},
+            {"name": "query_dataset", "method": "GET", "path": "/v1/datasets/{dataset_id}/rows", "api_key_required": True},
+            {"name": "list_dimensions", "method": "GET", "path": "/v1/dimensions", "api_key_required": False},
+            {"name": "lookup_dimension", "method": "GET", "path": "/v1/dimensions/{dimension_id}", "api_key_required": False},
+        ],
+        "common_user_goals": [
+            {"goal": "Understand a customer's buying style", "start_with_dataset": "pricing.agency_profile_fy"},
+            {"goal": "Find sole-source-heavy customers", "start_with_dataset": "competition.sole_source_hotspots"},
+            {"goal": "Identify dominant vendors or incumbents", "start_with_dataset": "concentration.vendor_market_leaders"},
+            {"goal": "Find growing industries", "start_with_dataset": "naics.growth_leaders"},
+            {"goal": "Understand where work happens", "start_with_dataset": "geography.state_trend_fy"},
+        ],
+        "copy_paste_prompt": (
+            "You are helping me use the FPDS Analytics API. First read the API guide at /v1/ai-assistant-guide, "
+            "then use /v1/catalog to choose the right dataset. When you query data, use only documented filters, "
+            "sorts, and fields. Explain what the results mean for customer targeting, market entry, teaming, "
+            "or capture strategy. Include caveats and do not invent data."
+        ),
+        "auth": {
+            "header": "X-Api-Key",
+            "note": "Discovery endpoints are public. Dataset row endpoints require an API key unless a deployment disables auth for local testing.",
+        },
     }

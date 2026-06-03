@@ -38,6 +38,21 @@ paths:
               schema:
                 $ref: "#/components/schemas/Health"
 
+  /v1/ai-assistant-guide:
+    get:
+      summary: AI assistant usage guide
+      description: |
+        Human- and model-readable instructions for using the API from ChatGPT,
+        Claude, Gemini, or similar AI assistants.
+      security: []
+      responses:
+        "200":
+          description: AI assistant instructions.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AIAssistantGuide"
+
   /v1/catalog:
     get:
       summary: List public datasets and dimensions
@@ -161,6 +176,26 @@ paths:
         "429":
           $ref: "#/components/responses/Error"
 
+  /v1/dimensions:
+    get:
+      summary: List public dimensions and code lookups
+      security: []
+      responses:
+        "200":
+          description: Dimension catalog.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [data, meta]
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Dimension"
+                  meta:
+                    $ref: "#/components/schemas/ResponseMeta"
+
   /v1/dimensions/{dimension_id}:
     get:
       summary: Query dimension/code lookup rows
@@ -269,6 +304,9 @@ components:
         api_version: { type: string, example: "2026-06-02" }
         status: { type: string, example: "ok" }
         documentation_url: { type: string }
+        openapi_url: { type: string }
+        ai_assistant_guide_url: { type: string }
+        start_here: { type: string }
     Health:
       type: object
       required: [status]
@@ -276,6 +314,40 @@ components:
         status: { type: string, enum: [ok, degraded, unavailable] }
         database: { type: string, enum: [ok, degraded, unavailable] }
         catalog_version: { type: string }
+    AIAssistantGuide:
+      type: object
+      required: [name, api_version, purpose, value, assistant_instructions, safe_endpoints]
+      properties:
+        name: { type: string }
+        api_version: { type: string }
+        purpose: { type: string }
+        value:
+          type: array
+          items: { type: string }
+        assistant_instructions:
+          type: array
+          items: { type: string }
+        safe_endpoints:
+          type: array
+          items:
+            type: object
+            required: [name, method, path, api_key_required]
+            properties:
+              name: { type: string }
+              method: { type: string }
+              path: { type: string }
+              api_key_required: { type: boolean }
+        common_user_goals:
+          type: array
+          items:
+            type: object
+            properties:
+              goal: { type: string }
+              start_with_dataset: { type: string }
+        copy_paste_prompt: { type: string }
+        auth:
+          type: object
+          additionalProperties: true
     Dataset:
       type: object
       required: [id, title, domain, grain, filters, sortable, fields]
@@ -296,6 +368,20 @@ components:
         default_sort: { type: string }
         max_limit: { type: integer }
         caveats:
+          type: array
+          items: { type: string }
+    Dimension:
+      type: object
+      required: [id, title, backing_view, key, fields]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        backing_view: { type: string }
+        key: { type: string }
+        filters:
+          type: array
+          items: { type: string }
+        fields:
           type: array
           items: { type: string }
     RowsResponse:
