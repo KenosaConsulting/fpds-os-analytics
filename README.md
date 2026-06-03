@@ -181,39 +181,16 @@ The goal is to help answer:
 | [docs/PACKAGING.md](docs/PACKAGING.md) | GitHub/open-source packaging plan |
 | [docs/LAUNCH_CHECKLIST.md](docs/LAUNCH_CHECKLIST.md) | Practical steps before public launch |
 | [docs/LLM_INTEGRATIONS.md](docs/LLM_INTEGRATIONS.md) | ChatGPT, Claude/MCP, and Gemini integration plan |
+| [docs/SECURITY_AUDIT_2026-06-03.md](docs/SECURITY_AUDIT_2026-06-03.md) | Current security audit and launch blockers |
 | [openapi.yaml](openapi.yaml) | Machine-readable API contract |
 
-## What Is Exposed
+## Access
 
-The public API exposes:
+Discovery endpoints are public so users can understand what the API offers before requesting a key.
 
-- Dataset metadata.
-- Curated report-view rows.
-- Dimension/code lookup rows.
-- Optional bounded exports in a later phase.
+Dataset row endpoints require an API key. The API is dataset-first: users choose a documented dataset, apply documented filters, and receive bounded JSON rows.
 
-The public API does not expose:
-
-- Arbitrary SQL.
-- Raw `public.fpds_actions`.
-- SAM registration tables.
-- Contract opportunity tables.
-- Embeddings/vector stores.
-- Chat logs, admin state, or internal service tables.
-
-## Security Model
-
-The service uses a narrow read-only path:
-
-```text
-WAF / HTTPS / rate limits
-  -> analytics-api service
-  -> fpds_analytics_api_readonly database role
-  -> analytics_api facade schema
-  -> curated report views and dimension views
-```
-
-The hosted API should use a restricted database role that can select only from `analytics_api`.
+The API does not provide arbitrary SQL or bulk database access.
 
 ## Developer Setup
 
@@ -252,7 +229,7 @@ The runner connects as `fpds_analytics_api_readonly`, which can read only the
 Production should keep auth enabled:
 
 ```bash
-FPDS_ANALYTICS_API_KEYS="fpds_live_..."
+FPDS_ANALYTICS_API_KEY_HASHES="sha256_hex_digest"
 ANALYTICS_DATABASE_URL="postgresql://fpds_analytics_api_readonly:PASSWORD@HOST:5432/postgres"
 ```
 

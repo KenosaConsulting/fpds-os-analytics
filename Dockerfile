@@ -12,6 +12,9 @@ COPY app ./app
 COPY catalog ./catalog
 COPY openapi.yaml ./openapi.yaml
 
+RUN useradd --create-home --shell /usr/sbin/nologin appuser
+USER appuser
+
 EXPOSE 8010
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8010"]

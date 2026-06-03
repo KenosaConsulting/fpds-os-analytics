@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from uuid import uuid4
 
 from fastapi import FastAPI, Request
@@ -14,6 +15,13 @@ from app.errors import APIError
 from app.routes import catalog, datasets, dimensions, exports, health
 
 
+def _allowed_origins() -> list[str]:
+    if os.environ.get("FPDS_ANALYTICS_ALLOW_ALL_ORIGINS") == "1":
+        return ["*"]
+    raw = os.environ.get("FPDS_ANALYTICS_ALLOWED_ORIGINS", "")
+    return [origin.strip() for origin in raw.split(",") if origin.strip()]
+
+
 app = FastAPI(
     title="FPDS Analytics API",
     version=load_catalog().version,
@@ -22,7 +30,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=_allowed_origins(),
     allow_credentials=False,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["X-Api-Key", "X-Api-Version", "Content-Type"],

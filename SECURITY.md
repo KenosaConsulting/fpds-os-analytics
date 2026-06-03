@@ -16,21 +16,19 @@ Supported public endpoints:
 
 ## Security Boundary
 
-The hosted service must connect to Postgres using the restricted `fpds_analytics_api_readonly` role.
+Hosted deployments should use a least-privileged, read-only database credential.
 
-That role should have:
+The public API should only expose:
 
-- `USAGE` on `analytics_api`
-- `SELECT` on curated `analytics_api` views
+- Documented dataset metadata
+- Documented dataset row queries
+- Documented dimension lookups
 
-That role should not have:
+The public API should not expose:
 
-- Access to raw FPDS tables
-- Access to SAM tables
-- Access to opportunity tables
-- Access to embeddings/vector stores
-- Access to chat logs
-- Access to admin tables
+- Arbitrary SQL
+- Raw operational database tables
+- Administrative service data
 - Write permissions
 
 ## Reporting Issues
