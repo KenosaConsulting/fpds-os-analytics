@@ -115,6 +115,8 @@ CREATE INDEX IF NOT EXISTS mv_vendor_office_year_uei_idx
 -- ═══════════════════════════════════════════════════════════════════════════
 
 -- Agency vendor leaders: top vendors per agency (from EXISTING mv_fpds_vendor_agency_year)
+-- NOTE: The existing mv_fpds_vendor_agency_year (migration 002) does not have
+-- contracting_dept_id. We derive it via LEFT JOIN to fpds_agency_map.
 CREATE OR REPLACE VIEW vendor_concentration.report_deck_agency_vendor_leaders AS
 WITH current_fy AS (
     SELECT CASE WHEN EXTRACT(month FROM CURRENT_DATE)::int >= 10
@@ -124,7 +126,7 @@ WITH current_fy AS (
 vendor_totals AS (
     SELECT
         mv.contracting_agency_id,
-        mv.contracting_dept_id,
+        am.parent_department_id AS contracting_dept_id,
         mv.uei,
         mv.vendor_name,
         mv.is_small_business,
@@ -140,8 +142,9 @@ vendor_totals AS (
         COUNT(DISTINCT mv.fiscal_year) AS active_fy_count
     FROM vendor_concentration.mv_fpds_vendor_agency_year mv
     CROSS JOIN current_fy cfy
+    LEFT JOIN analytics_dims.fpds_agency_map am ON mv.contracting_agency_id = am.agency_id
     WHERE mv.net_obligated_amount > 0
-    GROUP BY mv.contracting_agency_id, mv.contracting_dept_id,
+    GROUP BY mv.contracting_agency_id, am.parent_department_id,
              mv.uei, mv.vendor_name,
              mv.is_small_business, mv.is_veteran_owned,
              mv.is_women_owned, mv.is_minority_owned
