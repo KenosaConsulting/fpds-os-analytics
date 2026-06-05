@@ -126,22 +126,22 @@ SELECT
           AND MAX(CASE WHEN ra.current_completion_date ~ '^\d{4}'
                        THEN ra.current_completion_date::date ELSE NULL END)
               > MIN(ra.effective_date::date)
-         THEN EXTRACT(EPOCH FROM (
+         THEN (
              MAX(CASE WHEN ra.current_completion_date ~ '^\d{4}'
                       THEN ra.current_completion_date::date ELSE NULL END)
              - MIN(ra.effective_date::date)
-         ))::int / (86400 * 30)  -- approximate months
+         ) / 30  -- date minus date = integer days; divide by 30 for approx months
          ELSE NULL
     END AS duration_months,
 
     -- Remaining months from today
     CASE WHEN MAX(CASE WHEN ra.current_completion_date ~ '^\d{4}'
                        THEN ra.current_completion_date::date ELSE NULL END) IS NOT NULL
-         THEN EXTRACT(EPOCH FROM (
+         THEN (
              MAX(CASE WHEN ra.current_completion_date ~ '^\d{4}'
                       THEN ra.current_completion_date::date ELSE NULL END)
              - CURRENT_DATE
-         ))::int / (86400 * 30)
+         ) / 30  -- integer days / 30
          ELSE NULL
     END AS remaining_months
 

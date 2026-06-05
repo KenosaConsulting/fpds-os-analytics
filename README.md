@@ -37,10 +37,15 @@ This API packages those answers into simple datasets that can be queried, visual
 | What work is growing? | Industry / NAICS Demand | Find customer demand that matches your capabilities |
 | Where does the work happen? | Geography | Decide whether local presence, regional teaming, or national delivery matters |
 | Does this customer use small-business set-asides? | Set-Aside & Socioeconomic | Determine which programs (8(a), WOSB, HUBZone, SDVOSB) to pursue and which offices are friendliest |
+| What exactly do they buy? | PSC / Service Classification | Map your capabilities to the government's product and service codes |
+| Through what contracting vehicles? | Acquisition Vehicle Mix | Know whether you need to be on a GWAC, Schedule, or IDIQ to compete |
+| Who's funding the work vs executing it? | Funding Flow Analysis | Spot assisted acquisition patterns and cross-agency funding relationships |
+| What contracts are expiring soon? | Recompete Pipeline | Find upcoming opportunities before they hit SAM.gov, with incumbent and confidence data |
+| Which cities get the most federal work? | Place-Level Geography | Drill below state level to city, county, and ZIP for local market intelligence |
 
 ## Analysis Packages
 
-The API is grouped into six packages.
+The API is grouped into eleven packages.
 
 ### 1. Pricing Strategy
 
@@ -123,6 +128,65 @@ Datasets:
 - `set_aside.agency_mix_fy`
 - `set_aside.office_profile_fy`
 - `set_aside.kpi_summary`
+
+### 7. PSC / Service Classification
+
+Shows what product and service codes agencies buy, how spending distributes across services, products, R&D, and construction, and how PSC codes map to NAICS industries.
+
+Use this to match your capabilities to the government's classification system and find adjacent markets.
+
+Datasets:
+
+- `psc.trend_fy`
+- `psc.agency_profile_fy`
+- `psc.office_profile_fy`
+- `psc.naics_crosswalk`
+
+### 8. Acquisition Vehicle Mix
+
+Shows how agencies buy through different vehicles: GWACs, Schedules, IDIQs, BPAs, BOAs, and open-market awards.
+
+Use this to understand which contracting vehicles a customer prefers and whether you need to be on a specific vehicle to compete.
+
+Datasets:
+
+- `acquisition.vehicle_trend_fy`
+- `acquisition.agency_vehicle_mix_fy`
+- `acquisition.office_vehicle_mix_fy`
+
+### 9. Funding Flow Analysis
+
+Shows where contract funding originates vs which agency executes the contract. Reveals cross-department funding flows and assisted acquisition patterns.
+
+Use this to understand shared-service relationships and identify agencies that execute work funded by others (like GSA, DISA, or DCMA).
+
+Datasets:
+
+- `funding.mismatch_flows_fy`
+- `funding.assisted_acquisition_fy`
+
+### 10. Recompete Pipeline
+
+Shows contracts approaching expiration with incumbent vendor, value, duration, and recompete confidence scoring. Groups individual contract actions into contract families and tracks their lifecycle.
+
+Use this to find upcoming opportunities before they hit SAM.gov, understand contract timelines, and assess whether an expiring contract is likely to be recompeted.
+
+Datasets:
+
+- `pipeline.recompete_watchlist`
+- `pipeline.duration_profile`
+- `pipeline.agency_recompete_summary`
+
+### 11. Place-Level Geography
+
+Extends state-level geography with city, county, and ZIP code drill-down. Shows where work is performed at sub-state granularity.
+
+Use this to understand local market density, find cities with high federal spending, and assess whether local presence matters for a specific customer.
+
+Datasets:
+
+- `geography.place_profile_fy`
+- `geography.city_leaders`
 
 ## How To Use It
 
@@ -251,11 +315,15 @@ Read the full function guide: [docs/API_FUNCTIONS.md](docs/API_FUNCTIONS.md).
 3. Use `competition.agency_profile_fy` to see whether the customer is accessible.
 4. Use `concentration.vendor_market_leaders` to identify incumbent strength.
 5. Use `pricing.agency_profile_fy` to tailor your pitch to how the customer buys.
-6. Use `geography.state_trend_fy` if place of performance or local presence matters.
+6. Use `pipeline.recompete_watchlist` to find contracts expiring in the next 6-24 months.
+7. Use `psc.naics_crosswalk` to map your NAICS capabilities to PSC codes the customer uses.
+8. Use `acquisition.agency_vehicle_mix_fy` to see which vehicles the customer prefers.
+9. Use `geography.city_leaders` if local presence or regional teaming matters.
+10. Use `funding.mismatch_flows_fy` to see if another agency is actually funding the work.
 
 The goal is to help answer:
 
-> Who should we target, why should we target them, how hard will entry be, and what customer-specific story should we tell?
+> Who should we target, why should we target them, how hard will entry be, what contracts are expiring soon, and what customer-specific story should we tell?
 
 ## Documentation
 

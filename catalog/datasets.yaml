@@ -1,4 +1,4 @@
-version: "2026-06-03"
+version: "2026-06-04"
 source_reference: "docs/analytics-schema-reference.md"
 notes:
   - "Initial public API catalog exposes report-deck views first."
@@ -552,6 +552,226 @@ datasets:
     caveats:
       - "Office names in FPDS can be inconsistent — the same office may appear with slightly different names across years. Use contracting_office_id as the stable key."
       - "High-cardinality view (137K+ rows). At least one customer filter is required."
+
+  # ── PSC / Service Analysis (Build 4) ─────────────────────────────────────
+
+  - id: "psc.trend_fy"
+    title: "PSC Trend By Fiscal Year"
+    domain: "psc"
+    backing_view: "analytics_api.psc_trend_fy"
+    source_view: "psc_analysis.report_deck_psc_trend_fy"
+    grain: "product_or_service_code x fiscal_year"
+    public_access: "public_bounded"
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "product_or_service_code", "psc_group"]
+    sortable: ["fiscal_year", "net_obligated_amount", "distinct_vendor_count", "distinct_agency_count"]
+    default_sort: "-net_obligated_amount"
+    fields: ["product_or_service_code", "psc_description", "psc_category_code", "psc_category_label", "psc_group", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "net_obligated_amount", "distinct_vendor_count", "competed_action_count", "not_competed_action_count", "small_biz_obligated", "small_biz_obligation_share", "not_competed_action_share", "distinct_agency_count"]
+    caveats:
+      - "PSC codes classify what was bought — services, products, R&D, or construction."
+
+  - id: "psc.agency_profile_fy"
+    title: "PSC Agency Profile By Fiscal Year"
+    domain: "psc"
+    backing_view: "analytics_api.psc_agency_profile_fy"
+    source_view: "psc_analysis.report_deck_psc_agency_profile_fy"
+    grain: "contracting_agency_id x product_or_service_code x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["contracting_agency_id", "contracting_dept_id", "product_or_service_code"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "contracting_agency_id", "product_or_service_code", "psc_group"]
+    sortable: ["fiscal_year", "net_obligated_amount", "distinct_vendor_count", "small_biz_obligation_share"]
+    default_sort: "-net_obligated_amount"
+    fields: ["contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "product_or_service_code", "psc_description", "psc_group", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "net_obligated_amount", "distinct_vendor_count", "competed_action_count", "not_competed_action_count", "small_biz_obligated", "small_biz_obligation_share", "not_competed_action_share"]
+
+  - id: "psc.office_profile_fy"
+    title: "PSC Office Profile By Fiscal Year"
+    domain: "psc"
+    backing_view: "analytics_api.psc_office_profile_fy"
+    source_view: "psc_analysis.report_deck_psc_office_profile_fy"
+    grain: "contracting_office_id x product_or_service_code x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["contracting_office_id", "contracting_agency_id", "contracting_dept_id"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "contracting_agency_id", "contracting_office_id", "product_or_service_code", "psc_group"]
+    sortable: ["fiscal_year", "net_obligated_amount", "distinct_vendor_count"]
+    default_sort: "-net_obligated_amount"
+    fields: ["contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "contracting_office_id", "contracting_office_name", "product_or_service_code", "psc_description", "psc_group", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "net_obligated_amount", "distinct_vendor_count", "competed_action_count", "not_competed_action_count", "small_biz_obligated", "top_naics_code", "top_naics_description", "small_biz_obligation_share", "not_competed_action_share"]
+    caveats:
+      - "High cardinality. At least one customer filter is required."
+
+  - id: "psc.naics_crosswalk"
+    title: "PSC-NAICS Crosswalk"
+    domain: "psc"
+    backing_view: "analytics_api.psc_naics_crosswalk"
+    source_view: "psc_analysis.report_deck_psc_naics_crosswalk"
+    grain: "product_or_service_code x principal_naics_code x fiscal_year"
+    public_access: "public_bounded"
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "product_or_service_code", "principal_naics_code", "psc_group"]
+    sortable: ["co_occurrence_obligated", "co_occurrence_count", "vendor_count", "agency_count"]
+    default_sort: "-co_occurrence_obligated"
+    fields: ["product_or_service_code", "psc_description", "psc_group", "principal_naics_code", "principal_naics_description", "sector_label", "fiscal_year", "co_occurrence_count", "co_occurrence_obligated", "agency_count", "vendor_count"]
+    caveats:
+      - "Shows which PSC codes co-occur with which NAICS codes. Useful for mapping capabilities to procurement categories."
+
+  # ── Vehicle / Acquisition Mix (Build 5) ──────────────────────────────────
+
+  - id: "acquisition.vehicle_trend_fy"
+    title: "Acquisition Vehicle Trend By Fiscal Year"
+    domain: "acquisition"
+    backing_view: "analytics_api.acquisition_vehicle_mix_trend_fy"
+    source_view: "competition_dynamics.report_deck_vehicle_mix_trend_fy"
+    grain: "vehicle_family x fiscal_year"
+    public_access: "public_bounded"
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "vehicle_family"]
+    sortable: ["fiscal_year", "net_obligated_amount", "distinct_vendor_count", "distinct_agency_count"]
+    default_sort: "-net_obligated_amount"
+    fields: ["vehicle_family", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "net_obligated_amount", "distinct_vendor_count", "competed_action_count", "not_competed_action_count", "small_biz_obligated", "small_biz_obligation_share", "competed_action_share", "distinct_agency_count"]
+    caveats:
+      - "Vehicle families group contract types: GWAC, Schedule, IDIQ, BPA, BOA, Open Market."
+      - "Use the dim_vehicle_type_codes dimension to decode individual vehicle codes."
+
+  - id: "acquisition.agency_vehicle_mix_fy"
+    title: "Agency Acquisition Vehicle Mix By Fiscal Year"
+    domain: "acquisition"
+    backing_view: "analytics_api.acquisition_agency_vehicle_mix_fy"
+    source_view: "competition_dynamics.report_deck_vehicle_mix_agency_fy"
+    grain: "contracting_agency_id x vehicle_family x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["contracting_agency_id", "contracting_dept_id", "vehicle_family"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "contracting_agency_id", "vehicle_family"]
+    sortable: ["fiscal_year", "net_obligated_amount", "distinct_vendor_count", "competed_action_share"]
+    default_sort: "-net_obligated_amount"
+    fields: ["contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "vehicle_family", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "net_obligated_amount", "distinct_vendor_count", "competed_action_count", "not_competed_action_count", "small_biz_obligated", "small_biz_obligation_share", "competed_action_share"]
+
+  - id: "acquisition.office_vehicle_mix_fy"
+    title: "Office Acquisition Vehicle Mix By Fiscal Year"
+    domain: "acquisition"
+    backing_view: "analytics_api.acquisition_office_vehicle_mix_fy"
+    source_view: "competition_dynamics.report_deck_vehicle_mix_office_fy"
+    grain: "contracting_office_id x vehicle_family x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["contracting_office_id", "contracting_agency_id", "contracting_dept_id"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "contracting_agency_id", "contracting_office_id", "vehicle_family"]
+    sortable: ["fiscal_year", "net_obligated_amount", "distinct_vendor_count"]
+    default_sort: "-net_obligated_amount"
+    fields: ["contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "contracting_office_id", "contracting_office_name", "vehicle_family", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "net_obligated_amount", "distinct_vendor_count", "competed_action_count", "not_competed_action_count", "small_biz_obligated", "avg_offers_received", "small_biz_obligation_share", "competed_action_share"]
+    caveats:
+      - "High cardinality. At least one customer filter is required."
+
+  # ── Funding Flow Analysis (Build 6) ──────────────────────────────────────
+
+  - id: "funding.mismatch_flows_fy"
+    title: "Funding vs Contracting Agency Flows By Fiscal Year"
+    domain: "funding"
+    backing_view: "analytics_api.customer_funding_mismatch_flows_fy"
+    source_view: "customer_intelligence.report_deck_funding_mismatch_flows"
+    grain: "funding_agency_id x contracting_agency_id x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["fiscal_year", "funding_agency_id", "contracting_agency_id", "funding_dept_id", "contracting_dept_id"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "funding_dept_id", "funding_agency_id", "contracting_dept_id", "contracting_agency_id", "is_cross_department"]
+    sortable: ["fiscal_year", "net_obligated_amount", "total_action_count"]
+    default_sort: "-net_obligated_amount"
+    fields: ["fiscal_year", "funding_dept_id", "funding_dept_name", "funding_dept_short_name", "funding_agency_id", "funding_agency_name", "funding_agency_short_name", "contracting_dept_id", "contracting_dept_name", "contracting_dept_short_name", "contracting_agency_id", "contracting_agency_name", "contracting_agency_short_name", "is_cross_department", "total_action_count", "net_obligated_amount", "distinct_vendor_count", "distinct_naics_count"]
+    caveats:
+      - "Shows where the money comes from vs who executes the contract. Cross-department flows reveal assisted acquisition patterns."
+      - "Filters to actions with non-null funding and contracting agency IDs. Total will be lower than the full FPDS universe."
+
+  - id: "funding.assisted_acquisition_fy"
+    title: "Assisted Acquisition Summary By Fiscal Year"
+    domain: "funding"
+    backing_view: "analytics_api.customer_assisted_acquisition_fy"
+    source_view: "customer_intelligence.report_deck_assisted_acquisition"
+    grain: "contracting_agency_id x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["fiscal_year", "contracting_dept_id", "contracting_agency_id"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "contracting_agency_id"]
+    sortable: ["fiscal_year", "total_obligated", "cross_dept_obligation_share", "cross_agency_obligation_share"]
+    default_sort: "-cross_dept_obligation_share"
+    fields: ["fiscal_year", "contracting_dept_id", "contracting_dept_name", "contracting_dept_short_name", "contracting_agency_id", "contracting_agency_name", "contracting_agency_short_name", "total_action_count", "total_obligated", "cross_agency_action_count", "cross_agency_obligated", "cross_dept_action_count", "cross_dept_obligated", "cross_agency_obligation_share", "cross_dept_obligation_share"]
+    caveats:
+      - "Assisted acquisition = one agency funds work but another agency executes the contract. Common with GSA, DISA, and shared-service providers."
+
+  # ── Recompete Pipeline (Build 7) ─────────────────────────────────────────
+
+  - id: "pipeline.recompete_watchlist"
+    title: "Recompete Watchlist"
+    domain: "pipeline"
+    backing_view: "analytics_api.pipeline_recompete_watchlist"
+    source_view: "pipeline_intelligence.report_deck_recompete_watchlist"
+    grain: "piid x contracting_agency_id"
+    public_access: "api_key"
+    required_filters_any: ["contracting_agency_id", "contracting_dept_id", "contracting_office_id", "vendor_uei", "principal_naics_code", "expiration_bucket", "recompete_confidence"]
+    filters: ["contracting_dept_id", "contracting_agency_id", "contracting_office_id", "vendor_uei", "principal_naics_code", "product_or_service_code", "expiration_bucket", "recompete_confidence", "set_aside_code"]
+    sortable: ["remaining_months", "total_obligated", "base_and_all_options_value", "current_completion_date", "duration_months"]
+    default_sort: "remaining_months"
+    max_limit: 500
+    fields: ["piid", "contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "contracting_office_id", "contracting_office_name", "vendor_uei", "vendor_name", "principal_naics_code", "principal_naics_description", "product_or_service_code", "psc_description", "set_aside_code", "set_aside_label", "extent_competed", "competition_family", "effective_date", "current_completion_date", "ultimate_completion_date", "base_award_date", "latest_action_date", "total_obligated", "base_and_all_options_value", "action_count", "modification_count", "duration_months", "remaining_months", "expiration_bucket", "recompete_confidence"]
+    caveats:
+      - "CRITICAL: Period-of-performance end dates are signals, not guaranteed recompete dates. Contracts may be extended, consolidated, or cancelled."
+      - "Recompete confidence: HIGH = competed, 12+ months, $100K+, 2+ actions. MEDIUM = 6+ months, $25K+. LOW = incomplete data or micro-purchases."
+      - "Filters to contracts within -6 to +24 months of expiration with $25K+ obligation."
+
+  - id: "pipeline.duration_profile"
+    title: "Contract Duration Profile By Agency and NAICS"
+    domain: "pipeline"
+    backing_view: "analytics_api.pipeline_duration_profile"
+    source_view: "pipeline_intelligence.report_deck_duration_profile"
+    grain: "contracting_agency_id x principal_naics_code"
+    public_access: "api_key"
+    required_filters_any: ["contracting_agency_id", "contracting_dept_id", "principal_naics_code"]
+    filters: ["contracting_dept_id", "contracting_agency_id", "principal_naics_code"]
+    sortable: ["total_obligated", "contract_count", "median_duration_months", "avg_duration_months"]
+    default_sort: "-total_obligated"
+    fields: ["contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "principal_naics_code", "principal_naics_description", "contract_count", "median_duration_months", "avg_duration_months", "p25_duration_months", "p75_duration_months", "share_under_12_months", "share_12_to_36_months", "share_over_36_months", "avg_obligated", "total_obligated"]
+    caveats:
+      - "Answers: are Army IT contracts 1-year or 5-year? Median and percentile duration by agency and NAICS."
+      - "Filters to contracts with valid duration between 1-600 months, positive obligation, and 10+ sample size."
+
+  - id: "pipeline.agency_recompete_summary"
+    title: "Agency Recompete Expiration Summary"
+    domain: "pipeline"
+    backing_view: "analytics_api.pipeline_agency_recompete_summary"
+    source_view: "pipeline_intelligence.report_deck_agency_recompete_summary"
+    grain: "contracting_agency_id"
+    public_access: "public_bounded"
+    filters: ["contracting_dept_id", "contracting_agency_id"]
+    sortable: ["total_obligated", "total_active_contracts", "expiring_0_6_months", "obligated_0_6_months"]
+    default_sort: "-obligated_0_6_months"
+    fields: ["contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "expiring_0_6_months", "obligated_0_6_months", "expiring_6_12_months", "obligated_6_12_months", "expiring_12_18_months", "obligated_12_18_months", "expiring_18_24_months", "obligated_18_24_months", "total_active_contracts", "total_obligated"]
+    caveats:
+      - "Aggregated upcoming contract expirations by agency. Minimum 5 contracts and $25K+ per contract."
+
+  # ── Place-Level Geography (Build 8) ──────────────────────────────────────
+
+  - id: "geography.place_profile_fy"
+    title: "Place-of-Performance Profile By Fiscal Year"
+    domain: "geography"
+    backing_view: "analytics_api.geography_place_profile_fy"
+    source_view: "geographic_analysis.report_deck_geo_place_profile_fy"
+    grain: "pop_state_code x pop_city x contracting_office_id x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["pop_state_code", "pop_city", "pop_county", "pop_zip5", "contracting_agency_id", "contracting_dept_id"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "pop_state_code", "pop_city", "pop_county", "pop_zip5", "contracting_dept_id", "contracting_agency_id", "contracting_office_id"]
+    sortable: ["fiscal_year", "net_obligated_amount", "distinct_vendor_count", "total_action_count"]
+    default_sort: "-net_obligated_amount"
+    fields: ["pop_state_code", "pop_state_name", "census_region", "census_division", "pop_city", "pop_county", "pop_zip5", "contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "contracting_office_id", "contracting_office_name", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "net_obligated_amount", "distinct_vendor_count", "competed_action_count", "small_biz_obligated", "top_naics_code", "top_naics_description", "top_psc_code", "primary_vendor_state_code", "is_local_vendors", "small_biz_obligation_share"]
+    caveats:
+      - "Sub-state drill-down with city, county, and ZIP5 detail. ~80% coverage of domestic records."
+      - "High cardinality. At least one geographic or customer filter is required."
+
+  - id: "geography.city_leaders"
+    title: "Top Cities By State"
+    domain: "geography"
+    backing_view: "analytics_api.geography_city_leaders"
+    source_view: "geographic_analysis.report_deck_geo_city_leaders"
+    grain: "pop_state_code x pop_city (3-year rollup)"
+    public_access: "public_bounded"
+    filters: ["pop_state_code", "census_region"]
+    sortable: ["recent_3yr_obligated", "city_rank", "recent_3yr_vendors", "distinct_agencies"]
+    default_sort: "city_rank"
+    max_limit: 500
+    fields: ["pop_state_code", "pop_state_name", "census_region", "pop_city", "pop_county", "recent_3yr_obligated", "recent_3yr_actions", "recent_3yr_vendors", "distinct_agencies", "primary_naics_code", "primary_naics_description", "city_rank"]
+    caveats:
+      - "Ranked by 3-year obligation within each state. Minimum $1M threshold."
+      - "Build 8 — available after geo drill-down MV is deployed."
 
   - id: "set_aside.kpi_summary"
     title: "Set-Aside KPI Summary"
