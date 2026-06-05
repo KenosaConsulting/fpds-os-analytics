@@ -1,241 +1,303 @@
 openapi: 3.1.0
 info:
   title: FPDS Analytics API
-  version: "2026-06-02"
+  version: '2026-06-02'
   summary: Public read-only API over Kenosa's FPDS analytics schemas.
-  description: |
-    Dataset-oriented API for FPDS procurement analytics report views.
+  description: 'Dataset-oriented API for FPDS procurement analytics report views.
+
     The API exposes curated analytics datasets and dimensions only; it does not expose arbitrary SQL or raw FPDS tables.
+
+    '
 servers:
-  - url: https://YOUR_HOST
-    description: Hosted deployment placeholder
-  - url: http://127.0.0.1:8010
-    description: Local development
+- url: https://YOUR_HOST
+  description: Hosted deployment placeholder
+- url: http://127.0.0.1:8010
+  description: Local development
 security:
-  - ApiKeyAuth: []
+- ApiKeyAuth: []
 paths:
   /v1:
     get:
       summary: Service metadata
       security: []
       responses:
-        "200":
+        '200':
           description: Service metadata.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ServiceMetadata"
-
+                $ref: '#/components/schemas/ServiceMetadata'
   /v1/health:
     get:
       summary: Health check
       security: []
       responses:
-        "200":
+        '200':
           description: Service is healthy.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Health"
-
+                $ref: '#/components/schemas/Health'
   /v1/ai-assistant-guide:
     get:
       summary: AI assistant usage guide
-      description: |
-        Human- and model-readable instructions for using the API from ChatGPT,
+      description: 'Human- and model-readable instructions for using the API from ChatGPT,
+
         Claude, Gemini, or similar AI assistants.
+
+        '
       security: []
       responses:
-        "200":
+        '200':
           description: AI assistant instructions.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AIAssistantGuide"
-
+                $ref: '#/components/schemas/AIAssistantGuide'
   /v1/catalog:
     get:
       summary: List public datasets and dimensions
       security: []
       parameters:
-        - name: domain
-          in: query
-          schema:
-            type: string
-            enum: [pricing, concentration, competition, naics, geography]
+      - name: domain
+        in: query
+        schema:
+          type: string
+          enum:
+          - pricing
+          - concentration
+          - competition
+          - naics
+          - geography
       responses:
-        "200":
+        '200':
           description: Dataset catalog.
           content:
             application/json:
               schema:
                 type: object
-                required: [notice, data, meta]
+                required:
+                - notice
+                - data
+                - meta
                 properties:
                   notice:
                     type: string
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Dataset"
+                      $ref: '#/components/schemas/Dataset'
                   meta:
-                    $ref: "#/components/schemas/ResponseMeta"
-
+                    $ref: '#/components/schemas/ResponseMeta'
   /v1/datasets/{dataset_id}:
     get:
       summary: Describe one dataset
       security: []
       parameters:
-        - $ref: "#/components/parameters/DatasetId"
+      - $ref: '#/components/parameters/DatasetId'
       responses:
-        "200":
+        '200':
           description: Dataset metadata.
           content:
             application/json:
               schema:
                 type: object
-                required: [notice, data, meta]
+                required:
+                - notice
+                - data
+                - meta
                 properties:
                   notice:
                     type: string
                   data:
-                    $ref: "#/components/schemas/Dataset"
+                    $ref: '#/components/schemas/Dataset'
                   meta:
-                    $ref: "#/components/schemas/ResponseMeta"
-        "404":
-          $ref: "#/components/responses/Error"
-
+                    $ref: '#/components/schemas/ResponseMeta'
+        '404':
+          $ref: '#/components/responses/Error'
   /v1/datasets/{dataset_id}/rows:
     get:
       summary: Query rows from an approved dataset
-      description: |
-        Canonical row endpoint. Filters, fields, and sort keys are allowlisted per dataset.
+      description: 'Canonical row endpoint. Filters, fields, and sort keys are allowlisted per dataset.
+
         Unsupported filters are rejected instead of silently ignored.
+
         Public requests are capped to a small row limit.
+
         Provide X-Api-Key for partner access, higher rate limits, larger bounded
+
         responses, exports, or support.
+
+        '
       security:
-        - {}
-        - ApiKeyAuth: []
+      - {}
+      - ApiKeyAuth: []
       parameters:
-        - $ref: "#/components/parameters/DatasetId"
-        - name: fiscal_year
-          in: query
-          schema: { type: integer, minimum: 1958, maximum: 2026 }
-        - name: fiscal_year_min
-          in: query
-          schema: { type: integer, minimum: 1958, maximum: 2026 }
-        - name: fiscal_year_max
-          in: query
-          schema: { type: integer, minimum: 1958, maximum: 2026 }
-        - name: contracting_dept_id
-          in: query
-          schema: { type: string }
-        - name: contracting_agency_id
-          in: query
-          schema: { type: string }
-        - name: principal_naics_code
-          in: query
-          schema: { type: string, pattern: "^[0-9]{6}$" }
-        - name: sector_code
-          in: query
-          schema: { type: string, pattern: "^[0-9]{2}$" }
-        - name: pop_state_code
-          in: query
-          schema: { type: string, minLength: 2, maxLength: 2 }
-        - name: uei
-          in: query
-          schema: { type: string, minLength: 12, maxLength: 12 }
-        - name: scope
-          in: query
-          schema: { type: string }
-        - name: fields
-          in: query
-          description: Comma-separated subset of public fields.
-          schema: { type: string }
-        - name: sort
-          in: query
-          description: Allowlisted field; prefix with '-' for descending order.
-          schema: { type: string }
-        - name: limit
-          in: query
-          description: Public no-key requests are capped by deployment policy, default 25. API-key requests can use the dataset maximum.
-          schema: { type: integer, default: 25, minimum: 1, maximum: 1000 }
-        - name: cursor
-          in: query
-          schema: { type: string }
+      - $ref: '#/components/parameters/DatasetId'
+      - name: fiscal_year
+        in: query
+        schema:
+          type: integer
+          minimum: 1958
+          maximum: 2026
+      - name: fiscal_year_min
+        in: query
+        schema:
+          type: integer
+          minimum: 1958
+          maximum: 2026
+      - name: fiscal_year_max
+        in: query
+        schema:
+          type: integer
+          minimum: 1958
+          maximum: 2026
+      - name: contracting_dept_id
+        in: query
+        schema:
+          type: string
+      - name: contracting_agency_id
+        in: query
+        schema:
+          type: string
+      - name: principal_naics_code
+        in: query
+        schema:
+          type: string
+          pattern: ^[0-9]{6}$
+      - name: sector_code
+        in: query
+        schema:
+          type: string
+          pattern: ^[0-9]{2}$
+      - name: pop_state_code
+        in: query
+        schema:
+          type: string
+          minLength: 2
+          maxLength: 2
+      - name: uei
+        in: query
+        schema:
+          type: string
+          minLength: 12
+          maxLength: 12
+      - name: scope
+        in: query
+        schema:
+          type: string
+      - name: fields
+        in: query
+        description: Comma-separated subset of public fields.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: Allowlisted field; prefix with '-' for descending order.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Public no-key requests are capped by deployment policy, default 25. API-key requests can use the dataset
+          maximum.
+        schema:
+          type: integer
+          default: 25
+          minimum: 1
+          maximum: 1000
+      - name: cursor
+        in: query
+        schema:
+          type: string
       responses:
-        "200":
+        '200':
           description: Dataset rows.
           headers:
             X-RateLimit-Limit:
-              schema: { type: integer }
+              schema:
+                type: integer
             X-RateLimit-Remaining:
-              schema: { type: integer }
+              schema:
+                type: integer
             X-RateLimit-Reset:
-              schema: { type: string, format: date-time }
+              schema:
+                type: string
+                format: date-time
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RowsResponse"
-        "400":
-          $ref: "#/components/responses/Error"
-        "403":
-          $ref: "#/components/responses/Error"
-        "429":
-          $ref: "#/components/responses/Error"
-
+                $ref: '#/components/schemas/RowsResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
   /v1/dimensions:
     get:
       summary: List public dimensions and code lookups
       security: []
       responses:
-        "200":
+        '200':
           description: Dimension catalog.
           content:
             application/json:
               schema:
                 type: object
-                required: [notice, data, meta]
+                required:
+                - notice
+                - data
+                - meta
                 properties:
                   notice:
                     type: string
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Dimension"
+                      $ref: '#/components/schemas/Dimension'
                   meta:
-                    $ref: "#/components/schemas/ResponseMeta"
-
+                    $ref: '#/components/schemas/ResponseMeta'
   /v1/dimensions/{dimension_id}:
     get:
       summary: Query dimension/code lookup rows
       security: []
       parameters:
-        - name: dimension_id
-          in: path
-          required: true
-          schema:
-            type: string
-            enum: [pricing_codes, competition_codes, business_size_codes, bundling_codes, financing_codes, naics, states]
-        - name: q
-          in: query
-          description: Optional text search for dimensions that support it.
-          schema: { type: string }
-        - name: limit
-          in: query
-          schema: { type: integer, default: 100, minimum: 1, maximum: 1000 }
-        - name: cursor
-          in: query
-          schema: { type: string }
+      - name: dimension_id
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - pricing_codes
+          - competition_codes
+          - business_size_codes
+          - bundling_codes
+          - financing_codes
+          - naics
+          - states
+      - name: q
+        in: query
+        description: Optional text search for dimensions that support it.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+          minimum: 1
+          maximum: 1000
+      - name: cursor
+        in: query
+        schema:
+          type: string
       responses:
-        "200":
+        '200':
           description: Dimension rows.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RowsResponse"
-
+                $ref: '#/components/schemas/RowsResponse'
   /v1/exports:
     post:
       summary: Create a bounded async export
@@ -245,31 +307,30 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ExportRequest"
+              $ref: '#/components/schemas/ExportRequest'
       responses:
-        "202":
+        '202':
           description: Export accepted.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExportJob"
-
+                $ref: '#/components/schemas/ExportJob'
   /v1/exports/{export_id}:
     get:
       summary: Fetch export status
       parameters:
-        - name: export_id
-          in: path
-          required: true
-          schema: { type: string }
+      - name: export_id
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
-        "200":
+        '200':
           description: Export status.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExportJob"
-
+                $ref: '#/components/schemas/ExportJob'
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -284,202 +345,375 @@ components:
       schema:
         type: string
         enum:
-          - pricing.trend_fy
-          - pricing.agency_profile_fy
-          - pricing.kpi_summary
-          - pricing.risk_scorecard
-          - pricing.dept_year_summary
-          - concentration.trend_fy
-          - concentration.agency_profile
-          - concentration.vendor_market_leaders
-          - concentration.small_biz_health_fy
-          - concentration.kpi_summary
-          - competition.trend_fy
-          - competition.agency_profile_fy
-          - competition.kpi_summary
-          - competition.sole_source_hotspots
-          - naics.trend_fy
-          - naics.agency_profile_fy
-          - naics.growth_leaders
-          - naics.kpi_summary
-          - geography.state_trend_fy
-          - geography.regional_summary_fy
-          - geography.mismatch_leaders
-          - geography.kpi_summary
+        - acquisition.agency_vehicle_mix_fy
+        - acquisition.office_vehicle_mix_fy
+        - acquisition.vehicle_trend_fy
+        - competition.agency_profile_fy
+        - competition.commercial_mix_fy
+        - competition.kpi_summary
+        - competition.not_competed_reasons_fy
+        - competition.sole_source_hotspots
+        - competition.trend_fy
+        - concentration.agency_profile
+        - concentration.kpi_summary
+        - concentration.small_biz_health_fy
+        - concentration.trend_fy
+        - concentration.vendor_market_leaders
+        - customer.agency_profile_fy
+        - customer.kpi_summary
+        - customer.office_profile_fy
+        - funding.assisted_acquisition_fy
+        - funding.mismatch_flows_fy
+        - geography.city_leaders
+        - geography.kpi_summary
+        - geography.mismatch_leaders
+        - geography.place_profile_fy
+        - geography.regional_summary_fy
+        - geography.state_trend_fy
+        - incumbent.agency_naics_vendor_leaders
+        - incumbent.agency_vendor_leaders
+        - incumbent.office_vendor_leaders
+        - market.agency_naics_fy
+        - market.naics_customer_leaders
+        - market.office_naics_fy
+        - naics.agency_profile_fy
+        - naics.growth_leaders
+        - naics.kpi_summary
+        - naics.trend_fy
+        - pipeline.agency_recompete_summary
+        - pipeline.duration_profile
+        - pipeline.recompete_watchlist
+        - pricing.agency_profile_fy
+        - pricing.dept_year_summary
+        - pricing.kpi_summary
+        - pricing.risk_scorecard
+        - pricing.trend_fy
+        - psc.agency_profile_fy
+        - psc.naics_crosswalk
+        - psc.office_profile_fy
+        - psc.trend_fy
+        - set_aside.agency_mix_fy
+        - set_aside.agency_profile_fy
+        - set_aside.family_trend_fy
+        - set_aside.kpi_summary
+        - set_aside.office_profile_fy
+        - set_aside.trend_fy
   schemas:
     ServiceMetadata:
       type: object
-      required: [notice, name, api_version, status]
+      required:
+      - notice
+      - name
+      - api_version
+      - status
       properties:
-        notice: { type: string }
-        name: { type: string, example: "FPDS Analytics API" }
-        api_version: { type: string, example: "2026-06-02" }
-        status: { type: string, example: "ok" }
-        documentation_url: { type: string }
-        openapi_url: { type: string }
-        ai_assistant_guide_url: { type: string }
-        start_here: { type: string }
+        notice:
+          type: string
+        name:
+          type: string
+          example: FPDS Analytics API
+        api_version:
+          type: string
+          example: '2026-06-02'
+        status:
+          type: string
+          example: ok
+        documentation_url:
+          type: string
+        openapi_url:
+          type: string
+        ai_assistant_guide_url:
+          type: string
+        start_here:
+          type: string
     Health:
       type: object
-      required: [notice, status]
+      required:
+      - notice
+      - status
       properties:
-        notice: { type: string }
-        status: { type: string, enum: [ok, degraded, unavailable] }
-        database: { type: string, enum: [ok, degraded, unavailable] }
-        catalog_version: { type: string }
+        notice:
+          type: string
+        status:
+          type: string
+          enum:
+          - ok
+          - degraded
+          - unavailable
+        database:
+          type: string
+          enum:
+          - ok
+          - degraded
+          - unavailable
+        catalog_version:
+          type: string
     AIAssistantGuide:
       type: object
-      required: [notice, name, api_version, purpose, value, assistant_instructions, safe_endpoints]
+      required:
+      - notice
+      - name
+      - api_version
+      - purpose
+      - value
+      - assistant_instructions
+      - safe_endpoints
       properties:
-        notice: { type: string }
-        name: { type: string }
-        api_version: { type: string }
-        purpose: { type: string }
+        notice:
+          type: string
+        name:
+          type: string
+        api_version:
+          type: string
+        purpose:
+          type: string
         value:
           type: array
-          items: { type: string }
+          items:
+            type: string
         assistant_instructions:
           type: array
-          items: { type: string }
+          items:
+            type: string
         critical_notices:
           type: array
-          items: { type: string }
+          items:
+            type: string
         safe_endpoints:
           type: array
           items:
             type: object
-            required: [name, method, path, api_key_required]
+            required:
+            - name
+            - method
+            - path
+            - api_key_required
             properties:
-              name: { type: string }
-              method: { type: string }
-              path: { type: string }
-              api_key_required: { type: boolean }
-              public_row_limit: { type: integer }
+              name:
+                type: string
+              method:
+                type: string
+              path:
+                type: string
+              api_key_required:
+                type: boolean
+              public_row_limit:
+                type: integer
         common_user_goals:
           type: array
           items:
             type: object
             properties:
-              goal: { type: string }
-              start_with_dataset: { type: string }
-        copy_paste_prompt: { type: string }
+              goal:
+                type: string
+              start_with_dataset:
+                type: string
+        copy_paste_prompt:
+          type: string
         auth:
           type: object
           additionalProperties: true
     Dataset:
       type: object
-      required: [id, title, domain, grain, filters, sortable, fields]
+      required:
+      - id
+      - title
+      - domain
+      - grain
+      - filters
+      - sortable
+      - fields
       properties:
-        id: { type: string }
-        title: { type: string }
-        domain: { type: string }
-        grain: { type: string }
+        id:
+          type: string
+        title:
+          type: string
+        domain:
+          type: string
+        grain:
+          type: string
         filters:
           type: array
-          items: { type: string }
+          items:
+            type: string
         sortable:
           type: array
-          items: { type: string }
+          items:
+            type: string
         fields:
           type: array
-          items: { type: string }
-        default_sort: { type: string }
-        max_limit: { type: integer }
+          items:
+            type: string
+        default_sort:
+          type: string
+        max_limit:
+          type: integer
         caveats:
           type: array
-          items: { type: string }
+          items:
+            type: string
         notices:
           type: array
-          items: { type: string }
+          items:
+            type: string
     Dimension:
       type: object
-      required: [id, title, backing_view, key, fields]
+      required:
+      - id
+      - title
+      - backing_view
+      - key
+      - fields
       properties:
-        id: { type: string }
-        title: { type: string }
-        backing_view: { type: string }
-        key: { type: string }
+        id:
+          type: string
+        title:
+          type: string
+        backing_view:
+          type: string
+        key:
+          type: string
         filters:
           type: array
-          items: { type: string }
+          items:
+            type: string
         fields:
           type: array
-          items: { type: string }
+          items:
+            type: string
     RowsResponse:
       type: object
-      required: [notice, data, pagination, meta]
+      required:
+      - notice
+      - data
+      - pagination
+      - meta
       properties:
-        notice: { type: string }
+        notice:
+          type: string
         data:
           type: array
           items:
             type: object
             additionalProperties: true
         pagination:
-          $ref: "#/components/schemas/Pagination"
+          $ref: '#/components/schemas/Pagination'
         meta:
-          $ref: "#/components/schemas/ResponseMeta"
+          $ref: '#/components/schemas/ResponseMeta'
     Pagination:
       type: object
-      required: [limit]
+      required:
+      - limit
       properties:
-        limit: { type: integer }
-        next_cursor: { type: [string, "null"] }
+        limit:
+          type: integer
+        next_cursor:
+          type:
+          - string
+          - 'null'
     ResponseMeta:
       type: object
       properties:
-        request_id: { type: string }
-        api_version: { type: string }
-        dataset_id: { type: string }
-        source: { type: string, example: "FPDS analytics schema" }
+        request_id:
+          type: string
+        api_version:
+          type: string
+        dataset_id:
+          type: string
+        source:
+          type: string
+          example: FPDS analytics schema
         source_fiscal_years:
           type: array
-          items: { type: integer }
-        last_refreshed_at: { type: string, format: date-time }
-        row_count: { type: integer }
+          items:
+            type: integer
+        last_refreshed_at:
+          type: string
+          format: date-time
+        row_count:
+          type: integer
         caveats:
           type: array
-          items: { type: string }
+          items:
+            type: string
         notices:
           type: array
-          items: { type: string }
+          items:
+            type: string
     ExportRequest:
       type: object
-      required: [dataset_id, format]
+      required:
+      - dataset_id
+      - format
       properties:
-        dataset_id: { type: string }
-        format: { type: string, enum: [jsonl, csv] }
+        dataset_id:
+          type: string
+        format:
+          type: string
+          enum:
+          - jsonl
+          - csv
         filters:
           type: object
           additionalProperties: true
         fields:
           type: array
-          items: { type: string }
+          items:
+            type: string
     ExportJob:
       type: object
-      required: [export_id, status]
+      required:
+      - export_id
+      - status
       properties:
-        export_id: { type: string }
-        status: { type: string, enum: [queued, running, complete, failed, expired] }
-        download_url: { type: [string, "null"] }
-        expires_at: { type: [string, "null"], format: date-time }
+        export_id:
+          type: string
+        status:
+          type: string
+          enum:
+          - queued
+          - running
+          - complete
+          - failed
+          - expired
+        download_url:
+          type:
+          - string
+          - 'null'
+        expires_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
     ErrorResponse:
       type: object
-      required: [error]
+      required:
+      - error
       properties:
         error:
           type: object
-          required: [type, code, message, request_id]
+          required:
+          - type
+          - code
+          - message
+          - request_id
           properties:
-            type: { type: string }
-            code: { type: string }
-            message: { type: string }
-            param: { type: [string, "null"] }
-            request_id: { type: string }
+            type:
+              type: string
+            code:
+              type: string
+            message:
+              type: string
+            param:
+              type:
+              - string
+              - 'null'
+            request_id:
+              type: string
   responses:
     Error:
       description: Error response.
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorResponse"
+            $ref: '#/components/schemas/ErrorResponse'

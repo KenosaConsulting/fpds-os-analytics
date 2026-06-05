@@ -23,9 +23,9 @@ from app.routes.health import ai_assistant_guide, health, metadata  # noqa: E402
 
 def test_catalog_has_expected_dataset_count() -> None:
     catalog = load_catalog()
-    assert len(catalog.datasets) == 22
-    assert len(catalog.dimensions) == 7
-    assert {item["public_access"] for item in catalog.datasets.values()} == {"public_bounded"}
+    assert len(catalog.datasets) == 53
+    assert len(catalog.dimensions) == 15
+    assert {item["public_access"] for item in catalog.datasets.values()} == {"public_bounded", "api_key"}
 
 
 def test_openapi_dataset_enum_matches_catalog() -> None:
