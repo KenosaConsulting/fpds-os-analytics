@@ -1,20 +1,20 @@
-# FPDS Analytics API
+# 🔬 FPDS Analytics API 🧬
 
 Free read-only API for understanding federal procurement markets.
 
 Use it to answer:
 
-- How does this agency buy?
-- Is this market competitive or incumbent dominated?
-- Which industries are growing?
-- Where is contract work performed?
-- How should we approach this customer?
+- How does this agency buy? 💸
+- Is this market competitive or incumbent dominated? 🗝️
+- Which industries are growing? 📈
+- Where is contract work performed? 🌎
+- How should we approach this customer? 🫱🏼‍🫲🏾
 
 The API turns FPDS-scale procurement data into ready-to-use analytics packages for analysts, developers, contractors, capture teams, and business-development teams.
 
-## Why This Exists
+## ❓ Why This Exists 📜
 
-Federal procurement data is public, but useful analysis is hard.
+Federal procurement data is public, but useful analysis is hard. 🤦‍♂️
 
 Raw FPDS records are large, coded, and transaction-level. A contractor trying to understand a customer usually does not need 99 million rows. They need answers:
 
@@ -27,7 +27,7 @@ Raw FPDS records are large, coded, and transaction-level. A contractor trying to
 
 This API packages those answers into simple datasets that can be queried, visualized, or integrated into other tools.
 
-## What You Can Learn
+## 👩‍🏫 What You Can Learn 📖
 
 | Question | API package to use | Why it matters |
 |---|---|---|
@@ -43,7 +43,7 @@ This API packages those answers into simple datasets that can be queried, visual
 | What contracts are expiring soon? | Recompete Pipeline | Find upcoming opportunities before they hit SAM.gov, with incumbent and confidence data |
 | Which cities get the most federal work? | Place-Level Geography | Drill below state level to city, county, and ZIP for local market intelligence |
 
-## Analysis Packages
+## 📦 Analysis Packages 🚚
 
 The API is grouped into eleven packages.
 
