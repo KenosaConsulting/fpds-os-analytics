@@ -1,5 +1,6 @@
--- Template migration: add sector_code to the NAICS customer leaders API view.
--- Do not run this file from the API repo; apply through the controlled refresh/migration pipeline.
+-- Template migration: append sector_code to the NAICS customer leaders API view.
+-- Existing view columns are preserved in their current order; the new filter
+-- column is appended to satisfy CREATE OR REPLACE VIEW constraints.
 
 CREATE OR REPLACE VIEW naics_breakdown.report_deck_naics_customer_leaders AS
 WITH current_fy AS (
@@ -27,7 +28,6 @@ agency_totals AS (
 SELECT
     at.principal_naics_code,
     nh.naics_desc AS principal_naics_description,
-    nh.sector_code,
     nh.sector_label,
     at.contracting_dept_id,
     dm.department_name AS contracting_dept_name,
@@ -47,7 +47,8 @@ SELECT
     ROW_NUMBER() OVER (
         PARTITION BY at.principal_naics_code
         ORDER BY at.recent_3yr_obligated DESC
-    ) AS customer_rank
+    ) AS customer_rank,
+    nh.sector_code
 FROM agency_totals at
 LEFT JOIN analytics_dims.fpds_naics_hierarchy_map nh ON at.principal_naics_code = nh.naics_code
 LEFT JOIN analytics_dims.fpds_department_map dm ON at.contracting_dept_id = dm.department_id
