@@ -459,6 +459,55 @@ datasets:
     default_sort: "scope_name"
     fields: ["scope_name", "distinct_offices", "distinct_agencies", "total_actions", "total_obligated", "total_vendor_interactions", "competed_action_share", "small_biz_obligation_share"]
 
+  # -- Fiscal Seasonality (FPDS-017) ---------------------------------------
+
+  - id: "seasonality.agency_month_fy"
+    title: "Agency Fiscal-Month Seasonality"
+    domain: "seasonality"
+    description: "Agency Fiscal-Month Seasonality shows when each agency obligates funds across the federal fiscal year. Use it to find September/Q4 buying patterns and time capture activity around customers with strong end-of-year spikes."
+    example_queries:
+      - query: "/v1/datasets/seasonality.agency_month_fy/rows?contracting_agency_id=9700&limit=25"
+        explanation: "Show fiscal-month seasonality for one contracting agency."
+    field_descriptions:
+      fiscal_month: "Federal fiscal month where October is 1 and September is 12."
+      q4_obligation_share: "Entity fiscal-year share of obligations in fiscal quarter 4, repeated on each monthly row."
+    backing_view: "analytics_api.seasonality_agency_month_fy"
+    source_view: "customer_intelligence.report_deck_agency_month_seasonality"
+    grain: "contracting_agency_id x fiscal_year x fiscal_month"
+    public_access: "api_key"
+    required_filters_any: ["contracting_dept_id", "contracting_agency_id", "fiscal_year"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "contracting_agency_id", "fiscal_month", "fiscal_quarter"]
+    sortable: ["fiscal_year", "fiscal_month", "obligated_amount", "action_count", "q4_obligation_share"]
+    default_sort: "-fiscal_year"
+    fields: ["contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "fiscal_year", "is_current_fiscal_year_ytd", "fiscal_month", "fiscal_quarter", "obligated_amount", "action_count", "q4_obligation_share"]
+    caveats:
+      - "Current fiscal year rows are partial and flagged with is_current_fiscal_year_ytd."
+      - "Built at refresh time from transaction-grain FPDS actions; API requests read only materialized aggregates."
+
+  - id: "seasonality.office_quarter_fy"
+    title: "Office Fiscal-Quarter Seasonality"
+    domain: "seasonality"
+    description: "Office Fiscal-Quarter Seasonality shows quarter-level obligation timing by contracting office. Use it to identify offices with disproportionate Q4 activity while keeping the row count lower than monthly office detail."
+    example_queries:
+      - query: "/v1/datasets/seasonality.office_quarter_fy/rows?contracting_office_id=W912DY&limit=25"
+        explanation: "Show fiscal-quarter seasonality for one contracting office."
+    field_descriptions:
+      fiscal_quarter: "Federal fiscal quarter where Q1 is October-December and Q4 is July-September."
+      q4_obligation_share: "Office fiscal-year share of obligations in fiscal quarter 4, repeated on each quarterly row."
+    backing_view: "analytics_api.seasonality_office_quarter_fy"
+    source_view: "customer_intelligence.report_deck_office_quarter_seasonality"
+    grain: "contracting_office_id x fiscal_year x fiscal_quarter"
+    public_access: "api_key"
+    required_filters_any: ["contracting_office_id", "contracting_agency_id", "contracting_dept_id", "fiscal_year"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "contracting_agency_id", "contracting_office_id", "fiscal_quarter"]
+    sortable: ["fiscal_year", "fiscal_quarter", "obligated_amount", "total_action_count", "q4_obligation_share"]
+    default_sort: "-fiscal_year"
+    fields: ["contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "contracting_office_id", "contracting_office_name", "fiscal_year", "is_current_fiscal_year_ytd", "fiscal_quarter", "obligated_amount", "total_action_count", "q4_obligation_share"]
+    caveats:
+      - "Current fiscal year rows are partial and flagged with is_current_fiscal_year_ytd."
+      - "Office seasonality is quarterly, not monthly, to control materialized-view size."
+      - "Built at refresh time from transaction-grain FPDS actions; API requests read only materialized aggregates."
+
 
   # ── NAICS Market Sizing (Build 2) ────────────────────────────────────────
 

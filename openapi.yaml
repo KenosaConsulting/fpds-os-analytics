@@ -436,6 +436,8 @@ components:
         - psc.naics_crosswalk
         - psc.office_profile_fy
         - psc.trend_fy
+        - seasonality.agency_month_fy
+        - seasonality.office_quarter_fy
         - set_aside.agency_mix_fy
         - set_aside.agency_profile_fy
         - set_aside.family_trend_fy

@@ -72,7 +72,7 @@ async def _streaming_response_text(response) -> str:
 
 def test_catalog_has_expected_dataset_count() -> None:
     catalog = load_catalog()
-    assert len(catalog.datasets) == 56
+    assert len(catalog.datasets) == 58
     assert len(catalog.dimensions) == 15
     assert {item["public_access"] for item in catalog.datasets.values()} == {"public_bounded", "api_key"}
 
@@ -479,6 +479,19 @@ def test_market_entry_difficulty_template_exposes_weighted_components() -> None:
     assert "0.25 * c.not_competed_component" in sql
     assert "entry_difficulty_score" in sql
     assert "GRANT SELECT ON analytics_api.market_entry_difficulty_score TO fpds_analytics_api_readonly" in sql
+
+
+def test_seasonality_template_builds_two_materialized_views_and_grants_reader() -> None:
+    sql = (SERVICE_ROOT / "sql" / "026_fiscal_seasonality.sql").read_text(encoding="utf-8")
+    assert "CREATE MATERIALIZED VIEW customer_intelligence.mv_fpds_agency_month_seasonality" in sql
+    assert "CREATE MATERIALIZED VIEW customer_intelligence.mv_fpds_office_quarter_seasonality" in sql
+    assert "fa.signed_date::date" in sql
+    assert "fiscal_year >= 2010" in sql
+    assert "q4_obligation_share" in sql
+    assert "CREATE INDEX IF NOT EXISTS mv_agency_month_seasonality_entity_year_idx" in sql
+    assert "CREATE INDEX IF NOT EXISTS mv_office_quarter_seasonality_entity_year_idx" in sql
+    assert "GRANT SELECT ON analytics_api.seasonality_agency_month_fy TO fpds_analytics_api_readonly" in sql
+    assert "GRANT SELECT ON analytics_api.seasonality_office_quarter_fy TO fpds_analytics_api_readonly" in sql
 
 
 def test_dimension_q_search_uses_parameterized_ilike() -> None:
