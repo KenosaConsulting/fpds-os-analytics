@@ -1,238 +1,314 @@
-# 🔬 FPDS Analytics API 🧬
-
-Free read-only API for understanding federal procurement markets.
-
-Use it to answer:
-
-- How does this agency buy? 💸
-- Is this market competitive or incumbent dominated? 🗝️
-- Which industries are growing? 📈
-- Where is contract work performed? 🌎
-- How should we approach this customer? 🫱🏼‍🫲🏾
-
-The API turns FPDS-scale procurement data into ready-to-use analytics packages for analysts, developers, contractors, capture teams, and business-development teams.
-
-## ❓ Why This Exists 📜
-
-Federal procurement data is public, but useful analysis is hard. 🤦‍♂️
-
-Raw FPDS records are large, coded, and transaction-level. A contractor trying to understand a customer usually does not need 99 million rows. They need answers:
-
-- Is this customer open to new vendors?
-- Do they rely on sole-source awards?
-- Are they buying fixed-price work or higher-risk contract types?
-- Which vendors already dominate the market?
-- Which NAICS codes are growing?
-- Does work happen locally or out of state?
-
-This API packages those answers into simple datasets that can be queried, visualized, or integrated into other tools.
-
-## 👩‍🏫 What You Can Learn 📖
-
-| Question | API package to use | Why it matters |
-|---|---|---|
-| How does the customer prefer to buy? | Pricing Strategy | Shape your pitch around fixed-price, cost-type, T&M, PBC, or multi-year buying patterns |
-| Is the market open or closed? | Competition Dynamics | Decide whether to prime, team, subcontract, or avoid a crowded/closed lane |
-| Who are the incumbents? | Vendor Concentration | Understand who already controls the market and how strong their position is |
-| What work is growing? | Industry / NAICS Demand | Find customer demand that matches your capabilities |
-| Where does the work happen? | Geography | Decide whether local presence, regional teaming, or national delivery matters |
-| Does this customer use small-business set-asides? | Set-Aside & Socioeconomic | Determine which programs (8(a), WOSB, HUBZone, SDVOSB) to pursue and which offices are friendliest |
-| What exactly do they buy? | PSC / Service Classification | Map your capabilities to the government's product and service codes |
-| Through what contracting vehicles? | Acquisition Vehicle Mix | Know whether you need to be on a GWAC, Schedule, or IDIQ to compete |
-| Who's funding the work vs executing it? | Funding Flow Analysis | Spot assisted acquisition patterns and cross-agency funding relationships |
-| What contracts are expiring soon? | Recompete Pipeline | Find upcoming opportunities before they hit SAM.gov, with incumbent and confidence data |
-| Which cities get the most federal work? | Place-Level Geography | Drill below state level to city, county, and ZIP for local market intelligence |
-
-## 📦 Analysis Packages 🚚
-
-The API is grouped into eleven packages.
-
-### 1. Pricing Strategy
-
-Shows how agencies buy: fixed price, cost reimbursement, time and materials, performance-based contracting, and multi-year patterns.
-
-Use this to understand whether a customer values scope certainty, flexibility, cost control, or long-term execution capacity.
-
-Datasets:
-
-- `pricing.trend_fy`
-- `pricing.agency_profile_fy`
-- `pricing.kpi_summary`
-- `pricing.risk_scorecard`
-- `pricing.dept_year_summary`
-
-### 2. Vendor Concentration
-
-Shows whether markets are competitive or dominated by a few vendors.
-
-Use this to understand incumbent strength, small-business participation, supplier diversity, and whether a market requires a teaming or displacement strategy.
-
-Datasets:
-
-- `concentration.trend_fy`
-- `concentration.agency_profile`
-- `concentration.vendor_market_leaders`
-- `concentration.small_biz_health_fy`
-- `concentration.kpi_summary`
-
-### 3. Competition Dynamics
-
-Shows competed vs. non-competed spending, sole-source hotspots, bundling, consolidation, and average offers received.
-
-Use this to assess whether the customer is accessible to new entrants and how difficult competition may be.
-
-Datasets:
-
-- `competition.trend_fy`
-- `competition.agency_profile_fy`
-- `competition.kpi_summary`
-- `competition.sole_source_hotspots`
-
-### 4. Industry / NAICS Demand
-
-Shows what industries the government buys in, which sectors are growing, and how diverse each department's industry portfolio is.
-
-Use this to find customers that buy what you sell.
-
-Datasets:
-
-- `naics.trend_fy`
-- `naics.agency_profile_fy`
-- `naics.growth_leaders`
-- `naics.kpi_summary`
-
-### 5. Geography
-
-Shows where contract work is performed, regional spending patterns, and vendor-state to performance-state flows.
-
-Use this to understand local presence, regional opportunity, and whether work is staying in state or flowing elsewhere.
-
-Datasets:
-
-- `geography.state_trend_fy`
-- `geography.regional_summary_fy`
-- `geography.mismatch_leaders`
-- `geography.kpi_summary`
-
-### 6. Set-Aside & Socioeconomic Programs
-
-Shows which small-business set-aside programs agencies use: 8(a), WOSB, HUBZone, SDVOSB, total small business, and unrestricted.
-
-Use this to understand whether a customer uses set-asides, which programs they prefer, and which offices are most friendly to small businesses. Includes office-level granularity.
-
-Datasets:
-
-- `set_aside.trend_fy`
-- `set_aside.family_trend_fy`
-- `set_aside.agency_profile_fy`
-- `set_aside.agency_mix_fy`
-- `set_aside.office_profile_fy`
-- `set_aside.kpi_summary`
-
-### 7. PSC / Service Classification
-
-Shows what product and service codes agencies buy, how spending distributes across services, products, R&D, and construction, and how PSC codes map to NAICS industries.
-
-Use this to match your capabilities to the government's classification system and find adjacent markets.
-
-Datasets:
-
-- `psc.trend_fy`
-- `psc.agency_profile_fy`
-- `psc.office_profile_fy`
-- `psc.naics_crosswalk`
-
-### 8. Acquisition Vehicle Mix
-
-Shows how agencies buy through different vehicles: GWACs, Schedules, IDIQs, BPAs, BOAs, and open-market awards.
-
-Use this to understand which contracting vehicles a customer prefers and whether you need to be on a specific vehicle to compete.
-
-Datasets:
-
-- `acquisition.vehicle_trend_fy`
-- `acquisition.agency_vehicle_mix_fy`
-- `acquisition.office_vehicle_mix_fy`
-
-### 9. Funding Flow Analysis
-
-Shows where contract funding originates vs which agency executes the contract. Reveals cross-department funding flows and assisted acquisition patterns.
-
-Use this to understand shared-service relationships and identify agencies that execute work funded by others (like GSA, DISA, or DCMA).
-
-Datasets:
-
-- `funding.mismatch_flows_fy`
-- `funding.assisted_acquisition_fy`
-
-### 10. Recompete Pipeline
-
-Shows contracts approaching expiration with incumbent vendor, value, duration, and recompete confidence scoring. Groups individual contract actions into contract families and tracks their lifecycle.
-
-Use this to find upcoming opportunities before they hit SAM.gov, understand contract timelines, and assess whether an expiring contract is likely to be recompeted.
-
-Datasets:
-
-- `pipeline.recompete_watchlist`
-- `pipeline.duration_profile`
-- `pipeline.agency_recompete_summary`
-
-### 11. Place-Level Geography
-
-Extends state-level geography with city, county, and ZIP code drill-down. Shows where work is performed at sub-state granularity.
-
-Use this to understand local market density, find cities with high federal spending, and assess whether local presence matters for a specific customer.
-
-Datasets:
-
-- `geography.place_profile_fy`
-- `geography.city_leaders`
-
-## How To Use It
-
-The API is dataset-first.
-
-Set the API base URL for your environment first. The examples below assume the
-service is deployed and reachable.
-
-```bash
-export FPDS_ANALYTICS_API_BASE_URL="https://YOUR_HOST"
-# or, for authorized local maintainer testing:
-# export FPDS_ANALYTICS_API_BASE_URL="http://127.0.0.1:8010"
+```
+        ╔═══════════════════════════════════════════════════════════════════╗
+        ║                                                                   ║
+        ║     ███████ ██████  ██████  ███████                               ║
+        ║     ██      ██   ██ ██   ██ ██          Federal Procurement       ║
+        ║     █████   ██████  ██   ██ ███████     Data Service              ║
+        ║     ██      ██      ██   ██      ██                               ║
+        ║     ██      ██      ██████  ███████     Analytics API             ║
+        ║                                                                   ║
+        ║     ▁▂▃▄▅▆▇  COMPETITIVE INTELLIGENCE ENGINE  ▇▆▅▄▃▂▁           ║
+        ║                                                                   ║
+        ║     ┌───────────────────────────────────────────────────────┐     ║
+        ║     │  58 datasets · 15 dimensions · 99M+ federal actions  │     ║
+        ║     │  REST + MCP  · MIT License   · Zero config to start  │     ║
+        ║     └───────────────────────────────────────────────────────┘     ║
+        ║                                                                   ║
+        ╚═══════════════════════════════════════════════════════════════════╝
 ```
 
-Start by listing the available datasets:
+> **The federal government spends $700+ billion a year on contracts.
+> Every transaction is public record.
+> Almost nobody knows how to read it.**
+
+This API turns 99 million FPDS contract actions into the competitive
+intelligence that wins proposals — pricing patterns, incumbent maps, market
+entry difficulty scores, recompete timelines, and 54 more analytics datasets —
+ready to query from a single endpoint.
+
+No database to run. No data to download. No PhD required.
+
+---
+
+## ⚡ Three Commands to Your First Insight
 
 ```bash
-curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/catalog" | jq '.data[].id'
+# See what's available
+curl -s "https://analytics-api.kenosaconsulting.com/v1/catalog" | jq '.data[].id'
+
+# Who dominates Army IT services?
+curl -s "https://analytics-api.kenosaconsulting.com/v1/datasets/concentration.vendor_market_leaders/rows?contracting_dept_id=9700&principal_naics_code=541512&limit=10" | jq '.data'
+
+# What's expiring in the next 12 months?
+curl -s "https://analytics-api.kenosaconsulting.com/v1/datasets/pipeline.recompete_watchlist/rows?contracting_dept_id=9700&remaining_months_max=12&limit=10" | jq '.data'
 ```
 
-Then inspect one dataset:
+That's it. You're doing market intelligence now.
+
+---
+
+## 🎯 What Problem This Solves
+
+Every government contractor faces the same challenge: **the data is free but
+the analysis is expensive.**
+
+FPDS (the Federal Procurement Data System) publishes every contract action the
+US government makes. It's public. It's comprehensive. And it's 99 million rows
+of coded, transaction-level records that tell you almost nothing useful unless
+you already know what you're looking for.
+
+Most contractors solve this by paying five- or six-figure subscriptions to
+platforms that repackage the same public data behind login walls. Or they assign
+a human analyst to spend weeks in spreadsheets. Or they guess.
+
+**This API is a different approach.** We pre-compute the analytical questions
+that actually matter for capture strategy — and serve the answers as clean,
+filterable, documented datasets with human-readable labels, metadata, caveats,
+and enough context for an analyst (human or AI) to draw conclusions without
+touching raw data.
+
+Think of it this way:
+
+> 📖 FPDS is the phonebook. This API is GPS.
+
+---
+
+## 🧬 What You Get: 11 Intelligence Packages
+
+Each package answers a strategic question. Each contains multiple datasets
+tuned for different grains and use cases.
+
+```
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │                                                                     │
+  │  PACKAGE                      QUESTION IT ANSWERS                  │
+  │  ═══════                      ════════════════════                  │
+  │                                                                     │
+  │  Pricing Strategy             How does this customer prefer to buy? │
+  │  Vendor Concentration         Who already owns this market?         │
+  │  Competition Dynamics         Can a new vendor actually get in?     │
+  │  Industry / NAICS Demand      What work is growing — and where?    │
+  │  Geography                    Does local presence matter here?      │
+  │  Set-Aside Programs           Which small-biz programs get used?    │
+  │  PSC Classification           What exactly do they buy?             │
+  │  Vehicle Mix                  Do I need a GWAC, Schedule, or IDIQ? │
+  │  Funding Flows                Who funds the work vs. who buys it?  │
+  │  Recompete Pipeline           What contracts are expiring soon?     │
+  │  Fiscal Seasonality           When does this customer spend?        │
+  │                                                                     │
+  └─────────────────────────────────────────────────────────────────────┘
+```
+
+Plus four **cross-cutting analytics** that don't belong to a single package:
+
+| Dataset | What it tells you |
+|---|---|
+| **Customer 360 Profile** | One endpoint, eight analytical sections — spend trends, competition posture, incumbent map, pricing mix, vehicle preferences, recompete signals, all assembled for a single customer |
+| **New-Entrant Cohorts** | How many new vendors enter each market per year, their first-win characteristics, set-aside paths, and 2-year survival rates |
+| **Market Entry Difficulty** | A composite score blending HHI concentration, sole-source share, vehicle dependence, average offers received, and incumbent tenure — one number that says "how hard is this market to crack" |
+| **Award-Size Distribution** | Median, P25, and P75 award sizes by agency × NAICS, plus under-SAT (simplified acquisition threshold) share |
+
+**58 datasets. 15 code-lookup dimensions. Every query bounded, parameterized,
+and documented.**
+
+---
+
+## 🤖 Wire It Into Your AI — MCP Integration
+
+The API ships with a built-in **Model Context Protocol (MCP) server** — which
+means Claude, Cursor, Windsurf, VS Code Copilot, and any MCP-compatible AI
+assistant can query federal procurement data directly, without you writing a
+single line of code.
+
+**Why this matters:** Instead of copy-pasting API responses into chat windows,
+your AI assistant becomes a procurement analyst. It can browse the catalog,
+pick the right dataset, apply filters, interpret caveats, and explain what the
+data means for your capture strategy — all in natural language.
+
+### Claude Desktop
+
+Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "fpds-analytics": {
+      "command": "python",
+      "args": ["-m", "mcp.fpds_mcp_server"],
+      "cwd": "/path/to/fpds-os-analytics",
+      "env": {
+        "FPDS_API_BASE_URL": "https://analytics-api.kenosaconsulting.com"
+      }
+    }
+  }
+}
+```
+
+### Cursor / Windsurf
+
+Add to your project's `.cursor/mcp.json` (Cursor) or MCP config (Windsurf):
+
+```json
+{
+  "mcpServers": {
+    "fpds-analytics": {
+      "command": "python",
+      "args": ["-m", "mcp.fpds_mcp_server"],
+      "cwd": "/path/to/fpds-os-analytics",
+      "env": {
+        "FPDS_API_BASE_URL": "https://analytics-api.kenosaconsulting.com"
+      }
+    }
+  }
+}
+```
+
+### VS Code (GitHub Copilot / Continue)
+
+Add to `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "fpds-analytics": {
+      "command": "python",
+      "args": ["-m", "mcp.fpds_mcp_server"],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "FPDS_API_BASE_URL": "https://analytics-api.kenosaconsulting.com"
+      }
+    }
+  }
+}
+```
+
+### Any MCP Client (Generic stdio)
 
 ```bash
-curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/competition.sole_source_hotspots" | jq
+FPDS_API_BASE_URL=https://analytics-api.kenosaconsulting.com \
+  python -m mcp.fpds_mcp_server
 ```
 
-Then query rows:
+### What Your AI Can Do Once Connected
+
+| MCP Tool | What it does |
+|---|---|
+| `fpds_list_datasets` | Browse all 58 analytics datasets with descriptions |
+| `fpds_describe_dataset` | See fields, filters, sorts, caveats, and example queries for any dataset |
+| `fpds_query_dataset` | Query rows with filters, sorting, and pagination |
+| `fpds_list_dimensions` | Browse code-lookup tables (agencies, NAICS, PSC, etc.) |
+| `fpds_lookup_dimension` | Translate coded values to human-readable names |
+| `fpds_resolve` | Search by name across agencies, offices, NAICS, PSC, and departments |
+| `fpds_customer_profile` | Get a full Customer 360 profile — eight analytical sections in one call |
+
+**Try asking your AI:**
+
+> "Who are the top 5 incumbent vendors for Army cybersecurity contracts?"
+
+> "Show me NAICS codes that are growing fastest at the Department of Energy."
+
+> "What contracts at HHS are expiring in the next 6 months and worth over $10M?"
+
+> "Give me a competitive analysis for entering the Navy's IT services market."
+
+The AI will pick the right dataset, apply filters, and interpret the results —
+including caveats about data limitations, current fiscal year incompleteness,
+and deobligation effects.
+
+---
+
+## 🔬 The Capture Strategist's Workflow
+
+This is the path from "I want to win federal work" to "here's exactly who to
+target, why, and when":
+
+```
+  Step 1   What's growing?
+  ──────   naics.growth_leaders → Find NAICS markets with rising demand
+
+  Step 2   Who's buying it?
+  ──────   naics.agency_profile_fy → Match growing markets to agencies
+
+  Step 3   Can I get in?
+  ──────   market.entry_difficulty_score → One number: how hard is entry?
+           competition.agency_profile_fy → Competed vs. sole-source split
+
+  Step 4   Who's already there?
+  ──────   concentration.vendor_market_leaders → Incumbent map with HHI
+           entrants.agency_cohort_fy → How do new vendors fare here?
+
+  Step 5   How do they buy?
+  ──────   pricing.agency_profile_fy → Fixed-price vs. cost-type mix
+           acquisition.agency_vehicle_mix_fy → GWAC / Schedule / IDIQ
+
+  Step 6   What's expiring?
+  ──────   pipeline.recompete_watchlist → Contracts ending in 6–24 months
+           pipeline.duration_profile → Typical contract lengths
+
+  Step 7   When do they spend?
+  ──────   seasonality.agency_month_fy → Fiscal-month obligation patterns
+           → Q4 spike? Time your white papers accordingly
+
+  Step 8   Where's the work?
+  ──────   geography.city_leaders → Sub-state drill-down
+           geography.mismatch_leaders → Vendor HQ vs. performance site
+
+  Step 9   One-call summary
+  ──────   GET /v1/profiles/customer → Full Customer 360 in one request
+```
+
+> **The goal:** Who should we target, why them, how hard will entry be, what's
+> expiring soon, and what customer-specific story should we tell in the
+> proposal?
+
+---
+
+## 🎮 Use It Without Code
+
+### With Any AI Assistant (No MCP Required)
+
+Paste this into ChatGPT, Claude, Gemini, or any AI that can make HTTP requests:
+
+```text
+Use the FPDS Analytics API to help me understand federal procurement customers.
+API base: https://analytics-api.kenosaconsulting.com
+
+Start by calling GET /v1/ai-assistant-guide for instructions.
+Then GET /v1/catalog to see available datasets.
+Use only documented filters, sorts, and fields.
+Explain what the data means for capture strategy.
+Always include API caveats and never invent data.
+```
+
+### With CSV Export
+
+Any dataset query supports `?format=csv` for direct spreadsheet use:
 
 ```bash
-curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/competition.sole_source_hotspots/rows?limit=25" \
-  | jq '.data'
+curl -s "https://analytics-api.kenosaconsulting.com/v1/datasets/naics.growth_leaders/rows?limit=50&format=csv" > growth_leaders.csv
 ```
 
-Example: find NAICS sector demand for Professional, Scientific, and Technical Services:
+### With the REST API Directly
+
+Every endpoint is documented with example queries in the catalog:
 
 ```bash
-curl -s "$FPDS_ANALYTICS_API_BASE_URL/v1/datasets/naics.trend_fy/rows?sector_code=54&fiscal_year_min=2022&limit=25" \
-  | jq '.data'
+# Describe a dataset (see fields, filters, example queries, caveats)
+curl -s "https://analytics-api.kenosaconsulting.com/v1/datasets/competition.sole_source_hotspots" | jq
+
+# Query with filters and sorting
+curl -s "https://analytics-api.kenosaconsulting.com/v1/datasets/pricing.agency_profile_fy/rows?contracting_dept_id=9700&fiscal_year=2025&sort=-total_obligated&limit=25" | jq '.data'
+
+# Look up a NAICS code by name
+curl -s "https://analytics-api.kenosaconsulting.com/v1/dimensions/naics?q=cybersecurity" | jq '.data'
+
+# Full customer profile in one call
+curl -s "https://analytics-api.kenosaconsulting.com/v1/profiles/customer?contracting_dept_id=9700" | jq
 ```
 
-Free access includes catalog discovery, dataset metadata, dimension lookups, and
-capped row samples. API-key access may provide higher rate limits, larger
-bounded responses, exports, or support. No access tier exposes arbitrary SQL,
-raw source tables, or write operations.
+---
 
-## Sample Response
+## 📊 Sample Response
 
 ```json
 {
@@ -240,215 +316,167 @@ raw source tables, or write operations.
   "data": [
     {
       "contracting_dept_id": "9700",
+      "contracting_dept_name": "DEPT OF DEFENSE",
+      "department_short_name": "DoD",
       "fiscal_year": 2025,
-      "total_action_count": 42,
+      "is_current_fiscal_year_ytd": true,
       "total_obligated": "125000000.00",
       "distinct_naics_count": 12,
-      "top_naics_code_by_obligation": "541330"
+      "top_naics_code_by_obligation": "541330",
+      "action_count": 42
     }
   ],
-  "pagination": {
-    "limit": 25,
-    "next_cursor": null
-  },
+  "pagination": { "limit": 25, "next_cursor": null },
   "meta": {
     "dataset_id": "naics.trend_fy",
     "source": "FPDS analytics schema",
+    "data_as_of": "2026-06-10T00:00:00Z",
     "row_count": 1,
     "access": "public"
   }
 }
 ```
 
-## Use With ChatGPT, Claude, Gemini, Or Other AI Assistants
+Every response includes:
+- **`notice`** — Reminds consumers this is analytical, not legal/procurement authority
+- **`data`** — Human-readable labels alongside codes (no more guessing what `9700` means)
+- **`meta.data_as_of`** — When the underlying data was last refreshed
+- **`pagination`** — Bounded results with cursor support
 
-Most users do not need to write code first. They can give an AI assistant the API base URL and ask it to follow the AI assistant guide:
+---
 
-```text
-Use the FPDS Analytics API to help me understand federal procurement customers.
-Start here: https://YOUR_HOST/v1/ai-assistant-guide
+## 📡 API Reference
 
-First inspect the catalog, then choose the right dataset for my question.
-Use only documented filters, sorts, and fields.
-Explain what the data means for customer targeting, market entry, teaming, or capture strategy.
-Include the API response notice, caveats, and notices, and do not invent data.
+| Function | Endpoint | Purpose |
+|---|---|---|
+| Service metadata | `GET /v1` | API version and status |
+| Health check | `GET /v1/health` | Service and catalog health |
+| AI assistant guide | `GET /v1/ai-assistant-guide` | Paste-ready instructions for any AI |
+| List datasets | `GET /v1/catalog` | Browse all 58 analytics datasets |
+| Describe dataset | `GET /v1/datasets/{id}` | Fields, filters, sorts, caveats, examples |
+| Query rows | `GET /v1/datasets/{id}/rows` | Bounded analytics with filters and pagination |
+| Customer 360 | `GET /v1/profiles/customer` | Eight-section customer intelligence profile |
+| List dimensions | `GET /v1/dimensions` | Browse code-lookup tables |
+| Query dimension | `GET /v1/dimensions/{id}` | Translate codes to names |
+| Resolve by name | `GET /v1/dimensions/{id}?q=` | Search dimensions by name substring |
+
+**Self-healing errors:** Send a bad filter? The error response tells you
+exactly which filters are valid, which fields are sortable, and gives you an
+example query that works. No more guessing.
+
+---
+
+## 🏗️ Architecture
+
+```
+  ┌─────────────────────┐      ┌──────────────────┐      ┌───────────────┐
+  │  public.fpds_actions │      │  26 SQL templates │      │  Materialized │
+  │  (99M+ rows)        │─────▶│  in sql/          │─────▶│  Views + MVs  │
+  │  Read-only source   │      │  Run at refresh   │      │  (analytics)  │
+  └─────────────────────┘      └──────────────────┘      └───────┬───────┘
+                                                                  │
+                                                                  ▼
+  ┌─────────────────────┐      ┌──────────────────┐      ┌───────────────┐
+  │  MCP Server         │      │  FastAPI app/     │      │ analytics_api │
+  │  (7 tools, stdio)   │◀────▶│  Catalog-driven   │◀────▶│ facade schema │
+  │  For AI assistants  │      │  REST endpoints   │      │ (read-only)   │
+  └─────────────────────┘      └──────────────────┘      └───────────────┘
 ```
 
-Replace `https://YOUR_HOST` with the hosted API URL for the environment you are
-using.
+**Security boundary:** The API server connects as `fpds_analytics_api_readonly`
+with `SELECT`-only access to the `analytics_api` facade schema. No raw tables,
+no writes, no arbitrary SQL. Dataset IDs, filter names, sort keys, and row
+limits are all validated against the catalog before any query is built.
 
-If the assistant can make HTTP requests, it should start with:
+---
 
-```text
-GET /v1/ai-assistant-guide
-GET /v1/catalog
-GET /v1/datasets/{dataset_id}
-GET /v1/datasets/{dataset_id}/rows
-```
+## 📚 Documentation
 
-If the assistant cannot make HTTP requests directly, the user can paste responses from `GET /v1/catalog` and `GET /v1/datasets/{dataset_id}` into the chat, then ask the assistant which row query to run.
-
-Read the full AI usage guide: [docs/AI_ASSISTANT_GUIDE.md](docs/AI_ASSISTANT_GUIDE.md).
-
-## API Functions
-
-The recommended analyst workflow below explains how to combine them.
-
-| Function | Endpoint | Key required? | Purpose |
-|---|---|---:|---|
-| Service metadata | `GET /v1` | No | Basic API information |
-| Health check | `GET /v1/health` | No | Service and catalog status |
-| AI assistant guide | `GET /v1/ai-assistant-guide` | No | Copy/paste guidance for ChatGPT, Claude, Gemini, and similar tools |
-| List datasets | `GET /v1/catalog` | No | Discover available analytics |
-| Describe dataset | `GET /v1/datasets/{dataset_id}` | No | See fields, filters, sort options, and caveats |
-| Query dataset | `GET /v1/datasets/{dataset_id}/rows` | No | Return bounded public analytics rows; API key optional for higher-volume access |
-| List dimensions | `GET /v1/dimensions` | No | Discover code lookup tables |
-| Query dimension | `GET /v1/dimensions/{dimension_id}` | No | Explain FPDS codes |
-| Export data | `POST /v1/exports` | Yes | Planned phase-2 bounded exports |
-
-Read the full function guide: [docs/API_FUNCTIONS.md](docs/API_FUNCTIONS.md).
-
-## Recommended Analyst Workflow
-
-1. Start with `naics.trend_fy` to see where demand is growing.
-2. Use `naics.agency_profile_fy` to find departments that buy that work.
-3. Use `competition.agency_profile_fy` to see whether the customer is accessible.
-4. Use `concentration.vendor_market_leaders` to identify incumbent strength.
-5. Use `pricing.agency_profile_fy` to tailor your pitch to how the customer buys.
-6. Use `pipeline.recompete_watchlist` to find contracts expiring in the next 6-24 months.
-7. Use `psc.naics_crosswalk` to map your NAICS capabilities to PSC codes the customer uses.
-8. Use `acquisition.agency_vehicle_mix_fy` to see which vehicles the customer prefers.
-9. Use `geography.city_leaders` if local presence or regional teaming matters.
-10. Use `funding.mismatch_flows_fy` to see if another agency is actually funding the work.
-
-The goal is to help answer:
-
-> Who should we target, why should we target them, how hard will entry be, what contracts are expiring soon, and what customer-specific story should we tell?
-
-## Documentation
-
-| Document | Purpose |
+| Document | What's in it |
 |---|---|
-| [docs/METHODOLOGY.md](docs/METHODOLOGY.md) | How every number is computed: source data, materialized views, report views, formulas |
-| [docs/IMPLEMENTATION_PLAN_V2.md](docs/IMPLEMENTATION_PLAN_V2.md) | V2 quick wins: set-aside promotion, dim labels, competition enrichment, commercial item, parent company |
-| [docs/PHASE2_BUILD_PLAN.md](docs/PHASE2_BUILD_PLAN.md) | Phase 2 new builds: office profiles, NAICS×agency, incumbents, PSC, vehicles, recompete pipeline, geo drill-down |
-| [docs/ANALYTICS_SCHEMA_DESIGN.md](docs/ANALYTICS_SCHEMA_DESIGN.md) | Database schema design notes for future analytics expansion |
-| [docs/ANALYST_VIEW_IMPROVEMENTS.md](docs/ANALYST_VIEW_IMPROVEMENTS.md) | Product roadmap: analyst-facing view priorities and composite pages |
-| [docs/API_FUNCTIONS.md](docs/API_FUNCTIONS.md) | Plain-English explanation of each API package and function |
-| [docs/AI_ASSISTANT_GUIDE.md](docs/AI_ASSISTANT_GUIDE.md) | Instructions users can paste into ChatGPT, Claude, Gemini, or similar tools |
-| [docs/DATASETS.md](docs/DATASETS.md) | Dataset-by-dataset field, filter, and sort reference |
-| [docs/QUICKSTART.md](docs/QUICKSTART.md) | First API calls |
-| [docs/CAVEATS.md](docs/CAVEATS.md) | Data limitations and interpretation notes |
-| [docs/LLM_INTEGRATIONS.md](docs/LLM_INTEGRATIONS.md) | ChatGPT, Claude/MCP, and Gemini integration plan |
-| [SECURITY.md](SECURITY.md) | Security boundary and responsible disclosure |
-| [openapi.yaml](openapi.yaml) | Machine-readable API contract |
+| [CHANGELOG.md](CHANGELOG.md) | What changed and when — sprint by sprint |
+| [docs/QUICKSTART.md](docs/QUICKSTART.md) | Your first API calls in 2 minutes |
+| [docs/METHODOLOGY.md](docs/METHODOLOGY.md) | How every number is computed — source data, MVs, formulas |
+| [docs/DATASETS.md](docs/DATASETS.md) | Field-by-field reference for all 58 datasets |
+| [docs/API_FUNCTIONS.md](docs/API_FUNCTIONS.md) | Detailed endpoint documentation |
+| [docs/AI_ASSISTANT_GUIDE.md](docs/AI_ASSISTANT_GUIDE.md) | Instructions for AI assistants |
+| [docs/LLM_INTEGRATIONS.md](docs/LLM_INTEGRATIONS.md) | MCP, ChatGPT, Claude, and Gemini integration guide |
+| [docs/CAVEATS.md](docs/CAVEATS.md) | Data limitations you should know about |
+| [openapi.yaml](openapi.yaml) | Machine-readable API contract (OpenAPI 3.1) |
+| [SECURITY.md](SECURITY.md) | Security model and responsible disclosure |
 
-## Access
+---
 
-Discovery endpoints are public so users can understand what the API offers
-immediately.
-
-Free access includes catalog discovery, dataset metadata, dimension lookups, and
-capped row samples. API-key access may provide higher rate limits, larger
-bounded responses, exports, or support.
-
-The API does not provide arbitrary SQL, raw source table access, bulk database
-access, or write operations.
-
-## Developer Setup
-
-This repository does not include a public database dump, local seed data, or
-credentials for the Kenosa analytics database. That is intentional: the API
-runtime reads from a restricted Postgres/Supabase facade, and live credentials
-must not be committed, shared in issues, or documented in public setup steps.
-
-Unauthenticated contributors can work on the API contract, catalog metadata,
-query guardrails, documentation, and tests that do not require a database.
-
-Install dependencies:
+## 🛠️ Developer Setup
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
+git clone https://github.com/KenosaConsulting/fpds-os-analytics.git
+cd fpds-os-analytics
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python -m pytest tests -q   # 67 tests, should be green
 ```
 
-Run the local validation suite:
+The test suite validates catalog contracts, query guardrails, and API behavior
+without a database connection. To run the API server against live data, see the
+[deployment docs](docs/DEPLOYMENT.md).
 
-```bash
-python -m pytest tests -q
+---
+
+## 📦 Repository Layout
+
+```
+fpds-os-analytics/
+├── app/              FastAPI service (routes, query builder, catalog loader)
+├── catalog/          Dataset + dimension registries (single source of truth)
+│   ├── datasets.yaml     58 datasets with filters, sorts, fields, caveats
+│   └── dimensions.yaml   15 code-lookup dimensions
+├── mcp/              MCP server for AI assistants (7 tools, stdio transport)
+├── sql/              26 numbered database templates (MVs, views, indexes)
+├── tests/            Guardrail + contract tests (67 tests)
+├── docs/             User and developer documentation
+├── examples/         Example API calls
+├── openapi.yaml      OpenAPI 3.1 specification
+├── Dockerfile        Container image
+└── run-local.sh      Local development launcher
 ```
 
-To run the API server against data, use one of these paths:
+---
 
-- Authorized maintainers may use a Kenosa-provisioned read-only database
-  credential from an approved secret store.
-- External developers may point the app at their own compatible Postgres
-  database that implements the `analytics_api` facade schema.
+## ⚖️ Access & Licensing
 
-The runtime requires either `ANALYTICS_DATABASE_URL`/`DATABASE_URL` or
-component settings (`DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`).
-Use only the restricted analytics API role for shared environments; never use a
-`postgres`, `service_role`, owner, or write-capable credential.
+**Open source, MIT licensed.** Use it, fork it, build on it.
 
-Authorized maintainers who already have local secret access can use:
+Discovery endpoints are public — browse the catalog, read dataset
+documentation, look up dimension codes, and query bounded row samples without
+an API key. Key-authenticated access provides higher rate limits and larger
+result sets.
 
-```bash
-./run-local.sh
-```
+The API does not expose arbitrary SQL, raw source tables, bulk database dumps,
+or write operations. It never will.
 
-The local runner does not supply database credentials from the repository. Set
-`ANALYTICS_DATABASE_URL`, or set `DB_HOST` and retrieve `DB_PASS` from your
-approved local secret store before launching. If your approved local secret
-store uses macOS Keychain:
+---
 
-```bash
-FPDS_ANALYTICS_KEYCHAIN_SERVICE=my-keychain-service \
-FPDS_ANALYTICS_KEYCHAIN_ACCOUNT=my-keychain-account \
-./run-local.sh
-```
+## ⚠️ Caveats
 
-By default the app connects as `fpds_analytics_api_readonly`, which should be
-granted read access only to the `analytics_api` facade schema.
+This is an analytical tool, not a procurement authority.
 
-Production should keep auth enabled:
+- **FPDS obligations include deobligations and corrections** — dollar values can
+  be negative for individual transactions
+- **Current fiscal year data is year-to-date** — flagged with
+  `is_current_fiscal_year_ytd` so you know
+- **Vendor records exclude entries missing key fields** — coverage is high but
+  not 100%
+- **Q4 obligation share is NULL for deobligation-heavy entities** — when an
+  entity's full-year obligations are zero or negative, the ratio is undefined
+- **This is decision support, not legal advice** — always verify against primary
+  sources for formal procurement actions
 
-```bash
-FPDS_ANALYTICS_API_KEY_HASHES="sha256_hex_digest"
-ANALYTICS_DATABASE_URL="postgresql://fpds_analytics_api_readonly:PASSWORD@HOST:5432/postgres"
-```
+Full details: [docs/CAVEATS.md](docs/CAVEATS.md)
 
-## Repository Contents
+---
 
-| Path | Purpose |
-|---|---|
-| `app/` | FastAPI service implementation |
-| `catalog/datasets.yaml` | Dataset registry, filters, sorts, and field allowlists |
-| `catalog/dimensions.yaml` | Dimension/code lookup registry |
-| `docs/` | User and developer documentation |
-| `examples/` | Example API calls |
-| `sql/` | Database facade and role templates |
-| `tests/` | Guardrail tests |
-| `Dockerfile` | Container image |
-| `.env.example` | Runtime environment variables |
-
-## License
-
-MIT. See [LICENSE](LICENSE).
-
-## Validation
-
-Run tests:
-
-```bash
-python -m pytest tests -q
-```
-
-## Caveats
-
-- This API is for analysis and planning, not legal or procurement advice.
-- FPDS obligation values can include de-obligations and corrections.
-- Vendor datasets exclude records missing key vendor or agency fields.
-- Current fiscal year values are year-to-date and may be incomplete.
-
-See [docs/CAVEATS.md](docs/CAVEATS.md).
+<p align="center">
+  Built by <a href="https://kenosaconsulting.com">Kenosa Consulting</a><br/>
+  <em>Evidence-first federal intelligence.</em>
+</p>
