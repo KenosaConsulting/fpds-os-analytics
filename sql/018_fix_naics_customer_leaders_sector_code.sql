@@ -56,6 +56,3 @@ LEFT JOIN analytics_dims.fpds_agency_map am ON at.contracting_agency_id = am.age
 CREATE OR REPLACE VIEW analytics_api.market_naics_customer_leaders
 WITH (security_barrier = true) AS
 SELECT * FROM naics_breakdown.report_deck_naics_customer_leaders;
-
-COMMENT ON VIEW analytics_api.market_naics_customer_leaders IS
-'For a given NAICS code or sector, ranks agencies by recent 3-year obligation. Answers "who are the top 10 customers for NAICS 541512?"';
