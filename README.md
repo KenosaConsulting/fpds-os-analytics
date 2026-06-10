@@ -53,9 +53,9 @@ Every government contractor faces the same challenge: **the data is free but
 the analysis is expensive.**
 
 FPDS (the Federal Procurement Data System) publishes every contract action the
-US government makes. It's public. It's comprehensive. And it's 99 million rows
+US government makes. It's public. It's comprehensive. And it's also 99 million rows
 of coded, transaction-level records that tell you almost nothing useful unless
-you already know what you're looking for.
+you already know what you're looking for. Try digging through over 37,000,000,000 data points and tell me if you want to go the brute force route...
 
 Most contractors solve this by paying five- or six-figure subscriptions to
 platforms that repackage the same public data behind login walls. Or they assign
