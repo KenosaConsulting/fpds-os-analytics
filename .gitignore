@@ -3,3 +3,15 @@ __pycache__/
 *.py[cod]
 .venv/
 .env
+
+# Internal planning / sprint tracking (not customer-facing)
+TASKS.md
+HANDOFF.local.md
+.claude/
+docs/audits/
+docs/IMPLEMENTATION_PLAN_V2.md
+docs/PHASE2_BUILD_PLAN.md
+docs/ANALYST_VIEW_IMPROVEMENTS.md
+docs/LAUNCH_CHECKLIST.md
+docs/PACKAGING.md
+docs/ANALYTICS_SCHEMA_DESIGN.md

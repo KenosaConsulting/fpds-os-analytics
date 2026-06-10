@@ -46,10 +46,5 @@ if command -v uvicorn >/dev/null 2>&1; then
   exec uvicorn app.main:app --host 127.0.0.1 --port "${PORT:-8010}" --log-level info
 fi
 
-CHATBOT_UVICORN="../chatbot-api/.venv/bin/uvicorn"
-if [[ -x "$CHATBOT_UVICORN" ]]; then
-  exec "$CHATBOT_UVICORN" app.main:app --host 127.0.0.1 --port "${PORT:-8010}" --log-level info
-fi
-
 echo "ERROR: uvicorn not found. Create .venv and install requirements.txt first." >&2
 exit 1
