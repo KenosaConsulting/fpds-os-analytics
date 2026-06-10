@@ -403,6 +403,7 @@ components:
         - customer.agency_profile_fy
         - customer.kpi_summary
         - customer.office_profile_fy
+        - entrants.agency_cohort_fy
         - funding.assisted_acquisition_fy
         - funding.mismatch_flows_fy
         - geography.city_leaders

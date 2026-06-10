@@ -72,7 +72,7 @@ async def _streaming_response_text(response) -> str:
 
 def test_catalog_has_expected_dataset_count() -> None:
     catalog = load_catalog()
-    assert len(catalog.datasets) == 53
+    assert len(catalog.datasets) == 54
     assert len(catalog.dimensions) == 15
     assert {item["public_access"] for item in catalog.datasets.values()} == {"public_bounded", "api_key"}
 
@@ -447,6 +447,15 @@ def test_refresh_log_template_creates_reader_view_and_grant() -> None:
     assert "CREATE TABLE IF NOT EXISTS analytics_dims.dataset_refresh_log" in sql
     assert "CREATE OR REPLACE VIEW analytics_api.dataset_refresh_log" in sql
     assert "GRANT SELECT ON analytics_api.dataset_refresh_log TO fpds_analytics_api_readonly" in sql
+
+
+def test_new_entrant_cohort_template_uses_existing_mvs_and_grants_reader() -> None:
+    sql = (SERVICE_ROOT / "sql" / "023_new_entrant_cohorts.sql").read_text(encoding="utf-8")
+    assert "vendor_concentration.mv_fpds_vendor_agency_year" in sql
+    assert "pipeline_intelligence.mv_contract_family" in sql
+    assert "public.fpds_actions" not in sql
+    assert "survival_2fy_rate" in sql
+    assert "GRANT SELECT ON analytics_api.entrants_agency_cohort_fy TO fpds_analytics_api_readonly" in sql
 
 
 def test_dimension_q_search_uses_parameterized_ilike() -> None:

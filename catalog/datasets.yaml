@@ -974,6 +974,33 @@ datasets:
     caveats:
       - "Aggregated upcoming contract expirations by agency. Minimum 5 contracts and $25K+ per contract."
 
+  # -- New Entrant Cohorts (FPDS-018) ---------------------------------------
+
+  - id: "entrants.agency_cohort_fy"
+    title: "New-Entrant Agency Cohorts By Fiscal Year"
+    domain: "entrants"
+    description: "New-Entrant Agency Cohorts By Fiscal Year shows when vendors first appear at each contracting agency and how large their first-year foothold was. Use it to judge whether an agency has a real pathway for newcomers and whether first wins survive into later fiscal years."
+    example_queries:
+      - query: "/v1/datasets/entrants.agency_cohort_fy/rows?contracting_agency_id=9700&limit=25"
+        explanation: "Show yearly new-vendor cohorts for one contracting agency."
+    field_descriptions:
+      median_first_year_obligated: "Median first-year net obligations among vendors whose first active year at the agency is this fiscal year."
+      set_aside_first_year_obligation_share: "Share of derivable first-year contract-family obligations using a non-empty set-aside code."
+      survival_2fy_rate: "Share of cohort vendors still active at the same agency two fiscal years later; null for the two most recent fiscal years."
+    backing_view: "analytics_api.entrants_agency_cohort_fy"
+    source_view: "vendor_concentration.report_deck_entrants_agency_cohort_fy"
+    grain: "contracting_agency_id x first_active_fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["contracting_dept_id", "contracting_agency_id", "fiscal_year"]
+    filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id", "contracting_agency_id"]
+    sortable: ["fiscal_year", "new_vendor_count", "first_year_obligated_total", "median_first_year_obligated", "survival_2fy_rate", "set_aside_first_year_obligation_share"]
+    default_sort: "-fiscal_year"
+    fields: ["contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "fiscal_year", "is_current_fiscal_year_ytd", "new_vendor_count", "first_year_obligated_total", "median_first_year_obligated", "first_year_action_count", "set_aside_first_year_obligated", "set_aside_first_year_obligation_share", "survival_2fy_rate", "survived_2fy_vendor_count"]
+    caveats:
+      - "First active year is derived from existing vendor-concentration materialized views, so it reflects positive-obligation agency activity captured in those refreshes."
+      - "Survival is undefined for the two most recent fiscal years because the +2FY observation window has not fully elapsed."
+      - "Set-aside share is derived from matching first-year contract families where set-aside codes are available; it is not a direct transaction-level entrant aggregation."
+
   # ── Place-Level Geography (Build 8) ──────────────────────────────────────
 
   - id: "geography.place_profile_fy"
