@@ -21,13 +21,20 @@ class Catalog:
     def __init__(self, datasets_doc: dict[str, Any], dimensions_doc: dict[str, Any]) -> None:
         self.version = str(datasets_doc.get("version", "unknown"))
         self.defaults = datasets_doc.get("defaults", {})
+        datasets = [{**self.defaults, **item} for item in datasets_doc.get("datasets", [])]
+        dimensions = list(dimensions_doc.get("dimensions", []))
+        self.filter_allowlist = frozenset(
+            filter_name
+            for item in [*datasets, *dimensions]
+            for filter_name in item.get("filters", [])
+        )
         self.datasets = {
-            item["id"]: {**self.defaults, **item}
-            for item in datasets_doc.get("datasets", [])
+            item["id"]: {**item, "_api_filter_allowlist": self.filter_allowlist}
+            for item in datasets
         }
         self.dimensions = {
-            item["id"]: item
-            for item in dimensions_doc.get("dimensions", [])
+            item["id"]: {**item, "_api_filter_allowlist": self.filter_allowlist}
+            for item in dimensions
         }
 
     def get_dataset(self, dataset_id: str) -> dict[str, Any]:
@@ -51,12 +58,12 @@ class Catalog:
 
 def public_dataset(dataset: dict[str, Any]) -> dict[str, Any]:
     """Return catalog metadata safe for API consumers."""
-    hidden = {"source_view"}
+    hidden = {"source_view", "_api_filter_allowlist"}
     return {key: value for key, value in dataset.items() if key not in hidden}
 
 
 def public_dimension(dimension: dict[str, Any]) -> dict[str, Any]:
-    hidden = {"source_table"}
+    hidden = {"source_table", "_api_filter_allowlist"}
     return {key: value for key, value in dimension.items() if key not in hidden}
 
 

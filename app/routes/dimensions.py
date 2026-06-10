@@ -26,6 +26,7 @@ def dimension_rows(dimension_id: str, request: Request) -> dict[str, object]:
         "default_sort": dimension["key"],
         "limit": 100,
         "max_limit": 1000,
+        "_api_filter_allowlist": dimension["_api_filter_allowlist"],
     }
     params = {key: value for key, value in request.query_params.items() if key != "q"}
     sql, values, limit, offset = build_rows_query(dataset_like, params)

@@ -21,6 +21,25 @@ from app.routes.catalog import describe_dataset, list_catalog, list_dimensions  
 from app.routes.health import ai_assistant_guide, health, metadata  # noqa: E402
 
 
+SYNTHETIC_FILTERS = {"fiscal_year_min", "fiscal_year_max"}
+
+
+def _sample_value(filter_name: str) -> str:
+    if filter_name in {"fiscal_year", "fiscal_year_min", "fiscal_year_max"}:
+        return "2024"
+    if filter_name.startswith("is_"):
+        return "true"
+    return "TEST"
+
+
+def _required_filter_params(dataset: dict[str, object]) -> dict[str, str]:
+    required_any = dataset.get("required_filters_any") or []
+    if not required_any:
+        return {}
+    filter_name = str(required_any[0])
+    return {filter_name: _sample_value(filter_name)}
+
+
 def test_catalog_has_expected_dataset_count() -> None:
     catalog = load_catalog()
     assert len(catalog.datasets) == 53
@@ -34,6 +53,75 @@ def test_openapi_dataset_enum_matches_catalog() -> None:
         openapi = yaml.safe_load(fh)
     enum = openapi["components"]["parameters"]["DatasetId"]["schema"]["enum"]
     assert sorted(enum) == sorted(catalog.datasets)
+
+
+def test_every_dataset_filter_is_accepted_by_runtime_query_builder() -> None:
+    catalog = load_catalog()
+    failures: list[str] = []
+    for dataset in catalog.datasets.values():
+        for filter_name in dataset.get("filters", []):
+            params = _required_filter_params(dataset)
+            params[str(filter_name)] = _sample_value(str(filter_name))
+            try:
+                build_rows_query(dataset, params)
+            except APIError as exc:
+                if exc.detail["code"] == "invalid_filter":
+                    failures.append(f"{dataset['id']}:{filter_name} -> {exc.detail['message']}")
+                else:
+                    raise
+    assert failures == []
+
+
+def test_required_filters_are_declared_dataset_filters() -> None:
+    catalog = load_catalog()
+    failures = []
+    for dataset in catalog.datasets.values():
+        allowed_filters = set(dataset.get("filters", []))
+        for filter_name in dataset.get("required_filters_any") or []:
+            if filter_name not in allowed_filters:
+                failures.append(f"{dataset['id']}:{filter_name}")
+    assert failures == []
+
+
+def test_dataset_default_sort_fields_are_sortable() -> None:
+    catalog = load_catalog()
+    failures = []
+    for dataset in catalog.datasets.values():
+        default_sort = str(dataset.get("default_sort") or "")
+        sort_field = default_sort.removeprefix("-")
+        if sort_field and sort_field not in set(dataset.get("sortable", [])):
+            failures.append(f"{dataset['id']}:{default_sort}")
+    assert failures == []
+
+
+def test_dataset_filters_and_sortables_are_declared_fields_or_synthetic() -> None:
+    catalog = load_catalog()
+    failures = []
+    for dataset in catalog.datasets.values():
+        fields = set(dataset.get("fields", []))
+        for filter_name in dataset.get("filters", []):
+            if filter_name not in fields and filter_name not in SYNTHETIC_FILTERS:
+                failures.append(f"{dataset['id']}:filter:{filter_name}")
+        for sort_name in dataset.get("sortable", []):
+            if sort_name not in fields:
+                failures.append(f"{dataset['id']}:sortable:{sort_name}")
+    assert failures == []
+
+
+def test_default_predicates_use_declared_dataset_filters() -> None:
+    catalog = load_catalog()
+    failures = []
+    for dataset in catalog.datasets.values():
+        filters = set(dataset.get("filters", []))
+        fields = set(dataset.get("fields", []))
+        for predicate in dataset.get("default_predicates", []):
+            field = predicate.get("field")
+            unless_filter = predicate.get("unless_filter", field)
+            if field not in filters or field not in fields:
+                failures.append(f"{dataset['id']}:field:{field}")
+            if unless_filter not in filters:
+                failures.append(f"{dataset['id']}:unless_filter:{unless_filter}")
+    assert failures == []
 
 
 def test_openapi_documents_ai_assistant_guide() -> None:
@@ -102,6 +190,108 @@ def test_invalid_filter_is_rejected() -> None:
         assert exc.detail["param"] == "uei"
     else:
         raise AssertionError("Expected invalid_filter")
+
+
+def test_catalog_filter_allowlist_preserves_api_vs_dataset_errors() -> None:
+    catalog = load_catalog()
+    psc_dataset = catalog.get_dataset("psc.trend_fy")
+    pricing_dataset = catalog.get_dataset("pricing.risk_scorecard")
+    sql, values, _limit, _offset = build_rows_query(psc_dataset, {"psc_group": "services"})
+    assert '"psc_group" = %s' in sql
+    assert "services" in values
+
+    try:
+        build_rows_query(pricing_dataset, {"psc_group": "services"})
+    except APIError as exc:
+        assert exc.detail["code"] == "invalid_filter"
+        assert "not supported for dataset" in exc.detail["message"]
+    else:
+        raise AssertionError("Expected dataset-level invalid_filter")
+
+    try:
+        build_rows_query(pricing_dataset, {"not_a_catalog_filter": "x"})
+    except APIError as exc:
+        assert exc.detail["code"] == "invalid_filter"
+        assert "not supported by the API" in exc.detail["message"]
+    else:
+        raise AssertionError("Expected API-level invalid_filter")
+
+
+def test_is_prefixed_filters_are_coerced_to_booleans() -> None:
+    catalog = load_catalog()
+    dataset = catalog.get_dataset("incumbent.office_vendor_leaders")
+    cases = {
+        "true": True,
+        "false": False,
+        "1": True,
+        "0": False,
+        "yes": True,
+        "no": False,
+    }
+    for raw_value, expected in cases.items():
+        sql, values, _limit, _offset = build_rows_query(
+            dataset,
+            {"contracting_office_id": "W912DY", "is_8a": raw_value},
+        )
+        assert '"is_8a" = %s' in sql
+        assert values[1] is expected
+
+
+def test_non_boolean_filters_remain_strings() -> None:
+    catalog = load_catalog()
+    dataset = catalog.get_dataset("psc.trend_fy")
+    _sql, values, _limit, _offset = build_rows_query(dataset, {"psc_group": "services"})
+    assert "services" in values
+
+
+def test_recompete_watchlist_excludes_recently_expired_by_default() -> None:
+    catalog = load_catalog()
+    dataset = catalog.get_dataset("pipeline.recompete_watchlist")
+    sql, values, _limit, _offset = build_rows_query(dataset, {"contracting_dept_id": "7000"})
+    assert '"expiration_bucket" <> %s' in sql
+    assert "recently_expired" in values
+    assert 'order by "remaining_months" asc nulls last' in sql
+
+
+def test_recompete_watchlist_expiration_bucket_filter_overrides_default_predicate() -> None:
+    catalog = load_catalog()
+    dataset = catalog.get_dataset("pipeline.recompete_watchlist")
+    sql, values, _limit, _offset = build_rows_query(
+        dataset,
+        {"expiration_bucket": "recently_expired"},
+    )
+    assert '"expiration_bucket" <> %s' not in sql
+    assert '"expiration_bucket" = %s' in sql
+    assert values[0] == "recently_expired"
+
+
+def test_trend_datasets_default_to_recent_fiscal_year_first() -> None:
+    catalog = load_catalog()
+    recent_first_trends = {
+        "pricing.trend_fy",
+        "competition.trend_fy",
+        "concentration.trend_fy",
+        "naics.trend_fy",
+        "geography.state_trend_fy",
+        "geography.regional_summary_fy",
+        "set_aside.trend_fy",
+        "set_aside.family_trend_fy",
+        "psc.trend_fy",
+        "acquisition.vehicle_trend_fy",
+    }
+    for dataset_id in recent_first_trends:
+        dataset = catalog.get_dataset(dataset_id)
+        assert dataset["default_sort"] == "-fiscal_year"
+
+
+def test_new_filter_mv_index_template_covers_expected_materialized_views() -> None:
+    sql = (SERVICE_ROOT / "sql" / "019_new_filter_mv_indexes.sql").read_text(encoding="utf-8")
+    assert "vendor_concentration.mv_fpds_vendor_naics_agency_year" in sql
+    assert "(contracting_agency_id, fiscal_year)" in sql
+    assert "(principal_naics_code, fiscal_year)" in sql
+    assert "naics_breakdown.mv_fpds_naics_agency_year" in sql
+    assert "contract_pricing.mv_fpds_pricing_agency_year" in sql
+    assert "competition_dynamics.mv_fpds_competition_agency_year" in sql
 
 
 def test_invalid_sort_is_rejected() -> None:

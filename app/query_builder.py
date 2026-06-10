@@ -13,25 +13,6 @@ from .errors import APIError
 
 IDENT_RE = re.compile(r"^[a-z][a-z0-9_]*$")
 CONTROL_PARAMS = {"fields", "sort", "limit", "cursor", "_max_limit_override"}
-KNOWN_FILTERS = {
-    "fiscal_year",
-    "fiscal_year_min",
-    "fiscal_year_max",
-    "contracting_dept_id",
-    "contracting_agency_id",
-    "principal_naics_code",
-    "sector_code",
-    "pop_state_code",
-    "vendor_state_code",
-    "census_region",
-    "census_division",
-    "is_state",
-    "uei",
-    "is_small_business_ever",
-    "is_in_state",
-    "scope_name",
-    "metric_period",
-}
 
 
 def quote_ident(identifier: str) -> str:
@@ -96,15 +77,43 @@ def validate_required_filters(dataset: dict[str, Any], params: dict[str, str]) -
         raise APIError(400, "missing_required_filter", f"Dataset requires at least one of: {joined}.")
 
 
+def build_default_where(dataset: dict[str, Any], params: dict[str, str]) -> tuple[list[str], list[Any]]:
+    allowed_filters = set(dataset.get("filters", []))
+    clauses: list[str] = []
+    values: list[Any] = []
+    for predicate in dataset.get("default_predicates", []):
+        field = predicate.get("field")
+        unless_filter = predicate.get("unless_filter", field)
+        excluded_values = predicate.get("exclude_values", [])
+        if not field or field not in allowed_filters:
+            raise APIError(
+                500,
+                "dataset_contract_mismatch",
+                f"Default predicate field '{field}' is not declared as a filter for dataset '{dataset['id']}'.",
+            )
+        if unless_filter and params.get(unless_filter) not in (None, ""):
+            continue
+        if len(excluded_values) != 1:
+            raise APIError(
+                500,
+                "dataset_contract_mismatch",
+                f"Default predicate for '{field}' must declare exactly one excluded value.",
+            )
+        clauses.append(f"{quote_ident(field)} <> %s")
+        values.append(excluded_values[0])
+    return clauses, values
+
+
 def build_where(dataset: dict[str, Any], params: dict[str, str]) -> tuple[list[str], list[Any]]:
     allowed_filters = set(dataset.get("filters", []))
+    api_filter_allowlist = set(dataset.get("_api_filter_allowlist", allowed_filters))
     clauses: list[str] = []
     values: list[Any] = []
 
     for name, value in params.items():
         if value in (None, "") or name in CONTROL_PARAMS:
             continue
-        if name not in KNOWN_FILTERS:
+        if name not in api_filter_allowlist:
             raise APIError(400, "invalid_filter", f"Filter '{name}' is not supported by the API.", param=name)
         if name not in allowed_filters:
             raise APIError(400, "invalid_filter", f"Filter '{name}' is not supported for dataset '{dataset['id']}'.", param=name)
@@ -115,7 +124,7 @@ def build_where(dataset: dict[str, Any], params: dict[str, str]) -> tuple[list[s
         elif name == "fiscal_year_max":
             clauses.append(f"{quote_ident('fiscal_year')} <= %s")
             values.append(int(value))
-        elif name in {"is_state", "is_small_business_ever", "is_in_state"}:
+        elif name.startswith("is_"):
             clauses.append(f"{quote_ident(name)} = %s")
             values.append(str(value).lower() in {"1", "true", "t", "yes", "y"})
         else:
@@ -134,7 +143,10 @@ def build_rows_query(dataset: dict[str, Any], params: dict[str, str]) -> tuple[s
     limit = parse_limit(params.get("limit"), max_limit, default_limit)
     offset = decode_cursor(params.get("cursor"))
     fields = selected_fields(dataset, params.get("fields"))
-    where_clauses, values = build_where(dataset, params)
+    where_clauses, values = build_default_where(dataset, params)
+    filter_clauses, filter_values = build_where(dataset, params)
+    where_clauses.extend(filter_clauses)
+    values.extend(filter_values)
 
     sort = params.get("sort") or dataset.get("default_sort") or fields[0]
     direction = "desc" if sort.startswith("-") else "asc"

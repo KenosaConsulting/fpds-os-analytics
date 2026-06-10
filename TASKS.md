@@ -1,0 +1,61 @@
+# TASKS.md — FPDS Analytics API Improvement Backlog
+
+Source documents (READ BEFORE STARTING ANY TASK):
+- `docs/audits/2026-06-10-usability-analytics-review.md` (findings, rationale, fix specs)
+- `docs/audits/2026-06-10-database-audit-addendum.md` (production-verified column/type/index facts)
+
+## Rules for coding agents
+
+1. Work ONE task at a time, in ID order within the active sprint, unless a task is marked `blocked`.
+2. Before starting a task, set its status to `in_progress`. When done, set it to `done` and fill in the Completed/Notes columns. Commit TASKS.md updates with the task's code changes.
+3. Every task that changes runtime behavior MUST add or extend tests in `tests/`. Run `python -m pytest tests -q` and confirm green before marking done.
+4. NEVER weaken the security boundary: allowlisted identifiers only, parameterized values, bounded limits, no arbitrary SQL surface, no raw-table access, read-only role. No credentials in code, commits, or docs.
+5. Database DDL is delivered as a new numbered template file in `sql/` (next available number), following the style of existing files. Do not attempt to run migrations against any live database from this repo.
+6. Keep `catalog/datasets.yaml` as the single source of truth. Any new runtime behavior driven by the catalog must be covered by a contract test.
+7. If a task's spec conflicts with what you find in the code, stop, record the conflict in the Notes column, set status `blocked`, and move to the next task.
+
+Status values: `todo` | `in_progress` | `blocked` | `done`
+
+---
+
+## Sprint 1 — Restore the API contract (P0)
+
+| ID | Status | Task | Acceptance criteria | Files | Completed / Notes |
+|---|---|---|---|---|---|
+| FPDS-001 | done | Replace static `KNOWN_FILTERS` with a catalog-derived allowlist | Allowlist built at catalog load from the union of all `filters` in `catalog/datasets.yaml` + `catalog/dimensions.yaml`. Per-dataset check still distinguishes "not supported by the API" vs "not supported for this dataset". All 24 previously rejected filters accepted on their datasets. | `app/query_builder.py`, `app/catalog.py` | Completed 2026-06-10. Catalog loader now attaches a hidden union allowlist to datasets/dimensions; query builder preserves API-level vs dataset-level invalid_filter errors. Tests: `./.venv/bin/python -m pytest tests -q` green. |
+| FPDS-002 | done | Generalize boolean filter coercion | Any filter named `is_*` coerced to boolean (addendum §1 lists the exact 12 production boolean columns — verify against that table). Non-boolean filters unaffected. Unit tests cover true/false/1/0/yes/no inputs. | `app/query_builder.py` | Completed 2026-06-10. Boolean coercion now applies to every `is_*` filter; non-boolean filters remain string equality values. Tests: `./.venv/bin/python -m pytest tests -q` green. |
+| FPDS-003 | done | Fix `market.naics_customer_leaders` ↔ `sector_code` mismatch | EITHER add `sector_code` to the backing view via a new `sql/` template and keep the catalog entry, OR remove `sector_code` from that dataset's `filters` and `required_filters_any`. Decision recorded in Notes. Dataset queryable with its required filters. | `catalog/datasets.yaml`, new `sql/018_*.sql` (if view route) | Completed 2026-06-10. Chose the view route: `sql/018_fix_naics_customer_leaders_sector_code.sql` adds `sector_code` to the report/facade view, and the catalog fields now declare it. Tests: `./.venv/bin/python -m pytest tests -q` green. |
+| FPDS-004 | done | Contract tests: catalog ↔ runtime parity | New tests assert: (a) every catalog filter builds valid SQL via `build_rows_query` (no `invalid_filter`); (b) every `required_filters_any` member is an accepted filter; (c) every `default_sort` field (stripped of `-`) is in `sortable`; (d) every filter/sortable maps to a declared field or known synthetic (`fiscal_year_min/max`). FPDS-003's bug must be caught by these tests when reverted. | `tests/test_catalog_contract.py` | Completed 2026-06-10. Contract tests were written first and failed on the static allowlist plus `market.naics_customer_leaders:sector_code`; they now pass. Tests: `./.venv/bin/python -m pytest tests -q` green. |
+| FPDS-005 | done | Recompete watchlist defaults | Default sort = ascending `remaining_months`. Default predicate excludes `recently_expired` rows unless the `expiration_bucket` filter is explicitly supplied (document behavior in the dataset's catalog entry + caveats). Addendum §3 quantifies why: 40% of rows are expired. | `catalog/datasets.yaml`, `app/query_builder.py` (default-predicate support) | Completed 2026-06-10. Added structured default predicates and documented the watchlist's recently_expired opt-in behavior. Tests: `./.venv/bin/python -m pytest tests -q` green. |
+| FPDS-006 | done | Fix trend/leaderboard default sorts | Trend datasets (`pricing.trend_fy`, `competition.trend_fy`, `concentration.trend_fy`, `naics.trend_fy`, set_aside trends, geo trends) default to `-fiscal_year` or another sensible recent-first sort. Cross-year leaderboard datasets get either a required FY filter or a documented default window. No dataset's first unfiltered page leads with pre-2010 rows. | `catalog/datasets.yaml` | Completed 2026-06-10. Named trend datasets now default to `-fiscal_year`; regression test covers the set. Tests: `./.venv/bin/python -m pytest tests -q` green. |
+| FPDS-007 | done | MV index templates for newly enabled filters | New `sql/` template creating indexes per addendum §2: `vendor_concentration.mv_fpds_vendor_naics_agency_year` `(contracting_agency_id, fiscal_year)` + `(principal_naics_code, fiscal_year)`; plus single sensible composites for `mv_fpds_naics_agency_year`, `mv_fpds_pricing_agency_year`, `mv_fpds_competition_agency_year`. Template only — not executed from this repo. | new `sql/0XX_*.sql` | Completed 2026-06-10. Added `sql/019_new_filter_mv_indexes.sql`; template only, not executed. Tests: `./.venv/bin/python -m pytest tests -q` green. |
+
+## Sprint 2 — Speak human (P1)
+
+| ID | Status | Task | Acceptance criteria | Files | Completed / Notes |
+|---|---|---|---|---|---|
+| FPDS-008 | todo | Label enrichment for v1 datasets | Names alongside codes (`*_name`, `*_short_name`) on pricing, competition, concentration, naics, geography datasets, following the `sql/006` pattern. New columns added to `fields` lists. Template SQL + catalog update + contract tests pass. | new `sql/0XX_*.sql`, `catalog/datasets.yaml` | |
+| FPDS-009 | todo | Name search / resolver | `q=` substring search on name-bearing dimensions (departments, agencies, contracting_offices, naics, psc_codes) OR a `/v1/resolve?q=&types=` endpoint. Parameterized ILIKE only; allowlisted searchable columns declared in `catalog/dimensions.yaml`. Office search defaults to `is_active_recent=true` + name_confidence in (high, medium) per addendum §6, overridable. | `app/routes/dimensions.py`, `catalog/dimensions.yaml`, `app/query_builder.py` | |
+| FPDS-010 | todo | Catalog descriptions & examples | Every dataset gains `description` (2–3 sentences, reuse README package prose), `example_queries` (≥1 working query string + one-line explanation), optional `field_descriptions` for non-obvious fields (HHI, shares, ranks). Surfaced in `/v1/catalog` and `/v1/datasets/{id}`. OpenAPI updated. | `catalog/datasets.yaml`, `app/catalog.py`, `app/routes/catalog.py`, `openapi.yaml` | |
+| FPDS-011 | todo | Growth-leaders rewrite | View compares the two most recent COMPLETE fiscal years (no YTD-vs-full-year bias — addendum §4). Default minimum prior-FY base of $10M with a documented filter to lower it. Zero/negative-base rows handled explicitly. Template SQL + catalog/caveat updates. | new `sql/0XX_*.sql`, `catalog/datasets.yaml` | |
+| FPDS-012 | todo | Self-healing error responses | `invalid_filter` errors include the dataset's `allowed_filters`; `invalid_sort` includes `sortable`; `missing_required_filter` includes an example query string. Error schema documented in `openapi.yaml`. | `app/query_builder.py`, `app/errors.py`, `openapi.yaml` | |
+| FPDS-013 | todo | Freshness metadata | Per-dataset `meta.data_as_of` in row responses, sourced from a refresh-log mechanism (design per addendum §5; template SQL for the log table + view, API reads it with graceful fallback to null). | new `sql/0XX_*.sql`, `app/routes/datasets.py` | |
+
+## Sprint 3 — Distribution & new analytics (P2)
+
+| ID | Status | Task | Acceptance criteria | Files | Completed / Notes |
+|---|---|---|---|---|---|
+| FPDS-014 | todo | `format=csv` on row queries | `?format=csv` streams the same bounded result with `Content-Disposition`. JSON remains default. | `app/routes/datasets.py` | |
+| FPDS-015 | todo | MCP server | Thin tools per `docs/LLM_INTEGRATIONS.md`: list/describe/query datasets, list/lookup dimensions, plus resolver (FPDS-009). Tool descriptions embed dataset descriptions from FPDS-010. Same guardrails as REST. | new `mcp/` module or sibling service | |
+| FPDS-016 | todo | Composite endpoint: Customer 360 | `GET /v1/profiles/customer?contracting_dept_id=` (and agency variant) assembling spend trend, top NAICS, competition posture, pricing posture, set-aside mix, top incumbents, vehicle mix, recompete signals from existing datasets. Orchestration only — no new SQL. Bounded sub-queries; partial-failure tolerant. | new `app/routes/profiles.py` | |
+| FPDS-017 | todo | Seasonality dataset (build-time MV) | New monthly/quarterly obligation grain per agency/office, built from the FPDS actions source at refresh time only (addendum §7). Template SQL + report view + catalog entries + Q4-spike-share field. | new `sql/0XX_*.sql`, `catalog/datasets.yaml` | |
+| FPDS-018 | todo | New-entrant cohort dataset | Cohort views per addendum §7 (first-award year per vendor×agency already derivable): new vendors per agency per FY, first-award size, set-aside/vehicle of first win, 2-FY survival. Template SQL + catalog + caveats. | new `sql/0XX_*.sql`, `catalog/datasets.yaml` | |
+| FPDS-019 | todo | Market Entry Difficulty Score | Composite per agency×NAICS blending HHI, not-competed share, vehicle dependence, avg offers, incumbent tenure — components exposed alongside the score. Template SQL + catalog + methodology doc section. | new `sql/0XX_*.sql`, `catalog/datasets.yaml`, `docs/METHODOLOGY.md` | |
+| FPDS-020 | todo | Award-size distribution dataset | Median/P25/P75 award size per agency×NAICS + under-SAT share. Template SQL + catalog. | new `sql/0XX_*.sql`, `catalog/datasets.yaml` | |
+
+## Parking lot (not yet scheduled)
+
+- Displacement-events / incumbent-churn dataset (feasible per addendum §7; refresh-time self-join on the contract-family MV)
+- Lookalike-customer similarity; co-incumbency teaming graph
+- `/v1/ask` natural-language routing
+- Materialize `expiration_bucket` / `recompete_confidence` into the contract-family MV (only if watchlist latency demands it)

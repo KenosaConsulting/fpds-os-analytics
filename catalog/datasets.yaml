@@ -24,7 +24,7 @@ datasets:
     public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
     sortable: ["fiscal_year", "total_obligated", "fixed_price_obligation_share", "cost_type_obligation_share", "tm_obligation_share"]
-    default_sort: "fiscal_year"
+    default_sort: "-fiscal_year"
     fields: ["fiscal_year", "is_current_fiscal_year_ytd", "fixed_price_action_count", "fixed_price_obligated", "cost_type_action_count", "cost_type_obligated", "tm_action_count", "tm_obligated", "other_action_count", "other_obligated", "total_action_count", "total_obligated", "fixed_price_action_share", "cost_type_action_share", "tm_action_share", "fixed_price_obligation_share", "cost_type_obligation_share", "tm_obligation_share"]
 
   - id: "pricing.agency_profile_fy"
@@ -85,7 +85,7 @@ datasets:
     public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
     sortable: ["fiscal_year", "avg_hhi", "highly_concentrated_markets", "competitive_markets"]
-    default_sort: "fiscal_year"
+    default_sort: "-fiscal_year"
     fields: ["fiscal_year", "is_current_fiscal_year_ytd", "analyzed_markets", "highly_concentrated_markets", "moderately_concentrated_markets", "competitive_markets", "highly_concentrated_pct", "avg_hhi", "avg_top_vendor_share_pct", "avg_top_3_vendor_share_pct", "avg_vendors_per_market", "small_biz_obligation_share_pct", "avg_small_biz_vendors_per_market", "total_market_obligation"]
     caveats:
       - "Concentration markets require at least two distinct vendors and positive total obligation."
@@ -128,7 +128,7 @@ datasets:
     required_filters_any: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
     sortable: ["fiscal_year", "small_biz_obligation_share_pct", "small_biz_vendor_share_pct", "new_small_biz_entrants"]
-    default_sort: "fiscal_year"
+    default_sort: "-fiscal_year"
     fields: ["fiscal_year", "is_current_fiscal_year_ytd", "small_biz_vendor_count", "total_vendor_count", "small_biz_vendor_share_pct", "small_biz_obligation_total", "total_obligation", "small_biz_obligation_share_pct", "small_biz_action_count", "total_action_count", "small_biz_action_share_pct", "new_small_biz_entrants"]
     caveats:
       - "Small-business flags reflect FPDS award records, not necessarily current SAM registration status."
@@ -154,7 +154,7 @@ datasets:
     public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
     sortable: ["fiscal_year", "total_obligated", "competed_action_share", "not_competed_action_share", "bundled_action_share", "avg_offers_received"]
-    default_sort: "fiscal_year"
+    default_sort: "-fiscal_year"
     fields: ["fiscal_year", "is_current_fiscal_year_ytd", "competed_action_count", "competed_obligated", "not_competed_action_count", "not_competed_obligated", "full_competition_action_count", "full_competition_obligated", "limited_competition_action_count", "limited_competition_obligated", "bundled_action_count", "bundled_obligated", "consolidated_action_count", "consolidated_obligated", "total_action_count", "total_obligated", "competed_action_share", "not_competed_action_share", "full_competition_action_share", "limited_competition_action_share", "competed_obligation_share", "not_competed_obligation_share", "bundled_action_share", "bundled_obligation_share", "consolidated_action_share", "consolidated_obligation_share", "avg_offers_received"]
 
   - id: "competition.agency_profile_fy"
@@ -203,7 +203,7 @@ datasets:
     public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "sector_code"]
     sortable: ["fiscal_year", "sector_code", "total_obligated", "sector_obligation_share_of_total", "total_distinct_vendors"]
-    default_sort: "-total_obligated"
+    default_sort: "-fiscal_year"
     fields: ["fiscal_year", "sector_code", "sector_label", "is_current_fiscal_year_ytd", "total_action_count", "total_obligated", "contract_scope_action_count", "contract_scope_obligated", "total_distinct_naics", "total_distinct_vendors", "sector_obligation_share_of_total"]
 
   - id: "naics.agency_profile_fy"
@@ -253,7 +253,7 @@ datasets:
     public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "pop_state_code", "census_region", "census_division", "is_state"]
     sortable: ["fiscal_year", "pop_state_code", "total_obligated", "total_distinct_vendor_count", "distinct_agency_count"]
-    default_sort: "-total_obligated"
+    default_sort: "-fiscal_year"
     fields: ["pop_state_code", "pop_state_name", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "total_obligated", "contract_scope_obligated", "distinct_agency_count", "total_distinct_vendor_count", "is_domestic", "census_region", "census_division", "is_state"]
 
   - id: "geography.regional_summary_fy"
@@ -265,7 +265,7 @@ datasets:
     public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "census_region"]
     sortable: ["fiscal_year", "census_region", "total_obligated", "state_count", "total_distinct_vendor_count"]
-    default_sort: "-total_obligated"
+    default_sort: "-fiscal_year"
     fields: ["census_region", "fiscal_year", "is_current_fiscal_year_ytd", "state_count", "total_action_count", "total_obligated", "contract_scope_obligated", "total_distinct_vendor_count", "total_distinct_agency_count"]
 
   - id: "geography.mismatch_leaders"
@@ -380,7 +380,7 @@ datasets:
     filters: ["principal_naics_code", "sector_code", "contracting_dept_id", "contracting_agency_id"]
     sortable: ["recent_3yr_obligated", "customer_rank", "recent_3yr_vendors", "small_biz_obligation_share"]
     default_sort: "customer_rank"
-    fields: ["principal_naics_code", "principal_naics_description", "sector_label", "contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "recent_3yr_obligated", "recent_3yr_actions", "recent_3yr_vendors", "small_biz_obligation_share", "not_competed_action_share", "customer_rank"]
+    fields: ["principal_naics_code", "principal_naics_description", "sector_code", "sector_label", "contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "recent_3yr_obligated", "recent_3yr_actions", "recent_3yr_vendors", "small_biz_obligation_share", "not_competed_action_share", "customer_rank"]
     caveats:
       - "Rankings based on recent 3 fiscal years. Current FY is year-to-date."
       - "NAICS code required. Use the naics dimension to discover codes."
@@ -486,7 +486,7 @@ datasets:
     public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max"]
     sortable: ["fiscal_year", "net_obligated_amount", "setaside_action_share_known", "setaside_obligation_share_known"]
-    default_sort: "fiscal_year"
+    default_sort: "-fiscal_year"
     fields: ["fiscal_year", "is_current_fiscal_year_ytd", "action_count", "contract_scope_action_count", "base_award_action_count", "modification_action_count", "known_setaside_status_count", "unknown_setaside_status_count", "no_setaside_action_count", "positive_setaside_action_count", "net_obligated_amount", "known_status_net_obligated_amount", "positive_setaside_net_obligated_amount", "contract_scope_net_obligated_amount", "contract_scope_positive_setaside_net_obligated_amount", "setaside_action_share_all", "setaside_action_share_known", "contract_scope_setaside_action_share_known", "setaside_obligation_share_known", "contract_scope_setaside_obligation_share_known", "unknown_status_share", "modification_share", "base_award_setaside_share_known"]
     caveats:
       - "Set-aside status coding in FPDS changed over time. The unknown_status_share field indicates data quality — higher values mean more actions lack set-aside classification."
@@ -501,7 +501,7 @@ datasets:
     public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "set_aside_family"]
     sortable: ["fiscal_year", "set_aside_family", "net_obligated_amount", "share_of_positive_setaside_actions", "share_of_net_obligations"]
-    default_sort: "-net_obligated_amount"
+    default_sort: "-fiscal_year"
     fields: ["fiscal_year", "is_current_fiscal_year_ytd", "set_aside_family", "action_count", "contract_scope_action_count", "positive_setaside_action_count", "net_obligated_amount", "contract_scope_net_obligated_amount", "contract_scope_positive_setaside_net_obligated_amount", "total_action_count", "total_positive_setaside_action_count", "total_net_obligated_amount", "share_of_known_status_actions", "share_of_positive_setaside_actions", "share_of_net_obligations"]
     caveats:
       - "Set-aside families group related codes: 8(a) includes both competed and sole-source 8(a); Small Business includes total, partial, and emerging SB set-asides."
@@ -564,7 +564,7 @@ datasets:
     public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "product_or_service_code", "psc_group"]
     sortable: ["fiscal_year", "net_obligated_amount", "distinct_vendor_count", "distinct_agency_count"]
-    default_sort: "-net_obligated_amount"
+    default_sort: "-fiscal_year"
     fields: ["product_or_service_code", "psc_description", "psc_category_code", "psc_category_label", "psc_group", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "net_obligated_amount", "distinct_vendor_count", "competed_action_count", "not_competed_action_count", "small_biz_obligated", "small_biz_obligation_share", "not_competed_action_share", "distinct_agency_count"]
     caveats:
       - "PSC codes classify what was bought — services, products, R&D, or construction."
@@ -622,7 +622,7 @@ datasets:
     public_access: "public_bounded"
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "vehicle_family"]
     sortable: ["fiscal_year", "net_obligated_amount", "distinct_vendor_count", "distinct_agency_count"]
-    default_sort: "-net_obligated_amount"
+    default_sort: "-fiscal_year"
     fields: ["vehicle_family", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "net_obligated_amount", "distinct_vendor_count", "competed_action_count", "not_competed_action_count", "small_biz_obligated", "small_biz_obligation_share", "competed_action_share", "distinct_agency_count"]
     caveats:
       - "Vehicle families group contract types: GWAC, Schedule, IDIQ, BPA, BOA, Open Market."
@@ -702,12 +702,17 @@ datasets:
     filters: ["contracting_dept_id", "contracting_agency_id", "contracting_office_id", "vendor_uei", "principal_naics_code", "product_or_service_code", "expiration_bucket", "recompete_confidence", "set_aside_code"]
     sortable: ["remaining_months", "total_obligated", "base_and_all_options_value", "current_completion_date", "duration_months"]
     default_sort: "remaining_months"
+    default_predicates:
+      - field: "expiration_bucket"
+        exclude_values: ["recently_expired"]
+        unless_filter: "expiration_bucket"
     max_limit: 500
     fields: ["piid", "contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "contracting_office_id", "contracting_office_name", "vendor_uei", "vendor_name", "principal_naics_code", "principal_naics_description", "product_or_service_code", "psc_description", "set_aside_code", "set_aside_label", "extent_competed", "competition_family", "effective_date", "current_completion_date", "ultimate_completion_date", "base_award_date", "latest_action_date", "total_obligated", "base_and_all_options_value", "action_count", "modification_count", "duration_months", "remaining_months", "expiration_bucket", "recompete_confidence"]
     caveats:
       - "CRITICAL: Period-of-performance end dates are signals, not guaranteed recompete dates. Contracts may be extended, consolidated, or cancelled."
       - "Recompete confidence: HIGH = competed, 12+ months, $100K+, 2+ actions. MEDIUM = 6+ months, $25K+. LOW = incomplete data or micro-purchases."
       - "Filters to contracts within -6 to +24 months of expiration with $25K+ obligation."
+      - "Default rows exclude the recently_expired bucket; supply expiration_bucket=recently_expired to opt into already-expired contracts."
 
   - id: "pipeline.duration_profile"
     title: "Contract Duration Profile By Agency and NAICS"
