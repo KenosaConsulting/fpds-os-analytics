@@ -7,11 +7,11 @@
         ║     ██      ██      ██   ██      ██                               ║
         ║     ██      ██      ██████  ███████     Analytics API             ║
         ║                                                                   ║
-        ║     ▁▂▃▄▅▆▇  COMPETITIVE INTELLIGENCE ENGINE  ▇▆▅▄▃▂▁           ║
+        ║     ▁▂▃▄▅▆▇  COMPETITIVE INTELLIGENCE ENGINE  ▇▆▅▄▃▂▁             ║
         ║                                                                   ║
         ║     ┌───────────────────────────────────────────────────────┐     ║
-        ║     │  58 datasets · 15 dimensions · 99M+ federal actions  │     ║
-        ║     │  REST + MCP  · MIT License   · Zero config to start  │     ║
+        ║     │  58 datasets · 15 dimensions · 99M+ federal actions   │      ║
+        ║     │  REST + MCP  · MIT License   · Zero config to start   │      ║
         ║     └───────────────────────────────────────────────────────┘     ║
         ║                                                                   ║
         ╚═══════════════════════════════════════════════════════════════════╝
