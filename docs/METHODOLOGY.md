@@ -426,3 +426,30 @@ KPI summaries use three scopes:
 ### Share Computations
 
 All percentage shares are computed as ratios and rounded to 4 decimal places (e.g., 0.6234 = 62.34%). Division by zero is guarded with `NULLIF(denominator, 0)`.
+
+### Market Entry Difficulty Score
+
+`market.entry_difficulty_score` is a 0-100 screening heuristic at agency x NAICS grain for the most recent complete fiscal year. Higher values indicate harder entry. The current fiscal year is excluded to avoid year-to-date bias.
+
+The score exposes every component used in the blend:
+
+```
+entry_difficulty_score =
+  100 * (
+    0.30 * hhi_component
+  + 0.25 * not_competed_component
+  + 0.15 * vehicle_dependence_component
+  + 0.15 * low_offer_component
+  + 0.15 * incumbent_tenure_component
+  )
+```
+
+Component definitions:
+
+- `hhi_component` = `LEAST(hhi / 10000, 1)`, where HHI is computed from vendor obligation shares in `vendor_concentration.mv_fpds_vendor_naics_agency_year`.
+- `not_competed_component` = not-competed action share from `naics_breakdown.report_deck_naics_agency_fy`.
+- `vehicle_dependence_component` = agency-level share of positive obligations flowing through non-open-market vehicle families in `competition_dynamics.mv_fpds_vehicle_mix_agency_office_fy`.
+- `low_offer_component` = 1 when average offers are at or below 1, 0 when average offers are 5 or more, linearly scaled between those points. Missing average-offer data is neutral at 0.5.
+- `incumbent_tenure_component` = `LEAST(avg_top3_incumbent_active_fy_count / 10, 1)`, derived from `vendor_concentration.report_deck_agency_naics_vendor_leaders`.
+
+Because existing vehicle and offer aggregates are agency-level FY views rather than NAICS-level FY views, those two components are joined to every NAICS market for the same agency and fiscal year. Treat the score as a triage aid; the component columns are the auditable explanation.

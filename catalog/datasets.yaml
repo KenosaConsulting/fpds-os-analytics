@@ -520,6 +520,33 @@ datasets:
       - "Rankings based on recent 3 fiscal years. Current FY is year-to-date."
       - "NAICS code required. Use the naics dimension to discover codes."
 
+  - id: "market.entry_difficulty_score"
+    title: "Market Entry Difficulty Score"
+    domain: "market"
+    description: "Market Entry Difficulty Score ranks agency and NAICS markets from 0 to 100 based on concentration, non-competed activity, vehicle dependence, low offer intensity, and incumbent tenure. Use it to quickly screen where entry is structurally harder before drilling into incumbents, competition posture, and award sizes."
+    example_queries:
+      - query: "/v1/datasets/market.entry_difficulty_score/rows?principal_naics_code=541512&limit=25"
+        explanation: "Compare entry difficulty across agencies for one NAICS market."
+    field_descriptions:
+      entry_difficulty_score: "0-100 weighted score; higher values indicate harder market entry."
+      hhi_component: "Concentration component scaled from HHI/10000."
+      not_competed_component: "Not-competed action-share component from the agency-NAICS market view."
+      vehicle_dependence_component: "Agency-level share of obligations flowing through non-open-market vehicle families."
+      low_offer_component: "Agency-level offer-intensity component; fewer average offers means harder entry."
+      incumbent_tenure_component: "Agency-NAICS component based on active fiscal years for the top three incumbent vendors."
+    backing_view: "analytics_api.market_entry_difficulty_score"
+    source_view: "competition_dynamics.report_deck_market_entry_difficulty_score"
+    grain: "contracting_agency_id x principal_naics_code for most recent complete fiscal year"
+    public_access: "api_key"
+    required_filters_any: ["contracting_dept_id", "contracting_agency_id", "principal_naics_code", "sector_code"]
+    filters: ["contracting_dept_id", "contracting_agency_id", "principal_naics_code", "sector_code"]
+    sortable: ["entry_difficulty_score", "net_obligated_amount", "hhi", "not_competed_action_share", "vehicle_dependence_share", "avg_offers_received", "avg_top3_incumbent_active_fy_count"]
+    default_sort: "-entry_difficulty_score"
+    fields: ["contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "principal_naics_code", "principal_naics_description", "sector_code", "sector_label", "analysis_fiscal_year", "net_obligated_amount", "distinct_vendor_count", "hhi", "top_vendor_obligation_share", "not_competed_action_share", "avg_offers_received", "vehicle_dependence_share", "avg_top3_incumbent_active_fy_count", "hhi_component", "not_competed_component", "vehicle_dependence_component", "low_offer_component", "incumbent_tenure_component", "entry_difficulty_score"]
+    caveats:
+      - "Uses the most recent complete fiscal year; the current fiscal year is excluded to avoid YTD bias."
+      - "Vehicle dependence and average-offer components are agency-level FY signals joined to each agency-NAICS market because the existing FY-grain vehicle and competition aggregates are not NAICS-grain."
+      - "The score is a screening heuristic, not a win probability. Inspect the exposed components before drawing capture conclusions."
 
   # ── Incumbent / Vendor Leaders (Build 3) ─────────────────────────────────
 

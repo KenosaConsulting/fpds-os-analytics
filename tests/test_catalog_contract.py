@@ -72,7 +72,7 @@ async def _streaming_response_text(response) -> str:
 
 def test_catalog_has_expected_dataset_count() -> None:
     catalog = load_catalog()
-    assert len(catalog.datasets) == 55
+    assert len(catalog.datasets) == 56
     assert len(catalog.dimensions) == 15
     assert {item["public_access"] for item in catalog.datasets.values()} == {"public_bounded", "api_key"}
 
@@ -466,6 +466,19 @@ def test_award_size_distribution_template_uses_single_pass_percentiles() -> None
     assert "PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY cf.total_obligated)" in sql
     assert "cf.total_obligated > 0" in sql
     assert "GRANT SELECT ON analytics_api.pipeline_award_size_distribution TO fpds_analytics_api_readonly" in sql
+
+
+def test_market_entry_difficulty_template_exposes_weighted_components() -> None:
+    sql = (SERVICE_ROOT / "sql" / "025_market_entry_difficulty_score.sql").read_text(encoding="utf-8")
+    assert "CREATE OR REPLACE VIEW competition_dynamics.report_deck_market_entry_difficulty_score" in sql
+    assert "vendor_concentration.mv_fpds_vendor_naics_agency_year" in sql
+    assert "naics_breakdown.report_deck_naics_agency_fy" in sql
+    assert "competition_dynamics.mv_fpds_vehicle_mix_agency_office_fy" in sql
+    assert "vendor_concentration.report_deck_agency_naics_vendor_leaders" in sql
+    assert "0.30 * c.hhi_component" in sql
+    assert "0.25 * c.not_competed_component" in sql
+    assert "entry_difficulty_score" in sql
+    assert "GRANT SELECT ON analytics_api.market_entry_difficulty_score TO fpds_analytics_api_readonly" in sql
 
 
 def test_dimension_q_search_uses_parameterized_ilike() -> None:
