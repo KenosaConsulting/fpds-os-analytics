@@ -40,6 +40,21 @@ def _required_filter_params(dataset: dict[str, object]) -> dict[str, str]:
     return {filter_name: _sample_value(filter_name)}
 
 
+def _dimension_dataset_like(dimension: dict[str, object]) -> dict[str, object]:
+    return {
+        "id": f"dimension.{dimension['id']}",
+        "backing_view": dimension["backing_view"],
+        "fields": dimension["fields"],
+        "filters": dimension.get("filters", []),
+        "searchable_columns": dimension.get("searchable_columns", []),
+        "sortable": [dimension["key"]],
+        "default_sort": dimension["key"],
+        "limit": 100,
+        "max_limit": 1000,
+        "_api_filter_allowlist": dimension["_api_filter_allowlist"],
+    }
+
+
 def test_catalog_has_expected_dataset_count() -> None:
     catalog = load_catalog()
     assert len(catalog.datasets) == 53
@@ -121,6 +136,17 @@ def test_default_predicates_use_declared_dataset_filters() -> None:
                 failures.append(f"{dataset['id']}:field:{field}")
             if unless_filter not in filters:
                 failures.append(f"{dataset['id']}:unless_filter:{unless_filter}")
+    assert failures == []
+
+
+def test_dimension_searchable_columns_are_declared_fields() -> None:
+    catalog = load_catalog()
+    failures = []
+    for dimension in catalog.dimensions.values():
+        fields = set(dimension.get("fields", []))
+        for column in dimension.get("searchable_columns", []):
+            if column not in fields:
+                failures.append(f"{dimension['id']}:{column}")
     assert failures == []
 
 
@@ -292,6 +318,51 @@ def test_new_filter_mv_index_template_covers_expected_materialized_views() -> No
     assert "naics_breakdown.mv_fpds_naics_agency_year" in sql
     assert "contract_pricing.mv_fpds_pricing_agency_year" in sql
     assert "competition_dynamics.mv_fpds_competition_agency_year" in sql
+
+
+def test_dimension_q_search_uses_parameterized_ilike() -> None:
+    catalog = load_catalog()
+    dimension = catalog.get_dimension("departments")
+    sql, values, _limit, _offset = build_rows_query(
+        _dimension_dataset_like(dimension),
+        {"_search_q": "homeland"},
+    )
+    assert '"department_name" ilike %s' in sql
+    assert '"department_short_name" ilike %s' in sql
+    assert "homeland" not in sql
+    assert values[:2] == ["%homeland%", "%homeland%"]
+
+
+def test_office_q_search_defaults_to_active_high_or_medium_confidence() -> None:
+    catalog = load_catalog()
+    dimension = catalog.get_dimension("contracting_offices")
+    dataset_like = _dimension_dataset_like(dimension)
+    dataset_like["default_predicates"] = [
+        {"field": "is_active_recent", "include_values": [True], "unless_filter": "is_active_recent"},
+        {"field": "name_confidence", "include_values": ["high", "medium"], "unless_filter": "name_confidence"},
+    ]
+    sql, values, _limit, _offset = build_rows_query(dataset_like, {"_search_q": "cecom"})
+    assert '"is_active_recent" = %s' in sql
+    assert '"name_confidence" in (%s, %s)' in sql
+    assert values[:3] == [True, "high", "medium"]
+    assert values[3:5] == ["%cecom%", "%cecom%"]
+
+
+def test_office_q_search_defaults_are_overridable() -> None:
+    catalog = load_catalog()
+    dimension = catalog.get_dimension("contracting_offices")
+    dataset_like = _dimension_dataset_like(dimension)
+    dataset_like["default_predicates"] = [
+        {"field": "is_active_recent", "include_values": [True], "unless_filter": "is_active_recent"},
+        {"field": "name_confidence", "include_values": ["high", "medium"], "unless_filter": "name_confidence"},
+    ]
+    sql, values, _limit, _offset = build_rows_query(
+        dataset_like,
+        {"_search_q": "cecom", "is_active_recent": "false", "name_confidence": "low"},
+    )
+    assert '"name_confidence" in (%s, %s)' not in sql
+    assert values[:2] == [False, "low"]
+    assert values[2:4] == ["%cecom%", "%cecom%"]
 
 
 def test_v1_label_enrichment_fields_are_declared_in_catalog() -> None:

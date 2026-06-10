@@ -12,7 +12,7 @@ from .errors import APIError
 
 
 IDENT_RE = re.compile(r"^[a-z][a-z0-9_]*$")
-CONTROL_PARAMS = {"fields", "sort", "limit", "cursor", "_max_limit_override"}
+CONTROL_PARAMS = {"fields", "sort", "limit", "cursor", "_max_limit_override", "_search_q"}
 
 
 def quote_ident(identifier: str) -> str:
@@ -77,6 +77,12 @@ def validate_required_filters(dataset: dict[str, Any], params: dict[str, str]) -
         raise APIError(400, "missing_required_filter", f"Dataset requires at least one of: {joined}.")
 
 
+def coerce_filter_value(name: str, value: Any) -> Any:
+    if name.startswith("is_"):
+        return str(value).lower() in {"1", "true", "t", "yes", "y"}
+    return value
+
+
 def build_default_where(dataset: dict[str, Any], params: dict[str, str]) -> tuple[list[str], list[Any]]:
     allowed_filters = set(dataset.get("filters", []))
     clauses: list[str] = []
@@ -84,7 +90,6 @@ def build_default_where(dataset: dict[str, Any], params: dict[str, str]) -> tupl
     for predicate in dataset.get("default_predicates", []):
         field = predicate.get("field")
         unless_filter = predicate.get("unless_filter", field)
-        excluded_values = predicate.get("exclude_values", [])
         if not field or field not in allowed_filters:
             raise APIError(
                 500,
@@ -93,15 +98,45 @@ def build_default_where(dataset: dict[str, Any], params: dict[str, str]) -> tupl
             )
         if unless_filter and params.get(unless_filter) not in (None, ""):
             continue
-        if len(excluded_values) != 1:
+        include_values = predicate.get("include_values")
+        excluded_values = predicate.get("exclude_values")
+        if include_values is not None:
+            coerced_values = [coerce_filter_value(field, value) for value in include_values]
+            if len(coerced_values) == 1:
+                clauses.append(f"{quote_ident(field)} = %s")
+            else:
+                placeholders = ", ".join("%s" for _ in coerced_values)
+                clauses.append(f"{quote_ident(field)} in ({placeholders})")
+            values.extend(coerced_values)
+            continue
+        if excluded_values is None or len(excluded_values) != 1:
             raise APIError(
                 500,
                 "dataset_contract_mismatch",
                 f"Default predicate for '{field}' must declare exactly one excluded value.",
             )
         clauses.append(f"{quote_ident(field)} <> %s")
-        values.append(excluded_values[0])
+        values.append(coerce_filter_value(field, excluded_values[0]))
     return clauses, values
+
+
+def build_search_where(dataset: dict[str, Any], params: dict[str, str]) -> tuple[list[str], list[Any]]:
+    raw_query = params.get("_search_q")
+    if raw_query in (None, ""):
+        return [], []
+    searchable_columns = list(dataset.get("searchable_columns", []))
+    fields = set(dataset.get("fields", []))
+    if not searchable_columns:
+        raise APIError(400, "invalid_filter", f"Search is not supported for dataset '{dataset['id']}'.", param="q")
+    unknown_columns = [column for column in searchable_columns if column not in fields]
+    if unknown_columns:
+        raise APIError(
+            500,
+            "dataset_contract_mismatch",
+            f"Search column '{unknown_columns[0]}' is not declared as a field for dataset '{dataset['id']}'.",
+        )
+    clauses = [f"{quote_ident(column)} ilike %s" for column in searchable_columns]
+    return ["(" + " or ".join(clauses) + ")"], [f"%{raw_query}%"] * len(searchable_columns)
 
 
 def build_where(dataset: dict[str, Any], params: dict[str, str]) -> tuple[list[str], list[Any]]:
@@ -124,12 +159,9 @@ def build_where(dataset: dict[str, Any], params: dict[str, str]) -> tuple[list[s
         elif name == "fiscal_year_max":
             clauses.append(f"{quote_ident('fiscal_year')} <= %s")
             values.append(int(value))
-        elif name.startswith("is_"):
-            clauses.append(f"{quote_ident(name)} = %s")
-            values.append(str(value).lower() in {"1", "true", "t", "yes", "y"})
         else:
             clauses.append(f"{quote_ident(name)} = %s")
-            values.append(value)
+            values.append(coerce_filter_value(name, value))
     return clauses, values
 
 
@@ -147,6 +179,9 @@ def build_rows_query(dataset: dict[str, Any], params: dict[str, str]) -> tuple[s
     filter_clauses, filter_values = build_where(dataset, params)
     where_clauses.extend(filter_clauses)
     values.extend(filter_values)
+    search_clauses, search_values = build_search_where(dataset, params)
+    where_clauses.extend(search_clauses)
+    values.extend(search_values)
 
     sort = params.get("sort") or dataset.get("default_sort") or fields[0]
     direction = "desc" if sort.startswith("-") else "asc"
