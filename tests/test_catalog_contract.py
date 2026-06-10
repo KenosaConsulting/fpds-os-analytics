@@ -4,6 +4,8 @@ import sys
 from pathlib import Path
 import hashlib
 from decimal import Decimal
+from contextlib import contextmanager
+from datetime import datetime, timezone
 from urllib.parse import parse_qs, urlparse
 
 import yaml
@@ -20,6 +22,7 @@ from app.main import _allowed_origins  # noqa: E402
 from app.notices import BRIEF_DATA_NOTICE, data_notices, dimension_notices  # noqa: E402
 from app.rate_limit import MemoryRateLimitStore, RateLimit, _hashed_token  # noqa: E402
 from app.routes.catalog import describe_dataset, list_catalog, list_dimensions  # noqa: E402
+from app.routes.datasets import dataset_data_as_of  # noqa: E402
 from app.routes.health import ai_assistant_guide, health, metadata  # noqa: E402
 
 
@@ -231,6 +234,13 @@ def test_openapi_documents_self_healing_error_fields() -> None:
     assert "example_query" in error_properties
 
 
+def test_openapi_documents_data_as_of_metadata() -> None:
+    with (SERVICE_ROOT / "openapi.yaml").open("r", encoding="utf-8") as fh:
+        openapi = yaml.safe_load(fh)
+    meta_properties = openapi["components"]["schemas"]["ResponseMeta"]["properties"]
+    assert "data_as_of" in meta_properties
+
+
 def test_metadata_points_to_ai_assistant_guide() -> None:
     response = metadata()
     assert response["notice"] == BRIEF_DATA_NOTICE
@@ -403,6 +413,14 @@ def test_new_filter_mv_index_template_covers_expected_materialized_views() -> No
     assert "naics_breakdown.mv_fpds_naics_agency_year" in sql
     assert "contract_pricing.mv_fpds_pricing_agency_year" in sql
     assert "competition_dynamics.mv_fpds_competition_agency_year" in sql
+
+
+def test_refresh_log_template_creates_reader_view_and_grant() -> None:
+    sql = (SERVICE_ROOT / "sql" / "022_dataset_refresh_log.sql").read_text(encoding="utf-8")
+    assert "external refresh process outside this repo must add one INSERT per dataset" in sql
+    assert "CREATE TABLE IF NOT EXISTS analytics_dims.dataset_refresh_log" in sql
+    assert "CREATE OR REPLACE VIEW analytics_api.dataset_refresh_log" in sql
+    assert "GRANT SELECT ON analytics_api.dataset_refresh_log TO fpds_analytics_api_readonly" in sql
 
 
 def test_dimension_q_search_uses_parameterized_ilike() -> None:
@@ -633,3 +651,40 @@ def test_rate_limit_config_shape() -> None:
     assert limit.requests == 10
     assert limit.window_seconds == 60
     assert len(_hashed_token("fpds_test_key")) == 24
+
+
+def test_dataset_data_as_of_returns_iso_timestamp(monkeypatch) -> None:
+    timestamp = datetime(2026, 6, 10, 12, 30, tzinfo=timezone.utc)
+
+    class FakeCursor:
+        def execute(self, sql: str, values: tuple[object, object]) -> None:
+            assert "analytics_api.dataset_refresh_log" in sql
+            assert values == ("pricing.trend_fy", "contract_pricing.report_deck_pricing_trend_fy")
+
+        def fetchone(self) -> dict[str, object]:
+            return {"data_as_of": timestamp}
+
+    @contextmanager
+    def fake_db_cursor():
+        yield FakeCursor()
+
+    monkeypatch.setattr("app.routes.datasets.db_cursor", fake_db_cursor)
+    catalog = load_catalog()
+    assert dataset_data_as_of(catalog.get_dataset("pricing.trend_fy")) == timestamp.isoformat()
+
+
+def test_dataset_data_as_of_falls_back_to_null_when_missing(monkeypatch) -> None:
+    class FakeCursor:
+        def execute(self, sql: str, values: tuple[object, object]) -> None:
+            return None
+
+        def fetchone(self) -> None:
+            return None
+
+    @contextmanager
+    def fake_db_cursor():
+        yield FakeCursor()
+
+    monkeypatch.setattr("app.routes.datasets.db_cursor", fake_db_cursor)
+    catalog = load_catalog()
+    assert dataset_data_as_of(catalog.get_dataset("pricing.trend_fy")) is None

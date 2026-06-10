@@ -646,6 +646,12 @@ components:
           type: array
           items:
             type: integer
+        data_as_of:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Dataset freshness timestamp from the analytics refresh log, or null when unavailable.
         last_refreshed_at:
           type: string
           format: date-time
