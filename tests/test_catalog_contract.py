@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import asyncio
 import sys
 from pathlib import Path
 import hashlib
 from decimal import Decimal
 from contextlib import contextmanager
 from datetime import datetime, timezone
+from types import SimpleNamespace
 from urllib.parse import parse_qs, urlparse
 
 import yaml
@@ -17,12 +19,12 @@ sys.path.insert(0, str(SERVICE_ROOT))
 from app.catalog import load_catalog  # noqa: E402
 from app.errors import APIError  # noqa: E402
 from app.query_builder import build_rows_query  # noqa: E402
-from app.auth import optional_api_access, require_api_key  # noqa: E402
+from app.auth import APIAccess, optional_api_access, require_api_key  # noqa: E402
 from app.main import _allowed_origins  # noqa: E402
 from app.notices import BRIEF_DATA_NOTICE, data_notices, dimension_notices  # noqa: E402
 from app.rate_limit import MemoryRateLimitStore, RateLimit, _hashed_token  # noqa: E402
 from app.routes.catalog import describe_dataset, list_catalog, list_dimensions  # noqa: E402
-from app.routes.datasets import dataset_data_as_of  # noqa: E402
+from app.routes.datasets import dataset_data_as_of, dataset_rows  # noqa: E402
 from app.routes.health import ai_assistant_guide, health, metadata  # noqa: E402
 
 
@@ -57,6 +59,13 @@ def _dimension_dataset_like(dimension: dict[str, object]) -> dict[str, object]:
         "max_limit": 1000,
         "_api_filter_allowlist": dimension["_api_filter_allowlist"],
     }
+
+
+async def _streaming_response_text(response) -> str:
+    chunks = []
+    async for chunk in response.body_iterator:
+        chunks.append(chunk.decode("utf-8") if isinstance(chunk, bytes) else chunk)
+    return "".join(chunks)
 
 
 def test_catalog_has_expected_dataset_count() -> None:
@@ -239,6 +248,15 @@ def test_openapi_documents_data_as_of_metadata() -> None:
         openapi = yaml.safe_load(fh)
     meta_properties = openapi["components"]["schemas"]["ResponseMeta"]["properties"]
     assert "data_as_of" in meta_properties
+
+
+def test_openapi_documents_dataset_rows_csv_format() -> None:
+    with (SERVICE_ROOT / "openapi.yaml").open("r", encoding="utf-8") as fh:
+        openapi = yaml.safe_load(fh)
+    rows = openapi["paths"]["/v1/datasets/{dataset_id}/rows"]["get"]
+    format_param = next(param for param in rows["parameters"] if param.get("name") == "format")
+    assert format_param["schema"]["enum"] == ["json", "csv"]
+    assert "text/csv" in rows["responses"]["200"]["content"]
 
 
 def test_metadata_points_to_ai_assistant_guide() -> None:
@@ -688,3 +706,64 @@ def test_dataset_data_as_of_falls_back_to_null_when_missing(monkeypatch) -> None
     monkeypatch.setattr("app.routes.datasets.db_cursor", fake_db_cursor)
     catalog = load_catalog()
     assert dataset_data_as_of(catalog.get_dataset("pricing.trend_fy")) is None
+
+
+def test_dataset_rows_defaults_to_json(monkeypatch) -> None:
+    class FakeCursor:
+        def execute(self, sql: str, values: list[object] | tuple[object, ...]) -> None:
+            self.sql = sql
+            self.values = values
+
+        def fetchall(self) -> list[dict[str, object]]:
+            assert 'from "analytics_api"."pricing_trend_fy"' in self.sql
+            assert self.values[-2:] == [2, 0]
+            return [{"fiscal_year": 2024, "total_obligated": Decimal("10.50")}]
+
+        def fetchone(self) -> None:
+            return None
+
+    @contextmanager
+    def fake_db_cursor():
+        yield FakeCursor()
+
+    monkeypatch.setattr("app.routes.datasets.db_cursor", fake_db_cursor)
+    response = dataset_rows(
+        "pricing.trend_fy",
+        SimpleNamespace(query_params={"fields": "fiscal_year,total_obligated", "limit": "1"}),
+        APIAccess(key_id="public", is_authenticated=False),
+    )
+    assert response["data"] == [{"fiscal_year": 2024, "total_obligated": "10.50"}]
+    assert response["pagination"]["limit"] == 1
+
+
+def test_dataset_rows_csv_uses_same_bounds_and_escapes(monkeypatch) -> None:
+    class FakeCursor:
+        def execute(self, sql: str, values: list[object] | tuple[object, ...]) -> None:
+            self.sql = sql
+            self.values = values
+
+        def fetchall(self) -> list[dict[str, object]]:
+            assert 'from "analytics_api"."pricing_trend_fy"' in self.sql
+            assert self.values[-2:] == [3, 0]
+            return [
+                {"fiscal_year": 2025, "total_obligated": '12, "quoted"'},
+                {"fiscal_year": 2024, "total_obligated": Decimal("10.50")},
+                {"fiscal_year": 2023, "total_obligated": Decimal("9.25")},
+            ]
+
+    @contextmanager
+    def fake_db_cursor():
+        yield FakeCursor()
+
+    monkeypatch.setattr("app.routes.datasets.db_cursor", fake_db_cursor)
+    response = dataset_rows(
+        "pricing.trend_fy",
+        SimpleNamespace(
+            query_params={"fields": "fiscal_year,total_obligated", "limit": "2", "format": "csv"},
+        ),
+        APIAccess(key_id="public", is_authenticated=False),
+    )
+    assert response.media_type == "text/csv; charset=utf-8"
+    assert response.headers["content-disposition"] == 'attachment; filename="pricing_trend_fy_rows.csv"'
+    text = asyncio.run(_streaming_response_text(response))
+    assert text == 'fiscal_year,total_obligated\r\n2025,"12, ""quoted"""\r\n2024,10.50\r\n'

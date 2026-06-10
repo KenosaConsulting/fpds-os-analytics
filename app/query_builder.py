@@ -12,7 +12,7 @@ from .errors import APIError
 
 
 IDENT_RE = re.compile(r"^[a-z][a-z0-9_]*$")
-CONTROL_PARAMS = {"fields", "sort", "limit", "cursor", "_max_limit_override", "_search_q"}
+CONTROL_PARAMS = {"fields", "sort", "limit", "cursor", "format", "_max_limit_override", "_search_q"}
 
 
 def quote_ident(identifier: str) -> str:

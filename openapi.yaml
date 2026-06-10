@@ -209,6 +209,15 @@ paths:
         in: query
         schema:
           type: string
+      - name: format
+        in: query
+        description: Response format. Omit for JSON; use csv for a bounded spreadsheet-friendly export.
+        schema:
+          type: string
+          enum:
+          - json
+          - csv
+          default: json
       responses:
         '200':
           description: Dataset rows.
@@ -227,6 +236,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RowsResponse'
+            text/csv:
+              schema:
+                type: string
         '400':
           $ref: '#/components/responses/Error'
         '403':
