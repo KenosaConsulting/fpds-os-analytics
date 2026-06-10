@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 from fastapi import HTTPException
 
 
@@ -16,13 +18,17 @@ class APIError(HTTPException):
         *,
         error_type: str = "invalid_request",
         param: str | None = None,
+        extra: dict[str, Any] | None = None,
     ) -> None:
+        detail = {
+            "type": error_type,
+            "code": code,
+            "message": message,
+            "param": param,
+        }
+        if extra:
+            detail.update(extra)
         super().__init__(
             status_code=status_code,
-            detail={
-                "type": error_type,
-                "code": code,
-                "message": message,
-                "param": param,
-            },
+            detail=detail,
         )

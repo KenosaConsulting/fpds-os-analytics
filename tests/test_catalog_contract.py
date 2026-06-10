@@ -222,6 +222,15 @@ def test_openapi_documents_dataset_metadata_fields() -> None:
     assert "field_descriptions" in properties
 
 
+def test_openapi_documents_self_healing_error_fields() -> None:
+    with (SERVICE_ROOT / "openapi.yaml").open("r", encoding="utf-8") as fh:
+        openapi = yaml.safe_load(fh)
+    error_properties = openapi["components"]["schemas"]["ErrorResponse"]["properties"]["error"]["properties"]
+    assert "allowed_filters" in error_properties
+    assert "sortable" in error_properties
+    assert "example_query" in error_properties
+
+
 def test_metadata_points_to_ai_assistant_guide() -> None:
     response = metadata()
     assert response["notice"] == BRIEF_DATA_NOTICE
@@ -268,6 +277,7 @@ def test_invalid_filter_is_rejected() -> None:
     except APIError as exc:
         assert exc.detail["code"] == "invalid_filter"
         assert exc.detail["param"] == "uei"
+        assert exc.detail["allowed_filters"] == ["contracting_dept_id"]
     else:
         raise AssertionError("Expected invalid_filter")
 
@@ -285,6 +295,7 @@ def test_catalog_filter_allowlist_preserves_api_vs_dataset_errors() -> None:
     except APIError as exc:
         assert exc.detail["code"] == "invalid_filter"
         assert "not supported for dataset" in exc.detail["message"]
+        assert exc.detail["allowed_filters"] == ["contracting_dept_id"]
     else:
         raise AssertionError("Expected dataset-level invalid_filter")
 
@@ -293,6 +304,7 @@ def test_catalog_filter_allowlist_preserves_api_vs_dataset_errors() -> None:
     except APIError as exc:
         assert exc.detail["code"] == "invalid_filter"
         assert "not supported by the API" in exc.detail["message"]
+        assert exc.detail["allowed_filters"] == ["contracting_dept_id"]
     else:
         raise AssertionError("Expected API-level invalid_filter")
 
@@ -477,6 +489,7 @@ def test_invalid_sort_is_rejected() -> None:
         build_rows_query(dataset, {"sort": "-vendor_name"})
     except APIError as exc:
         assert exc.detail["code"] == "invalid_sort"
+        assert exc.detail["sortable"] == dataset["sortable"]
     else:
         raise AssertionError("Expected invalid_sort")
 
@@ -556,6 +569,7 @@ def test_expensive_datasets_require_filters() -> None:
             build_rows_query(dataset, {"limit": "1"})
         except APIError as exc:
             assert exc.detail["code"] == "missing_required_filter"
+            assert exc.detail["example_query"].startswith(f"/v1/datasets/{dataset_id}/rows?")
         else:
             raise AssertionError(f"Expected missing_required_filter for {dataset_id}")
 

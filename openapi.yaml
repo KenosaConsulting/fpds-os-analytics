@@ -729,6 +729,21 @@ components:
               - 'null'
             request_id:
               type: string
+            allowed_filters:
+              type: array
+              items:
+                type: string
+              description: Present on invalid_filter when a dataset-specific filter list can help the caller recover.
+            sortable:
+              type: array
+              items:
+                type: string
+              description: Present on invalid_sort with the dataset's supported sort fields.
+            example_query:
+              type:
+              - string
+              - 'null'
+              description: Present on missing_required_filter when the catalog has an example query for the dataset.
   responses:
     Error:
       description: Error response.

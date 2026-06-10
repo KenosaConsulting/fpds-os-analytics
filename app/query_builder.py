@@ -68,13 +68,24 @@ def selected_fields(dataset: dict[str, Any], raw_fields: str | None) -> list[str
     return requested
 
 
+def first_example_query(dataset: dict[str, Any]) -> str | None:
+    examples = dataset.get("example_queries") or []
+    if not examples:
+        return None
+    first = examples[0]
+    if isinstance(first, dict):
+        return first.get("query")
+    return None
+
+
 def validate_required_filters(dataset: dict[str, Any], params: dict[str, str]) -> None:
     required_any = dataset.get("required_filters_any") or []
     if not required_any:
         return
     if not any(params.get(name) not in (None, "") for name in required_any):
         joined = ", ".join(required_any)
-        raise APIError(400, "missing_required_filter", f"Dataset requires at least one of: {joined}.")
+        extra = {"example_query": first_example_query(dataset)}
+        raise APIError(400, "missing_required_filter", f"Dataset requires at least one of: {joined}.", extra=extra)
 
 
 def coerce_filter_value(name: str, value: Any) -> Any:
@@ -179,9 +190,21 @@ def build_where(dataset: dict[str, Any], params: dict[str, str]) -> tuple[list[s
         if value in (None, "") or name in CONTROL_PARAMS:
             continue
         if name not in api_filter_allowlist:
-            raise APIError(400, "invalid_filter", f"Filter '{name}' is not supported by the API.", param=name)
+            raise APIError(
+                400,
+                "invalid_filter",
+                f"Filter '{name}' is not supported by the API.",
+                param=name,
+                extra={"allowed_filters": sorted(allowed_filters)},
+            )
         if name not in allowed_filters:
-            raise APIError(400, "invalid_filter", f"Filter '{name}' is not supported for dataset '{dataset['id']}'.", param=name)
+            raise APIError(
+                400,
+                "invalid_filter",
+                f"Filter '{name}' is not supported for dataset '{dataset['id']}'.",
+                param=name,
+                extra={"allowed_filters": sorted(allowed_filters)},
+            )
 
         if name == "fiscal_year_min":
             clauses.append(f"{quote_ident('fiscal_year')} >= %s")
@@ -237,7 +260,13 @@ def build_rows_query(dataset: dict[str, Any], params: dict[str, str]) -> tuple[s
     direction = "desc" if sort.startswith("-") else "asc"
     sort_field = sort[1:] if sort.startswith("-") else sort
     if sort_field not in dataset.get("sortable", []):
-        raise APIError(400, "invalid_sort", f"Sort field '{sort_field}' is not supported for dataset '{dataset['id']}'.", param="sort")
+        raise APIError(
+            400,
+            "invalid_sort",
+            f"Sort field '{sort_field}' is not supported for dataset '{dataset['id']}'.",
+            param="sort",
+            extra={"sortable": list(dataset.get("sortable", []))},
+        )
 
     select_sql = ", ".join(quote_ident(field) for field in fields)
     relation_sql = quote_relation(dataset["backing_view"])
