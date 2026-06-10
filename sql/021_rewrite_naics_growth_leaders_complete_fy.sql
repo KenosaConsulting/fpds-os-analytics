@@ -25,9 +25,9 @@ naics_years AS (
         SUM(CASE WHEN mv.fiscal_year = cy.prior_complete_fy
                  THEN mv.net_obligated_amount ELSE 0 END) AS prior_fy_obligated,
         SUM(CASE WHEN mv.fiscal_year = cy.current_complete_fy
-                 THEN mv.total_action_count ELSE 0 END) AS current_fy_actions,
+                 THEN mv.action_count ELSE 0 END) AS current_fy_actions,
         SUM(CASE WHEN mv.fiscal_year = cy.prior_complete_fy
-                 THEN mv.total_action_count ELSE 0 END) AS prior_fy_actions
+                 THEN mv.action_count ELSE 0 END) AS prior_fy_actions
     FROM naics_breakdown.mv_fpds_naics_agency_year mv
     CROSS JOIN complete_years cy
     WHERE mv.fiscal_year IN (cy.current_complete_fy, cy.prior_complete_fy)
