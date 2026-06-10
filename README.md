@@ -19,7 +19,7 @@
 
 > **The federal government spends $700+ billion a year on contracts.
 > Every transaction is public record.
-> Almost nobody knows how to read it.**
+> Contractors don't need raw data, they need to make decisions.**
 
 This API turns 99 million FPDS contract actions into the competitive
 intelligence that wins proposals — pricing patterns, incumbent maps, market
