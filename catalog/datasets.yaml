@@ -38,7 +38,7 @@ datasets:
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id"]
     sortable: ["fiscal_year", "contracting_dept_id", "total_obligated_amount", "cost_type_obligation_share", "tm_obligation_share"]
     default_sort: "-total_obligated_amount"
-    fields: ["contracting_dept_id", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "total_obligated_amount", "fixed_price_action_count", "fixed_price_obligated", "cost_type_action_count", "cost_type_obligated", "tm_action_count", "tm_obligated", "other_action_count", "other_obligated", "fixed_price_action_share", "cost_type_action_share", "tm_action_share", "fixed_price_obligation_share", "cost_type_obligation_share", "tm_obligation_share"]
+    fields: ["contracting_dept_id", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "total_obligated_amount", "fixed_price_action_count", "fixed_price_obligated", "cost_type_action_count", "cost_type_obligated", "tm_action_count", "tm_obligated", "other_action_count", "other_obligated", "fixed_price_action_share", "cost_type_action_share", "tm_action_share", "fixed_price_obligation_share", "cost_type_obligation_share", "tm_obligation_share", "contracting_dept_name", "department_short_name"]
 
   - id: "pricing.kpi_summary"
     title: "Pricing KPI Summary"
@@ -62,7 +62,7 @@ datasets:
     filters: ["contracting_dept_id"]
     sortable: ["risk_score", "total_obligated_3yr", "cost_type_obligation_share", "tm_obligation_share"]
     default_sort: "-risk_score"
-    fields: ["contracting_dept_id", "cost_type_obligation_share", "tm_obligation_share", "risk_score", "total_obligated_3yr", "cost_type_obligated_3yr", "tm_obligated_3yr", "total_action_count_3yr"]
+    fields: ["contracting_dept_id", "cost_type_obligation_share", "tm_obligation_share", "risk_score", "total_obligated_3yr", "cost_type_obligated_3yr", "tm_obligated_3yr", "total_action_count_3yr", "contracting_dept_name", "department_short_name"]
 
   - id: "pricing.dept_year_summary"
     title: "Pricing Department-Year Summary"
@@ -74,7 +74,7 @@ datasets:
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id"]
     sortable: ["fiscal_year", "contracting_dept_id", "total_obligated", "cost_type_obligation_share", "tm_obligation_share"]
     default_sort: "-total_obligated"
-    fields: ["contracting_dept_id", "fiscal_year", "fixed_price_action_count", "fixed_price_obligated", "cost_type_action_count", "cost_type_obligated", "tm_action_count", "tm_obligated", "other_action_count", "other_obligated", "total_action_count", "total_obligated", "multi_year_action_count", "pbc_action_count", "fixed_price_action_share", "cost_type_action_share", "tm_action_share", "fixed_price_obligation_share", "cost_type_obligation_share", "tm_obligation_share"]
+    fields: ["contracting_dept_id", "fiscal_year", "fixed_price_action_count", "fixed_price_obligated", "cost_type_action_count", "cost_type_obligated", "tm_action_count", "tm_obligated", "other_action_count", "other_obligated", "total_action_count", "total_obligated", "multi_year_action_count", "pbc_action_count", "fixed_price_action_share", "cost_type_action_share", "tm_action_share", "fixed_price_obligation_share", "cost_type_obligation_share", "tm_obligation_share", "contracting_dept_name", "department_short_name"]
 
   - id: "concentration.trend_fy"
     title: "Market Concentration Trend By Fiscal Year"
@@ -100,7 +100,7 @@ datasets:
     filters: ["contracting_agency_id"]
     sortable: ["contracting_agency_id", "analyzed_markets", "avg_hhi", "monopoly_market_pct", "total_market_obligation"]
     default_sort: "-total_market_obligation"
-    fields: ["contracting_agency_id", "analyzed_markets", "monopoly_markets", "monopoly_market_pct", "avg_hhi", "avg_top_vendor_share_pct", "avg_vendors_per_market", "small_biz_obligation_share_pct", "total_market_obligation", "avg_market_size", "latest_fiscal_year"]
+    fields: ["contracting_agency_id", "analyzed_markets", "monopoly_markets", "monopoly_market_pct", "avg_hhi", "avg_top_vendor_share_pct", "avg_vendors_per_market", "small_biz_obligation_share_pct", "total_market_obligation", "avg_market_size", "latest_fiscal_year", "contracting_agency_name", "agency_short_name"]
 
   - id: "concentration.vendor_market_leaders"
     title: "Vendor Market Leaders"
@@ -168,7 +168,7 @@ datasets:
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id"]
     sortable: ["fiscal_year", "total_obligated", "competed_action_share", "not_competed_action_share", "bundled_action_share", "avg_offers_received"]
     default_sort: "-total_obligated"
-    fields: ["contracting_dept_id", "fiscal_year", "is_current_fiscal_year_ytd", "competed_action_count", "competed_obligated", "not_competed_action_count", "not_competed_obligated", "full_competition_action_count", "full_competition_obligated", "limited_competition_action_count", "limited_competition_obligated", "bundled_action_count", "bundled_obligated", "consolidated_action_count", "consolidated_obligated", "total_action_count", "total_obligated", "competed_action_share", "not_competed_action_share", "bundled_action_share", "competed_obligation_share", "not_competed_obligation_share", "bundled_obligation_share", "consolidated_obligation_share", "avg_offers_received"]
+    fields: ["contracting_dept_id", "fiscal_year", "is_current_fiscal_year_ytd", "competed_action_count", "competed_obligated", "not_competed_action_count", "not_competed_obligated", "full_competition_action_count", "full_competition_obligated", "limited_competition_action_count", "limited_competition_obligated", "bundled_action_count", "bundled_obligated", "consolidated_action_count", "consolidated_obligated", "total_action_count", "total_obligated", "competed_action_share", "not_competed_action_share", "bundled_action_share", "competed_obligation_share", "not_competed_obligation_share", "bundled_obligation_share", "consolidated_obligation_share", "avg_offers_received", "contracting_dept_name", "department_short_name"]
 
   - id: "competition.kpi_summary"
     title: "Competition KPI Summary"
@@ -192,7 +192,7 @@ datasets:
     filters: ["contracting_dept_id"]
     sortable: ["not_competed_obligation_share_3yr", "not_competed_obligated_3yr", "total_obligated_3yr"]
     default_sort: "-not_competed_obligation_share_3yr"
-    fields: ["contracting_dept_id", "not_competed_action_count_3yr", "not_competed_obligated_3yr", "total_action_count_3yr", "total_obligated_3yr", "not_competed_action_share_3yr", "not_competed_obligation_share_3yr", "avg_offers_received_3yr", "bundled_action_count_3yr", "bundled_action_share_3yr"]
+    fields: ["contracting_dept_id", "not_competed_action_count_3yr", "not_competed_obligated_3yr", "total_action_count_3yr", "total_obligated_3yr", "not_competed_action_share_3yr", "not_competed_obligation_share_3yr", "avg_offers_received_3yr", "bundled_action_count_3yr", "bundled_action_share_3yr", "contracting_dept_name", "department_short_name"]
 
   - id: "naics.trend_fy"
     title: "NAICS Sector Trend By Fiscal Year"
@@ -217,7 +217,7 @@ datasets:
     filters: ["fiscal_year", "fiscal_year_min", "fiscal_year_max", "contracting_dept_id"]
     sortable: ["fiscal_year", "contracting_dept_id", "total_obligated", "distinct_naics_count", "top_naics_obligation_share", "top_sector_obligation_share"]
     default_sort: "-total_obligated"
-    fields: ["contracting_dept_id", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "total_obligated", "distinct_naics_count", "distinct_sector_count", "distinct_subsector_count", "distinct_vendor_count", "top_naics_code_by_obligation", "top_naics_obligation_share", "naics_diversity_ratio", "top_sector_code", "top_sector_obligation_share"]
+    fields: ["contracting_dept_id", "fiscal_year", "is_current_fiscal_year_ytd", "total_action_count", "total_obligated", "distinct_naics_count", "distinct_sector_count", "distinct_subsector_count", "distinct_vendor_count", "top_naics_code_by_obligation", "top_naics_obligation_share", "naics_diversity_ratio", "top_sector_code", "top_sector_obligation_share", "top_naics_description", "top_naics_sector_label", "contracting_dept_name", "department_short_name"]
 
   - id: "naics.growth_leaders"
     title: "NAICS Growth Leaders"
@@ -230,7 +230,7 @@ datasets:
     sortable: ["obligation_growth_rate", "obligation_change", "current_fy_obligated", "prior_fy_obligated"]
     default_sort: "-obligation_growth_rate"
     max_limit: 500
-    fields: ["principal_naics_code", "naics_desc", "sector_code", "current_fy_obligated", "prior_fy_obligated", "obligation_change", "obligation_growth_rate", "current_fy_actions", "prior_fy_actions"]
+    fields: ["principal_naics_code", "naics_desc", "sector_code", "current_fy_obligated", "prior_fy_obligated", "obligation_change", "obligation_growth_rate", "current_fy_actions", "prior_fy_actions", "sector_label"]
 
   - id: "naics.kpi_summary"
     title: "NAICS KPI Summary"

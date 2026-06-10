@@ -294,6 +294,38 @@ def test_new_filter_mv_index_template_covers_expected_materialized_views() -> No
     assert "competition_dynamics.mv_fpds_competition_agency_year" in sql
 
 
+def test_v1_label_enrichment_fields_are_declared_in_catalog() -> None:
+    catalog = load_catalog()
+    expected_fields = {
+        "pricing.agency_profile_fy": {"contracting_dept_name", "department_short_name"},
+        "pricing.risk_scorecard": {"contracting_dept_name", "department_short_name"},
+        "pricing.dept_year_summary": {"contracting_dept_name", "department_short_name"},
+        "competition.agency_profile_fy": {"contracting_dept_name", "department_short_name"},
+        "competition.sole_source_hotspots": {"contracting_dept_name", "department_short_name"},
+        "concentration.agency_profile": {"contracting_agency_name", "agency_short_name"},
+        "naics.agency_profile_fy": {
+            "top_naics_description",
+            "top_naics_sector_label",
+            "contracting_dept_name",
+            "department_short_name",
+        },
+        "naics.growth_leaders": {"sector_label"},
+    }
+    for dataset_id, fields in expected_fields.items():
+        assert fields <= set(catalog.get_dataset(dataset_id)["fields"])
+
+
+def test_v1_label_enrichment_template_is_append_only_and_protocol_safe() -> None:
+    sql = (SERVICE_ROOT / "sql" / "020_v1_label_enrichment_append.sql").read_text(encoding="utf-8")
+    assert "COMMENT ON" not in sql
+    assert "DROP " not in sql
+    assert "ALTER " not in sql
+    assert "INSERT " not in sql
+    assert "UPDATE " not in sql
+    assert "DELETE " not in sql
+    assert "SELECT\n    r.*," in sql
+
+
 def test_invalid_sort_is_rejected() -> None:
     catalog = load_catalog()
     dataset = catalog.get_dataset("pricing.risk_scorecard")
