@@ -519,6 +519,7 @@ components:
       - id
       - title
       - domain
+      - description
       - grain
       - filters
       - sortable
@@ -530,8 +531,26 @@ components:
           type: string
         domain:
           type: string
+        description:
+          type: string
         grain:
           type: string
+        example_queries:
+          type: array
+          items:
+            type: object
+            required:
+            - query
+            - explanation
+            properties:
+              query:
+                type: string
+              explanation:
+                type: string
+        field_descriptions:
+          type: object
+          additionalProperties:
+            type: string
         filters:
           type: array
           items:

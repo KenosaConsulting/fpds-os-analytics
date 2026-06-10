@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 import hashlib
+from urllib.parse import parse_qs, urlparse
 
 import yaml
 
@@ -68,6 +69,42 @@ def test_openapi_dataset_enum_matches_catalog() -> None:
         openapi = yaml.safe_load(fh)
     enum = openapi["components"]["parameters"]["DatasetId"]["schema"]["enum"]
     assert sorted(enum) == sorted(catalog.datasets)
+
+
+def test_every_dataset_has_description_and_example_queries() -> None:
+    catalog = load_catalog()
+    failures = []
+    for dataset in catalog.datasets.values():
+        description = dataset.get("description", "")
+        if not isinstance(description, str) or description.count(".") < 2:
+            failures.append(f"{dataset['id']}:description")
+        examples = dataset.get("example_queries", [])
+        if not examples:
+            failures.append(f"{dataset['id']}:example_queries")
+            continue
+        for example in examples:
+            query = example.get("query", "")
+            explanation = example.get("explanation", "")
+            if not query.startswith(f"/v1/datasets/{dataset['id']}/rows?"):
+                failures.append(f"{dataset['id']}:example_query_path")
+            if not explanation:
+                failures.append(f"{dataset['id']}:example_explanation")
+            params = parse_qs(urlparse(query).query)
+            required_any = dataset.get("required_filters_any") or []
+            if required_any and not any(name in params for name in required_any):
+                failures.append(f"{dataset['id']}:example_required_filter")
+    assert failures == []
+
+
+def test_catalog_responses_surface_descriptions_and_examples() -> None:
+    catalog_response = list_catalog(domain=None)
+    describe_response = describe_dataset("pricing.risk_scorecard")
+    first_dataset = catalog_response["data"][0]
+    described_dataset = describe_response["data"]
+    assert "description" in first_dataset
+    assert "example_queries" in first_dataset
+    assert described_dataset["description"]
+    assert described_dataset["example_queries"][0]["query"].startswith("/v1/datasets/pricing.risk_scorecard/rows?")
 
 
 def test_every_dataset_filter_is_accepted_by_runtime_query_builder() -> None:
@@ -166,6 +203,17 @@ def test_openapi_documents_dimension_catalog() -> None:
     assert "/v1/dimensions" in openapi["paths"]
     item_ref = openapi["paths"]["/v1/dimensions"]["get"]["responses"]["200"]["content"]["application/json"]["schema"]["properties"]["data"]["items"]["$ref"]
     assert item_ref == "#/components/schemas/Dimension"
+
+
+def test_openapi_documents_dataset_metadata_fields() -> None:
+    with (SERVICE_ROOT / "openapi.yaml").open("r", encoding="utf-8") as fh:
+        openapi = yaml.safe_load(fh)
+    dataset_schema = openapi["components"]["schemas"]["Dataset"]
+    properties = dataset_schema["properties"]
+    assert "description" in dataset_schema["required"]
+    assert "description" in properties
+    assert "example_queries" in properties
+    assert "field_descriptions" in properties
 
 
 def test_metadata_points_to_ai_assistant_guide() -> None:
