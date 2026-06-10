@@ -69,7 +69,7 @@ touching raw data.
 
 Think of it this way:
 
-> 📖 FPDS is the phonebook. This API is GPS.
+> 📖 FPDS is the Atlas. This API is GPS.
 
 ---
 
