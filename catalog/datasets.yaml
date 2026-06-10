@@ -482,6 +482,7 @@ datasets:
     fields: ["contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "fiscal_year", "is_current_fiscal_year_ytd", "fiscal_month", "fiscal_quarter", "obligated_amount", "action_count", "q4_obligation_share"]
     caveats:
       - "Current fiscal year rows are partial and flagged with is_current_fiscal_year_ytd."
+      - "q4_obligation_share is NULL for entity-years where total fiscal-year obligations are zero or negative (deobligation-heavy entities). Remaining non-null values can occasionally be negative or exceed 1 when Q4 itself has net deobligations against a positive annual total."
       - "Built at refresh time from transaction-grain FPDS actions; API requests read only materialized aggregates."
 
   - id: "seasonality.office_quarter_fy"
@@ -506,6 +507,7 @@ datasets:
     caveats:
       - "Current fiscal year rows are partial and flagged with is_current_fiscal_year_ytd."
       - "Office seasonality is quarterly, not monthly, to control materialized-view size."
+      - "q4_obligation_share is NULL for entity-years where total fiscal-year obligations are zero or negative (deobligation-heavy entities). Remaining non-null values can occasionally be negative or exceed 1 when Q4 itself has net deobligations against a positive annual total."
       - "Built at refresh time from transaction-grain FPDS actions; API requests read only materialized aggregates."
 
 

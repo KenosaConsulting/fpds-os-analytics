@@ -146,8 +146,10 @@ SELECT
     mv.fiscal_quarter,
     mv.obligated_amount,
     mv.action_count,
-    ROUND(ft.q4_obligated_amount / NULLIF(ft.fy_obligated_amount, 0), 4)
-        AS q4_obligation_share
+    CASE WHEN ft.fy_obligated_amount > 0
+         THEN ROUND(ft.q4_obligated_amount / ft.fy_obligated_amount, 4)
+         ELSE NULL
+    END AS q4_obligation_share
 FROM customer_intelligence.mv_fpds_agency_month_seasonality mv
 JOIN fy_totals ft
   ON ft.contracting_dept_id = mv.contracting_dept_id
@@ -159,7 +161,7 @@ LEFT JOIN analytics_dims.fpds_agency_map am
   ON mv.contracting_agency_id = am.agency_id;
 
 COMMENT ON VIEW customer_intelligence.report_deck_agency_month_seasonality IS
-'Fiscal-month obligation seasonality by contracting department and agency. Q4 obligation share is repeated per entity and fiscal year.';
+'Fiscal-month obligation seasonality by contracting department and agency. Q4 obligation share is repeated per entity and fiscal year. NULL when the entity''s fiscal-year total obligated amount is zero or negative (deobligation-heavy entity-years).';
 
 CREATE OR REPLACE VIEW customer_intelligence.report_deck_office_quarter_seasonality AS
 WITH fy_totals AS (
@@ -192,8 +194,10 @@ SELECT
     mv.fiscal_quarter,
     mv.obligated_amount,
     mv.total_action_count,
-    ROUND(ft.q4_obligated_amount / NULLIF(ft.fy_obligated_amount, 0), 4)
-        AS q4_obligation_share
+    CASE WHEN ft.fy_obligated_amount > 0
+         THEN ROUND(ft.q4_obligated_amount / ft.fy_obligated_amount, 4)
+         ELSE NULL
+    END AS q4_obligation_share
 FROM customer_intelligence.mv_fpds_office_quarter_seasonality mv
 JOIN fy_totals ft
   ON ft.contracting_dept_id = mv.contracting_dept_id
@@ -208,7 +212,7 @@ LEFT JOIN analytics_dims.fpds_contracting_office_map om
   ON mv.contracting_office_id = om.contracting_office_id;
 
 COMMENT ON VIEW customer_intelligence.report_deck_office_quarter_seasonality IS
-'Fiscal-quarter obligation seasonality by contracting office. Q4 obligation share is repeated per office and fiscal year.';
+'Fiscal-quarter obligation seasonality by contracting office. Q4 obligation share is repeated per office and fiscal year. NULL when the entity''s fiscal-year total obligated amount is zero or negative (deobligation-heavy entity-years).';
 
 CREATE OR REPLACE VIEW analytics_api.seasonality_agency_month_fy
 WITH (security_barrier = true) AS
