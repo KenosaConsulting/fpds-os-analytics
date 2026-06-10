@@ -27,6 +27,7 @@ from app.routes.catalog import describe_dataset, list_catalog, list_dimensions  
 from app.routes.datasets import dataset_data_as_of, dataset_rows  # noqa: E402
 from app.routes.health import ai_assistant_guide, health, metadata  # noqa: E402
 from app.routes.profiles import customer_profile  # noqa: E402
+from mcp.fpds_mcp_server import FPDSServer, _clean_params, handle_message  # noqa: E402
 
 
 def _sample_value(filter_name: str) -> str:
@@ -868,3 +869,87 @@ def test_customer_profile_section_failure_is_partial(monkeypatch) -> None:
     assert response["data"]["top_naics"] is None
     assert response["meta"]["sections"]["top_naics"]["status"] == "unavailable"
     assert response["data"]["spend_trend"] == []
+
+
+def test_mcp_tools_embed_dataset_descriptions_and_handle_list() -> None:
+    class FakeClient:
+        def get(self, path: str, params: dict[str, object] | None = None) -> dict[str, object]:
+            assert path == "/v1/catalog"
+            return {
+                "data": [
+                    {
+                        "id": "pricing.risk_scorecard",
+                        "description": "Pricing risk description from the catalog.",
+                    }
+                ]
+            }
+
+    server = FPDSServer(FakeClient())
+    response = handle_message(server, {"jsonrpc": "2.0", "id": 1, "method": "tools/list"})
+    tools = response["result"]["tools"]
+    query_tool = next(tool for tool in tools if tool["name"] == "fpds_query_dataset")
+    assert "pricing.risk_scorecard: Pricing risk description from the catalog." in query_tool["description"]
+    assert "filters" in query_tool["inputSchema"]["properties"]
+
+
+def test_mcp_query_dataset_wraps_rows_endpoint() -> None:
+    class FakeClient:
+        def __init__(self) -> None:
+            self.calls = []
+
+        def get(self, path: str, params: dict[str, object] | None = None) -> dict[str, object]:
+            self.calls.append((path, params))
+            return {"data": [{"risk_score": "71"}], "meta": {"dataset_id": "pricing.risk_scorecard"}}
+
+    client = FakeClient()
+    server = FPDSServer(client)
+    result = server.call_tool(
+        "fpds_query_dataset",
+        {
+            "dataset_id": "pricing.risk_scorecard",
+            "filters": {"contracting_dept_id": "9700"},
+            "fields": ["risk_score"],
+            "limit": 5,
+        },
+    )
+    assert client.calls == [
+        (
+            "/v1/datasets/pricing.risk_scorecard/rows",
+            {"contracting_dept_id": "9700", "fields": ["risk_score"], "sort": None, "limit": 5, "cursor": None},
+        )
+    ]
+    assert '"risk_score": "71"' in result["content"][0]["text"]
+
+
+def test_mcp_resolve_wraps_dimension_search() -> None:
+    class FakeClient:
+        def __init__(self) -> None:
+            self.calls = []
+
+        def get(self, path: str, params: dict[str, object] | None = None) -> dict[str, object]:
+            self.calls.append((path, params))
+            return {"data": [{"id": "9700", "name": "Department of Defense"}], "meta": {"dimension_id": path.rsplit("/", 1)[-1]}}
+
+    client = FakeClient()
+    server = FPDSServer(client)
+    result = server.resolve({"q": "defense", "types": ["departments", "offices"], "limit": 3})
+    assert client.calls == [
+        ("/v1/dimensions/departments", {"q": "defense", "limit": 3}),
+        ("/v1/dimensions/contracting_offices", {"q": "defense", "limit": 3}),
+    ]
+    assert result["results"][0]["dimension_id"] == "departments"
+
+
+def test_mcp_clean_params_flattens_filters_and_lists() -> None:
+    assert _clean_params(
+        {
+            "filters": {"contracting_dept_id": "9700"},
+            "fields": ["risk_score", "total_obligated_3yr"],
+            "limit": 5,
+            "cursor": None,
+        }
+    ) == {
+        "contracting_dept_id": "9700",
+        "fields": "risk_score,total_obligated_3yr",
+        "limit": 5,
+    }
