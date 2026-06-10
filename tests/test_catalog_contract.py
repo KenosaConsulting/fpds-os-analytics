@@ -72,7 +72,7 @@ async def _streaming_response_text(response) -> str:
 
 def test_catalog_has_expected_dataset_count() -> None:
     catalog = load_catalog()
-    assert len(catalog.datasets) == 54
+    assert len(catalog.datasets) == 55
     assert len(catalog.dimensions) == 15
     assert {item["public_access"] for item in catalog.datasets.values()} == {"public_bounded", "api_key"}
 
@@ -456,6 +456,16 @@ def test_new_entrant_cohort_template_uses_existing_mvs_and_grants_reader() -> No
     assert "public.fpds_actions" not in sql
     assert "survival_2fy_rate" in sql
     assert "GRANT SELECT ON analytics_api.entrants_agency_cohort_fy TO fpds_analytics_api_readonly" in sql
+
+
+def test_award_size_distribution_template_uses_single_pass_percentiles() -> None:
+    sql = (SERVICE_ROOT / "sql" / "024_award_size_distribution.sql").read_text(encoding="utf-8")
+    assert "pipeline_intelligence.mv_contract_family" in sql
+    assert "PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY cf.total_obligated)" in sql
+    assert "PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY cf.total_obligated)" in sql
+    assert "PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY cf.total_obligated)" in sql
+    assert "cf.total_obligated > 0" in sql
+    assert "GRANT SELECT ON analytics_api.pipeline_award_size_distribution TO fpds_analytics_api_readonly" in sql
 
 
 def test_dimension_q_search_uses_parameterized_ilike() -> None:
