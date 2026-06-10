@@ -13,7 +13,7 @@ from fastapi.responses import JSONResponse
 from app.catalog import load_catalog
 from app.errors import APIError
 from app.rate_limit import RateLimitMiddleware
-from app.routes import catalog, datasets, dimensions, exports, health
+from app.routes import catalog, datasets, dimensions, exports, health, profiles
 
 
 def _allowed_origins() -> list[str]:
@@ -68,4 +68,5 @@ app.include_router(health.router)
 app.include_router(catalog.router)
 app.include_router(datasets.router)
 app.include_router(dimensions.router)
+app.include_router(profiles.router)
 app.include_router(exports.router)

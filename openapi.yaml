@@ -245,6 +245,35 @@ paths:
           $ref: '#/components/responses/Error'
         '429':
           $ref: '#/components/responses/Error'
+  /v1/profiles/customer:
+    get:
+      summary: Build a composite customer profile from existing datasets
+      description: 'Customer 360 endpoint. Requires contracting_dept_id or contracting_agency_id and returns bounded sections assembled from documented dataset queries only. Section-level failures return null for that section and are described in meta.sections.'
+      security:
+      - {}
+      - ApiKeyAuth: []
+      parameters:
+      - name: contracting_dept_id
+        in: query
+        schema:
+          type: string
+        description: Contracting department code, such as 9700 for DoD.
+      - name: contracting_agency_id
+        in: query
+        schema:
+          type: string
+        description: Contracting agency code.
+      responses:
+        '200':
+          description: Composite customer profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerProfileResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
   /v1/dimensions:
     get:
       summary: List public dimensions and code lookups
@@ -631,6 +660,91 @@ components:
           $ref: '#/components/schemas/Pagination'
         meta:
           $ref: '#/components/schemas/ResponseMeta'
+    CustomerProfileResponse:
+      type: object
+      required:
+      - notice
+      - data
+      - meta
+      properties:
+        notice:
+          type: string
+        data:
+          type: object
+          required:
+          - spend_trend
+          - top_naics
+          - competition_posture
+          - pricing_posture
+          - set_aside_mix
+          - top_incumbents
+          - vehicle_mix
+          - recompete_signals
+          - narrative_hints
+          properties:
+            spend_trend:
+              type:
+              - array
+              - 'null'
+              items:
+                type: object
+                additionalProperties: true
+            top_naics:
+              type:
+              - array
+              - 'null'
+              items:
+                type: object
+                additionalProperties: true
+            competition_posture:
+              type:
+              - array
+              - 'null'
+              items:
+                type: object
+                additionalProperties: true
+            pricing_posture:
+              type:
+              - array
+              - 'null'
+              items:
+                type: object
+                additionalProperties: true
+            set_aside_mix:
+              type:
+              - array
+              - 'null'
+              items:
+                type: object
+                additionalProperties: true
+            top_incumbents:
+              type:
+              - array
+              - 'null'
+              items:
+                type: object
+                additionalProperties: true
+            vehicle_mix:
+              type:
+              - array
+              - 'null'
+              items:
+                type: object
+                additionalProperties: true
+            recompete_signals:
+              type:
+              - array
+              - 'null'
+              items:
+                type: object
+                additionalProperties: true
+            narrative_hints:
+              type: array
+              items:
+                type: string
+        meta:
+          type: object
+          additionalProperties: true
     Pagination:
       type: object
       required:

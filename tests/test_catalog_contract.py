@@ -26,6 +26,7 @@ from app.rate_limit import MemoryRateLimitStore, RateLimit, _hashed_token  # noq
 from app.routes.catalog import describe_dataset, list_catalog, list_dimensions  # noqa: E402
 from app.routes.datasets import dataset_data_as_of, dataset_rows  # noqa: E402
 from app.routes.health import ai_assistant_guide, health, metadata  # noqa: E402
+from app.routes.profiles import customer_profile  # noqa: E402
 
 
 def _sample_value(filter_name: str) -> str:
@@ -257,6 +258,12 @@ def test_openapi_documents_dataset_rows_csv_format() -> None:
     format_param = next(param for param in rows["parameters"] if param.get("name") == "format")
     assert format_param["schema"]["enum"] == ["json", "csv"]
     assert "text/csv" in rows["responses"]["200"]["content"]
+
+
+def test_openapi_documents_customer_profile_endpoint() -> None:
+    with (SERVICE_ROOT / "openapi.yaml").open("r", encoding="utf-8") as fh:
+        openapi = yaml.safe_load(fh)
+    assert "/v1/profiles/customer" in openapi["paths"]
 
 
 def test_metadata_points_to_ai_assistant_guide() -> None:
@@ -767,3 +774,97 @@ def test_dataset_rows_csv_uses_same_bounds_and_escapes(monkeypatch) -> None:
     assert response.headers["content-disposition"] == 'attachment; filename="pricing_trend_fy_rows.csv"'
     text = asyncio.run(_streaming_response_text(response))
     assert text == 'fiscal_year,total_obligated\r\n2025,"12, ""quoted"""\r\n2024,10.50\r\n'
+
+
+def test_customer_profile_orchestrates_existing_dataset_queries(monkeypatch) -> None:
+    class FakeCursor:
+        def execute(self, sql: str, values: list[object] | tuple[object, ...]) -> None:
+            self.sql = sql
+            self.values = values
+            assert "analytics_api" in sql
+            assert values[-2:] in ([2, 0], [6, 0])
+
+        def fetchall(self) -> list[dict[str, object]]:
+            if "customer_agency_profile_fy" in self.sql:
+                return [
+                    {
+                        "fiscal_year": 2025,
+                        "net_obligated_amount": Decimal("1000000"),
+                        "competed_obligation_share": Decimal("0.82"),
+                    }
+                ]
+            if "market_agency_naics_fy" in self.sql:
+                return [{"principal_naics_code": "541512", "net_obligated_amount": Decimal("900000")}]
+            if "set_aside_agency_mix_fy" in self.sql:
+                return [{"set_aside_family": "8(a)", "net_obligated_amount": Decimal("100000")}]
+            if "incumbent_agency_vendor_leaders" in self.sql:
+                return [{"uei": "ABCDEFGHIJKL", "vendor_name": "Example Vendor"}]
+            if "acquisition_agency_vehicle_mix_fy" in self.sql:
+                return [{"vehicle_family": "IDIQ", "net_obligated_amount": Decimal("500000")}]
+            if "pipeline_recompete_watchlist" in self.sql:
+                return [{"piid": "W912345", "remaining_months": 4}]
+            if "pricing_risk_scorecard" in self.sql:
+                return [{"risk_score": Decimal("72"), "total_obligated_3yr": Decimal("3000000")}]
+            return []
+
+    @contextmanager
+    def fake_db_cursor():
+        yield FakeCursor()
+
+    monkeypatch.setattr("app.routes.profiles.db_cursor", fake_db_cursor)
+    response = customer_profile(
+        SimpleNamespace(query_params={"contracting_dept_id": "9700"}),
+        APIAccess(key_id="public", is_authenticated=False),
+    )
+    assert response["data"]["spend_trend"][0]["net_obligated_amount"] == "1000000"
+    assert response["data"]["pricing_posture"][0]["risk_score"] == "72"
+    assert response["meta"]["sections"]["top_naics"]["dataset_id"] == "market.agency_naics_fy"
+    assert response["meta"]["sections"]["pricing_posture"]["status"] == "ok"
+    assert any("Competition posture" in hint for hint in response["data"]["narrative_hints"])
+
+
+def test_customer_profile_agency_only_nulls_department_pricing(monkeypatch) -> None:
+    class FakeCursor:
+        def execute(self, sql: str, values: list[object] | tuple[object, ...]) -> None:
+            self.sql = sql
+            assert "pricing_risk_scorecard" not in sql
+
+        def fetchall(self) -> list[dict[str, object]]:
+            return []
+
+    @contextmanager
+    def fake_db_cursor():
+        yield FakeCursor()
+
+    monkeypatch.setattr("app.routes.profiles.db_cursor", fake_db_cursor)
+    response = customer_profile(
+        SimpleNamespace(query_params={"contracting_agency_id": "1700"}),
+        APIAccess(key_id="public", is_authenticated=False),
+    )
+    assert response["data"]["pricing_posture"] is None
+    assert response["meta"]["sections"]["pricing_posture"]["status"] == "unavailable"
+    assert "department level only" in response["meta"]["sections"]["pricing_posture"]["reason"]
+
+
+def test_customer_profile_section_failure_is_partial(monkeypatch) -> None:
+    class FakeCursor:
+        def execute(self, sql: str, values: list[object] | tuple[object, ...]) -> None:
+            self.sql = sql
+            if "market_agency_naics_fy" in sql:
+                raise RuntimeError("section failed")
+
+        def fetchall(self) -> list[dict[str, object]]:
+            return []
+
+    @contextmanager
+    def fake_db_cursor():
+        yield FakeCursor()
+
+    monkeypatch.setattr("app.routes.profiles.db_cursor", fake_db_cursor)
+    response = customer_profile(
+        SimpleNamespace(query_params={"contracting_dept_id": "9700"}),
+        APIAccess(key_id="public", is_authenticated=False),
+    )
+    assert response["data"]["top_naics"] is None
+    assert response["meta"]["sections"]["top_naics"]["status"] == "unavailable"
+    assert response["data"]["spend_trend"] == []
