@@ -302,19 +302,26 @@ datasets:
     domain: "naics"
     description: "NAICS Growth Leaders provides the catalog view for this package. NAICS demand analytics show which industries receive obligations and how demand changes over time. Use this dataset to connect a capability area to customer demand and market growth."
     example_queries:
-      - query: "/v1/datasets/naics.growth_leaders/rows?principal_naics_code=541512&limit=25"
-        explanation: "Return a bounded sample from NAICS Growth Leaders using catalog-supported filters."
+      - query: "/v1/datasets/naics.growth_leaders/rows?prior_fy_obligated_min=10000000&limit=25"
+        explanation: "Return growth leaders using the default credible-base floor of at least $10M in the prior complete fiscal year."
     field_descriptions:
       obligation_growth_rate: "Growth rate from the comparison fiscal year to the current fiscal year in the source view."
     backing_view: "analytics_api.naics_growth_leaders"
     source_view: "naics_breakdown.report_deck_naics_growth_leaders"
     grain: "principal_naics_code"
     public_access: "public_bounded"
-    filters: ["principal_naics_code", "sector_code"]
+    filters: ["principal_naics_code", "sector_code", "prior_fy_obligated_min"]
     sortable: ["obligation_growth_rate", "obligation_change", "current_fy_obligated", "prior_fy_obligated"]
     default_sort: "-obligation_growth_rate"
+    default_predicates:
+      - field: "prior_fy_obligated"
+        min_value: "10000000"
+        unless_filter: "prior_fy_obligated_min"
     max_limit: 500
     fields: ["principal_naics_code", "naics_desc", "sector_code", "current_fy_obligated", "prior_fy_obligated", "obligation_change", "obligation_growth_rate", "current_fy_actions", "prior_fy_actions", "sector_label"]
+    caveats:
+      - "Growth compares the two most recent complete fiscal years, not current-year YTD against a full prior year."
+      - "Rows with zero or negative prior-year bases are excluded. By default, results require prior_fy_obligated >= $10M; lower this with prior_fy_obligated_min."
 
   - id: "naics.kpi_summary"
     title: "NAICS KPI Summary"

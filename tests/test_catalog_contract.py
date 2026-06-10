@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 import hashlib
+from decimal import Decimal
 from urllib.parse import parse_qs, urlparse
 
 import yaml
@@ -22,12 +23,11 @@ from app.routes.catalog import describe_dataset, list_catalog, list_dimensions  
 from app.routes.health import ai_assistant_guide, health, metadata  # noqa: E402
 
 
-SYNTHETIC_FILTERS = {"fiscal_year_min", "fiscal_year_max"}
-
-
 def _sample_value(filter_name: str) -> str:
     if filter_name in {"fiscal_year", "fiscal_year_min", "fiscal_year_max"}:
         return "2024"
+    if filter_name.endswith("_min") or filter_name.endswith("_max"):
+        return "10000000"
     if filter_name.startswith("is_"):
         return "true"
     return "TEST"
@@ -152,7 +152,11 @@ def test_dataset_filters_and_sortables_are_declared_fields_or_synthetic() -> Non
     for dataset in catalog.datasets.values():
         fields = set(dataset.get("fields", []))
         for filter_name in dataset.get("filters", []):
-            if filter_name not in fields and filter_name not in SYNTHETIC_FILTERS:
+            if filter_name.endswith("_min") or filter_name.endswith("_max"):
+                base_field = filter_name.rsplit("_", 1)[0]
+                if base_field not in fields:
+                    failures.append(f"{dataset['id']}:filter:{filter_name}")
+            elif filter_name not in fields:
                 failures.append(f"{dataset['id']}:filter:{filter_name}")
         for sort_name in dataset.get("sortable", []):
             if sort_name not in fields:
@@ -169,9 +173,11 @@ def test_default_predicates_use_declared_dataset_filters() -> None:
         for predicate in dataset.get("default_predicates", []):
             field = predicate.get("field")
             unless_filter = predicate.get("unless_filter", field)
-            if field not in filters or field not in fields:
+            if field not in fields:
                 failures.append(f"{dataset['id']}:field:{field}")
-            if unless_filter not in filters:
+            if "min_value" not in predicate and "exclude_values" in predicate and field not in filters:
+                failures.append(f"{dataset['id']}:filter_field:{field}")
+            if unless_filter and unless_filter not in filters:
                 failures.append(f"{dataset['id']}:unless_filter:{unless_filter}")
     assert failures == []
 
@@ -337,6 +343,25 @@ def test_recompete_watchlist_expiration_bucket_filter_overrides_default_predicat
     assert '"expiration_bucket" <> %s' not in sql
     assert '"expiration_bucket" = %s' in sql
     assert values[0] == "recently_expired"
+
+
+def test_naics_growth_leaders_applies_default_prior_year_base_floor() -> None:
+    catalog = load_catalog()
+    dataset = catalog.get_dataset("naics.growth_leaders")
+    sql, values, _limit, _offset = build_rows_query(dataset, {"limit": "5"})
+    assert '"prior_fy_obligated" >= %s' in sql
+    assert values[0] == Decimal("10000000")
+
+
+def test_naics_growth_leaders_min_base_filter_overrides_default_floor() -> None:
+    catalog = load_catalog()
+    dataset = catalog.get_dataset("naics.growth_leaders")
+    sql, values, _limit, _offset = build_rows_query(
+        dataset,
+        {"prior_fy_obligated_min": "1000000", "limit": "5"},
+    )
+    assert sql.count('"prior_fy_obligated" >= %s') == 1
+    assert values[0] == Decimal("1000000")
 
 
 def test_trend_datasets_default_to_recent_fiscal_year_first() -> None:

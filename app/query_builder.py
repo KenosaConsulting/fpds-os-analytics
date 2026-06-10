@@ -83,6 +83,13 @@ def coerce_filter_value(name: str, value: Any) -> Any:
     return value
 
 
+def coerce_bound_value(value: Any) -> Any:
+    try:
+        return Decimal(str(value))
+    except Exception as exc:
+        raise APIError(400, "invalid_filter", "Bound filter values must be numeric.", param="filter") from exc
+
+
 def build_default_where(dataset: dict[str, Any], params: dict[str, str]) -> tuple[list[str], list[Any]]:
     allowed_filters = set(dataset.get("filters", []))
     clauses: list[str] = []
@@ -90,17 +97,23 @@ def build_default_where(dataset: dict[str, Any], params: dict[str, str]) -> tupl
     for predicate in dataset.get("default_predicates", []):
         field = predicate.get("field")
         unless_filter = predicate.get("unless_filter", field)
-        if not field or field not in allowed_filters:
+        if not field:
             raise APIError(
                 500,
                 "dataset_contract_mismatch",
-                f"Default predicate field '{field}' is not declared as a filter for dataset '{dataset['id']}'.",
+                f"Default predicate field is missing for dataset '{dataset['id']}'.",
             )
         if unless_filter and params.get(unless_filter) not in (None, ""):
             continue
         include_values = predicate.get("include_values")
         excluded_values = predicate.get("exclude_values")
         if include_values is not None:
+            if field not in allowed_filters:
+                raise APIError(
+                    500,
+                    "dataset_contract_mismatch",
+                    f"Default predicate field '{field}' is not declared as a filter for dataset '{dataset['id']}'.",
+                )
             coerced_values = [coerce_filter_value(field, value) for value in include_values]
             if len(coerced_values) == 1:
                 clauses.append(f"{quote_ident(field)} = %s")
@@ -109,11 +122,28 @@ def build_default_where(dataset: dict[str, Any], params: dict[str, str]) -> tupl
                 clauses.append(f"{quote_ident(field)} in ({placeholders})")
             values.extend(coerced_values)
             continue
+        min_value = predicate.get("min_value")
+        if min_value is not None:
+            if field not in set(dataset.get("fields", [])):
+                raise APIError(
+                    500,
+                    "dataset_contract_mismatch",
+                    f"Default predicate field '{field}' is not declared as a field for dataset '{dataset['id']}'.",
+                )
+            clauses.append(f"{quote_ident(field)} >= %s")
+            values.append(coerce_bound_value(min_value))
+            continue
         if excluded_values is None or len(excluded_values) != 1:
             raise APIError(
                 500,
                 "dataset_contract_mismatch",
                 f"Default predicate for '{field}' must declare exactly one excluded value.",
+            )
+        if field not in allowed_filters:
+            raise APIError(
+                500,
+                "dataset_contract_mismatch",
+                f"Default predicate field '{field}' is not declared as a filter for dataset '{dataset['id']}'.",
             )
         clauses.append(f"{quote_ident(field)} <> %s")
         values.append(coerce_filter_value(field, excluded_values[0]))
@@ -159,6 +189,26 @@ def build_where(dataset: dict[str, Any], params: dict[str, str]) -> tuple[list[s
         elif name == "fiscal_year_max":
             clauses.append(f"{quote_ident('fiscal_year')} <= %s")
             values.append(int(value))
+        elif name.endswith("_min"):
+            field_name = name.removesuffix("_min")
+            if field_name not in set(dataset.get("fields", [])):
+                raise APIError(
+                    500,
+                    "dataset_contract_mismatch",
+                    f"Minimum filter '{name}' does not map to a field for dataset '{dataset['id']}'.",
+                )
+            clauses.append(f"{quote_ident(field_name)} >= %s")
+            values.append(coerce_bound_value(value))
+        elif name.endswith("_max"):
+            field_name = name.removesuffix("_max")
+            if field_name not in set(dataset.get("fields", [])):
+                raise APIError(
+                    500,
+                    "dataset_contract_mismatch",
+                    f"Maximum filter '{name}' does not map to a field for dataset '{dataset['id']}'.",
+                )
+            clauses.append(f"{quote_ident(field_name)} <= %s")
+            values.append(coerce_bound_value(value))
         else:
             clauses.append(f"{quote_ident(name)} = %s")
             values.append(coerce_filter_value(name, value))
