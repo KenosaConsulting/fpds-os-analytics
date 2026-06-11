@@ -1,0 +1,2233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>FPDS-NG search results for<![CDATA[: PIID:"SAQMMA09A0173"]]></title>
+  <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=PIID%3A%22SAQMMA09A0173%22&amp;start=10"></link>
+  <link rel="first" type="text/html" href="https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=PIID%3A%22SAQMMA09A0173%22&amp;start=0"></link>
+  <link rel="last" type="text/html" href="https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=PIID%3A%22SAQMMA09A0173%22&amp;start=30"></link>
+  <link rel="previous" type="text/html" href="https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=PIID%3A%22SAQMMA09A0173%22&amp;start=0"></link>
+  <link rel="next" type="text/html" href="https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=PIID%3A%22SAQMMA09A0173%22&amp;start=20"></link>
+  <modified/>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title><![CDATA[BPA SAQMMA09A0173 (M010) awarded to ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY, was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=SAQMMA09A0173+1900+"></link>
+    <modified>2020-09-22 11:52:30</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="STATE, DEPARTMENT OF">1900</ns1:agencyID>
+            <ns1:PIID>SAQMMA09A0173</ns1:PIID>
+            <ns1:modNumber>M010</ns1:modNumber></ns1:IDVID>
+          <ns1:referencedIDVID>
+            <ns1:agencyID name="FEDERAL ACQUISITION SERVICE">4730</ns1:agencyID>
+            <ns1:PIID>GS35F0371N</ns1:PIID>
+            <ns1:modNumber>1</ns1:modNumber></ns1:referencedIDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2013-03-26 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2013-03-26 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2014-03-31 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>0.00</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION MGMT - MA" regionCode="US" country="USA">AQMMA</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="BUREAU OF ADMINISTRATION">A</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="BPA" part8OrPart13="PART8">E</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="ORDER DEPENDENT (IDV ALLOWS PRICING ARRANGEMENT TO BE DETERMINED SEPARATELY FOR EACH ORDER)">1</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="EXERCISE AN OPTION">G</ns1:reasonForModification>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>PURSUANT TO THE OPTION PROVISION IN THE BLANKET PURCHASE AGREEMENT (BPA), THIS MODIFICATION HEREBY EXERCISES THE FOURTH OPTION YEAR TO EXTEND THE TERM OF THE BPA FOR A ONE YEAR PERIOD (APRIL 1, 2013 - MARCH 31, 2014).</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="YES - SERVICE WHERE PBA IS USED.">Y</ns1:performanceBasedServiceContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:referencedIDVMultipleOrSingle description="MULTIPLE AWARD">M</ns1:referencedIDVMultipleOrSingle>
+          <ns1:referencedIDVType description="FSS">C</ns1:referencedIDVType>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>PMP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NO">N</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="NO">N</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NO">N</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="IT AND TELECOM- OTHER IT AND TELECOMMUNICATIONS" productOrServiceType="SERVICE">D399</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="OTHER COMPUTER RELATED SERVICES">541519</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorName>
+            <ns1:vendorLegalOrganizationName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorLegalOrganizationName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>false</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>11951 FREEDOM DR STE 1000</ns1:streetAddress>
+              <ns1:city>RESTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="RESTON">201905640</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:congressionalDistrictCode>11</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>201905640</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>C47BNA8GM833</ns1:UEI>
+                <ns1:UEILegalBusinessName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>DY5CT296LBV7</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>ACCENTURE PUBLIC LIMITED COMPANY</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2003-11-12 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2007-04-03 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractorName>ACCENTURE NATIONAL SECURITY SERVICES LLC</ns1:contractorName>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION AFTER EXCLUSION OF SOURCES">D</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:reasonNotCompeted description="AUTHORIZED BY STATUTE (FAR 6.302-5(A)(2)(I))">OTH</ns1:reasonNotCompeted>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM">A</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>WILLIAMSTL</ns1:createdBy>
+          <ns1:createdDate>2013-03-26 15:39:22</ns1:createdDate>
+          <ns1:lastModifiedBy>BAEZJD</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2020-09-22 11:52:30</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>WILLIAMSTL</ns1:approvedBy>
+          <ns1:approvedDate>2013-03-27 08:37:27</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>C47BNA8GM833</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[BPA SAQMMA09A0173 (M011) awarded to ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY, was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=SAQMMA09A0173+1900+"></link>
+    <modified>2020-09-22 11:52:30</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="STATE, DEPARTMENT OF">1900</ns1:agencyID>
+            <ns1:PIID>SAQMMA09A0173</ns1:PIID>
+            <ns1:modNumber>M011</ns1:modNumber></ns1:IDVID>
+          <ns1:referencedIDVID>
+            <ns1:agencyID name="FEDERAL ACQUISITION SERVICE">4730</ns1:agencyID>
+            <ns1:PIID>GS35F0371N</ns1:PIID>
+            <ns1:modNumber>1</ns1:modNumber></ns1:referencedIDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2013-08-07 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2013-08-07 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2014-03-31 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>0.00</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION MGMT - MA" regionCode="US" country="USA">AQMMA</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="BUREAU OF ADMINISTRATION">A</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="BPA" part8OrPart13="PART8">E</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="ORDER DEPENDENT (IDV ALLOWS PRICING ARRANGEMENT TO BE DETERMINED SEPARATELY FOR EACH ORDER)">1</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="OTHER ADMINISTRATIVE ACTION">M</ns1:reasonForModification>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>THIS MODIFICATION IS AN ADMINISTRATIVE MODIFICATION TO PROPERLY ANNOTATE THE BPA "END DATE" IN THE GFMS/MOMENTUM SYSTEM PER M010 WHICH EXERCISED OPTION YEAR 4.</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="YES - SERVICE WHERE PBA IS USED.">Y</ns1:performanceBasedServiceContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:referencedIDVMultipleOrSingle description="MULTIPLE AWARD">M</ns1:referencedIDVMultipleOrSingle>
+          <ns1:referencedIDVType description="FSS">C</ns1:referencedIDVType>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>PMP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NO">N</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="NO">N</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NO">N</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="IT AND TELECOM- OTHER IT AND TELECOMMUNICATIONS" productOrServiceType="SERVICE">D399</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="OTHER COMPUTER RELATED SERVICES">541519</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorName>
+            <ns1:vendorLegalOrganizationName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorLegalOrganizationName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>false</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>11951 FREEDOM DR STE 1000</ns1:streetAddress>
+              <ns1:city>RESTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="RESTON">201905640</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:congressionalDistrictCode>11</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>201905640</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>C47BNA8GM833</ns1:UEI>
+                <ns1:UEILegalBusinessName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>DY5CT296LBV7</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>ACCENTURE PUBLIC LIMITED COMPANY</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2003-11-12 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2007-04-03 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractorName>ACCENTURE NATIONAL SECURITY SERVICES LLC</ns1:contractorName>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION AFTER EXCLUSION OF SOURCES">D</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:reasonNotCompeted description="AUTHORIZED BY STATUTE (FAR 6.302-5(A)(2)(I))">OTH</ns1:reasonNotCompeted>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM">A</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>WILLIAMSTL</ns1:createdBy>
+          <ns1:createdDate>2013-08-07 09:37:54</ns1:createdDate>
+          <ns1:lastModifiedBy>BAEZJD</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2020-09-22 11:52:30</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>WILLIAMSTL</ns1:approvedBy>
+          <ns1:approvedDate>2013-08-07 09:49:36</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>C47BNA8GM833</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[BPA SAQMMA09A0173 (M012) awarded to ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY, was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=SAQMMA09A0173+1900+"></link>
+    <modified>2020-09-22 11:52:30</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="STATE, DEPARTMENT OF">1900</ns1:agencyID>
+            <ns1:PIID>SAQMMA09A0173</ns1:PIID>
+            <ns1:modNumber>M012</ns1:modNumber></ns1:IDVID>
+          <ns1:referencedIDVID>
+            <ns1:agencyID name="FEDERAL ACQUISITION SERVICE">4730</ns1:agencyID>
+            <ns1:PIID>GS35F0371N</ns1:PIID>
+            <ns1:modNumber>1</ns1:modNumber></ns1:referencedIDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2014-02-04 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2014-02-04 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2014-02-04 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>0.00</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION MGMT - MA" regionCode="US" country="USA">AQMMA</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="BUREAU OF ADMINISTRATION">A</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:individualOrderLimit>0</ns1:individualOrderLimit></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="BPA" part8OrPart13="PART8">E</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="ORDER DEPENDENT (IDV ALLOWS PRICING ARRANGEMENT TO BE DETERMINED SEPARATELY FOR EACH ORDER)">1</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="CHANGE ORDER">D</ns1:reasonForModification>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>SERVICES</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="YES - SERVICE WHERE PBA IS USED.">Y</ns1:performanceBasedServiceContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:listOfTreasuryAccounts>
+            <ns1:treasuryAccount>
+              <ns1:treasuryAccountSymbol>
+                <ns1:agencyIdentifier>19</ns1:agencyIdentifier>
+                <ns1:mainAccountCode>0113</ns1:mainAccountCode>
+                <ns1:subAccountCode>000</ns1:subAccountCode></ns1:treasuryAccountSymbol></ns1:treasuryAccount></ns1:listOfTreasuryAccounts>
+          <ns1:referencedIDVMultipleOrSingle description="MULTIPLE AWARD">M</ns1:referencedIDVMultipleOrSingle>
+          <ns1:referencedIDVType description="FSS">C</ns1:referencedIDVType>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>PMP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NO">N</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="NO">N</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NO">N</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="IT AND TELECOM- OTHER IT AND TELECOMMUNICATIONS" productOrServiceType="SERVICE">D399</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="OTHER COMPUTER RELATED SERVICES">541519</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorName>
+            <ns1:vendorLegalOrganizationName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorLegalOrganizationName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>false</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>11951 FREEDOM DR STE 1000</ns1:streetAddress>
+              <ns1:city>RESTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="RESTON">201905640</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:congressionalDistrictCode>11</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>201905640</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>C47BNA8GM833</ns1:UEI>
+                <ns1:UEILegalBusinessName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>DY5CT296LBV7</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>ACCENTURE PUBLIC LIMITED COMPANY</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2003-11-12 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2007-04-03 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractorName>ACCENTURE NATIONAL SECURITY SERVICES LLC</ns1:contractorName>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION AFTER EXCLUSION OF SOURCES">D</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:reasonNotCompeted description="AUTHORIZED BY STATUTE (FAR 6.302-5(A)(2)(I))">OTH</ns1:reasonNotCompeted>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM">A</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>VAUGHANBROWN</ns1:createdBy>
+          <ns1:createdDate>2014-02-06 10:50:20</ns1:createdDate>
+          <ns1:lastModifiedBy>BAEZJD</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2020-09-22 11:52:30</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>VAUGHANBROWN</ns1:approvedBy>
+          <ns1:approvedDate>2014-02-06 10:51:30</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>C47BNA8GM833</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[BPA SAQMMA09A0173 (M013) awarded to ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY, was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=SAQMMA09A0173+1900+"></link>
+    <modified>2020-09-22 11:52:30</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="STATE, DEPARTMENT OF">1900</ns1:agencyID>
+            <ns1:PIID>SAQMMA09A0173</ns1:PIID>
+            <ns1:modNumber>M013</ns1:modNumber></ns1:IDVID>
+          <ns1:referencedIDVID>
+            <ns1:agencyID name="FEDERAL ACQUISITION SERVICE">4730</ns1:agencyID>
+            <ns1:PIID>GS35F0371N</ns1:PIID>
+            <ns1:modNumber>1</ns1:modNumber></ns1:referencedIDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2014-03-31 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2014-03-31 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2014-03-31 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>0.00</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION MGMT - MA" regionCode="US" country="USA">AQMMA</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="BUREAU OF ADMINISTRATION">A</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:individualOrderLimit>0</ns1:individualOrderLimit></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="BPA" part8OrPart13="PART8">E</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="ORDER DEPENDENT (IDV ALLOWS PRICING ARRANGEMENT TO BE DETERMINED SEPARATELY FOR EACH ORDER)">1</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="CHANGE ORDER">D</ns1:reasonForModification>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>SERVICE</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="YES - SERVICE WHERE PBA IS USED.">Y</ns1:performanceBasedServiceContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:listOfTreasuryAccounts>
+            <ns1:treasuryAccount>
+              <ns1:treasuryAccountSymbol>
+                <ns1:agencyIdentifier>19</ns1:agencyIdentifier>
+                <ns1:mainAccountCode>0120</ns1:mainAccountCode>
+                <ns1:subAccountCode>000</ns1:subAccountCode></ns1:treasuryAccountSymbol></ns1:treasuryAccount></ns1:listOfTreasuryAccounts>
+          <ns1:referencedIDVMultipleOrSingle description="MULTIPLE AWARD">M</ns1:referencedIDVMultipleOrSingle>
+          <ns1:referencedIDVType description="FSS">C</ns1:referencedIDVType>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>PMP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NO">N</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="NO">N</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NO">N</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="IT AND TELECOM- OTHER IT AND TELECOMMUNICATIONS" productOrServiceType="SERVICE">D399</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="OTHER COMPUTER RELATED SERVICES">541519</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorName>
+            <ns1:vendorLegalOrganizationName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorLegalOrganizationName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>false</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>11951 FREEDOM DR STE 1000</ns1:streetAddress>
+              <ns1:city>RESTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="RESTON">201905640</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:congressionalDistrictCode>11</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>201905640</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>C47BNA8GM833</ns1:UEI>
+                <ns1:UEILegalBusinessName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>DY5CT296LBV7</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>ACCENTURE PUBLIC LIMITED COMPANY</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2003-11-12 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2007-04-03 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractorName>ACCENTURE NATIONAL SECURITY SERVICES LLC</ns1:contractorName>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION AFTER EXCLUSION OF SOURCES">D</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:reasonNotCompeted description="AUTHORIZED BY STATUTE (FAR 6.302-5(A)(2)(I))">OTH</ns1:reasonNotCompeted>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM">A</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>VAUGHANBROWN</ns1:createdBy>
+          <ns1:createdDate>2014-04-10 11:05:30</ns1:createdDate>
+          <ns1:lastModifiedBy>BAEZJD</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2020-09-22 11:52:30</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>VAUGHANBROWN</ns1:approvedBy>
+          <ns1:approvedDate>2014-04-10 11:07:37</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>C47BNA8GM833</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[BPA SAQMMA09A0173 (M014) awarded to ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY, was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=SAQMMA09A0173+1900+"></link>
+    <modified>2020-09-22 11:52:30</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="STATE, DEPARTMENT OF">1900</ns1:agencyID>
+            <ns1:PIID>SAQMMA09A0173</ns1:PIID>
+            <ns1:modNumber>M014</ns1:modNumber></ns1:IDVID>
+          <ns1:referencedIDVID>
+            <ns1:agencyID name="FEDERAL ACQUISITION SERVICE">4730</ns1:agencyID>
+            <ns1:PIID>GS35F0371N</ns1:PIID>
+            <ns1:modNumber>1</ns1:modNumber></ns1:referencedIDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2014-04-10 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2015-04-10 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2015-04-10 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>0.00</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION MGMT - MA" regionCode="US" country="USA">AQMMA</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="BUREAU OF ADMINISTRATION">A</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:individualOrderLimit>0</ns1:individualOrderLimit></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="BPA" part8OrPart13="PART8">E</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="ORDER DEPENDENT (IDV ALLOWS PRICING ARRANGEMENT TO BE DETERMINED SEPARATELY FOR EACH ORDER)">1</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="CHANGE ORDER">D</ns1:reasonForModification>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>SERVICE</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="YES - SERVICE WHERE PBA IS USED.">Y</ns1:performanceBasedServiceContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:listOfTreasuryAccounts>
+            <ns1:treasuryAccount>
+              <ns1:treasuryAccountSymbol>
+                <ns1:agencyIdentifier>19</ns1:agencyIdentifier>
+                <ns1:mainAccountCode>0120</ns1:mainAccountCode>
+                <ns1:subAccountCode>000</ns1:subAccountCode></ns1:treasuryAccountSymbol></ns1:treasuryAccount></ns1:listOfTreasuryAccounts>
+          <ns1:referencedIDVMultipleOrSingle description="MULTIPLE AWARD">M</ns1:referencedIDVMultipleOrSingle>
+          <ns1:referencedIDVType description="FSS">C</ns1:referencedIDVType>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>PMP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NO">N</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="NO">N</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NO">N</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="IT AND TELECOM- OTHER IT AND TELECOMMUNICATIONS" productOrServiceType="SERVICE">D399</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="OTHER COMPUTER RELATED SERVICES">541519</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorName>
+            <ns1:vendorLegalOrganizationName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorLegalOrganizationName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>false</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>11951 FREEDOM DR STE 1000</ns1:streetAddress>
+              <ns1:city>RESTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="RESTON">201905640</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:congressionalDistrictCode>11</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>201905640</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>C47BNA8GM833</ns1:UEI>
+                <ns1:UEILegalBusinessName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>DY5CT296LBV7</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>ACCENTURE PUBLIC LIMITED COMPANY</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2003-11-12 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2007-04-03 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractorName>ACCENTURE NATIONAL SECURITY SERVICES LLC</ns1:contractorName>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION AFTER EXCLUSION OF SOURCES">D</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:reasonNotCompeted description="AUTHORIZED BY STATUTE (FAR 6.302-5(A)(2)(I))">OTH</ns1:reasonNotCompeted>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM">A</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>VAUGHANBROWN</ns1:createdBy>
+          <ns1:createdDate>2014-04-17 15:10:33</ns1:createdDate>
+          <ns1:lastModifiedBy>BAEZJD</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2020-09-22 11:52:30</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>VAUGHANBROWN</ns1:approvedBy>
+          <ns1:approvedDate>2014-04-17 15:11:05</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>C47BNA8GM833</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[BPA SAQMMA09A0173 (M015) awarded to ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY, was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=SAQMMA09A0173+1900+"></link>
+    <modified>2020-09-22 11:52:30</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="STATE, DEPARTMENT OF">1900</ns1:agencyID>
+            <ns1:PIID>SAQMMA09A0173</ns1:PIID>
+            <ns1:modNumber>M015</ns1:modNumber></ns1:IDVID>
+          <ns1:referencedIDVID>
+            <ns1:agencyID name="FEDERAL ACQUISITION SERVICE">4730</ns1:agencyID>
+            <ns1:PIID>GS35F0371N</ns1:PIID>
+            <ns1:modNumber>1</ns1:modNumber></ns1:referencedIDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2014-06-30 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2014-06-30 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2015-06-30 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>0.00</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION MGMT - MA" regionCode="US" country="USA">AQMMA</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="BUREAU OF ADMINISTRATION">A</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:individualOrderLimit>0</ns1:individualOrderLimit></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="BPA" part8OrPart13="PART8">E</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="ORDER DEPENDENT (IDV ALLOWS PRICING ARRANGEMENT TO BE DETERMINED SEPARATELY FOR EACH ORDER)">1</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="CHANGE ORDER">D</ns1:reasonForModification>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>SERVICES</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="YES - SERVICE WHERE PBA IS USED.">Y</ns1:performanceBasedServiceContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:listOfTreasuryAccounts>
+            <ns1:treasuryAccount>
+              <ns1:treasuryAccountSymbol>
+                <ns1:agencyIdentifier>19</ns1:agencyIdentifier>
+                <ns1:mainAccountCode>0113</ns1:mainAccountCode>
+                <ns1:subAccountCode>000</ns1:subAccountCode></ns1:treasuryAccountSymbol></ns1:treasuryAccount></ns1:listOfTreasuryAccounts>
+          <ns1:referencedIDVMultipleOrSingle description="MULTIPLE AWARD">M</ns1:referencedIDVMultipleOrSingle>
+          <ns1:referencedIDVType description="FSS">C</ns1:referencedIDVType>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>PMP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NO">N</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="NO">N</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NO">N</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="IT AND TELECOM- OTHER IT AND TELECOMMUNICATIONS" productOrServiceType="SERVICE">D399</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="OTHER COMPUTER RELATED SERVICES">541519</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorName>
+            <ns1:vendorLegalOrganizationName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorLegalOrganizationName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>false</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>11951 FREEDOM DR STE 1000</ns1:streetAddress>
+              <ns1:city>RESTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="RESTON">201905640</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:congressionalDistrictCode>11</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>201905640</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>C47BNA8GM833</ns1:UEI>
+                <ns1:UEILegalBusinessName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>DY5CT296LBV7</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>ACCENTURE INC.</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2003-11-12 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2007-04-03 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractorName>ACCENTURE NATIONAL SECURITY SERVICES LLC</ns1:contractorName>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION AFTER EXCLUSION OF SOURCES">D</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:reasonNotCompeted description="AUTHORIZED BY STATUTE (FAR 6.302-5(A)(2)(I))">OTH</ns1:reasonNotCompeted>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM">A</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>VAUGHANBROWN</ns1:createdBy>
+          <ns1:createdDate>2014-07-02 12:19:31</ns1:createdDate>
+          <ns1:lastModifiedBy>BAEZJD</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2020-09-22 11:52:30</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>VAUGHANBROWN</ns1:approvedBy>
+          <ns1:approvedDate>2014-07-02 12:19:40</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>C47BNA8GM833</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[BPA SAQMMA09A0173 (M016) awarded to ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY, was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=SAQMMA09A0173+1900+"></link>
+    <modified>2020-09-22 11:52:30</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="STATE, DEPARTMENT OF">1900</ns1:agencyID>
+            <ns1:PIID>SAQMMA09A0173</ns1:PIID>
+            <ns1:modNumber>M016</ns1:modNumber></ns1:IDVID>
+          <ns1:referencedIDVID>
+            <ns1:agencyID name="FEDERAL ACQUISITION SERVICE">4730</ns1:agencyID>
+            <ns1:PIID>GS35F0371N</ns1:PIID>
+            <ns1:modNumber>1</ns1:modNumber></ns1:referencedIDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2015-03-18 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2015-03-18 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2016-03-18 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>0.00</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION MGMT - MA" regionCode="US" country="USA">AQMMA</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="BUREAU OF ADMINISTRATION">A</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:individualOrderLimit>0</ns1:individualOrderLimit></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="BPA" part8OrPart13="PART8">E</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="ORDER DEPENDENT (IDV ALLOWS PRICING ARRANGEMENT TO BE DETERMINED SEPARATELY FOR EACH ORDER)">1</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="CHANGE ORDER">D</ns1:reasonForModification>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>IT SERVICES</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="YES - SERVICE WHERE PBA IS USED.">Y</ns1:performanceBasedServiceContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:listOfTreasuryAccounts>
+            <ns1:treasuryAccount>
+              <ns1:treasuryAccountSymbol>
+                <ns1:agencyIdentifier>19</ns1:agencyIdentifier>
+                <ns1:mainAccountCode>0113</ns1:mainAccountCode>
+                <ns1:subAccountCode>000</ns1:subAccountCode></ns1:treasuryAccountSymbol></ns1:treasuryAccount></ns1:listOfTreasuryAccounts>
+          <ns1:referencedIDVMultipleOrSingle description="MULTIPLE AWARD">M</ns1:referencedIDVMultipleOrSingle>
+          <ns1:referencedIDVType description="FSS">C</ns1:referencedIDVType>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>PMP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NO">N</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="NO">N</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NO">N</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="IT AND TELECOM- OTHER IT AND TELECOMMUNICATIONS" productOrServiceType="SERVICE">D399</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="OTHER COMPUTER RELATED SERVICES">541519</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorName>
+            <ns1:vendorLegalOrganizationName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorLegalOrganizationName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>false</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>11951 FREEDOM DR STE 1000</ns1:streetAddress>
+              <ns1:city>RESTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="RESTON">201905640</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:congressionalDistrictCode>11</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>201905640</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>C47BNA8GM833</ns1:UEI>
+                <ns1:UEILegalBusinessName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>DY5CT296LBV7</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>ACCENTURE INC.</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2003-11-12 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2007-04-03 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractorName>ACCENTURE NATIONAL SECURITY SERVICES LLC</ns1:contractorName>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION AFTER EXCLUSION OF SOURCES">D</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:reasonNotCompeted description="AUTHORIZED BY STATUTE (FAR 6.302-5(A)(2)(I))">OTH</ns1:reasonNotCompeted>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM">A</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>VAUGHANBROWN</ns1:createdBy>
+          <ns1:createdDate>2015-04-10 12:31:31</ns1:createdDate>
+          <ns1:lastModifiedBy>BAEZJD</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2020-09-22 11:52:30</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>VAUGHANBROWN</ns1:approvedBy>
+          <ns1:approvedDate>2015-04-10 12:34:21</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>C47BNA8GM833</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[BPA SAQMMA09A0173 (M017) awarded to ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY, was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=SAQMMA09A0173+1900+"></link>
+    <modified>2020-09-22 11:52:30</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="STATE, DEPARTMENT OF">1900</ns1:agencyID>
+            <ns1:PIID>SAQMMA09A0173</ns1:PIID>
+            <ns1:modNumber>M017</ns1:modNumber></ns1:IDVID>
+          <ns1:referencedIDVID>
+            <ns1:agencyID name="FEDERAL ACQUISITION SERVICE">4730</ns1:agencyID>
+            <ns1:PIID>GS35F0371N</ns1:PIID>
+            <ns1:modNumber>1</ns1:modNumber></ns1:referencedIDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2015-07-10 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2015-07-10 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2016-07-10 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>0.00</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION MGMT - MA" regionCode="US" country="USA">AQMMA</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="BUREAU OF ADMINISTRATION">A</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:individualOrderLimit>0</ns1:individualOrderLimit></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="BPA" part8OrPart13="PART8">E</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="ORDER DEPENDENT (IDV ALLOWS PRICING ARRANGEMENT TO BE DETERMINED SEPARATELY FOR EACH ORDER)">1</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="CHANGE ORDER">D</ns1:reasonForModification>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>IT SERVICES</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="YES - SERVICE WHERE PBA IS USED.">Y</ns1:performanceBasedServiceContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:listOfTreasuryAccounts>
+            <ns1:treasuryAccount>
+              <ns1:treasuryAccountSymbol>
+                <ns1:agencyIdentifier>19</ns1:agencyIdentifier>
+                <ns1:mainAccountCode>0120</ns1:mainAccountCode>
+                <ns1:subAccountCode>000</ns1:subAccountCode></ns1:treasuryAccountSymbol></ns1:treasuryAccount></ns1:listOfTreasuryAccounts>
+          <ns1:referencedIDVMultipleOrSingle description="MULTIPLE AWARD">M</ns1:referencedIDVMultipleOrSingle>
+          <ns1:referencedIDVType description="FSS">C</ns1:referencedIDVType>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>PMP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NO">N</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="NO">N</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NO">N</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="IT AND TELECOM- OTHER IT AND TELECOMMUNICATIONS" productOrServiceType="SERVICE">D399</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="OTHER COMPUTER RELATED SERVICES">541519</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorName>
+            <ns1:vendorLegalOrganizationName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorLegalOrganizationName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>false</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>11951 FREEDOM DR STE 1000</ns1:streetAddress>
+              <ns1:city>RESTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="RESTON">201905640</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:congressionalDistrictCode>11</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>201905640</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>C47BNA8GM833</ns1:UEI>
+                <ns1:UEILegalBusinessName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>DY5CT296LBV7</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>ACCENTURE INC.</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2003-11-12 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2007-04-03 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractorName>ACCENTURE NATIONAL SECURITY SERVICES LLC</ns1:contractorName>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION AFTER EXCLUSION OF SOURCES">D</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:reasonNotCompeted description="AUTHORIZED BY STATUTE (FAR 6.302-5(A)(2)(I))">OTH</ns1:reasonNotCompeted>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM">A</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>VAUGHANBROWN</ns1:createdBy>
+          <ns1:createdDate>2015-07-17 12:07:10</ns1:createdDate>
+          <ns1:lastModifiedBy>BAEZJD</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2020-09-22 11:52:30</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>VAUGHANBROWN</ns1:approvedBy>
+          <ns1:approvedDate>2015-07-17 12:07:54</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>C47BNA8GM833</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[BPA SAQMMA09A0173 (M018) awarded to ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY, was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=SAQMMA09A0173+1900+"></link>
+    <modified>2020-09-22 11:52:30</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="STATE, DEPARTMENT OF">1900</ns1:agencyID>
+            <ns1:PIID>SAQMMA09A0173</ns1:PIID>
+            <ns1:modNumber>M018</ns1:modNumber></ns1:IDVID>
+          <ns1:referencedIDVID>
+            <ns1:agencyID name="FEDERAL ACQUISITION SERVICE">4730</ns1:agencyID>
+            <ns1:PIID>GS35F0371N</ns1:PIID>
+            <ns1:modNumber>1</ns1:modNumber></ns1:referencedIDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2016-03-31 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2016-03-31 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2017-03-31 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue>
+          <ns1:totalEstimatedOrderValue>0</ns1:totalEstimatedOrderValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>0.00</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION MGMT - MA" regionCode="US" country="USA">AQMMA</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="BUREAU OF ADMINISTRATION">A</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:individualOrderLimit>0</ns1:individualOrderLimit></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="BPA" part8OrPart13="PART8">E</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="ORDER DEPENDENT (IDV ALLOWS PRICING ARRANGEMENT TO BE DETERMINED SEPARATELY FOR EACH ORDER)">1</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="CHANGE ORDER">D</ns1:reasonForModification>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>EXERCISE OF OPTION</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="OTHER UNDEFINITIZED ACTION">B</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="YES - SERVICE WHERE PBA IS USED.">Y</ns1:performanceBasedServiceContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:listOfTreasuryAccounts>
+            <ns1:treasuryAccount>
+              <ns1:treasuryAccountSymbol>
+                <ns1:agencyIdentifier>19</ns1:agencyIdentifier>
+                <ns1:mainAccountCode>0120</ns1:mainAccountCode>
+                <ns1:subAccountCode>000</ns1:subAccountCode></ns1:treasuryAccountSymbol></ns1:treasuryAccount></ns1:listOfTreasuryAccounts>
+          <ns1:referencedIDVMultipleOrSingle description="MULTIPLE AWARD">M</ns1:referencedIDVMultipleOrSingle>
+          <ns1:referencedIDVType description="FSS">C</ns1:referencedIDVType>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>PMP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NO">N</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="NO">N</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NO">N</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="IT AND TELECOM- OTHER IT AND TELECOMMUNICATIONS" productOrServiceType="SERVICE">D399</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="OTHER COMPUTER RELATED SERVICES">541519</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorName>
+            <ns1:vendorLegalOrganizationName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorLegalOrganizationName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>false</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>11951 FREEDOM DR STE 1000</ns1:streetAddress>
+              <ns1:city>RESTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="RESTON">201905640</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:congressionalDistrictCode>11</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>201905640</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>C47BNA8GM833</ns1:UEI>
+                <ns1:UEILegalBusinessName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>DY5CT296LBV7</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>ACCENTURE INC.</ns1:ultimateParentUEIName></ns1:vendorUEIInformation>
+              <ns1:cageCode>1ZD18</ns1:cageCode></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2003-11-12 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2007-04-03 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractorName>ACCENTURE NATIONAL SECURITY SERVICES LLC</ns1:contractorName>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION AFTER EXCLUSION OF SOURCES">D</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:reasonNotCompeted description="AUTHORIZED BY STATUTE (FAR 6.302-5(A)(2)(I))">OTH</ns1:reasonNotCompeted>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM">A</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>VAUGHANBROWN</ns1:createdBy>
+          <ns1:createdDate>2016-04-28 15:46:55</ns1:createdDate>
+          <ns1:lastModifiedBy>BAEZJD</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2020-09-22 11:52:30</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>VAUGHANBROWN</ns1:approvedBy>
+          <ns1:approvedDate>2016-04-28 15:47:45</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>C47BNA8GM833</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[BPA SAQMMA09A0173 (M019) awarded to ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY, was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=SAQMMA09A0173+1900+"></link>
+    <modified>2020-09-22 11:52:30</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="STATE, DEPARTMENT OF">1900</ns1:agencyID>
+            <ns1:PIID>SAQMMA09A0173</ns1:PIID>
+            <ns1:modNumber>M019</ns1:modNumber></ns1:IDVID>
+          <ns1:referencedIDVID>
+            <ns1:agencyID name="FEDERAL ACQUISITION SERVICE">4730</ns1:agencyID>
+            <ns1:PIID>GS35F0371N</ns1:PIID>
+            <ns1:modNumber>1</ns1:modNumber></ns1:referencedIDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2016-09-27 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2016-09-27 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2017-09-27 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue>
+          <ns1:totalEstimatedOrderValue>0</ns1:totalEstimatedOrderValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>0.00</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="ACQUISITIONS - AQM MOMENTUM" regionCode="US" country="USA">19AQMM</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="STATE, DEPARTMENT OF" departmentID="1900" departmentName="STATE, DEPARTMENT OF">1900</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="BUREAU OF ADMINSTRATION">19XA00</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:individualOrderLimit>0</ns1:individualOrderLimit></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="BPA" part8OrPart13="PART8">E</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="ORDER DEPENDENT (IDV ALLOWS PRICING ARRANGEMENT TO BE DETERMINED SEPARATELY FOR EACH ORDER)">1</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="FUNDING ONLY ACTION">C</ns1:reasonForModification>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>THIS NO COST MODIFICATION DOCUMENTS THE REMOVAL OF THE INDICATED OVERALL BPA $200M CEILING. IT IS DETERMINED THIS CEILING IS NEITHER APPROPRIATE NOR NEEDED DUE TO THE VEHICLE TYPE. THIS MODIFICATION ALSO CHANGES THE PHRASE "AGREEMENT CEILING AMOUNT" INDICATED IN THE FOOTER TO: "ESTIMATED VALUE" TO APPROPRIATELY REFLECT FAR SUBPART 8.4 - FEDERAL SUPPLY SCHEDULES GUIDANCE.</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="YES - SERVICE WHERE PBA IS USED.">Y</ns1:performanceBasedServiceContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:listOfTreasuryAccounts>
+            <ns1:treasuryAccount>
+              <ns1:treasuryAccountSymbol>
+                <ns1:agencyIdentifier>19</ns1:agencyIdentifier>
+                <ns1:mainAccountCode>0113</ns1:mainAccountCode>
+                <ns1:subAccountCode>000</ns1:subAccountCode></ns1:treasuryAccountSymbol></ns1:treasuryAccount></ns1:listOfTreasuryAccounts>
+          <ns1:referencedIDVMultipleOrSingle description="MULTIPLE AWARD">M</ns1:referencedIDVMultipleOrSingle>
+          <ns1:referencedIDVType description="FSS">C</ns1:referencedIDVType>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>PMP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NO">N</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="NO">N</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NO">N</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="IT AND TELECOM- OTHER IT AND TELECOMMUNICATIONS" productOrServiceType="SERVICE">D399</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="OTHER COMPUTER RELATED SERVICES">541519</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorName>
+            <ns1:vendorLegalOrganizationName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:vendorLegalOrganizationName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>false</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>11951 FREEDOM DR STE 1000</ns1:streetAddress>
+              <ns1:city>RESTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="RESTON">201905640</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:congressionalDistrictCode>11</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>201905640</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>C47BNA8GM833</ns1:UEI>
+                <ns1:UEILegalBusinessName>ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>DY5CT296LBV7</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>ACCENTURE INC.</ns1:ultimateParentUEIName></ns1:vendorUEIInformation>
+              <ns1:cageCode>1ZD18</ns1:cageCode></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2003-11-12 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2007-04-03 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractorName>ACCENTURE NATIONAL SECURITY SERVICES LLC</ns1:contractorName>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION AFTER EXCLUSION OF SOURCES">D</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:reasonNotCompeted description="AUTHORIZED BY STATUTE (FAR 6.302-5(A)(2)(I))">OTH</ns1:reasonNotCompeted>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM">A</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>VAUGHANBROWN</ns1:createdBy>
+          <ns1:createdDate>2016-10-14 15:12:22</ns1:createdDate>
+          <ns1:lastModifiedBy>BAEZJD</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2020-09-22 11:52:30</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>VAUGHANBROWN</ns1:approvedBy>
+          <ns1:approvedDate>2016-10-14 15:12:46</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>C47BNA8GM833</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+</feed>

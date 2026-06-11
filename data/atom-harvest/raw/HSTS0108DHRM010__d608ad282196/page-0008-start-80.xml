@@ -1,0 +1,2370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>FPDS-NG search results for<![CDATA[: PIID:"HSTS0108DHRM010"]]></title>
+  <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=PIID%3A%22HSTS0108DHRM010%22&amp;start=80"></link>
+  <link rel="first" type="text/html" href="https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=PIID%3A%22HSTS0108DHRM010%22&amp;start=0"></link>
+  <link rel="last" type="text/html" href="https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=PIID%3A%22HSTS0108DHRM010%22&amp;start=280"></link>
+  <link rel="previous" type="text/html" href="https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=PIID%3A%22HSTS0108DHRM010%22&amp;start=70"></link>
+  <link rel="next" type="text/html" href="https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=PIID%3A%22HSTS0108DHRM010%22&amp;start=90"></link>
+  <modified/>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title><![CDATA[IDC HSTS0108DHRM010 (P00079) awarded to LOCKHEED MARTIN INTEGRATED SYSTEMS, INC., was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=HSTS0108DHRM010+7013+"></link>
+    <modified>2022-10-20 12:58:58</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="TRANSPORTATION SECURITY ADMINISTRATION">7013</ns1:agencyID>
+            <ns1:PIID>HSTS0108DHRM010</ns1:PIID>
+            <ns1:modNumber>P00079</ns1:modNumber></ns1:IDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2013-04-23 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2013-04-23 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2017-01-02 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>1312453993.85</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION" country="USA">00020</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="OFFICE OF ACQUISITION">00020</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:websiteURL>HTTP://WWW.TSA.GOV</ns1:websiteURL>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:emailAddress>_2124749677_MTQwMzA1OTYzNwABAgMEBQYHCAkKCwwNDg8QIV5wijc18RopA272e8bofeUBkEjhCaQ=</ns1:emailAddress>
+          <ns1:individualOrderLimit>1000000000</ns1:individualOrderLimit>
+          <ns1:typeOfFeeForUseOfService description="NO FEE">NO</ns1:typeOfFeeForUseOfService>
+          <ns1:orderingProcedure>Contact the Contracting Officer/Contract Specialist.</ns1:orderingProcedure></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="IDC">B</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="FIXED PRICE AWARD FEE">M</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="EXERCISE AN OPTION">G</ns1:reasonForModification>
+          <ns1:majorProgramCode>INTEGRATED HIRING OPERATIONS&amp;PERSONNEL PROGRAM</ns1:majorProgramCode>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costOrPricingData description="No">N</ns1:costOrPricingData>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>THE PURPOSE OF MODIFICATION P00079 AGAINST IDIQ HSTS01-08-D-HRM010 IS TO EXERCISE CLINS 5005A "BACKGROUND CHECK" AND 5016A "PAYROLL ACTION PROCESSING," UPDATE THE CONTRACTING OFFICER'S REPRESENTATIVE (COR), AS WELL AS FORMALLY DOCUMENT THE ACCEPTANCE OF THE PARALLEL SCHEDULE FOR THE FAMS J-BAND AUTOMATION REQUIREMENT CURRENTLY BEING PERFORMED CONCURRENTLY UNDER CLINS 4009AB "FAMS J-BAND" AND 5009AB "FAMS J-BAND."</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="NO - SERVICE WHERE PBA IS NOT USED.">N</ns1:performanceBasedServiceContract>
+          <ns1:multiYearContract description="NO">N</ns1:multiYearContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:typeOfIDC description="INDEFINITE DELIVERY / INDEFINITE QUANTITY">B</ns1:typeOfIDC>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>OHC IHOP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NOT APPLICABLE">X</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="YES">Y</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NOT APPLICABLE">X</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="SUPPORT- PROFESSIONAL: OTHER" productOrServiceType="SERVICE">R499</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="HUMAN RESOURCES CONSULTING SERVICES (2007), HUMAN RESOURCES AND EXECUTIVE SEARCH CONSULTING SERVICES (2002)">541612</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:vendorName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>true</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>true</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+              <ns1:stateOfIncorporation name="DELAWARE">DE</ns1:stateOfIncorporation>
+              <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+              <ns1:organizationalType>CORPORATE NOT TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>1800 S BELL ST STE. 1200</ns1:streetAddress>
+              <ns1:city>ARLINGTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="ARLINGTON">222023559</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:phoneNo>4073562223</ns1:phoneNo>
+              <ns1:faxNo>4073567199</ns1:faxNo>
+              <ns1:congressionalDistrictCode>08</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>208171803</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>LM23KNLRCAJ8</ns1:UEI>
+                <ns1:UEILegalBusinessName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>ZFN2JJXBLZT3</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>LOCKHEED MARTIN CORPORATION</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2001-12-03 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2013-08-08 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION">A</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:numberOfOffersReceived>3</ns1:numberOfOffersReceived>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM PROCEDURES NOT USED">D</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>7013JPOTOCKITSA</ns1:createdBy>
+          <ns1:createdDate>2013-04-22 12:40:38</ns1:createdDate>
+          <ns1:lastModifiedBy>7008CIMSPRISM</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2022-10-20 12:58:58</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>7013ETYNDELL</ns1:approvedBy>
+          <ns1:approvedDate>2013-04-23 17:29:02</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LM23KNLRCAJ8</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[IDC HSTS0108DHRM010 (P00080) awarded to LOCKHEED MARTIN INTEGRATED SYSTEMS, INC., was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=HSTS0108DHRM010+7013+"></link>
+    <modified>2022-12-01 12:59:39</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="TRANSPORTATION SECURITY ADMINISTRATION">7013</ns1:agencyID>
+            <ns1:PIID>HSTS0108DHRM010</ns1:PIID>
+            <ns1:modNumber>P00080</ns1:modNumber></ns1:IDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2013-04-29 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2013-05-01 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2017-01-02 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>1737549.60</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>1312453993.85</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION" country="USA">00020</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="OFFICE OF ACQUISITION">00020</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:websiteURL>HTTP://WWW.TSA.GOV</ns1:websiteURL>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:emailAddress>_2124749677_MTQwMzA1OTYzNwABAgMEBQYHCAkKCwwNDg8QIV5wijc18RopA272e8bofeUBkEjhCaQ=</ns1:emailAddress>
+          <ns1:individualOrderLimit>1000000000</ns1:individualOrderLimit>
+          <ns1:typeOfFeeForUseOfService description="NO FEE">NO</ns1:typeOfFeeForUseOfService>
+          <ns1:orderingProcedure>Contact the Contracting Officer/Contract Specialist.</ns1:orderingProcedure></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="IDC">B</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="FIXED PRICE AWARD FEE">M</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="OTHER ADMINISTRATIVE ACTION">M</ns1:reasonForModification>
+          <ns1:majorProgramCode>INTEGRATED HIRING OPERATIONS&amp;PERSONNEL PROGRAM</ns1:majorProgramCode>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costOrPricingData description="No">N</ns1:costOrPricingData>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>THE PURPOSE OF MODIFICATION P00080 TO IDIQ CONTRACT HSTS01-08-D-HRM010 IS AS FOLLOWS:
+
+14(A) TO EXTEND THE PERIOD OF PERFORMANCE (POP) OF CLIN 4024 DATA WAREHOUSE BY TWO MONTHS. THE POP FOR CLIN 4024 IS REVISED FROM 6/1/2012 - 4/30/2013 TO 6/1/2012 - 6/30/2013. PER CLAUSE I.6 OPTION TO EXTEND SERVICES 3.2.4-34 (FEB 2003), THE CONTRACTOR SHALL CONTINUE PROVIDING INTEGRATED DATA WAREHOUSE (IDW) SERVICES IN ACCORDANCE WITH SECTION 12 OF THE STATEMENT OF WORK (SOW).
+
+14(B) TO INCREASE THE CEILING OF CLIN 4024 DATA WAREHOUSE BY $1,737,549.60 FROM $9,209,937.65 TO $10,947,487.25.
+
+14(C) TO CREATE SUB-CLIN 4024C DATA WAREHOUSE OY 3 MAY-JUNE EXTENSION FOR ADMINISTRATIVE PURPOSES. THIS NEWLY CREATED SUB-CLIN WILL SERVE TO EXTEND THE POP AT A COST OF $1,683,478.00 FOR SERVICES PROVIDED UNDER CLIN 4024 DATA WAREHOUSE.
+
+14(D) TO CREATE OPTIONAL SUB-CLIN 4024C-1 IBM INFOSPHERE DATASTAGE SOFTWARE LICENSES AT COST ONLY. THERE IS NO FIXED FEE ON THIS SUB-CLIN AND IT IS NOT-TO-EXCEED $54,071.60.
+
+14(E) MODIFICATION P00024 WILL BE MADE TO TASK ORDER HSTS01-12-J-HRM040 TO EXERCISE AND FULLY FUND SUB-CLIN 4024C IN THE AMOUNT OF $1,683,478.00  FOR THE PERIOD OF PERFORMANCE OF 5/1/2013 - 6/30/2013.
+
+14(F)  ALL OTHER TERMS AND CONDITIONS OF THE SUBJECT CONTRACT REMAIN UNCHANGED AND IN FULL FORCE AND EFFECT UNLESS OTHERWISE CHANGED BY THE HRACCESS CONTRACTING OFFICER.</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="NO - SERVICE WHERE PBA IS NOT USED.">N</ns1:performanceBasedServiceContract>
+          <ns1:multiYearContract description="NO">N</ns1:multiYearContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:listOfTreasuryAccounts>
+            <ns1:treasuryAccount>
+              <ns1:treasuryAccountSymbol>
+                <ns1:agencyIdentifier>70</ns1:agencyIdentifier>
+                <ns1:mainAccountCode>0554</ns1:mainAccountCode></ns1:treasuryAccountSymbol></ns1:treasuryAccount></ns1:listOfTreasuryAccounts>
+          <ns1:typeOfIDC description="INDEFINITE DELIVERY / INDEFINITE QUANTITY">B</ns1:typeOfIDC>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>OHC IHOP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NOT APPLICABLE">X</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="YES">Y</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NOT APPLICABLE">X</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="SUPPORT- PROFESSIONAL: OTHER" productOrServiceType="SERVICE">R499</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="HUMAN RESOURCES CONSULTING SERVICES (2007), HUMAN RESOURCES AND EXECUTIVE SEARCH CONSULTING SERVICES (2002)">541612</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:vendorName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>true</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>true</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+              <ns1:stateOfIncorporation name="DELAWARE">DE</ns1:stateOfIncorporation>
+              <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+              <ns1:organizationalType>CORPORATE NOT TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>1800 S BELL ST STE. 1200</ns1:streetAddress>
+              <ns1:city>ARLINGTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="ARLINGTON">222023559</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:phoneNo>4073562223</ns1:phoneNo>
+              <ns1:faxNo>4073567199</ns1:faxNo>
+              <ns1:congressionalDistrictCode>08</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>208171803</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>LM23KNLRCAJ8</ns1:UEI>
+                <ns1:UEILegalBusinessName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>ZFN2JJXBLZT3</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>LOCKHEED MARTIN CORPORATION</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2001-12-03 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2013-08-08 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION">A</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:numberOfOffersReceived>3</ns1:numberOfOffersReceived>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM PROCEDURES NOT USED">D</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>7013MACAPOVILLATSA</ns1:createdBy>
+          <ns1:createdDate>2013-04-25 17:01:06</ns1:createdDate>
+          <ns1:lastModifiedBy>7008CIMSPRISM</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2022-12-01 12:59:39</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>7013ETYNDELL</ns1:approvedBy>
+          <ns1:approvedDate>2013-05-01 13:42:25</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LM23KNLRCAJ8</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[IDC HSTS0108DHRM010 (P00081) awarded to LOCKHEED MARTIN INTEGRATED SYSTEMS, INC., was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=HSTS0108DHRM010+7013+"></link>
+    <modified>2022-10-20 12:58:58</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="TRANSPORTATION SECURITY ADMINISTRATION">7013</ns1:agencyID>
+            <ns1:PIID>HSTS0108DHRM010</ns1:PIID>
+            <ns1:modNumber>P00081</ns1:modNumber></ns1:IDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2013-05-07 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2013-05-07 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2017-01-02 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>178084.58</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>1312453993.85</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION" country="USA">00020</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="OFFICE OF ACQUISITION">00020</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:websiteURL>HTTP://WWW.TSA.GOV</ns1:websiteURL>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:emailAddress>_2124749677_MTQwMzA1OTYzNwABAgMEBQYHCAkKCwwNDg8QIV5wijc18RopA272e8bofeUBkEjhCaQ=</ns1:emailAddress>
+          <ns1:individualOrderLimit>1000000000</ns1:individualOrderLimit>
+          <ns1:typeOfFeeForUseOfService description="NO FEE">NO</ns1:typeOfFeeForUseOfService>
+          <ns1:orderingProcedure>Contact the Contracting Officer/Contract Specialist.</ns1:orderingProcedure></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="IDC">B</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="FIXED PRICE AWARD FEE">M</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="OTHER ADMINISTRATIVE ACTION">M</ns1:reasonForModification>
+          <ns1:majorProgramCode>INTEGRATED HIRING OPERATIONS&amp;PERSONNEL PROGRAM</ns1:majorProgramCode>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costOrPricingData description="No">N</ns1:costOrPricingData>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>THE PURPOSE OF MODIFICATION P00081 TO HRACCESS IDIQ HSTS01-08-D-HRM010 IS TO ADD AND EXERCISE CLIN SERIES 5028 "CASE MANAGEMENT SYSTEM - LEGACY DATA MIGRATION," AS WELL AS SUB-CLIN 5028A "OOI LEGACY DATA MIGRATION."
+ 
+ALL OTHER TERMS AND CONDITIONS ARE IN FULL FORCE AND EFFECT AND REMAIN UNCHANGED.</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="NO - SERVICE WHERE PBA IS NOT USED.">N</ns1:performanceBasedServiceContract>
+          <ns1:multiYearContract description="NO">N</ns1:multiYearContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:typeOfIDC description="INDEFINITE DELIVERY / INDEFINITE QUANTITY">B</ns1:typeOfIDC>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>OHC IHOP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NOT APPLICABLE">X</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="YES">Y</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NOT APPLICABLE">X</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="SUPPORT- PROFESSIONAL: OTHER" productOrServiceType="SERVICE">R499</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="HUMAN RESOURCES CONSULTING SERVICES (2007), HUMAN RESOURCES AND EXECUTIVE SEARCH CONSULTING SERVICES (2002)">541612</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:vendorName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>true</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>true</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+              <ns1:stateOfIncorporation name="DELAWARE">DE</ns1:stateOfIncorporation>
+              <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+              <ns1:organizationalType>CORPORATE NOT TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>1800 S BELL ST STE. 1200</ns1:streetAddress>
+              <ns1:city>ARLINGTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="ARLINGTON">222023559</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:phoneNo>4073562223</ns1:phoneNo>
+              <ns1:faxNo>4073567199</ns1:faxNo>
+              <ns1:congressionalDistrictCode>08</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>208171803</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>LM23KNLRCAJ8</ns1:UEI>
+                <ns1:UEILegalBusinessName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>ZFN2JJXBLZT3</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>LOCKHEED MARTIN CORPORATION</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2001-12-03 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2013-08-08 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION">A</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:numberOfOffersReceived>3</ns1:numberOfOffersReceived>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM PROCEDURES NOT USED">D</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>7013JPOTOCKITSA</ns1:createdBy>
+          <ns1:createdDate>2013-05-03 10:36:39</ns1:createdDate>
+          <ns1:lastModifiedBy>7008CIMSPRISM</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2022-10-20 12:58:58</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>7013ETYNDELL</ns1:approvedBy>
+          <ns1:approvedDate>2013-05-07 09:50:22</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LM23KNLRCAJ8</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[IDC HSTS0108DHRM010 (P00082) awarded to LOCKHEED MARTIN INTEGRATED SYSTEMS, INC., was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=HSTS0108DHRM010+7013+"></link>
+    <modified>2022-10-20 12:58:58</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="TRANSPORTATION SECURITY ADMINISTRATION">7013</ns1:agencyID>
+            <ns1:PIID>HSTS0108DHRM010</ns1:PIID>
+            <ns1:modNumber>P00082</ns1:modNumber></ns1:IDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2013-05-08 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2013-05-08 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2017-01-02 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>1312453993.85</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION" country="USA">00020</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="OFFICE OF ACQUISITION">00020</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:websiteURL>HTTP://WWW.TSA.GOV</ns1:websiteURL>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:emailAddress>_2124749677_MTQwMzA1OTYzNwABAgMEBQYHCAkKCwwNDg8QIV5wijc18RopA272e8bofeUBkEjhCaQ=</ns1:emailAddress>
+          <ns1:individualOrderLimit>1000000000</ns1:individualOrderLimit>
+          <ns1:typeOfFeeForUseOfService description="NO FEE">NO</ns1:typeOfFeeForUseOfService>
+          <ns1:orderingProcedure>Contact the Contracting Officer/Contract Specialist.</ns1:orderingProcedure></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="IDC">B</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="FIXED PRICE AWARD FEE">M</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="EXERCISE AN OPTION">G</ns1:reasonForModification>
+          <ns1:majorProgramCode>INTEGRATED HIRING OPERATIONS&amp;PERSONNEL PROGRAM</ns1:majorProgramCode>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costOrPricingData description="No">N</ns1:costOrPricingData>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>THE PURPOSE OF MODIFICATION P00082 AGAINST IDIQ HSTS01-08-D-HRM010 IS TO EXERCISE SUB-CLIN 5016AA "PAYROLL ACTION PROCESSING (60,001 - 75,000)," AS WELL AS REVISE ATTACHMENT J.5 "WAGE DETERMINATIONS" TO REPLACE THE WAGE DETERMINATIONS APPLICABLE TO THIS CONTRACT THAT WERE  ERRONEOUSLY INCLUDED PER MODIFICATION P00077.</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="NO - SERVICE WHERE PBA IS NOT USED.">N</ns1:performanceBasedServiceContract>
+          <ns1:multiYearContract description="NO">N</ns1:multiYearContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:typeOfIDC description="INDEFINITE DELIVERY / INDEFINITE QUANTITY">B</ns1:typeOfIDC>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>OHC IHOP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NOT APPLICABLE">X</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="YES">Y</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NOT APPLICABLE">X</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="SUPPORT- PROFESSIONAL: OTHER" productOrServiceType="SERVICE">R499</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="HUMAN RESOURCES CONSULTING SERVICES (2007), HUMAN RESOURCES AND EXECUTIVE SEARCH CONSULTING SERVICES (2002)">541612</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:vendorName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>true</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>true</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+              <ns1:stateOfIncorporation name="DELAWARE">DE</ns1:stateOfIncorporation>
+              <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+              <ns1:organizationalType>CORPORATE NOT TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>1800 S BELL ST STE. 1200</ns1:streetAddress>
+              <ns1:city>ARLINGTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="ARLINGTON">222023559</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:phoneNo>4073562223</ns1:phoneNo>
+              <ns1:faxNo>4073567199</ns1:faxNo>
+              <ns1:congressionalDistrictCode>08</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>208171803</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>LM23KNLRCAJ8</ns1:UEI>
+                <ns1:UEILegalBusinessName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>ZFN2JJXBLZT3</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>LOCKHEED MARTIN CORPORATION</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2001-12-03 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2013-08-08 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION">A</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:numberOfOffersReceived>3</ns1:numberOfOffersReceived>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM PROCEDURES NOT USED">D</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>7013JPOTOCKITSA</ns1:createdBy>
+          <ns1:createdDate>2013-05-06 17:17:54</ns1:createdDate>
+          <ns1:lastModifiedBy>7008CIMSPRISM</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2022-10-20 12:58:58</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>7013ETYNDELL</ns1:approvedBy>
+          <ns1:approvedDate>2013-05-08 10:38:49</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LM23KNLRCAJ8</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[IDC HSTS0108DHRM010 (P00083) awarded to LOCKHEED MARTIN INTEGRATED SYSTEMS, INC., was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=HSTS0108DHRM010+7013+"></link>
+    <modified>2022-12-01 12:59:39</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="TRANSPORTATION SECURITY ADMINISTRATION">7013</ns1:agencyID>
+            <ns1:PIID>HSTS0108DHRM010</ns1:PIID>
+            <ns1:modNumber>P00083</ns1:modNumber></ns1:IDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2013-06-21 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2013-06-21 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2017-01-02 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>839266.45</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>1312453993.85</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION" country="USA">00020</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="OFFICE OF ACQUISITION">00020</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:websiteURL>HTTP://WWW.TSA.GOV</ns1:websiteURL>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:emailAddress>_2124749677_MTQwMzA1OTYzNwABAgMEBQYHCAkKCwwNDg8QIV5wijc18RopA272e8bofeUBkEjhCaQ=</ns1:emailAddress>
+          <ns1:individualOrderLimit>1000000000</ns1:individualOrderLimit>
+          <ns1:typeOfFeeForUseOfService description="NO FEE">NO</ns1:typeOfFeeForUseOfService>
+          <ns1:orderingProcedure>Contact the Contracting Officer/Contract Specialist.</ns1:orderingProcedure></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="IDC">B</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="FIXED PRICE AWARD FEE">M</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="ADDITIONAL WORK (NEW AGREEMENT, JUSTIFICATION REQUIRED)">A</ns1:reasonForModification>
+          <ns1:majorProgramCode>INTEGRATED HIRING OPERATIONS&amp;PERSONNEL PROGRAM</ns1:majorProgramCode>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costOrPricingData description="No">N</ns1:costOrPricingData>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>THE PURPOSE OF MODIFICATION P00083 TO IDIQ CONTRACT HSTS01-08-D-HRM010 IS AS FOLLOWS:
+
+14(A) TO EXTEND THE PERIOD OF PERFORMANCE (POP) OF CLIN 4024 DATA WAREHOUSE BY ONE (1) MONTH. THE POP FOR CLIN 4024 IS REVISED FROM 6/1/2012 - 6/30/2013 TO 6/1/2012 - 7/31/2013. THE CONTRACTOR SHALL CONTINUE PROVIDING INTEGRATED DATA WAREHOUSE (IDW) SERVICES IN ACCORDANCE WITH SECTION 12 OF THE STATEMENT OF WORK (SOW).
+
+14(B) TO INCREASE THE CEILING OF CLIN 4024 DATA WAREHOUSE BY $839,266.45 FROM $10,947,487.25 TO $11,786,753.70.
+
+14(C) TO CREATE SUB-CLIN 4024D DATA WAREHOUSE OY 3 JULY EXTENSION FOR ADMINISTRATIVE PURPOSES. THIS NEWLY CREATED SUB-CLIN WILL SERVCE TO EXTEND THE POP AT A COST OF $839,266.45 FOR SERVICES PROVIDED UNDER CLIN 4024 DATA WAREHOUSE.
+
+14(D) TO EXERCISE OPTIONAL SUB-CLIN 4024C-1 IBM INFOSPHERE DATASTAGE SOFTWARE LICENSES AT COST ONLY FOR $54,071.60.
+
+14(E) MODIFICATION P00027 WILL BE MADE TO TASK ORDER HSTS01-12-J-HRM040 TO EXERCISE AND FULLY FUND SUB-CLIN 4024D AND 4024C-1 IN THE AMOUNT OF $839,338.05. THE POP OF SUB-CLIN 4024D IS 7/1/13 - 7/31/13.
+
+14(F) TO INCORPORATE THE AN UPDATED SECTION 12 OF THE STATEMENT OF WORK (SOW) THAT WAS ERRONEOUSLY LEFT OUT OF MODIFICATION P00060 TO THE HRACCESS IDIQ HSTS01-08-D-HRM010. THE ATTACHED REPLACES THE CURRENT SECTION 12 OF THE SOW IN ITS ENTIRETY. PLEASE SEE SECTION 14(I) ON PAGE 3.
+
+14(G) ALL OTHER TERMS AND CONDITIONS OF THE SUBJECT CONTRACT REMAIN UNCHANGED AND IN FULL FORCE AND EFFECT UNLESS OTHERWISE CHANGED BY THE HRACCESS CONTRACTING OFFICER.</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="NO - SERVICE WHERE PBA IS NOT USED.">N</ns1:performanceBasedServiceContract>
+          <ns1:multiYearContract description="NO">N</ns1:multiYearContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:listOfTreasuryAccounts>
+            <ns1:treasuryAccount>
+              <ns1:treasuryAccountSymbol>
+                <ns1:agencyIdentifier>70</ns1:agencyIdentifier>
+                <ns1:mainAccountCode>0554</ns1:mainAccountCode></ns1:treasuryAccountSymbol></ns1:treasuryAccount></ns1:listOfTreasuryAccounts>
+          <ns1:typeOfIDC description="INDEFINITE DELIVERY / INDEFINITE QUANTITY">B</ns1:typeOfIDC>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>OHC IHOP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NOT APPLICABLE">X</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="YES">Y</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NOT APPLICABLE">X</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="SUPPORT- PROFESSIONAL: OTHER" productOrServiceType="SERVICE">R499</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="HUMAN RESOURCES CONSULTING SERVICES (2007), HUMAN RESOURCES AND EXECUTIVE SEARCH CONSULTING SERVICES (2002)">541612</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:vendorName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>true</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>true</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+              <ns1:stateOfIncorporation name="DELAWARE">DE</ns1:stateOfIncorporation>
+              <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+              <ns1:organizationalType>CORPORATE NOT TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>1800 S BELL ST STE. 1200</ns1:streetAddress>
+              <ns1:city>ARLINGTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="ARLINGTON">222023559</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:phoneNo>4073562223</ns1:phoneNo>
+              <ns1:faxNo>4073567199</ns1:faxNo>
+              <ns1:congressionalDistrictCode>08</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>208171803</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>LM23KNLRCAJ8</ns1:UEI>
+                <ns1:UEILegalBusinessName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>ZFN2JJXBLZT3</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>LOCKHEED MARTIN CORPORATION</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2001-12-03 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2013-08-08 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION">A</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:numberOfOffersReceived>3</ns1:numberOfOffersReceived>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM PROCEDURES NOT USED">D</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>7013MACAPOVILLATSA</ns1:createdBy>
+          <ns1:createdDate>2013-06-20 12:00:55</ns1:createdDate>
+          <ns1:lastModifiedBy>7008CIMSPRISM</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2022-12-01 12:59:39</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>7013ETYNDELL</ns1:approvedBy>
+          <ns1:approvedDate>2013-06-21 17:27:47</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LM23KNLRCAJ8</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[IDC HSTS0108DHRM010 (P00084) awarded to LOCKHEED MARTIN INTEGRATED SYSTEMS, INC., was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=HSTS0108DHRM010+7013+"></link>
+    <modified>2022-10-20 12:58:58</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="TRANSPORTATION SECURITY ADMINISTRATION">7013</ns1:agencyID>
+            <ns1:PIID>HSTS0108DHRM010</ns1:PIID>
+            <ns1:modNumber>P00084</ns1:modNumber></ns1:IDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2013-06-28 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2013-07-01 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2017-01-02 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>146332.68</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>1312453993.85</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION" country="USA">00020</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="OFFICE OF ACQUISITION">00020</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:websiteURL>HTTP://WWW.TSA.GOV</ns1:websiteURL>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:emailAddress>_2124749677_MTQwMzA1OTYzNwABAgMEBQYHCAkKCwwNDg8QIV5wijc18RopA272e8bofeUBkEjhCaQ=</ns1:emailAddress>
+          <ns1:individualOrderLimit>1000000000</ns1:individualOrderLimit>
+          <ns1:typeOfFeeForUseOfService description="NO FEE">NO</ns1:typeOfFeeForUseOfService>
+          <ns1:orderingProcedure>Contact the Contracting Officer/Contract Specialist.</ns1:orderingProcedure></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="IDC">B</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="FIXED PRICE AWARD FEE">M</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="ADDITIONAL WORK (NEW AGREEMENT, JUSTIFICATION REQUIRED)">A</ns1:reasonForModification>
+          <ns1:majorProgramCode>INTEGRATED HIRING OPERATIONS&amp;PERSONNEL PROGRAM</ns1:majorProgramCode>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costOrPricingData description="No">N</ns1:costOrPricingData>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>THE PURPOSE OF MODIFICATION P00084 TO THE HRACCESS IDIQ HSTS01-08-D-HRM010 IS AS FOLLOWS:
+
+14(A) TO CREATE SUB-CLIN 5021AC TRUSTED INTERNET CONNECTION (TIC) IMPLEMENTATION. THE PERIOD OF PERFORMANCE (POP) FOR THIS SUB-CLIN IS 7/1/13 - 1/1/14 AT A FIRM FIXED PRICE (FFP) VALUE OF $146,332.68.
+
+14(B) TASK ORDER HSTS01-13-J-HRM051 WILL BE AWARDED TO EXERCISE AND FULLY FUND SUB-CLIN 5021AC TRUSTED INTERNET CONNECTION (TIC) IMPLEMENTATION IN THE AMOUNT OF $146,332.68 FOR THE POP OF 7/1/13 - 1/1/14.
+
+14(C) SECTION B SUPPLIES OR SERVICES AND PRICE/COSTS OF THE SUBJECT CONTRACT SHALL BE REVISED ACCORDINGLY. THE ATTACHED SOW IS HEREBY INCORPORATED INTO THE HRACCESS IDIQ SOW AS SECTION 16.
+
+ALL OTHER TERMS AND CONDITIONS OF THE SUBJECT CONTRACT REMAIN UNCHANGED AND IN FULL FORCE AND EFFECT UNLESS OTHERWISE CHANGED BY THE HRACCESS CONTRACTING OFFICER.</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="NO - SERVICE WHERE PBA IS NOT USED.">N</ns1:performanceBasedServiceContract>
+          <ns1:multiYearContract description="NO">N</ns1:multiYearContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:listOfTreasuryAccounts>
+            <ns1:treasuryAccount>
+              <ns1:treasuryAccountSymbol>
+                <ns1:agencyIdentifier>70</ns1:agencyIdentifier>
+                <ns1:mainAccountCode>0554</ns1:mainAccountCode></ns1:treasuryAccountSymbol></ns1:treasuryAccount></ns1:listOfTreasuryAccounts>
+          <ns1:typeOfIDC description="INDEFINITE DELIVERY / INDEFINITE QUANTITY">B</ns1:typeOfIDC>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>OHC IHOP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NOT APPLICABLE">X</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="YES">Y</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NOT APPLICABLE">X</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="SUPPORT- PROFESSIONAL: OTHER" productOrServiceType="SERVICE">R499</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="HUMAN RESOURCES CONSULTING SERVICES (2007), HUMAN RESOURCES AND EXECUTIVE SEARCH CONSULTING SERVICES (2002)">541612</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:vendorName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>true</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>true</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+              <ns1:stateOfIncorporation name="DELAWARE">DE</ns1:stateOfIncorporation>
+              <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+              <ns1:organizationalType>CORPORATE NOT TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>1800 S BELL ST STE. 1200</ns1:streetAddress>
+              <ns1:city>ARLINGTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="ARLINGTON">222023559</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:phoneNo>4073562223</ns1:phoneNo>
+              <ns1:faxNo>4073567199</ns1:faxNo>
+              <ns1:congressionalDistrictCode>08</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>208171803</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>LM23KNLRCAJ8</ns1:UEI>
+                <ns1:UEILegalBusinessName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>ZFN2JJXBLZT3</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>LOCKHEED MARTIN CORPORATION</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2001-12-03 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2013-08-08 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION">A</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:numberOfOffersReceived>3</ns1:numberOfOffersReceived>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM PROCEDURES NOT USED">D</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>7013MACAPOVILLATSA</ns1:createdBy>
+          <ns1:createdDate>2013-06-25 21:37:45</ns1:createdDate>
+          <ns1:lastModifiedBy>7008CIMSPRISM</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2022-10-20 12:58:58</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>7013ETYNDELL</ns1:approvedBy>
+          <ns1:approvedDate>2013-07-02 06:35:02</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LM23KNLRCAJ8</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[IDC HSTS0108DHRM010 (P00085) awarded to LOCKHEED MARTIN INTEGRATED SYSTEMS, INC., was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=HSTS0108DHRM010+7013+"></link>
+    <modified>2022-12-01 12:59:39</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="TRANSPORTATION SECURITY ADMINISTRATION">7013</ns1:agencyID>
+            <ns1:PIID>HSTS0108DHRM010</ns1:PIID>
+            <ns1:modNumber>P00085</ns1:modNumber></ns1:IDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2013-06-28 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2013-07-01 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2017-01-02 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>12766.74</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>1312453993.85</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION" country="USA">00020</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="OFFICE OF ACQUISITION">00020</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:websiteURL>HTTP://WWW.TSA.GOV</ns1:websiteURL>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:emailAddress>_2124749677_MTQwMzA1OTYzNwABAgMEBQYHCAkKCwwNDg8QIV5wijc18RopA272e8bofeUBkEjhCaQ=</ns1:emailAddress>
+          <ns1:individualOrderLimit>1000000000</ns1:individualOrderLimit>
+          <ns1:typeOfFeeForUseOfService description="NO FEE">NO</ns1:typeOfFeeForUseOfService>
+          <ns1:orderingProcedure>Contact the Contracting Officer/Contract Specialist.</ns1:orderingProcedure></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="IDC">B</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="FIXED PRICE AWARD FEE">M</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="OTHER ADMINISTRATIVE ACTION">M</ns1:reasonForModification>
+          <ns1:majorProgramCode>INTEGRATED HIRING OPERATIONS&amp;PERSONNEL PROGRAM</ns1:majorProgramCode>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costOrPricingData description="No">N</ns1:costOrPricingData>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>THE PURPOSE OF MODIFICATION P00085 TO HRACCESS INDEFINITE DELIVERY INDEFINITE QUANTITY (IDIQ) CONTRACT HSTS01-08-D-HRM010 IS TO:
+
+(A)  EXTEND THE PERIOD OF PERFORMANCE OF CLIN 3028 UNDER SUB-CLIN 3028AC FOR NINE (9) MONTHS AT NO ADDITIONAL COST TO THE GOVERNMENT FROM JUNE 30, 2013 THROUGH MARCH 31, 2014.  THE PURPOSE OF THE EXTENSION IS TO COMPLETE THE TESTING AND DEPLOYMENT OF THE OOI HOTLINE APPLICATION (ORIGINAL AND DELTA REQUIREMENTS).
+
+(B)  ADMINISTRATIVELY INCLUDE SUB-CLIN 3028AA "FUNDS TO FULLY FUND VIA CLIN 3028AA:  CLIN 3028 - ENHANCEMENTS TO EMPLOYEE  RELATIONS CASE MANAGEMENT - DEVELOP OOI INVESTIGATIONS AND HOTLINE APPLICATIONS AND DEVELOP EXECUTIVE LEVEL DASHBOARD REPORTS" TO THE IDIQ WHICH WAS ERRONEOUSLY OMITTED WHEN EXECUTED UNDER TASK ORDER HSTS01-11-J-DAD003
+
+(C)  UPDATE THE POP AND CLIN DESCRIPTIONS ASSOCIATED WITH CLIN 3028 AND ALL RELEVANT SUB-CLINS TO MATCH THAT OF THE CASE MANAGEMENT TASK ORDER HSTS01-11-J-DAD003 AS IDENTIFIED IN TSA'S CONTRACT WRITING SYSTEM (CIMS).
+
+PLEASE SEE THE ATTACHED PAGES.</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="NO - SERVICE WHERE PBA IS NOT USED.">N</ns1:performanceBasedServiceContract>
+          <ns1:multiYearContract description="NO">N</ns1:multiYearContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:typeOfIDC description="INDEFINITE DELIVERY / INDEFINITE QUANTITY">B</ns1:typeOfIDC>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>OHC IHOP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NOT APPLICABLE">X</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="YES">Y</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NOT APPLICABLE">X</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="SUPPORT- PROFESSIONAL: OTHER" productOrServiceType="SERVICE">R499</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="HUMAN RESOURCES CONSULTING SERVICES (2007), HUMAN RESOURCES AND EXECUTIVE SEARCH CONSULTING SERVICES (2002)">541612</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:vendorName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>true</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>true</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+              <ns1:stateOfIncorporation name="DELAWARE">DE</ns1:stateOfIncorporation>
+              <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+              <ns1:organizationalType>CORPORATE NOT TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>1800 S BELL ST STE. 1200</ns1:streetAddress>
+              <ns1:city>ARLINGTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="ARLINGTON">222023559</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:phoneNo>4073562223</ns1:phoneNo>
+              <ns1:faxNo>4073567199</ns1:faxNo>
+              <ns1:congressionalDistrictCode>08</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>208171803</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>LM23KNLRCAJ8</ns1:UEI>
+                <ns1:UEILegalBusinessName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>ZFN2JJXBLZT3</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>LOCKHEED MARTIN CORPORATION</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2001-12-03 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2013-08-08 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION">A</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:numberOfOffersReceived>3</ns1:numberOfOffersReceived>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM PROCEDURES NOT USED">D</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>7013JPOTOCKITSA</ns1:createdBy>
+          <ns1:createdDate>2013-06-25 13:33:35</ns1:createdDate>
+          <ns1:lastModifiedBy>7008CIMSPRISM</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2022-12-01 12:59:39</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>7013ETYNDELL</ns1:approvedBy>
+          <ns1:approvedDate>2013-07-02 06:47:05</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LM23KNLRCAJ8</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[IDC HSTS0108DHRM010 (P00086) awarded to LOCKHEED MARTIN INTEGRATED SYSTEMS, INC., was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=HSTS0108DHRM010+7013+"></link>
+    <modified>2022-10-20 12:58:58</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="TRANSPORTATION SECURITY ADMINISTRATION">7013</ns1:agencyID>
+            <ns1:PIID>HSTS0108DHRM010</ns1:PIID>
+            <ns1:modNumber>P00086</ns1:modNumber></ns1:IDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2013-07-03 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2013-07-03 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2017-01-02 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>-5569833.00</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>1312453993.85</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION" country="USA">00020</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="OFFICE OF ACQUISITION">00020</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:websiteURL>HTTP://WWW.TSA.GOV</ns1:websiteURL>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:emailAddress>_2124749677_MTQwMzA1OTYzNwABAgMEBQYHCAkKCwwNDg8QIV5wijc18RopA272e8bofeUBkEjhCaQ=</ns1:emailAddress>
+          <ns1:individualOrderLimit>1000000000</ns1:individualOrderLimit>
+          <ns1:typeOfFeeForUseOfService description="NO FEE">NO</ns1:typeOfFeeForUseOfService>
+          <ns1:orderingProcedure>Contact the Contracting Officer/Contract Specialist.</ns1:orderingProcedure></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="IDC">B</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="FIXED PRICE AWARD FEE">M</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="EXERCISE AN OPTION">G</ns1:reasonForModification>
+          <ns1:majorProgramCode>INTEGRATED HIRING OPERATIONS&amp;PERSONNEL PROGRAM</ns1:majorProgramCode>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costOrPricingData description="No">N</ns1:costOrPricingData>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>THE PURPOSE OF MODIFICATION P00086 TO THE HRACCESS IDIQ CONTRACT HSTS01-08-D-HRM010 IS TO EXERCISE SUB-CLINS TO FULLY FUND THE OY 4 TASK ORDER HSTS01-13-J-HRM022. THE CONTRACT IS HEREBY MODIFIED AS FOLLOWS:
+ 
+14A) TO EXERCISE SUB-CLIN 5001A "RECRUITMENT PLAN DEVELOPMENT, VACANCY ANNOUNCEMENT, RECEIPT OF APPLICATIONS,&amp;COMMUNICATIONS (TSO)" IN THE AMOUNT OF $1,523,172.67.  
+
+14B) TO REDISTRIBUTE $4,781,245.00 OF THE TOTAL $6,120,695.00 FROM SUB-CLIN 5002A "RECRUITMENT ACTIVITIES (COST ONLY)" TO A NEW OPTIONAL SUB-CLIN 5002B "RECRUITMENT ACTIVITIES (COST ONLY)".
+
+14C) TO EXERCISE SUB-CLIN 5002A "RECRUITMENT ACTIVITIES (COST ONLY)" IN THE AMOUNT OF $1,339,450.00. THIS IS A COST ONLY SUB-CLIN. THE FUNDING AMOUNT IS BASED ON THE ANTICIPATED RECRUITMENT ACTIVITIES DURING THE REMAINING PERIOD OF PERFORMANCE OF OY 4. AS A RESULT, CLIN 5002 IS INCREMENTALLY FUNDED AND CLAUSE I.3 LIMITATION OF COST AND I.4 LIMITATION OF FUNDS APPLY.
+
+14D) TO REDISTRIBUTE $430,312.00 OF THE TOTAL $550,862.00 FROM SUB-CLIN 5002A-1 "RECRUITMENT ACTIVITIES (AWARD FEE ONLY)" TO A NEW SUB-CLIN 5002B-1 "RECRUITMENT ACTIVITIES (AWARD FEE ONLY)".
+
+14E) TO EXERCISE SUB-CLIN 5002A-1 "RECRUITMENT ACTIVITIES (AWARD FEE ONLY)" IN THE AMOUNT OF $120,550.00. THIS SUB-CLIN REPRESENTS THE REMAINING AWARD FEE ON CLIN 5002, WHICH IS SPLIT ONTO TWO SEPERATE SUB-CLINS (5002A-1 AND 5002B-1) DUE TO SYSTEM LIMITATIONS.
+ 
+14F) TO EXERCISE SUB-CLIN 5002B-1 "RECRUITMENT ACTIVITIES (AWARD FEE ONLY)" IN THE AMOUNT OF $430,312.00. THIS SUB-CLIN REPRESENTS THE REMAINING AWARD FEE ON CLIN 5002, WHICH IS SPLIT ONTO TWO SEPERATE SUB-CLINS (5002A-1 AND 5002B-1) DUE TO SYSTEM LIMITATIONS.
+
+14G) TO EXERCISE SUB-CLIN 5003A "COMPUTER BASED TESTING (TSO)" IN THE AMOUNT OF $1,560,988.67.
+
+14H) TO EXERCISE SUB-CLIN 5004BB "POST AIRPORT ASSESSMENT" IN THE AMOUNT OF $173,479.44.
+
+14I) TO EXERCISE SUB-CLIN 5006A "MEDICAL PROCESSING" IN THE AMOUNT OF $2,129,638.00.
+
+14J) TO EXERCISE SUB-CLIN 5007A "CERTIFICATION, READY-TO-HIRE,&amp;JOB OFFER (TSO)" IN THE AMOUNT OF $665,186.67.
+
+14K) TO EXERCISE SUB-CLIN 5008A "TSO SPECIAL PROGRAMS" IN THE AMOUNT OF $316,939.67.
+
+14L) TO EXERCISE SUB-CLIN 5009-1 "FAMS SERVICES" IN THE AMOUNT OF $1,995,954.00.
+
+14M) TO EXERCISE SUB-CLIN 5009A-1 "FAMS SERVICES - ASSESSMENT BATTERY TEST" IN THE AMOUNT OF $77,500.67.
+
+14N) TO EXERCISE SUB-CLIN 5009AB-1 "FAMS J-BAND" IN THE COST AMOUNT OF $186,232.73 AND FIXED FEE AMOUNT OF $18,623.27. THE TOTAL AMOUNT IS $204,856.00.
+
+14O) TO EXERCISE SUB-CLIN 5010-1 "NON-TSO RECRUITING AND HIRING" IN THE AMOUNT OF $1,484,514.67.
+
+14P) TO EXERCISE SUB-CLIN 5010A-1 "NON-TSO RECRUITING&amp;HIRING-WRITTEN ASSESSMENT TEST" IN THE AMOUNT OF $83,036.33.
+
+14Q) TO EXERCISE SUB-CLIN 5011A "ORIENTATION" IN THE AMOUNT OF $364,376.67.
+
+14R) TO EXERCISE SUB-CLIN 5012A "DOCUMENT PROCESSING" IN THE AMOUNT OF $443,415.00.
+
+14S) TO EXERCISE SUB-CLIN 5013A "REPORTING" IN THE AMOUNT OF $205,985.67.
+
+14T) TO EXERCISE SUB-CLIN 5014A "PERSONNEL AND PAYROLL MANAGEMENT, QUALITY CONTROL, REPORTING, SPECIAL INITIATIVES&amp;SPECIAL HANDLING" IN THE AMOUNT OF $2,387,970.00.
+
+14U) TO EXERCISE SUB-CLIN 5015A "SF-52&amp;BENEFITS PROCESSING" IN THE AMOUNT OF $1,477,157.33.
+
+14V) TO EXERCISE SUB-CLIN 5017A "WORKFORCE PLANNING&amp;POSITION MANAGEMENT/CLASSIFICATION" IN THE AMOUNT OF $607,221.33.
+
+14W) TO EXERCISE SUB-CLIN 5018-1 "HELP DESK" IN THE AMOUNT OF $4,581,658.00.
+
+14X) TO EXERCISE SUB-CLIN 5018A-1 "HELP DESK EXTEND HOURS/EPMP" IN THE AMOUNT OF $287,431.83.
+
+14Y) TO EXERCISE SUB-CLIN 5020A "MANAGEMENT" IN THE AMOUNT OF $2,151,444.00.
+
+14Z) TO EXERCISE SUB-CLIN 5021A "SYSTEMS MAINTENANCE AND SUPPORT" IN THE AMOUNT OF $2,797,762.20.
+
+14AA) TO EXERCISE SUB-CLIN 5021AB-1 "FAMS J-BAND (O&amp;M)" IN THE AMOUNT OF $109,773.00.
+
+14AB) TO REDISTRIBUTE $100,000.00 OF THE TOTAL $600,000.00 FROM SUB-CLIN 5022A "TRAVEL" TO A NEW SUB-CLIN 5022A-1 "OTHER ALLOWABLE DIRECT COSTS (ODCS)".
+
+14AC) TO EXERCISE SUB-CLIN 5022A "TRAVEL" IN T</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="NO - SERVICE WHERE PBA IS NOT USED.">N</ns1:performanceBasedServiceContract>
+          <ns1:multiYearContract description="NO">N</ns1:multiYearContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:listOfTreasuryAccounts>
+            <ns1:treasuryAccount>
+              <ns1:treasuryAccountSymbol>
+                <ns1:agencyIdentifier>70</ns1:agencyIdentifier>
+                <ns1:mainAccountCode>0554</ns1:mainAccountCode></ns1:treasuryAccountSymbol></ns1:treasuryAccount></ns1:listOfTreasuryAccounts>
+          <ns1:typeOfIDC description="INDEFINITE DELIVERY / INDEFINITE QUANTITY">B</ns1:typeOfIDC>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>OHC IHOP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NOT APPLICABLE">X</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="YES">Y</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NOT APPLICABLE">X</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="SUPPORT- PROFESSIONAL: OTHER" productOrServiceType="SERVICE">R499</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="HUMAN RESOURCES CONSULTING SERVICES (2007), HUMAN RESOURCES AND EXECUTIVE SEARCH CONSULTING SERVICES (2002)">541612</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:vendorName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>true</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>true</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+              <ns1:stateOfIncorporation name="DELAWARE">DE</ns1:stateOfIncorporation>
+              <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+              <ns1:organizationalType>CORPORATE NOT TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>1800 S BELL ST STE. 1200</ns1:streetAddress>
+              <ns1:city>ARLINGTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="ARLINGTON">222023559</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:phoneNo>4073562223</ns1:phoneNo>
+              <ns1:faxNo>4073567199</ns1:faxNo>
+              <ns1:congressionalDistrictCode>08</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>208171803</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>LM23KNLRCAJ8</ns1:UEI>
+                <ns1:UEILegalBusinessName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>ZFN2JJXBLZT3</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>LOCKHEED MARTIN CORPORATION</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2001-12-03 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2013-08-08 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION">A</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:numberOfOffersReceived>3</ns1:numberOfOffersReceived>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM PROCEDURES NOT USED">D</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>7013MACAPOVILLATSA</ns1:createdBy>
+          <ns1:createdDate>2013-06-28 15:31:03</ns1:createdDate>
+          <ns1:lastModifiedBy>7008CIMSPRISM</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2022-10-20 12:58:58</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>7013MGRUBBS</ns1:approvedBy>
+          <ns1:approvedDate>2013-07-03 14:11:23</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LM23KNLRCAJ8</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[IDC HSTS0108DHRM010 (P00087) awarded to LOCKHEED MARTIN INTEGRATED SYSTEMS, INC., was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=HSTS0108DHRM010+7013+"></link>
+    <modified>2022-12-01 12:59:39</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="TRANSPORTATION SECURITY ADMINISTRATION">7013</ns1:agencyID>
+            <ns1:PIID>HSTS0108DHRM010</ns1:PIID>
+            <ns1:modNumber>P00087</ns1:modNumber></ns1:IDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2013-07-31 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2013-08-01 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2017-01-02 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>785988.15</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>1312453993.85</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION" country="USA">00020</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="OFFICE OF ACQUISITION">00020</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:websiteURL>HTTP://WWW.TSA.GOV</ns1:websiteURL>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:emailAddress>_2124749677_MTQwMzA1OTYzNwABAgMEBQYHCAkKCwwNDg8QIV5wijc18RopA272e8bofeUBkEjhCaQ=</ns1:emailAddress>
+          <ns1:individualOrderLimit>1000000000</ns1:individualOrderLimit>
+          <ns1:typeOfFeeForUseOfService description="NO FEE">NO</ns1:typeOfFeeForUseOfService>
+          <ns1:orderingProcedure>Contact the Contracting Officer/Contract Specialist.</ns1:orderingProcedure></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="IDC">B</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="FIXED PRICE AWARD FEE">M</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="OTHER ADMINISTRATIVE ACTION">M</ns1:reasonForModification>
+          <ns1:majorProgramCode>INTEGRATED HIRING OPERATIONS&amp;PERSONNEL PROGRAM</ns1:majorProgramCode>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costOrPricingData description="No">N</ns1:costOrPricingData>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>THE PURPOSE OF MODIFICATION P00087 TO THE HRACCESS IDIQ CONTRACT HSTS01-08-D-HRM010 IS AS FOLLOWS:
+ 
+14A) TO EXTEND THE PERIOD OF PERFORMANCE (POP) OF CLIN 4024 DATA WAREHOUSE BY ONE (1) MONTH. THE POP FOR CLIN 4024 IS REVISED FROM 6/1/2012 - 7/31/2013 TO 6/1/2012 - 8/31/2013. THE CONTRACTOR SHALL CONTINUE PROVIDING INTEGRATED DATA WAREHOUSE (IDW) SERVICES IN ACCORDANCE WITH SECTION 12 OF THE STATEMENT OF WORK (SOW).
+
+14B) TO INCREASE THE CEILING OF CLIN 4024 DATA WAREHOUSE BY $785,988.15 FROM $11,786,753.70 TO $12,572,741.85.
+
+14C) TO CREATE SUB-CLIN 4024E DATA WAREHOUSE OY 3 AUGUST EXTENSION FOR ADMINISTRATIVE PURPOSES. THIS NEWLY CREATED SUB-CLIN WILL SERVE TO EXTEND THE POP AT A COST OF $718,561.74 AND FIXED FEE OF $67,426.41. THE CONTRACTOR SHALL PROVIDE A SEPERATE INVOICE FOR THE TOTAL FIXED FEE PORTION OF $67,426.41 AT THE END OF THE PERFORMANCE PERIOD OF SUB-CLIN 4024E (8/1/2013 - 8/31/2013).
+
+14D) MODIFICATION P00028 WILL BE MADE TO TASK ORDER HSTS01-12-J-HRM040 TO EXERCISE AND FULLY FUND SUB-CLIN 4024E IN THE AMOUNT OF $785,988.15. THE POP OF SUB-CLIN 4024E IS 8/1/2013 - 8/31/2013. 
+
+ALL OTHER TERMS AND CONDITIONS OF THE SUBJECT CONTRACT REMAIN UNCHANGED AND IN FULL FORCE AND EFFECT UNLESS OTHERWISE CHANGED BY THE HRACCESS CONTRACTING OFFICER.</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="NO - SERVICE WHERE PBA IS NOT USED.">N</ns1:performanceBasedServiceContract>
+          <ns1:multiYearContract description="NO">N</ns1:multiYearContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:listOfTreasuryAccounts>
+            <ns1:treasuryAccount>
+              <ns1:treasuryAccountSymbol>
+                <ns1:agencyIdentifier>70</ns1:agencyIdentifier>
+                <ns1:mainAccountCode>0554</ns1:mainAccountCode></ns1:treasuryAccountSymbol></ns1:treasuryAccount></ns1:listOfTreasuryAccounts>
+          <ns1:typeOfIDC description="INDEFINITE DELIVERY / INDEFINITE QUANTITY">B</ns1:typeOfIDC>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>OHC IHOP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NOT APPLICABLE">X</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="YES">Y</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NOT APPLICABLE">X</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="SUPPORT- PROFESSIONAL: OTHER" productOrServiceType="SERVICE">R499</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="HUMAN RESOURCES CONSULTING SERVICES (2007), HUMAN RESOURCES AND EXECUTIVE SEARCH CONSULTING SERVICES (2002)">541612</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:vendorName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>true</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>true</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+              <ns1:stateOfIncorporation name="DELAWARE">DE</ns1:stateOfIncorporation>
+              <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+              <ns1:organizationalType>CORPORATE NOT TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>1800 S BELL ST STE. 1200</ns1:streetAddress>
+              <ns1:city>ARLINGTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="ARLINGTON">222023559</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:phoneNo>4073562223</ns1:phoneNo>
+              <ns1:faxNo>4073567199</ns1:faxNo>
+              <ns1:congressionalDistrictCode>08</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>208171803</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>LM23KNLRCAJ8</ns1:UEI>
+                <ns1:UEILegalBusinessName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>ZFN2JJXBLZT3</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>LOCKHEED MARTIN CORPORATION</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2001-12-03 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2013-08-08 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION">A</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:numberOfOffersReceived>3</ns1:numberOfOffersReceived>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM PROCEDURES NOT USED">D</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>7013MACAPOVILLATSA</ns1:createdBy>
+          <ns1:createdDate>2013-07-30 09:11:16</ns1:createdDate>
+          <ns1:lastModifiedBy>7008CIMSPRISM</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2022-12-01 12:59:39</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>7013ETYNDELL</ns1:approvedBy>
+          <ns1:approvedDate>2013-08-01 08:41:56</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LM23KNLRCAJ8</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[IDC HSTS0108DHRM010 (P00088) awarded to LOCKHEED MARTIN INTEGRATED SYSTEMS, INC., was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=HSTS0108DHRM010+7013+"></link>
+    <modified>2022-10-20 12:58:58</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:IDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.4">
+        <ns1:contractID>
+          <ns1:IDVID>
+            <ns1:agencyID name="TRANSPORTATION SECURITY ADMINISTRATION">7013</ns1:agencyID>
+            <ns1:PIID>HSTS0108DHRM010</ns1:PIID>
+            <ns1:modNumber>P00088</ns1:modNumber></ns1:IDVID></ns1:contractID>
+        <ns1:relevantContractDates>
+          <ns1:signedDate>2013-08-05 00:00:00</ns1:signedDate>
+          <ns1:effectiveDate>2013-08-05 00:00:00</ns1:effectiveDate>
+          <ns1:lastDateToOrder>2017-01-02 00:00:00</ns1:lastDateToOrder></ns1:relevantContractDates>
+        <ns1:dollarValues>
+          <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+          <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue></ns1:dollarValues>
+        <ns1:totalDollarValues>
+          <ns1:totalObligatedAmount>0.00</ns1:totalObligatedAmount>
+          <ns1:totalBaseAndAllOptionsValue>1312453993.85</ns1:totalBaseAndAllOptionsValue></ns1:totalDollarValues>
+        <ns1:purchaserInformation>
+          <ns1:contractingOfficeAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:contractingOfficeAgencyID>
+          <ns1:contractingOfficeID name="OFFICE OF ACQUISITION" country="USA">00020</ns1:contractingOfficeID>
+          <ns1:fundingRequestingAgencyID name="TRANSPORTATION SECURITY ADMINISTRATION" departmentID="7000" departmentName="HOMELAND SECURITY, DEPARTMENT OF">7013</ns1:fundingRequestingAgencyID>
+          <ns1:fundingRequestingOfficeID name="OFFICE OF ACQUISITION">00020</ns1:fundingRequestingOfficeID>
+          <ns1:foreignFunding description="NOT APPLICABLE">X</ns1:foreignFunding></ns1:purchaserInformation>
+        <ns1:contractMarketingData>
+          <ns1:websiteURL>HTTP://WWW.TSA.GOV</ns1:websiteURL>
+          <ns1:whoCanUse>ONLY MY AGENCY</ns1:whoCanUse>
+          <ns1:emailAddress>_2124749677_MTQwMzA1OTYzNwABAgMEBQYHCAkKCwwNDg8QIV5wijc18RopA272e8bofeUBkEjhCaQ=</ns1:emailAddress>
+          <ns1:individualOrderLimit>1000000000</ns1:individualOrderLimit>
+          <ns1:typeOfFeeForUseOfService description="NO FEE">NO</ns1:typeOfFeeForUseOfService>
+          <ns1:orderingProcedure>Contact the Contracting Officer/Contract Specialist.</ns1:orderingProcedure></ns1:contractMarketingData>
+        <ns1:contractData>
+          <ns1:contractActionType description="IDC">B</ns1:contractActionType>
+          <ns1:typeOfContractPricing description="FIXED PRICE AWARD FEE">M</ns1:typeOfContractPricing>
+          <ns1:reasonForModification description="EXERCISE AN OPTION">G</ns1:reasonForModification>
+          <ns1:majorProgramCode>INTEGRATED HIRING OPERATIONS&amp;PERSONNEL PROGRAM</ns1:majorProgramCode>
+          <ns1:nationalInterestActionCode description="NONE">NONE</ns1:nationalInterestActionCode>
+          <ns1:costOrPricingData description="No">N</ns1:costOrPricingData>
+          <ns1:costAccountingStandardsClause description="NOT APPLICABLE EXEMPT FROM CAS">X</ns1:costAccountingStandardsClause>
+          <ns1:descriptionOfContractRequirement>THE PURPOSE OF MODIFICATION P00088 AGAINST IDIQ HSTS01-08-D-HRM010 IS TO EXERCISE SUB-CLINS 5005AA "BACKGROUND CHECK (20,001 - 25,000)" AND 5016AB "PAYROLL ACTION PROCESSING (75,001 - 90,000)."</ns1:descriptionOfContractRequirement>
+          <ns1:GFE-GFP description="Transaction does not use GFE/GFP">N</ns1:GFE-GFP>
+          <ns1:undefinitizedAction description="NO">X</ns1:undefinitizedAction>
+          <ns1:consolidatedContract description="NO">N</ns1:consolidatedContract>
+          <ns1:performanceBasedServiceContract description="NO - SERVICE WHERE PBA IS NOT USED.">N</ns1:performanceBasedServiceContract>
+          <ns1:multiYearContract description="NO">N</ns1:multiYearContract>
+          <ns1:contingencyHumanitarianPeacekeepingOperation description="NOT APPLICABLE">X</ns1:contingencyHumanitarianPeacekeepingOperation>
+          <ns1:typeOfIDC description="INDEFINITE DELIVERY / INDEFINITE QUANTITY">B</ns1:typeOfIDC>
+          <ns1:multipleOrSingleAwardIDC description="SINGLE AWARD">S</ns1:multipleOrSingleAwardIDC>
+          <ns1:programAcronym>OHC IHOP</ns1:programAcronym></ns1:contractData>
+        <ns1:legislativeMandates>
+          <ns1:ClingerCohenAct description="NO">N</ns1:ClingerCohenAct>
+          <ns1:materialsSuppliesArticlesEquipment description="NOT APPLICABLE">X</ns1:materialsSuppliesArticlesEquipment>
+          <ns1:laborStandards description="YES">Y</ns1:laborStandards>
+          <ns1:constructionWageRateRequirements description="NOT APPLICABLE">X</ns1:constructionWageRateRequirements>
+          <ns1:listOfAdditionalReportingValues></ns1:listOfAdditionalReportingValues>
+          <ns1:interagencyContractingAuthority description="NOT APPLICABLE">X</ns1:interagencyContractingAuthority></ns1:legislativeMandates>
+        <ns1:productOrServiceInformation>
+          <ns1:productOrServiceCode description="SUPPORT- PROFESSIONAL: OTHER" productOrServiceType="SERVICE">R499</ns1:productOrServiceCode>
+          <ns1:contractBundling description="NOT A BUNDLED REQUIREMENT">D</ns1:contractBundling>
+          <ns1:principalNAICSCode description="HUMAN RESOURCES CONSULTING SERVICES (2007), HUMAN RESOURCES AND EXECUTIVE SEARCH CONSULTING SERVICES (2002)">541612</ns1:principalNAICSCode>
+          <ns1:recoveredMaterialClauses description="NO CLAUSES INCLUDED AND NO SUSTAINABILITY INCLUDED">C</ns1:recoveredMaterialClauses>
+          <ns1:manufacturingOrganizationType description="U.S. OWNED BUSINESS">A</ns1:manufacturingOrganizationType></ns1:productOrServiceInformation>
+        <ns1:vendor>
+          <ns1:vendorHeader>
+            <ns1:vendorName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:vendorName></ns1:vendorHeader>
+          <ns1:vendorSiteDetails>
+            <ns1:vendorSocioEconomicIndicators>
+              <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+              <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+              <ns1:isIndianTribe>false</ns1:isIndianTribe>
+              <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+              <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+              <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+              <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+              <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+              <ns1:isWomenOwned>false</ns1:isWomenOwned>
+              <ns1:minorityOwned>
+                <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+              <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+              <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+              <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+              <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+              <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+            <ns1:vendorBusinessTypes>
+              <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+              <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+              <ns1:federalGovernment>
+                <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+              <ns1:isStateGovernment>false</ns1:isStateGovernment>
+              <ns1:localGovernment>
+                <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+              <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+              <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+              <ns1:businessOrOrganizationType>
+                <ns1:isCorporateEntityNotTaxExempt>true</ns1:isCorporateEntityNotTaxExempt>
+                <ns1:isCorporateEntityTaxExempt>false</ns1:isCorporateEntityTaxExempt>
+                <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+            <ns1:vendorLineOfBusiness>
+              <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+              <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+              <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+              <ns1:isFoundation>false</ns1:isFoundation>
+              <ns1:isHospital>false</ns1:isHospital>
+              <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+              <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+              <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+            <ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:receivesContracts>false</ns1:receivesContracts>
+              <ns1:receivesGrants>false</ns1:receivesGrants>
+              <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+            <ns1:typeOfGovernmentEntity>
+              <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+              <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+              <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+              <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+              <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+              <ns1:isPortAuthority>false</ns1:isPortAuthority>
+              <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+            <ns1:vendorOrganizationFactors>
+              <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+              <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+              <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+              <ns1:profitStructure>
+                <ns1:isForProfitOrganization>true</ns1:isForProfitOrganization>
+                <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                <ns1:isOtherNotForProfitOrganization>false</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+              <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+              <ns1:stateOfIncorporation name="DELAWARE">DE</ns1:stateOfIncorporation>
+              <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+              <ns1:organizationalType>CORPORATE NOT TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+            <ns1:typeOfEducationalEntity>
+              <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+              <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+              <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+              <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+              <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+              <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+              <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+              <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+              <ns1:isTribalCollege>false</ns1:isTribalCollege>
+              <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+              <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+              <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+            <ns1:vendorCertifications>
+              <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+              <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+              <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+              <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+              <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+              <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+            <ns1:vendorLocation>
+              <ns1:streetAddress>1800 S BELL ST STE. 1200</ns1:streetAddress>
+              <ns1:city>ARLINGTON</ns1:city>
+              <ns1:state name="VIRGINIA">VA</ns1:state>
+              <ns1:ZIPCode city="ARLINGTON">222023559</ns1:ZIPCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+              <ns1:phoneNo>4073562223</ns1:phoneNo>
+              <ns1:faxNo>4073567199</ns1:faxNo>
+              <ns1:congressionalDistrictCode>08</ns1:congressionalDistrictCode>
+              <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+            <ns1:vendorAlternateSiteCode>208171803</ns1:vendorAlternateSiteCode>
+            <ns1:entityIdentifiers>
+              <ns1:vendorUEIInformation>
+                <ns1:UEI>LM23KNLRCAJ8</ns1:UEI>
+                <ns1:UEILegalBusinessName>LOCKHEED MARTIN INTEGRATED SYSTEMS, INC.</ns1:UEILegalBusinessName>
+                <ns1:ultimateParentUEI>ZFN2JJXBLZT3</ns1:ultimateParentUEI>
+                <ns1:ultimateParentUEIName>LOCKHEED MARTIN CORPORATION</ns1:ultimateParentUEIName></ns1:vendorUEIInformation></ns1:entityIdentifiers>
+            <ns1:ccrRegistrationDetails>
+              <ns1:registrationDate>2001-12-03 00:00:00</ns1:registrationDate>
+              <ns1:renewalDate>2013-08-08 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails>
+          <ns1:contractingOfficerBusinessSizeDetermination description="OTHER THAN SMALL BUSINESS">O</ns1:contractingOfficerBusinessSizeDetermination></ns1:vendor>
+        <ns1:competition>
+          <ns1:extentCompeted description="FULL AND OPEN COMPETITION">A</ns1:extentCompeted>
+          <ns1:solicitationProcedures description="NEGOTIATED PROPOSAL/QUOTE">NP</ns1:solicitationProcedures>
+          <ns1:typeOfSetAside description="NO SET ASIDE USED.">NONE</ns1:typeOfSetAside>
+          <ns1:evaluatedPreference description="NO PREFERENCE USED">NONE</ns1:evaluatedPreference>
+          <ns1:numberOfOffersReceived>3</ns1:numberOfOffersReceived>
+          <ns1:commercialItemAcquisitionProcedures description="COMMERCIAL ITEM PROCEDURES NOT USED">D</ns1:commercialItemAcquisitionProcedures>
+          <ns1:commercialItemTestProgram description="NO">N</ns1:commercialItemTestProgram>
+          <ns1:A76Action description="NO">N</ns1:A76Action>
+          <ns1:fedBizOpps description="NOT APPLICABLE">X</ns1:fedBizOpps>
+          <ns1:localAreaSetAside description="NO">N</ns1:localAreaSetAside></ns1:competition>
+        <ns1:preferencePrograms>
+          <ns1:subcontractPlan description="PLAN REQUIRED - INCENTIVE NOT INCLUDED">C</ns1:subcontractPlan></ns1:preferencePrograms>
+        <ns1:transactionInformation>
+          <ns1:createdBy>7013JPOTOCKITSA</ns1:createdBy>
+          <ns1:createdDate>2013-08-01 15:12:08</ns1:createdDate>
+          <ns1:lastModifiedBy>7008CIMSPRISM</ns1:lastModifiedBy>
+          <ns1:lastModifiedDate>2022-10-20 12:58:58</ns1:lastModifiedDate>
+          <ns1:status description="FINAL">F</ns1:status>
+          <ns1:approvedBy>7013ETYNDELL</ns1:approvedBy>
+          <ns1:approvedDate>2013-08-05 12:31:18</ns1:approvedDate>
+          <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LM23KNLRCAJ8</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:IDV>
+    </content>
+  </entry>
+</feed>

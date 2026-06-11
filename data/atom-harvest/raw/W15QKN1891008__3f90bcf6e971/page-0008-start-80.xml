@@ -1,0 +1,1994 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>FPDS-NG search results for<![CDATA[: PIID:"W15QKN1891008"]]></title>
+  <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=PIID%3A%22W15QKN1891008%22&amp;start=80"></link>
+  <link rel="first" type="text/html" href="https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=PIID%3A%22W15QKN1891008%22&amp;start=0"></link>
+  <link rel="last" type="text/html" href="https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=PIID%3A%22W15QKN1891008%22&amp;start=110"></link>
+  <link rel="previous" type="text/html" href="https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=PIID%3A%22W15QKN1891008%22&amp;start=70"></link>
+  <link rel="next" type="text/html" href="https://www.fpds.gov/ezsearch/FEEDS/ATOM?s=FPDS&amp;FEEDNAME=PUBLIC&amp;VERSION=1.5.3&amp;q=PIID%3A%22W15QKN1891008%22&amp;start=90"></link>
+  <modified/>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title><![CDATA[OTHER TRANSACTION IDV W15QKN1891008 (P00079) awarded to ADVANCED TECHNOLOGY INTERNATIONAL, was modified for the amount of $77,191,576.42]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=W15QKN1891008+9700+"></link>
+    <modified>2023-05-30 15:03:42</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:OtherTransactionIDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.5">
+        <ns1:OtherTransactionIDVID>
+          <ns1:OtherTransactionIDVContractID>
+            <ns1:agencyID name="DEPT OF DEFENSE">9700</ns1:agencyID>
+            <ns1:PIID>W15QKN1891008</ns1:PIID>
+            <ns1:modNumber>P00079</ns1:modNumber></ns1:OtherTransactionIDVContractID></ns1:OtherTransactionIDVID>
+        <ns1:contractDetail>
+          <ns1:relevantContractDates>
+            <ns1:signedDate>2023-05-30 00:00:00</ns1:signedDate>
+            <ns1:effectiveDate>2018-04-11 00:00:00</ns1:effectiveDate>
+            <ns1:currentCompletionDate>2028-04-11 00:00:00</ns1:currentCompletionDate>
+            <ns1:ultimateCompletionDate>2028-04-11 00:00:00</ns1:ultimateCompletionDate>
+            <ns1:fiscalYear>2023</ns1:fiscalYear></ns1:relevantContractDates>
+          <ns1:dollarValues>
+            <ns1:obligatedAmount>77191576.42</ns1:obligatedAmount>
+            <ns1:baseAndExercisedOptionsValue>77191576.42</ns1:baseAndExercisedOptionsValue>
+            <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue>
+            <ns1:nonGovernmentalDollars>0.00</ns1:nonGovernmentalDollars></ns1:dollarValues>
+          <ns1:totalDollarValues>
+            <ns1:totalObligatedAmount>5113193155.46</ns1:totalObligatedAmount>
+            <ns1:totalBaseAndExercisedOptionsValue>5113193155.46</ns1:totalBaseAndExercisedOptionsValue>
+            <ns1:totalBaseAndAllOptionsValue>9998057512.46</ns1:totalBaseAndAllOptionsValue>
+            <ns1:totalNonGovernmentalDollars>0.00</ns1:totalNonGovernmentalDollars></ns1:totalDollarValues>
+          <ns1:purchaserInformation>
+            <ns1:contractingOfficeAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:contractingOfficeAgencyID>
+            <ns1:contractingOfficeID name="W6QK ACC-PICA" country="USA">W15QKN</ns1:contractingOfficeID>
+            <ns1:fundingRequestingAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:fundingRequestingAgencyID>
+            <ns1:fundingRequestingOfficeID name="W4MK CCDC ARMAMENTS CENTER">W15BW9</ns1:fundingRequestingOfficeID></ns1:purchaserInformation>
+          <ns1:contractData>
+            <ns1:contractActionType description="OTHER TRANSACTION IDV">O</ns1:contractActionType>
+            <ns1:typeOfAgreement>PROTOTYPE</ns1:typeOfAgreement>
+            <ns1:reasonForModification description="FUNDING ONLY ACTION">C</ns1:reasonForModification>
+            <ns1:descriptionOfContractRequirement>MAY FUNDING MODIFICATION.</ns1:descriptionOfContractRequirement>
+            <ns1:nonTraditionalGovernmentContractorParticipation description="NONTRADITIONAL SIGNIFICANT PARTICIPATION">NSP</ns1:nonTraditionalGovernmentContractorParticipation></ns1:contractData>
+          <ns1:PSCCode description="R&amp;D- DEFENSE SYSTEM: WEAPONS (ENGINEERING DEVELOPMENT)" productOrServiceType="SERVICE">AC54</ns1:PSCCode>
+          <ns1:vendor>
+            <ns1:vendorHeader>
+              <ns1:vendorName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:vendorName></ns1:vendorHeader>
+            <ns1:vendorSiteDetails>
+              <ns1:vendorSocioEconomicIndicators>
+                <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+                <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+                <ns1:isIndianTribe>false</ns1:isIndianTribe>
+                <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+                <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+                <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+                <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+                <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+                <ns1:isWomenOwned>false</ns1:isWomenOwned>
+                <ns1:minorityOwned>
+                  <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                  <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                  <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                  <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                  <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                  <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                  <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+                <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+                <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+                <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+                <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+                <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+              <ns1:vendorBusinessTypes>
+                <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+                <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+                <ns1:federalGovernment>
+                  <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                  <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                  <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+                <ns1:isStateGovernment>false</ns1:isStateGovernment>
+                <ns1:localGovernment>
+                  <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                  <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                  <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                  <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                  <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                  <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                  <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                  <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+                <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+                <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+                <ns1:businessOrOrganizationType>
+                  <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                  <ns1:isCorporateEntityTaxExempt>true</ns1:isCorporateEntityTaxExempt>
+                  <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                  <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                  <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                  <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                  <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+              <ns1:vendorLineOfBusiness>
+                <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+                <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+                <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+                <ns1:isFoundation>false</ns1:isFoundation>
+                <ns1:isHospital>false</ns1:isHospital>
+                <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+                <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+                <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+              <ns1:vendorRelationshipWithFederalGovernment>
+                <ns1:receivesContracts>false</ns1:receivesContracts>
+                <ns1:receivesGrants>false</ns1:receivesGrants>
+                <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:typeOfGovernmentEntity>
+                <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+                <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+                <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+                <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+                <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+                <ns1:isPortAuthority>false</ns1:isPortAuthority>
+                <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+              <ns1:vendorOrganizationFactors>
+                <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+                <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+                <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+                <ns1:profitStructure>
+                  <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                  <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                  <ns1:isOtherNotForProfitOrganization>true</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+                <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+                <ns1:stateOfIncorporation name="SOUTH CAROLINA">SC</ns1:stateOfIncorporation>
+                <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+                <ns1:organizationalType>CORPORATE TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+              <ns1:typeOfEducationalEntity>
+                <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+                <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+                <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+                <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+                <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+                <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+                <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+                <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+                <ns1:isTribalCollege>false</ns1:isTribalCollege>
+                <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+                <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+                <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+              <ns1:vendorCertifications>
+                <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+                <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+                <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+                <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+                <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+              <ns1:vendorLocation>
+                <ns1:streetAddress>315 SIGMA DR</ns1:streetAddress>
+                <ns1:city>SUMMERVILLE</ns1:city>
+                <ns1:state name="SOUTH CAROLINA">SC</ns1:state>
+                <ns1:ZIPCode city="SUMMERVILLE">294867790</ns1:ZIPCode>
+                <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+                <ns1:phoneNo>8437603372</ns1:phoneNo>
+                <ns1:congressionalDistrictCode>01</ns1:congressionalDistrictCode>
+                <ns1:entityDataSource>E&amp;Y</ns1:entityDataSource></ns1:vendorLocation>
+              <ns1:vendorAlternateSiteCode>29486</ns1:vendorAlternateSiteCode>
+              <ns1:entityIdentifiers>
+                <ns1:vendorUEIInformation>
+                  <ns1:UEI>LDMMF472BB93</ns1:UEI>
+                  <ns1:UEILegalBusinessName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:UEILegalBusinessName>
+                  <ns1:ultimateParentUEI>MEHNDWCSBKD5</ns1:ultimateParentUEI>
+                  <ns1:ultimateParentUEIName>ANALYTIC SERVICES INC.</ns1:ultimateParentUEIName></ns1:vendorUEIInformation>
+                <ns1:cageCode>1G3V8</ns1:cageCode></ns1:entityIdentifiers>
+              <ns1:ccrRegistrationDetails>
+                <ns1:registrationDate>2001-05-21 00:00:00</ns1:registrationDate>
+                <ns1:renewalDate>2024-03-01 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails></ns1:vendor>
+          <ns1:consortiaInformation>
+            <ns1:primaryConsortiaLocation></ns1:primaryConsortiaLocation></ns1:consortiaInformation>
+          <ns1:placeOfPerformance>
+            <ns1:principalPlaceOfPerformance>
+              <ns1:stateCode name="SOUTH CAROLINA">SC</ns1:stateCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode></ns1:principalPlaceOfPerformance>
+            <ns1:placeOfPerformanceZIPCode county="BERKELEY" city="SUMMERVILLE">294867790</ns1:placeOfPerformanceZIPCode>
+            <ns1:placeOfPerformanceCongressionalDistrict>01</ns1:placeOfPerformanceCongressionalDistrict></ns1:placeOfPerformance>
+          <ns1:competition>
+            <ns1:solicitationProcedures description="BROAD AGENCY ANNOUNCEMENT">BAA</ns1:solicitationProcedures>
+            <ns1:extentCompeted description="COMPETED">H</ns1:extentCompeted></ns1:competition>
+          <ns1:transactionInformation>
+            <ns1:createdBy>JASON.H.MELOFCHIK.CIV.W15QKN@ARMY.MIL</ns1:createdBy>
+            <ns1:createdDate>2023-05-30 14:38:58</ns1:createdDate>
+            <ns1:lastModifiedBy>ALEXANDER.ALVAREZ13.CIV.W15QKN@ARMY.MIL</ns1:lastModifiedBy>
+            <ns1:lastModifiedDate>2023-05-30 15:03:42</ns1:lastModifiedDate>
+            <ns1:status description="FINAL">F</ns1:status>
+            <ns1:approvedBy>JASON.H.MELOFCHIK.CIV.W15QKN@ARMY.MIL</ns1:approvedBy>
+            <ns1:approvedDate>2023-05-30 14:39:04</ns1:approvedDate>
+            <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation></ns1:contractDetail>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LDMMF472BB93</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:OtherTransactionIDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[OTHER TRANSACTION IDV W15QKN1891008 (P00080) awarded to ADVANCED TECHNOLOGY INTERNATIONAL, was modified for the amount of $41,711,395.02]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=W15QKN1891008+9700+"></link>
+    <modified>2023-09-29 12:16:53</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:OtherTransactionIDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.5">
+        <ns1:OtherTransactionIDVID>
+          <ns1:OtherTransactionIDVContractID>
+            <ns1:agencyID name="DEPT OF DEFENSE">9700</ns1:agencyID>
+            <ns1:PIID>W15QKN1891008</ns1:PIID>
+            <ns1:modNumber>P00080</ns1:modNumber></ns1:OtherTransactionIDVContractID></ns1:OtherTransactionIDVID>
+        <ns1:contractDetail>
+          <ns1:relevantContractDates>
+            <ns1:signedDate>2023-06-29 00:00:00</ns1:signedDate>
+            <ns1:effectiveDate>2018-04-11 00:00:00</ns1:effectiveDate>
+            <ns1:currentCompletionDate>2028-04-11 00:00:00</ns1:currentCompletionDate>
+            <ns1:ultimateCompletionDate>2028-04-11 00:00:00</ns1:ultimateCompletionDate>
+            <ns1:fiscalYear>2023</ns1:fiscalYear></ns1:relevantContractDates>
+          <ns1:dollarValues>
+            <ns1:obligatedAmount>41711395.02</ns1:obligatedAmount>
+            <ns1:baseAndExercisedOptionsValue>41711395.02</ns1:baseAndExercisedOptionsValue>
+            <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue>
+            <ns1:nonGovernmentalDollars>0.00</ns1:nonGovernmentalDollars></ns1:dollarValues>
+          <ns1:totalDollarValues>
+            <ns1:totalObligatedAmount>5113193155.46</ns1:totalObligatedAmount>
+            <ns1:totalBaseAndExercisedOptionsValue>5113193155.46</ns1:totalBaseAndExercisedOptionsValue>
+            <ns1:totalBaseAndAllOptionsValue>9998057512.46</ns1:totalBaseAndAllOptionsValue>
+            <ns1:totalNonGovernmentalDollars>0.00</ns1:totalNonGovernmentalDollars></ns1:totalDollarValues>
+          <ns1:purchaserInformation>
+            <ns1:contractingOfficeAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:contractingOfficeAgencyID>
+            <ns1:contractingOfficeID name="W6QK ACC-PICA" country="USA">W15QKN</ns1:contractingOfficeID>
+            <ns1:fundingRequestingAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:fundingRequestingAgencyID>
+            <ns1:fundingRequestingOfficeID name="W4MK CCDC ARMAMENTS CENTER">W15BW9</ns1:fundingRequestingOfficeID></ns1:purchaserInformation>
+          <ns1:contractData>
+            <ns1:contractActionType description="OTHER TRANSACTION IDV">O</ns1:contractActionType>
+            <ns1:typeOfAgreement>PROTOTYPE</ns1:typeOfAgreement>
+            <ns1:reasonForModification description="FUNDING ONLY ACTION">C</ns1:reasonForModification>
+            <ns1:descriptionOfContractRequirement>FUNDING MODIFICATION ONLY.</ns1:descriptionOfContractRequirement>
+            <ns1:nonTraditionalGovernmentContractorParticipation description="NONTRADITIONAL SIGNIFICANT PARTICIPATION">NSP</ns1:nonTraditionalGovernmentContractorParticipation></ns1:contractData>
+          <ns1:PSCCode description="R&amp;D- DEFENSE SYSTEM: WEAPONS (ENGINEERING DEVELOPMENT)" productOrServiceType="SERVICE">AC54</ns1:PSCCode>
+          <ns1:vendor>
+            <ns1:vendorHeader>
+              <ns1:vendorName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:vendorName></ns1:vendorHeader>
+            <ns1:vendorSiteDetails>
+              <ns1:vendorSocioEconomicIndicators>
+                <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+                <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+                <ns1:isIndianTribe>false</ns1:isIndianTribe>
+                <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+                <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+                <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+                <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+                <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+                <ns1:isWomenOwned>false</ns1:isWomenOwned>
+                <ns1:minorityOwned>
+                  <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                  <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                  <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                  <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                  <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                  <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                  <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+                <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+                <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+                <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+                <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+                <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+              <ns1:vendorBusinessTypes>
+                <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+                <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+                <ns1:federalGovernment>
+                  <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                  <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                  <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+                <ns1:isStateGovernment>false</ns1:isStateGovernment>
+                <ns1:localGovernment>
+                  <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                  <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                  <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                  <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                  <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                  <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                  <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                  <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+                <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+                <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+                <ns1:businessOrOrganizationType>
+                  <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                  <ns1:isCorporateEntityTaxExempt>true</ns1:isCorporateEntityTaxExempt>
+                  <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                  <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                  <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                  <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                  <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+              <ns1:vendorLineOfBusiness>
+                <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+                <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+                <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+                <ns1:isFoundation>false</ns1:isFoundation>
+                <ns1:isHospital>false</ns1:isHospital>
+                <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+                <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+                <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+              <ns1:vendorRelationshipWithFederalGovernment>
+                <ns1:receivesContracts>false</ns1:receivesContracts>
+                <ns1:receivesGrants>false</ns1:receivesGrants>
+                <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:typeOfGovernmentEntity>
+                <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+                <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+                <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+                <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+                <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+                <ns1:isPortAuthority>false</ns1:isPortAuthority>
+                <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+              <ns1:vendorOrganizationFactors>
+                <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+                <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+                <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+                <ns1:profitStructure>
+                  <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                  <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                  <ns1:isOtherNotForProfitOrganization>true</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+                <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+                <ns1:stateOfIncorporation name="SOUTH CAROLINA">SC</ns1:stateOfIncorporation>
+                <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+                <ns1:organizationalType>CORPORATE TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+              <ns1:typeOfEducationalEntity>
+                <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+                <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+                <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+                <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+                <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+                <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+                <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+                <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+                <ns1:isTribalCollege>false</ns1:isTribalCollege>
+                <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+                <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+                <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+              <ns1:vendorCertifications>
+                <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+                <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+                <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+                <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+                <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+              <ns1:vendorLocation>
+                <ns1:streetAddress>315 SIGMA DR</ns1:streetAddress>
+                <ns1:city>SUMMERVILLE</ns1:city>
+                <ns1:state name="SOUTH CAROLINA">SC</ns1:state>
+                <ns1:ZIPCode city="SUMMERVILLE">294867790</ns1:ZIPCode>
+                <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+                <ns1:phoneNo>8437603372</ns1:phoneNo>
+                <ns1:congressionalDistrictCode>01</ns1:congressionalDistrictCode>
+                <ns1:entityDataSource>E&amp;Y</ns1:entityDataSource></ns1:vendorLocation>
+              <ns1:vendorAlternateSiteCode>29486</ns1:vendorAlternateSiteCode>
+              <ns1:entityIdentifiers>
+                <ns1:vendorUEIInformation>
+                  <ns1:UEI>LDMMF472BB93</ns1:UEI>
+                  <ns1:UEILegalBusinessName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:UEILegalBusinessName>
+                  <ns1:ultimateParentUEI>MEHNDWCSBKD5</ns1:ultimateParentUEI>
+                  <ns1:ultimateParentUEIName>ANALYTIC SERVICES INC.</ns1:ultimateParentUEIName></ns1:vendorUEIInformation>
+                <ns1:cageCode>1G3V8</ns1:cageCode></ns1:entityIdentifiers>
+              <ns1:ccrRegistrationDetails>
+                <ns1:registrationDate>2001-05-21 00:00:00</ns1:registrationDate>
+                <ns1:renewalDate>2024-05-31 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails></ns1:vendor>
+          <ns1:consortiaInformation>
+            <ns1:primaryConsortiaLocation></ns1:primaryConsortiaLocation></ns1:consortiaInformation>
+          <ns1:placeOfPerformance>
+            <ns1:principalPlaceOfPerformance>
+              <ns1:stateCode name="SOUTH CAROLINA">SC</ns1:stateCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode></ns1:principalPlaceOfPerformance>
+            <ns1:placeOfPerformanceZIPCode county="BERKELEY" city="SUMMERVILLE">294867790</ns1:placeOfPerformanceZIPCode>
+            <ns1:placeOfPerformanceCongressionalDistrict>01</ns1:placeOfPerformanceCongressionalDistrict></ns1:placeOfPerformance>
+          <ns1:competition>
+            <ns1:solicitationProcedures description="BROAD AGENCY ANNOUNCEMENT">BAA</ns1:solicitationProcedures>
+            <ns1:extentCompeted description="COMPETED">H</ns1:extentCompeted></ns1:competition>
+          <ns1:transactionInformation>
+            <ns1:createdBy>STEVEN.S.GHAZI.CIV.W15QKN@ARMY.MIL</ns1:createdBy>
+            <ns1:createdDate>2023-06-29 09:07:09</ns1:createdDate>
+            <ns1:lastModifiedBy>FPDSADMIN</ns1:lastModifiedBy>
+            <ns1:lastModifiedDate>2023-09-29 12:16:53</ns1:lastModifiedDate>
+            <ns1:status description="FINAL">F</ns1:status>
+            <ns1:approvedBy>STEVEN.S.GHAZI.CIV.W15QKN@ARMY.MIL</ns1:approvedBy>
+            <ns1:approvedDate>2023-06-29 09:07:13</ns1:approvedDate>
+            <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation></ns1:contractDetail>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LDMMF472BB93</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:OtherTransactionIDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[OTHER TRANSACTION IDV W15QKN1891008 (P00081) awarded to ADVANCED TECHNOLOGY INTERNATIONAL, was modified for the amount of $44,587,507.28]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=W15QKN1891008+9700+"></link>
+    <modified>2023-07-28 09:42:46</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:OtherTransactionIDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.5">
+        <ns1:OtherTransactionIDVID>
+          <ns1:OtherTransactionIDVContractID>
+            <ns1:agencyID name="DEPT OF DEFENSE">9700</ns1:agencyID>
+            <ns1:PIID>W15QKN1891008</ns1:PIID>
+            <ns1:modNumber>P00081</ns1:modNumber></ns1:OtherTransactionIDVContractID></ns1:OtherTransactionIDVID>
+        <ns1:contractDetail>
+          <ns1:relevantContractDates>
+            <ns1:signedDate>2023-07-28 00:00:00</ns1:signedDate>
+            <ns1:effectiveDate>2018-04-11 00:00:00</ns1:effectiveDate>
+            <ns1:currentCompletionDate>2028-04-11 00:00:00</ns1:currentCompletionDate>
+            <ns1:ultimateCompletionDate>2028-04-11 00:00:00</ns1:ultimateCompletionDate>
+            <ns1:fiscalYear>2023</ns1:fiscalYear></ns1:relevantContractDates>
+          <ns1:dollarValues>
+            <ns1:obligatedAmount>44587507.28</ns1:obligatedAmount>
+            <ns1:baseAndExercisedOptionsValue>44587507.28</ns1:baseAndExercisedOptionsValue>
+            <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue>
+            <ns1:nonGovernmentalDollars>0.00</ns1:nonGovernmentalDollars></ns1:dollarValues>
+          <ns1:totalDollarValues>
+            <ns1:totalObligatedAmount>5113193155.46</ns1:totalObligatedAmount>
+            <ns1:totalBaseAndExercisedOptionsValue>5113193155.46</ns1:totalBaseAndExercisedOptionsValue>
+            <ns1:totalBaseAndAllOptionsValue>9998057512.46</ns1:totalBaseAndAllOptionsValue>
+            <ns1:totalNonGovernmentalDollars>0.00</ns1:totalNonGovernmentalDollars></ns1:totalDollarValues>
+          <ns1:purchaserInformation>
+            <ns1:contractingOfficeAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:contractingOfficeAgencyID>
+            <ns1:contractingOfficeID name="W6QK ACC-PICA" country="USA">W15QKN</ns1:contractingOfficeID>
+            <ns1:fundingRequestingAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:fundingRequestingAgencyID>
+            <ns1:fundingRequestingOfficeID name="W4MK CCDC ARMAMENTS CENTER">W15BW9</ns1:fundingRequestingOfficeID></ns1:purchaserInformation>
+          <ns1:contractData>
+            <ns1:contractActionType description="OTHER TRANSACTION IDV">O</ns1:contractActionType>
+            <ns1:typeOfAgreement>PROTOTYPE</ns1:typeOfAgreement>
+            <ns1:reasonForModification description="FUNDING ONLY ACTION">C</ns1:reasonForModification>
+            <ns1:descriptionOfContractRequirement>JULY FUNDING MODIFICATION</ns1:descriptionOfContractRequirement>
+            <ns1:nonTraditionalGovernmentContractorParticipation description="NONTRADITIONAL SIGNIFICANT PARTICIPATION">NSP</ns1:nonTraditionalGovernmentContractorParticipation></ns1:contractData>
+          <ns1:PSCCode description="R&amp;D- DEFENSE SYSTEM: WEAPONS (ENGINEERING DEVELOPMENT)" productOrServiceType="SERVICE">AC54</ns1:PSCCode>
+          <ns1:vendor>
+            <ns1:vendorHeader>
+              <ns1:vendorName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:vendorName></ns1:vendorHeader>
+            <ns1:vendorSiteDetails>
+              <ns1:vendorSocioEconomicIndicators>
+                <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+                <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+                <ns1:isIndianTribe>false</ns1:isIndianTribe>
+                <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+                <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+                <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+                <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+                <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+                <ns1:isWomenOwned>false</ns1:isWomenOwned>
+                <ns1:minorityOwned>
+                  <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                  <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                  <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                  <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                  <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                  <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                  <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+                <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+                <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+                <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+                <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+                <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+              <ns1:vendorBusinessTypes>
+                <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+                <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+                <ns1:federalGovernment>
+                  <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                  <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                  <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+                <ns1:isStateGovernment>false</ns1:isStateGovernment>
+                <ns1:localGovernment>
+                  <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                  <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                  <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                  <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                  <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                  <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                  <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                  <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+                <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+                <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+                <ns1:businessOrOrganizationType>
+                  <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                  <ns1:isCorporateEntityTaxExempt>true</ns1:isCorporateEntityTaxExempt>
+                  <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                  <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                  <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                  <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                  <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+              <ns1:vendorLineOfBusiness>
+                <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+                <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+                <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+                <ns1:isFoundation>false</ns1:isFoundation>
+                <ns1:isHospital>false</ns1:isHospital>
+                <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+                <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+                <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+              <ns1:vendorRelationshipWithFederalGovernment>
+                <ns1:receivesContracts>false</ns1:receivesContracts>
+                <ns1:receivesGrants>false</ns1:receivesGrants>
+                <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:typeOfGovernmentEntity>
+                <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+                <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+                <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+                <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+                <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+                <ns1:isPortAuthority>false</ns1:isPortAuthority>
+                <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+              <ns1:vendorOrganizationFactors>
+                <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+                <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+                <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+                <ns1:profitStructure>
+                  <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                  <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                  <ns1:isOtherNotForProfitOrganization>true</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+                <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+                <ns1:stateOfIncorporation name="SOUTH CAROLINA">SC</ns1:stateOfIncorporation>
+                <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+                <ns1:organizationalType>CORPORATE TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+              <ns1:typeOfEducationalEntity>
+                <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+                <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+                <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+                <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+                <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+                <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+                <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+                <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+                <ns1:isTribalCollege>false</ns1:isTribalCollege>
+                <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+                <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+                <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+              <ns1:vendorCertifications>
+                <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+                <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+                <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+                <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+                <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+              <ns1:vendorLocation>
+                <ns1:streetAddress>315 SIGMA DR</ns1:streetAddress>
+                <ns1:city>SUMMERVILLE</ns1:city>
+                <ns1:state name="SOUTH CAROLINA">SC</ns1:state>
+                <ns1:ZIPCode city="SUMMERVILLE">294867790</ns1:ZIPCode>
+                <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+                <ns1:phoneNo>8437603372</ns1:phoneNo>
+                <ns1:congressionalDistrictCode>01</ns1:congressionalDistrictCode>
+                <ns1:entityDataSource>E&amp;Y</ns1:entityDataSource></ns1:vendorLocation>
+              <ns1:vendorAlternateSiteCode>29486</ns1:vendorAlternateSiteCode>
+              <ns1:entityIdentifiers>
+                <ns1:vendorUEIInformation>
+                  <ns1:UEI>LDMMF472BB93</ns1:UEI>
+                  <ns1:UEILegalBusinessName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:UEILegalBusinessName>
+                  <ns1:ultimateParentUEI>MEHNDWCSBKD5</ns1:ultimateParentUEI>
+                  <ns1:ultimateParentUEIName>ANALYTIC SERVICES INC.</ns1:ultimateParentUEIName></ns1:vendorUEIInformation>
+                <ns1:cageCode>1G3V8</ns1:cageCode></ns1:entityIdentifiers>
+              <ns1:ccrRegistrationDetails>
+                <ns1:registrationDate>2001-05-21 00:00:00</ns1:registrationDate>
+                <ns1:renewalDate>2024-05-31 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails></ns1:vendor>
+          <ns1:consortiaInformation>
+            <ns1:primaryConsortiaLocation></ns1:primaryConsortiaLocation></ns1:consortiaInformation>
+          <ns1:placeOfPerformance>
+            <ns1:principalPlaceOfPerformance>
+              <ns1:stateCode name="SOUTH CAROLINA">SC</ns1:stateCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode></ns1:principalPlaceOfPerformance>
+            <ns1:placeOfPerformanceZIPCode county="BERKELEY" city="SUMMERVILLE">294867790</ns1:placeOfPerformanceZIPCode>
+            <ns1:placeOfPerformanceCongressionalDistrict>01</ns1:placeOfPerformanceCongressionalDistrict></ns1:placeOfPerformance>
+          <ns1:competition>
+            <ns1:solicitationProcedures description="BROAD AGENCY ANNOUNCEMENT">BAA</ns1:solicitationProcedures>
+            <ns1:extentCompeted description="COMPETED">H</ns1:extentCompeted></ns1:competition>
+          <ns1:transactionInformation>
+            <ns1:createdBy>JASON.H.MELOFCHIK.CIV.W15QKN@ARMY.MIL</ns1:createdBy>
+            <ns1:createdDate>2023-07-28 09:05:54</ns1:createdDate>
+            <ns1:lastModifiedBy>ALEXANDER.ALVAREZ13.CIV.W15QKN@ARMY.MIL</ns1:lastModifiedBy>
+            <ns1:lastModifiedDate>2023-07-28 09:42:46</ns1:lastModifiedDate>
+            <ns1:status description="FINAL">F</ns1:status>
+            <ns1:approvedBy>JASON.H.MELOFCHIK.CIV.W15QKN@ARMY.MIL</ns1:approvedBy>
+            <ns1:approvedDate>2023-07-28 09:06:12</ns1:approvedDate>
+            <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation></ns1:contractDetail>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LDMMF472BB93</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans></ns1:genericBooleans></ns1:genericTags></ns1:OtherTransactionIDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[OTHER TRANSACTION IDV W15QKN1891008 (P00082) awarded to ADVANCED TECHNOLOGY INTERNATIONAL, was modified for the amount of $86,080,677.53]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=W15QKN1891008+9700+"></link>
+    <modified>2023-08-28 21:40:46</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:OtherTransactionIDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.5">
+        <ns1:OtherTransactionIDVID>
+          <ns1:OtherTransactionIDVContractID>
+            <ns1:agencyID name="DEPT OF DEFENSE">9700</ns1:agencyID>
+            <ns1:PIID>W15QKN1891008</ns1:PIID>
+            <ns1:modNumber>P00082</ns1:modNumber></ns1:OtherTransactionIDVContractID></ns1:OtherTransactionIDVID>
+        <ns1:contractDetail>
+          <ns1:relevantContractDates>
+            <ns1:signedDate>2023-08-28 00:00:00</ns1:signedDate>
+            <ns1:effectiveDate>2018-04-11 00:00:00</ns1:effectiveDate>
+            <ns1:currentCompletionDate>2028-04-11 00:00:00</ns1:currentCompletionDate>
+            <ns1:ultimateCompletionDate>2028-04-11 00:00:00</ns1:ultimateCompletionDate>
+            <ns1:fiscalYear>2023</ns1:fiscalYear></ns1:relevantContractDates>
+          <ns1:dollarValues>
+            <ns1:obligatedAmount>86080677.53</ns1:obligatedAmount>
+            <ns1:baseAndExercisedOptionsValue>86080677.53</ns1:baseAndExercisedOptionsValue>
+            <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue>
+            <ns1:nonGovernmentalDollars>0.00</ns1:nonGovernmentalDollars></ns1:dollarValues>
+          <ns1:totalDollarValues>
+            <ns1:totalObligatedAmount>5113193155.46</ns1:totalObligatedAmount>
+            <ns1:totalBaseAndExercisedOptionsValue>5113193155.46</ns1:totalBaseAndExercisedOptionsValue>
+            <ns1:totalBaseAndAllOptionsValue>9998057512.46</ns1:totalBaseAndAllOptionsValue>
+            <ns1:totalNonGovernmentalDollars>0.00</ns1:totalNonGovernmentalDollars></ns1:totalDollarValues>
+          <ns1:purchaserInformation>
+            <ns1:contractingOfficeAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:contractingOfficeAgencyID>
+            <ns1:contractingOfficeID name="W6QK ACC-PICA" country="USA">W15QKN</ns1:contractingOfficeID>
+            <ns1:fundingRequestingAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:fundingRequestingAgencyID>
+            <ns1:fundingRequestingOfficeID name="W4MK CCDC ARMAMENTS CENTER">W15BW9</ns1:fundingRequestingOfficeID></ns1:purchaserInformation>
+          <ns1:contractData>
+            <ns1:contractActionType description="OTHER TRANSACTION IDV">O</ns1:contractActionType>
+            <ns1:typeOfAgreement>PROTOTYPE</ns1:typeOfAgreement>
+            <ns1:reasonForModification description="FUNDING ONLY ACTION">C</ns1:reasonForModification>
+            <ns1:descriptionOfContractRequirement>FUNDING MODIFICATION ONLY.</ns1:descriptionOfContractRequirement>
+            <ns1:nonTraditionalGovernmentContractorParticipation description="NONTRADITIONAL SIGNIFICANT PARTICIPATION">NSP</ns1:nonTraditionalGovernmentContractorParticipation></ns1:contractData>
+          <ns1:PSCCode description="R&amp;D- DEFENSE SYSTEM: WEAPONS (ENGINEERING DEVELOPMENT)" productOrServiceType="SERVICE">AC54</ns1:PSCCode>
+          <ns1:vendor>
+            <ns1:vendorHeader>
+              <ns1:vendorName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:vendorName></ns1:vendorHeader>
+            <ns1:vendorSiteDetails>
+              <ns1:vendorSocioEconomicIndicators>
+                <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+                <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+                <ns1:isIndianTribe>false</ns1:isIndianTribe>
+                <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+                <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+                <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+                <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+                <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+                <ns1:isWomenOwned>false</ns1:isWomenOwned>
+                <ns1:minorityOwned>
+                  <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                  <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                  <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                  <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                  <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                  <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                  <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+                <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+                <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+                <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+                <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+                <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+              <ns1:vendorBusinessTypes>
+                <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+                <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+                <ns1:federalGovernment>
+                  <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                  <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                  <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+                <ns1:isStateGovernment>false</ns1:isStateGovernment>
+                <ns1:localGovernment>
+                  <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                  <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                  <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                  <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                  <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                  <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                  <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                  <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+                <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+                <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+                <ns1:businessOrOrganizationType>
+                  <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                  <ns1:isCorporateEntityTaxExempt>true</ns1:isCorporateEntityTaxExempt>
+                  <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                  <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                  <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                  <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                  <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+              <ns1:vendorLineOfBusiness>
+                <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+                <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+                <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+                <ns1:isFoundation>false</ns1:isFoundation>
+                <ns1:isHospital>false</ns1:isHospital>
+                <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+                <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+                <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+              <ns1:vendorRelationshipWithFederalGovernment>
+                <ns1:receivesContracts>false</ns1:receivesContracts>
+                <ns1:receivesGrants>false</ns1:receivesGrants>
+                <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:typeOfGovernmentEntity>
+                <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+                <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+                <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+                <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+                <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+                <ns1:isPortAuthority>false</ns1:isPortAuthority>
+                <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+              <ns1:vendorOrganizationFactors>
+                <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+                <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+                <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+                <ns1:profitStructure>
+                  <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                  <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                  <ns1:isOtherNotForProfitOrganization>true</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+                <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+                <ns1:stateOfIncorporation name="SOUTH CAROLINA">SC</ns1:stateOfIncorporation>
+                <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+                <ns1:organizationalType>CORPORATE TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+              <ns1:typeOfEducationalEntity>
+                <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+                <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+                <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+                <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+                <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+                <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+                <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+                <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+                <ns1:isTribalCollege>false</ns1:isTribalCollege>
+                <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+                <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+                <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+              <ns1:vendorCertifications>
+                <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+                <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+                <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+                <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+                <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+              <ns1:vendorLocation>
+                <ns1:streetAddress>315 SIGMA DR</ns1:streetAddress>
+                <ns1:city>SUMMERVILLE</ns1:city>
+                <ns1:state name="SOUTH CAROLINA">SC</ns1:state>
+                <ns1:ZIPCode city="SUMMERVILLE">294867790</ns1:ZIPCode>
+                <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+                <ns1:phoneNo>8437603372</ns1:phoneNo>
+                <ns1:congressionalDistrictCode>01</ns1:congressionalDistrictCode>
+                <ns1:entityDataSource>E&amp;Y</ns1:entityDataSource></ns1:vendorLocation>
+              <ns1:vendorAlternateSiteCode>29486</ns1:vendorAlternateSiteCode>
+              <ns1:entityIdentifiers>
+                <ns1:vendorUEIInformation>
+                  <ns1:UEI>LDMMF472BB93</ns1:UEI>
+                  <ns1:UEILegalBusinessName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:UEILegalBusinessName>
+                  <ns1:ultimateParentUEI>MEHNDWCSBKD5</ns1:ultimateParentUEI>
+                  <ns1:ultimateParentUEIName>ANALYTIC SERVICES INC.</ns1:ultimateParentUEIName></ns1:vendorUEIInformation>
+                <ns1:cageCode>1G3V8</ns1:cageCode></ns1:entityIdentifiers>
+              <ns1:ccrRegistrationDetails>
+                <ns1:registrationDate>2001-05-21 00:00:00</ns1:registrationDate>
+                <ns1:renewalDate>2024-05-31 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails></ns1:vendor>
+          <ns1:consortiaInformation>
+            <ns1:primaryConsortiaLocation></ns1:primaryConsortiaLocation></ns1:consortiaInformation>
+          <ns1:placeOfPerformance>
+            <ns1:principalPlaceOfPerformance>
+              <ns1:stateCode name="SOUTH CAROLINA">SC</ns1:stateCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode></ns1:principalPlaceOfPerformance>
+            <ns1:placeOfPerformanceZIPCode county="BERKELEY" city="SUMMERVILLE">294867790</ns1:placeOfPerformanceZIPCode>
+            <ns1:placeOfPerformanceCongressionalDistrict>01</ns1:placeOfPerformanceCongressionalDistrict></ns1:placeOfPerformance>
+          <ns1:competition>
+            <ns1:solicitationProcedures description="BROAD AGENCY ANNOUNCEMENT">BAA</ns1:solicitationProcedures>
+            <ns1:extentCompeted description="COMPETED">H</ns1:extentCompeted></ns1:competition>
+          <ns1:transactionInformation>
+            <ns1:createdBy>STEVEN.S.GHAZI.CIV.W15QKN@ARMY.MIL</ns1:createdBy>
+            <ns1:createdDate>2023-08-28 21:36:20</ns1:createdDate>
+            <ns1:lastModifiedBy>STEVEN.S.GHAZI.CIV.W15QKN@ARMY.MIL</ns1:lastModifiedBy>
+            <ns1:lastModifiedDate>2023-08-28 21:40:46</ns1:lastModifiedDate>
+            <ns1:status description="FINAL">F</ns1:status>
+            <ns1:approvedBy>STEVEN.S.GHAZI.CIV.W15QKN@ARMY.MIL</ns1:approvedBy>
+            <ns1:approvedDate>2023-08-28 21:36:25</ns1:approvedDate>
+            <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation></ns1:contractDetail>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LDMMF472BB93</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans>
+            <ns1:genericBoolean01>false</ns1:genericBoolean01>
+            <ns1:genericBoolean02>false</ns1:genericBoolean02>
+            <ns1:genericBoolean03>false</ns1:genericBoolean03>
+            <ns1:genericBoolean04>false</ns1:genericBoolean04></ns1:genericBooleans></ns1:genericTags></ns1:OtherTransactionIDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[OTHER TRANSACTION IDV W15QKN1891008 (P00083) awarded to ADVANCED TECHNOLOGY INTERNATIONAL, was modified for the amount of $44,941,826.04]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=W15QKN1891008+9700+"></link>
+    <modified>2023-09-22 09:51:10</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:OtherTransactionIDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.5">
+        <ns1:OtherTransactionIDVID>
+          <ns1:OtherTransactionIDVContractID>
+            <ns1:agencyID name="DEPT OF DEFENSE">9700</ns1:agencyID>
+            <ns1:PIID>W15QKN1891008</ns1:PIID>
+            <ns1:modNumber>P00083</ns1:modNumber></ns1:OtherTransactionIDVContractID></ns1:OtherTransactionIDVID>
+        <ns1:contractDetail>
+          <ns1:relevantContractDates>
+            <ns1:signedDate>2023-09-22 00:00:00</ns1:signedDate>
+            <ns1:effectiveDate>2018-04-11 00:00:00</ns1:effectiveDate>
+            <ns1:currentCompletionDate>2028-04-11 00:00:00</ns1:currentCompletionDate>
+            <ns1:ultimateCompletionDate>2028-04-11 00:00:00</ns1:ultimateCompletionDate>
+            <ns1:fiscalYear>2023</ns1:fiscalYear></ns1:relevantContractDates>
+          <ns1:dollarValues>
+            <ns1:obligatedAmount>44941826.04</ns1:obligatedAmount>
+            <ns1:baseAndExercisedOptionsValue>44941826.04</ns1:baseAndExercisedOptionsValue>
+            <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue>
+            <ns1:nonGovernmentalDollars>0.00</ns1:nonGovernmentalDollars></ns1:dollarValues>
+          <ns1:totalDollarValues>
+            <ns1:totalObligatedAmount>5113193155.46</ns1:totalObligatedAmount>
+            <ns1:totalBaseAndExercisedOptionsValue>5113193155.46</ns1:totalBaseAndExercisedOptionsValue>
+            <ns1:totalBaseAndAllOptionsValue>9998057512.46</ns1:totalBaseAndAllOptionsValue>
+            <ns1:totalNonGovernmentalDollars>0.00</ns1:totalNonGovernmentalDollars></ns1:totalDollarValues>
+          <ns1:purchaserInformation>
+            <ns1:contractingOfficeAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:contractingOfficeAgencyID>
+            <ns1:contractingOfficeID name="W6QK ACC-PICA" country="USA">W15QKN</ns1:contractingOfficeID>
+            <ns1:fundingRequestingAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:fundingRequestingAgencyID>
+            <ns1:fundingRequestingOfficeID name="W4MK CCDC ARMAMENTS CENTER">W15BW9</ns1:fundingRequestingOfficeID></ns1:purchaserInformation>
+          <ns1:contractData>
+            <ns1:contractActionType description="OTHER TRANSACTION IDV">O</ns1:contractActionType>
+            <ns1:typeOfAgreement>PROTOTYPE</ns1:typeOfAgreement>
+            <ns1:reasonForModification description="FUNDING ONLY ACTION">C</ns1:reasonForModification>
+            <ns1:descriptionOfContractRequirement>SEPTEMBER FUNDING MOD.</ns1:descriptionOfContractRequirement>
+            <ns1:nonTraditionalGovernmentContractorParticipation description="NONTRADITIONAL SIGNIFICANT PARTICIPATION">NSP</ns1:nonTraditionalGovernmentContractorParticipation></ns1:contractData>
+          <ns1:PSCCode description="R&amp;D- DEFENSE SYSTEM: WEAPONS (ENGINEERING DEVELOPMENT)" productOrServiceType="SERVICE">AC54</ns1:PSCCode>
+          <ns1:vendor>
+            <ns1:vendorHeader>
+              <ns1:vendorName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:vendorName></ns1:vendorHeader>
+            <ns1:vendorSiteDetails>
+              <ns1:vendorSocioEconomicIndicators>
+                <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+                <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+                <ns1:isIndianTribe>false</ns1:isIndianTribe>
+                <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+                <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+                <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+                <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+                <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+                <ns1:isWomenOwned>false</ns1:isWomenOwned>
+                <ns1:minorityOwned>
+                  <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                  <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                  <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                  <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                  <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                  <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                  <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+                <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+                <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+                <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+                <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+                <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+              <ns1:vendorBusinessTypes>
+                <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+                <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+                <ns1:federalGovernment>
+                  <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                  <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                  <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+                <ns1:isStateGovernment>false</ns1:isStateGovernment>
+                <ns1:localGovernment>
+                  <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                  <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                  <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                  <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                  <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                  <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                  <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                  <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+                <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+                <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+                <ns1:businessOrOrganizationType>
+                  <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                  <ns1:isCorporateEntityTaxExempt>true</ns1:isCorporateEntityTaxExempt>
+                  <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                  <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                  <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                  <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                  <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+              <ns1:vendorLineOfBusiness>
+                <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+                <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+                <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+                <ns1:isFoundation>false</ns1:isFoundation>
+                <ns1:isHospital>false</ns1:isHospital>
+                <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+                <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+                <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+              <ns1:vendorRelationshipWithFederalGovernment>
+                <ns1:receivesContracts>false</ns1:receivesContracts>
+                <ns1:receivesGrants>false</ns1:receivesGrants>
+                <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:typeOfGovernmentEntity>
+                <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+                <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+                <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+                <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+                <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+                <ns1:isPortAuthority>false</ns1:isPortAuthority>
+                <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+              <ns1:vendorOrganizationFactors>
+                <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+                <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+                <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+                <ns1:profitStructure>
+                  <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                  <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                  <ns1:isOtherNotForProfitOrganization>true</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+                <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+                <ns1:stateOfIncorporation name="SOUTH CAROLINA">SC</ns1:stateOfIncorporation>
+                <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+                <ns1:organizationalType>CORPORATE TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+              <ns1:typeOfEducationalEntity>
+                <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+                <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+                <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+                <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+                <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+                <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+                <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+                <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+                <ns1:isTribalCollege>false</ns1:isTribalCollege>
+                <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+                <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+                <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+              <ns1:vendorCertifications>
+                <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+                <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+                <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+                <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+                <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+              <ns1:vendorLocation>
+                <ns1:streetAddress>315 SIGMA DR</ns1:streetAddress>
+                <ns1:city>SUMMERVILLE</ns1:city>
+                <ns1:state name="SOUTH CAROLINA">SC</ns1:state>
+                <ns1:ZIPCode city="SUMMERVILLE">294867790</ns1:ZIPCode>
+                <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+                <ns1:phoneNo>8437603372</ns1:phoneNo>
+                <ns1:congressionalDistrictCode>01</ns1:congressionalDistrictCode>
+                <ns1:entityDataSource>E&amp;Y</ns1:entityDataSource></ns1:vendorLocation>
+              <ns1:vendorAlternateSiteCode>29486</ns1:vendorAlternateSiteCode>
+              <ns1:entityIdentifiers>
+                <ns1:vendorUEIInformation>
+                  <ns1:UEI>LDMMF472BB93</ns1:UEI>
+                  <ns1:UEILegalBusinessName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:UEILegalBusinessName>
+                  <ns1:ultimateParentUEI>MEHNDWCSBKD5</ns1:ultimateParentUEI>
+                  <ns1:ultimateParentUEIName>ANALYTIC SERVICES INC.</ns1:ultimateParentUEIName></ns1:vendorUEIInformation>
+                <ns1:cageCode>1G3V8</ns1:cageCode></ns1:entityIdentifiers>
+              <ns1:ccrRegistrationDetails>
+                <ns1:registrationDate>2001-05-21 00:00:00</ns1:registrationDate>
+                <ns1:renewalDate>2024-05-31 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails></ns1:vendor>
+          <ns1:consortiaInformation>
+            <ns1:primaryConsortiaLocation></ns1:primaryConsortiaLocation></ns1:consortiaInformation>
+          <ns1:placeOfPerformance>
+            <ns1:principalPlaceOfPerformance>
+              <ns1:stateCode name="SOUTH CAROLINA">SC</ns1:stateCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode></ns1:principalPlaceOfPerformance>
+            <ns1:placeOfPerformanceZIPCode county="BERKELEY" city="SUMMERVILLE">294867790</ns1:placeOfPerformanceZIPCode>
+            <ns1:placeOfPerformanceCongressionalDistrict>01</ns1:placeOfPerformanceCongressionalDistrict></ns1:placeOfPerformance>
+          <ns1:competition>
+            <ns1:solicitationProcedures description="BROAD AGENCY ANNOUNCEMENT">BAA</ns1:solicitationProcedures>
+            <ns1:extentCompeted description="COMPETED">H</ns1:extentCompeted></ns1:competition>
+          <ns1:transactionInformation>
+            <ns1:createdBy>JASON.H.MELOFCHIK.CIV.W15QKN@ARMY.MIL</ns1:createdBy>
+            <ns1:createdDate>2023-09-22 09:10:22</ns1:createdDate>
+            <ns1:lastModifiedBy>ALEXANDER.ALVAREZ13.CIV.W15QKN@ARMY.MIL</ns1:lastModifiedBy>
+            <ns1:lastModifiedDate>2023-09-22 09:51:10</ns1:lastModifiedDate>
+            <ns1:status description="FINAL">F</ns1:status>
+            <ns1:approvedBy>JASON.H.MELOFCHIK.CIV.W15QKN@ARMY.MIL</ns1:approvedBy>
+            <ns1:approvedDate>2023-09-22 09:10:53</ns1:approvedDate>
+            <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation></ns1:contractDetail>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LDMMF472BB93</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans>
+            <ns1:genericBoolean01>false</ns1:genericBoolean01>
+            <ns1:genericBoolean02>false</ns1:genericBoolean02>
+            <ns1:genericBoolean03>false</ns1:genericBoolean03>
+            <ns1:genericBoolean04>false</ns1:genericBoolean04></ns1:genericBooleans></ns1:genericTags></ns1:OtherTransactionIDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[OTHER TRANSACTION IDV W15QKN1891008 (P00084) awarded to ADVANCED TECHNOLOGY INTERNATIONAL, was modified for the amount of $707,361.4]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=W15QKN1891008+9700+"></link>
+    <modified>2023-09-28 13:34:58</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:OtherTransactionIDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.5">
+        <ns1:OtherTransactionIDVID>
+          <ns1:OtherTransactionIDVContractID>
+            <ns1:agencyID name="DEPT OF DEFENSE">9700</ns1:agencyID>
+            <ns1:PIID>W15QKN1891008</ns1:PIID>
+            <ns1:modNumber>P00084</ns1:modNumber></ns1:OtherTransactionIDVContractID></ns1:OtherTransactionIDVID>
+        <ns1:contractDetail>
+          <ns1:relevantContractDates>
+            <ns1:signedDate>2023-09-28 00:00:00</ns1:signedDate>
+            <ns1:effectiveDate>2018-04-11 00:00:00</ns1:effectiveDate>
+            <ns1:currentCompletionDate>2028-04-11 00:00:00</ns1:currentCompletionDate>
+            <ns1:ultimateCompletionDate>2028-04-11 00:00:00</ns1:ultimateCompletionDate>
+            <ns1:fiscalYear>2023</ns1:fiscalYear></ns1:relevantContractDates>
+          <ns1:dollarValues>
+            <ns1:obligatedAmount>707361.40</ns1:obligatedAmount>
+            <ns1:baseAndExercisedOptionsValue>707361.40</ns1:baseAndExercisedOptionsValue>
+            <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue>
+            <ns1:nonGovernmentalDollars>0.00</ns1:nonGovernmentalDollars></ns1:dollarValues>
+          <ns1:totalDollarValues>
+            <ns1:totalObligatedAmount>5113193155.46</ns1:totalObligatedAmount>
+            <ns1:totalBaseAndExercisedOptionsValue>5113193155.46</ns1:totalBaseAndExercisedOptionsValue>
+            <ns1:totalBaseAndAllOptionsValue>9998057512.46</ns1:totalBaseAndAllOptionsValue>
+            <ns1:totalNonGovernmentalDollars>0.00</ns1:totalNonGovernmentalDollars></ns1:totalDollarValues>
+          <ns1:purchaserInformation>
+            <ns1:contractingOfficeAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:contractingOfficeAgencyID>
+            <ns1:contractingOfficeID name="W6QK ACC-PICA" country="USA">W15QKN</ns1:contractingOfficeID>
+            <ns1:fundingRequestingAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:fundingRequestingAgencyID>
+            <ns1:fundingRequestingOfficeID name="W4MK CCDC ARMAMENTS CENTER">W15BW9</ns1:fundingRequestingOfficeID></ns1:purchaserInformation>
+          <ns1:contractData>
+            <ns1:contractActionType description="OTHER TRANSACTION IDV">O</ns1:contractActionType>
+            <ns1:typeOfAgreement>PROTOTYPE</ns1:typeOfAgreement>
+            <ns1:reasonForModification description="FUNDING ONLY ACTION">C</ns1:reasonForModification>
+            <ns1:descriptionOfContractRequirement>SEPTEMBER OUT OF CYCLE MODIFICATION.</ns1:descriptionOfContractRequirement>
+            <ns1:nonTraditionalGovernmentContractorParticipation description="NONTRADITIONAL SIGNIFICANT PARTICIPATION">NSP</ns1:nonTraditionalGovernmentContractorParticipation></ns1:contractData>
+          <ns1:PSCCode description="R&amp;D- DEFENSE SYSTEM: WEAPONS (ENGINEERING DEVELOPMENT)" productOrServiceType="SERVICE">AC54</ns1:PSCCode>
+          <ns1:vendor>
+            <ns1:vendorHeader>
+              <ns1:vendorName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:vendorName></ns1:vendorHeader>
+            <ns1:vendorSiteDetails>
+              <ns1:vendorSocioEconomicIndicators>
+                <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+                <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+                <ns1:isIndianTribe>false</ns1:isIndianTribe>
+                <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+                <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+                <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+                <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+                <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+                <ns1:isWomenOwned>false</ns1:isWomenOwned>
+                <ns1:minorityOwned>
+                  <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                  <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                  <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                  <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                  <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                  <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                  <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+                <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+                <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+                <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+                <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+                <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+              <ns1:vendorBusinessTypes>
+                <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+                <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+                <ns1:federalGovernment>
+                  <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                  <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                  <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+                <ns1:isStateGovernment>false</ns1:isStateGovernment>
+                <ns1:localGovernment>
+                  <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                  <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                  <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                  <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                  <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                  <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                  <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                  <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+                <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+                <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+                <ns1:businessOrOrganizationType>
+                  <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                  <ns1:isCorporateEntityTaxExempt>true</ns1:isCorporateEntityTaxExempt>
+                  <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                  <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                  <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                  <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                  <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+              <ns1:vendorLineOfBusiness>
+                <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+                <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+                <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+                <ns1:isFoundation>false</ns1:isFoundation>
+                <ns1:isHospital>false</ns1:isHospital>
+                <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+                <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+                <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+              <ns1:vendorRelationshipWithFederalGovernment>
+                <ns1:receivesContracts>false</ns1:receivesContracts>
+                <ns1:receivesGrants>false</ns1:receivesGrants>
+                <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:typeOfGovernmentEntity>
+                <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+                <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+                <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+                <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+                <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+                <ns1:isPortAuthority>false</ns1:isPortAuthority>
+                <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+              <ns1:vendorOrganizationFactors>
+                <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+                <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+                <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+                <ns1:profitStructure>
+                  <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                  <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                  <ns1:isOtherNotForProfitOrganization>true</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+                <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+                <ns1:stateOfIncorporation name="SOUTH CAROLINA">SC</ns1:stateOfIncorporation>
+                <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+                <ns1:organizationalType>CORPORATE TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+              <ns1:typeOfEducationalEntity>
+                <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+                <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+                <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+                <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+                <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+                <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+                <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+                <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+                <ns1:isTribalCollege>false</ns1:isTribalCollege>
+                <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+                <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+                <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+              <ns1:vendorCertifications>
+                <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+                <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+                <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+                <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+                <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+              <ns1:vendorLocation>
+                <ns1:streetAddress>315 SIGMA DR</ns1:streetAddress>
+                <ns1:city>SUMMERVILLE</ns1:city>
+                <ns1:state name="SOUTH CAROLINA">SC</ns1:state>
+                <ns1:ZIPCode city="SUMMERVILLE">294867790</ns1:ZIPCode>
+                <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+                <ns1:phoneNo>8437603372</ns1:phoneNo>
+                <ns1:congressionalDistrictCode>01</ns1:congressionalDistrictCode>
+                <ns1:entityDataSource>E&amp;Y</ns1:entityDataSource></ns1:vendorLocation>
+              <ns1:vendorAlternateSiteCode>29486</ns1:vendorAlternateSiteCode>
+              <ns1:entityIdentifiers>
+                <ns1:vendorUEIInformation>
+                  <ns1:UEI>LDMMF472BB93</ns1:UEI>
+                  <ns1:UEILegalBusinessName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:UEILegalBusinessName>
+                  <ns1:ultimateParentUEI>MEHNDWCSBKD5</ns1:ultimateParentUEI>
+                  <ns1:ultimateParentUEIName>ANALYTIC SERVICES INC.</ns1:ultimateParentUEIName></ns1:vendorUEIInformation>
+                <ns1:cageCode>1G3V8</ns1:cageCode></ns1:entityIdentifiers>
+              <ns1:ccrRegistrationDetails>
+                <ns1:registrationDate>2001-05-21 00:00:00</ns1:registrationDate>
+                <ns1:renewalDate>2024-05-31 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails></ns1:vendor>
+          <ns1:consortiaInformation>
+            <ns1:primaryConsortiaLocation></ns1:primaryConsortiaLocation></ns1:consortiaInformation>
+          <ns1:placeOfPerformance>
+            <ns1:principalPlaceOfPerformance>
+              <ns1:stateCode name="SOUTH CAROLINA">SC</ns1:stateCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode></ns1:principalPlaceOfPerformance>
+            <ns1:placeOfPerformanceZIPCode county="BERKELEY" city="SUMMERVILLE">294867790</ns1:placeOfPerformanceZIPCode>
+            <ns1:placeOfPerformanceCongressionalDistrict>01</ns1:placeOfPerformanceCongressionalDistrict></ns1:placeOfPerformance>
+          <ns1:competition>
+            <ns1:solicitationProcedures description="BROAD AGENCY ANNOUNCEMENT">BAA</ns1:solicitationProcedures>
+            <ns1:extentCompeted description="COMPETED">H</ns1:extentCompeted></ns1:competition>
+          <ns1:transactionInformation>
+            <ns1:createdBy>JASON.H.MELOFCHIK.CIV.W15QKN@ARMY.MIL</ns1:createdBy>
+            <ns1:createdDate>2023-09-28 13:07:47</ns1:createdDate>
+            <ns1:lastModifiedBy>ALEXANDER.ALVAREZ13.CIV.W15QKN@ARMY.MIL</ns1:lastModifiedBy>
+            <ns1:lastModifiedDate>2023-09-28 13:34:58</ns1:lastModifiedDate>
+            <ns1:status description="FINAL">F</ns1:status>
+            <ns1:approvedBy>JASON.H.MELOFCHIK.CIV.W15QKN@ARMY.MIL</ns1:approvedBy>
+            <ns1:approvedDate>2023-09-28 13:07:52</ns1:approvedDate>
+            <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation></ns1:contractDetail>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LDMMF472BB93</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans>
+            <ns1:genericBoolean01>false</ns1:genericBoolean01>
+            <ns1:genericBoolean02>false</ns1:genericBoolean02>
+            <ns1:genericBoolean03>false</ns1:genericBoolean03>
+            <ns1:genericBoolean04>false</ns1:genericBoolean04></ns1:genericBooleans></ns1:genericTags></ns1:OtherTransactionIDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[OTHER TRANSACTION IDV W15QKN1891008 (P00085) awarded to ADVANCED TECHNOLOGY INTERNATIONAL, was modified for the amount of -$55,315.12]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=W15QKN1891008+9700+"></link>
+    <modified>2023-11-01 16:08:00</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:OtherTransactionIDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.5">
+        <ns1:OtherTransactionIDVID>
+          <ns1:OtherTransactionIDVContractID>
+            <ns1:agencyID name="DEPT OF DEFENSE">9700</ns1:agencyID>
+            <ns1:PIID>W15QKN1891008</ns1:PIID>
+            <ns1:modNumber>P00085</ns1:modNumber></ns1:OtherTransactionIDVContractID></ns1:OtherTransactionIDVID>
+        <ns1:contractDetail>
+          <ns1:relevantContractDates>
+            <ns1:signedDate>2023-11-01 00:00:00</ns1:signedDate>
+            <ns1:effectiveDate>2018-04-11 00:00:00</ns1:effectiveDate>
+            <ns1:currentCompletionDate>2028-04-11 00:00:00</ns1:currentCompletionDate>
+            <ns1:ultimateCompletionDate>2028-04-11 00:00:00</ns1:ultimateCompletionDate>
+            <ns1:fiscalYear>2024</ns1:fiscalYear></ns1:relevantContractDates>
+          <ns1:dollarValues>
+            <ns1:obligatedAmount>-55315.12</ns1:obligatedAmount>
+            <ns1:baseAndExercisedOptionsValue>-55315.12</ns1:baseAndExercisedOptionsValue>
+            <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue>
+            <ns1:nonGovernmentalDollars>0.00</ns1:nonGovernmentalDollars></ns1:dollarValues>
+          <ns1:totalDollarValues>
+            <ns1:totalObligatedAmount>5113193155.46</ns1:totalObligatedAmount>
+            <ns1:totalBaseAndExercisedOptionsValue>5113193155.46</ns1:totalBaseAndExercisedOptionsValue>
+            <ns1:totalBaseAndAllOptionsValue>9998057512.46</ns1:totalBaseAndAllOptionsValue>
+            <ns1:totalNonGovernmentalDollars>0.00</ns1:totalNonGovernmentalDollars></ns1:totalDollarValues>
+          <ns1:purchaserInformation>
+            <ns1:contractingOfficeAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:contractingOfficeAgencyID>
+            <ns1:contractingOfficeID name="W6QK ACC-PICA" country="USA">W15QKN</ns1:contractingOfficeID>
+            <ns1:fundingRequestingAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:fundingRequestingAgencyID>
+            <ns1:fundingRequestingOfficeID name="W4MK CCDC ARMAMENTS CENTER">W15BW9</ns1:fundingRequestingOfficeID></ns1:purchaserInformation>
+          <ns1:contractData>
+            <ns1:contractActionType description="OTHER TRANSACTION IDV">O</ns1:contractActionType>
+            <ns1:typeOfAgreement>PROTOTYPE</ns1:typeOfAgreement>
+            <ns1:reasonForModification description="OTHER ADMINISTRATIVE ACTION">M</ns1:reasonForModification>
+            <ns1:descriptionOfContractRequirement>MODIFICATION TO ADD GFP AND REMOVE EXCESS FUNDING.</ns1:descriptionOfContractRequirement>
+            <ns1:nonTraditionalGovernmentContractorParticipation description="NONTRADITIONAL SIGNIFICANT PARTICIPATION">NSP</ns1:nonTraditionalGovernmentContractorParticipation></ns1:contractData>
+          <ns1:PSCCode description="R&amp;D- DEFENSE SYSTEM: WEAPONS (ENGINEERING DEVELOPMENT)" productOrServiceType="SERVICE">AC54</ns1:PSCCode>
+          <ns1:vendor>
+            <ns1:vendorHeader>
+              <ns1:vendorName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:vendorName>
+              <ns1:vendorAlternateName>ATI</ns1:vendorAlternateName>
+              <ns1:vendorLegalOrganizationName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:vendorLegalOrganizationName></ns1:vendorHeader>
+            <ns1:vendorSiteDetails>
+              <ns1:vendorSocioEconomicIndicators>
+                <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+                <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+                <ns1:isIndianTribe>false</ns1:isIndianTribe>
+                <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+                <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+                <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+                <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+                <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+                <ns1:isWomenOwned>false</ns1:isWomenOwned>
+                <ns1:minorityOwned>
+                  <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                  <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                  <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                  <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                  <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                  <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                  <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+                <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+                <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+                <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+                <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+                <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+              <ns1:vendorBusinessTypes>
+                <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+                <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+                <ns1:federalGovernment>
+                  <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                  <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                  <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+                <ns1:isStateGovernment>false</ns1:isStateGovernment>
+                <ns1:localGovernment>
+                  <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                  <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                  <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                  <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                  <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                  <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                  <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                  <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+                <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+                <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+                <ns1:businessOrOrganizationType>
+                  <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                  <ns1:isCorporateEntityTaxExempt>true</ns1:isCorporateEntityTaxExempt>
+                  <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                  <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                  <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                  <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                  <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+              <ns1:vendorLineOfBusiness>
+                <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+                <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+                <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+                <ns1:isFoundation>false</ns1:isFoundation>
+                <ns1:isHospital>false</ns1:isHospital>
+                <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+                <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+                <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+              <ns1:vendorRelationshipWithFederalGovernment>
+                <ns1:receivesContracts>false</ns1:receivesContracts>
+                <ns1:receivesGrants>false</ns1:receivesGrants>
+                <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:typeOfGovernmentEntity>
+                <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+                <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+                <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+                <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+                <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+                <ns1:isPortAuthority>false</ns1:isPortAuthority>
+                <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+              <ns1:vendorOrganizationFactors>
+                <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+                <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+                <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+                <ns1:profitStructure>
+                  <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                  <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                  <ns1:isOtherNotForProfitOrganization>true</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+                <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+                <ns1:stateOfIncorporation name="SOUTH CAROLINA">SC</ns1:stateOfIncorporation>
+                <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+                <ns1:organizationalType>CORPORATE TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+              <ns1:typeOfEducationalEntity>
+                <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+                <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+                <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+                <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+                <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+                <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+                <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+                <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+                <ns1:isTribalCollege>false</ns1:isTribalCollege>
+                <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+                <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+                <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+              <ns1:vendorCertifications>
+                <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+                <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+                <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+                <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+                <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+              <ns1:vendorLocation>
+                <ns1:streetAddress>315 SIGMA DR</ns1:streetAddress>
+                <ns1:city>SUMMERVILLE</ns1:city>
+                <ns1:state name="SOUTH CAROLINA">SC</ns1:state>
+                <ns1:ZIPCode city="SUMMERVILLE">294867790</ns1:ZIPCode>
+                <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+                <ns1:phoneNo>8437603324</ns1:phoneNo>
+                <ns1:congressionalDistrictCode>01</ns1:congressionalDistrictCode>
+                <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+              <ns1:vendorAlternateSiteCode>29486</ns1:vendorAlternateSiteCode>
+              <ns1:entityIdentifiers>
+                <ns1:vendorUEIInformation>
+                  <ns1:UEI>LDMMF472BB93</ns1:UEI>
+                  <ns1:UEILegalBusinessName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:UEILegalBusinessName>
+                  <ns1:ultimateParentUEI>MEHNDWCSBKD5</ns1:ultimateParentUEI>
+                  <ns1:ultimateParentUEIName>ANALYTIC SERVICES INC.</ns1:ultimateParentUEIName></ns1:vendorUEIInformation>
+                <ns1:cageCode>1G3V8</ns1:cageCode></ns1:entityIdentifiers>
+              <ns1:ccrRegistrationDetails>
+                <ns1:registrationDate>2001-05-21 00:00:00</ns1:registrationDate>
+                <ns1:renewalDate>2020-02-13 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails></ns1:vendor>
+          <ns1:consortiaInformation>
+            <ns1:primaryConsortiaLocation></ns1:primaryConsortiaLocation></ns1:consortiaInformation>
+          <ns1:placeOfPerformance>
+            <ns1:principalPlaceOfPerformance>
+              <ns1:stateCode name="SOUTH CAROLINA">SC</ns1:stateCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode></ns1:principalPlaceOfPerformance>
+            <ns1:placeOfPerformanceZIPCode county="BERKELEY" city="SUMMERVILLE">294867790</ns1:placeOfPerformanceZIPCode>
+            <ns1:placeOfPerformanceCongressionalDistrict>01</ns1:placeOfPerformanceCongressionalDistrict></ns1:placeOfPerformance>
+          <ns1:competition>
+            <ns1:solicitationProcedures description="BROAD AGENCY ANNOUNCEMENT">BAA</ns1:solicitationProcedures>
+            <ns1:extentCompeted description="COMPETED">H</ns1:extentCompeted></ns1:competition>
+          <ns1:transactionInformation>
+            <ns1:createdBy>STEVEN.S.GHAZI.CIV.W15QKN@ARMY.MIL</ns1:createdBy>
+            <ns1:createdDate>2023-11-01 15:56:12</ns1:createdDate>
+            <ns1:lastModifiedBy>STEVEN.S.GHAZI.CIV.W15QKN@ARMY.MIL</ns1:lastModifiedBy>
+            <ns1:lastModifiedDate>2023-11-01 16:08:00</ns1:lastModifiedDate>
+            <ns1:status description="FINAL">F</ns1:status>
+            <ns1:approvedBy>STEVEN.S.GHAZI.CIV.W15QKN@ARMY.MIL</ns1:approvedBy>
+            <ns1:approvedDate>2023-11-01 15:56:16</ns1:approvedDate>
+            <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation></ns1:contractDetail>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LDMMF472BB93</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans>
+            <ns1:genericBoolean01>false</ns1:genericBoolean01>
+            <ns1:genericBoolean02>false</ns1:genericBoolean02>
+            <ns1:genericBoolean03>false</ns1:genericBoolean03>
+            <ns1:genericBoolean04>false</ns1:genericBoolean04></ns1:genericBooleans></ns1:genericTags></ns1:OtherTransactionIDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[OTHER TRANSACTION IDV W15QKN1891008 (P00086) awarded to ADVANCED TECHNOLOGY INTERNATIONAL, was modified for the amount of -$20,759.17]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=W15QKN1891008+9700+"></link>
+    <modified>2023-12-01 15:12:28</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:OtherTransactionIDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.5">
+        <ns1:OtherTransactionIDVID>
+          <ns1:OtherTransactionIDVContractID>
+            <ns1:agencyID name="DEPT OF DEFENSE">9700</ns1:agencyID>
+            <ns1:PIID>W15QKN1891008</ns1:PIID>
+            <ns1:modNumber>P00086</ns1:modNumber></ns1:OtherTransactionIDVContractID></ns1:OtherTransactionIDVID>
+        <ns1:contractDetail>
+          <ns1:relevantContractDates>
+            <ns1:signedDate>2023-12-01 00:00:00</ns1:signedDate>
+            <ns1:effectiveDate>2018-04-11 00:00:00</ns1:effectiveDate>
+            <ns1:currentCompletionDate>2028-04-11 00:00:00</ns1:currentCompletionDate>
+            <ns1:ultimateCompletionDate>2028-04-11 00:00:00</ns1:ultimateCompletionDate>
+            <ns1:fiscalYear>2024</ns1:fiscalYear></ns1:relevantContractDates>
+          <ns1:dollarValues>
+            <ns1:obligatedAmount>-20759.17</ns1:obligatedAmount>
+            <ns1:baseAndExercisedOptionsValue>-20759.17</ns1:baseAndExercisedOptionsValue>
+            <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue>
+            <ns1:nonGovernmentalDollars>0.00</ns1:nonGovernmentalDollars></ns1:dollarValues>
+          <ns1:totalDollarValues>
+            <ns1:totalObligatedAmount>5113193155.46</ns1:totalObligatedAmount>
+            <ns1:totalBaseAndExercisedOptionsValue>5113193155.46</ns1:totalBaseAndExercisedOptionsValue>
+            <ns1:totalBaseAndAllOptionsValue>9998057512.46</ns1:totalBaseAndAllOptionsValue>
+            <ns1:totalNonGovernmentalDollars>0.00</ns1:totalNonGovernmentalDollars></ns1:totalDollarValues>
+          <ns1:purchaserInformation>
+            <ns1:contractingOfficeAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:contractingOfficeAgencyID>
+            <ns1:contractingOfficeID name="W6QK ACC-PICA" country="USA">W15QKN</ns1:contractingOfficeID>
+            <ns1:fundingRequestingAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:fundingRequestingAgencyID>
+            <ns1:fundingRequestingOfficeID name="W4MK CCDC ARMAMENTS CENTER">W15BW9</ns1:fundingRequestingOfficeID></ns1:purchaserInformation>
+          <ns1:contractData>
+            <ns1:contractActionType description="OTHER TRANSACTION IDV">O</ns1:contractActionType>
+            <ns1:typeOfAgreement>PROTOTYPE</ns1:typeOfAgreement>
+            <ns1:reasonForModification description="OTHER ADMINISTRATIVE ACTION">M</ns1:reasonForModification>
+            <ns1:descriptionOfContractRequirement>MODIFICATION TO ADD GFP AND REMOVE EXCESS FUNDING.</ns1:descriptionOfContractRequirement>
+            <ns1:nonTraditionalGovernmentContractorParticipation description="NONTRADITIONAL SIGNIFICANT PARTICIPATION">NSP</ns1:nonTraditionalGovernmentContractorParticipation></ns1:contractData>
+          <ns1:PSCCode description="R&amp;D- DEFENSE SYSTEM: WEAPONS (ENGINEERING DEVELOPMENT)" productOrServiceType="SERVICE">AC54</ns1:PSCCode>
+          <ns1:vendor>
+            <ns1:vendorHeader>
+              <ns1:vendorName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:vendorName>
+              <ns1:vendorAlternateName>ATI</ns1:vendorAlternateName>
+              <ns1:vendorLegalOrganizationName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:vendorLegalOrganizationName></ns1:vendorHeader>
+            <ns1:vendorSiteDetails>
+              <ns1:vendorSocioEconomicIndicators>
+                <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+                <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+                <ns1:isIndianTribe>false</ns1:isIndianTribe>
+                <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+                <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+                <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+                <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+                <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+                <ns1:isWomenOwned>false</ns1:isWomenOwned>
+                <ns1:minorityOwned>
+                  <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                  <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                  <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                  <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                  <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                  <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                  <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+                <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+                <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+                <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+                <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+                <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+              <ns1:vendorBusinessTypes>
+                <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+                <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+                <ns1:federalGovernment>
+                  <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                  <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                  <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+                <ns1:isStateGovernment>false</ns1:isStateGovernment>
+                <ns1:localGovernment>
+                  <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                  <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                  <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                  <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                  <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                  <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                  <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                  <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+                <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+                <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+                <ns1:businessOrOrganizationType>
+                  <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                  <ns1:isCorporateEntityTaxExempt>true</ns1:isCorporateEntityTaxExempt>
+                  <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                  <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                  <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                  <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                  <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+              <ns1:vendorLineOfBusiness>
+                <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+                <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+                <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+                <ns1:isFoundation>false</ns1:isFoundation>
+                <ns1:isHospital>false</ns1:isHospital>
+                <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+                <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+                <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+              <ns1:vendorRelationshipWithFederalGovernment>
+                <ns1:receivesContracts>false</ns1:receivesContracts>
+                <ns1:receivesGrants>false</ns1:receivesGrants>
+                <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:typeOfGovernmentEntity>
+                <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+                <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+                <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+                <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+                <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+                <ns1:isPortAuthority>false</ns1:isPortAuthority>
+                <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+              <ns1:vendorOrganizationFactors>
+                <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+                <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+                <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+                <ns1:profitStructure>
+                  <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                  <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                  <ns1:isOtherNotForProfitOrganization>true</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+                <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+                <ns1:stateOfIncorporation name="SOUTH CAROLINA">SC</ns1:stateOfIncorporation>
+                <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+                <ns1:organizationalType>CORPORATE TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+              <ns1:typeOfEducationalEntity>
+                <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+                <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+                <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+                <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+                <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+                <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+                <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+                <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+                <ns1:isTribalCollege>false</ns1:isTribalCollege>
+                <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+                <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+                <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+              <ns1:vendorCertifications>
+                <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+                <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+                <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+                <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+                <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+              <ns1:vendorLocation>
+                <ns1:streetAddress>315 SIGMA DR</ns1:streetAddress>
+                <ns1:city>SUMMERVILLE</ns1:city>
+                <ns1:state name="SOUTH CAROLINA">SC</ns1:state>
+                <ns1:ZIPCode city="SUMMERVILLE">294867790</ns1:ZIPCode>
+                <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+                <ns1:phoneNo>8437603324</ns1:phoneNo>
+                <ns1:congressionalDistrictCode>01</ns1:congressionalDistrictCode>
+                <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+              <ns1:vendorAlternateSiteCode>29486</ns1:vendorAlternateSiteCode>
+              <ns1:entityIdentifiers>
+                <ns1:vendorUEIInformation>
+                  <ns1:UEI>LDMMF472BB93</ns1:UEI>
+                  <ns1:UEILegalBusinessName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:UEILegalBusinessName>
+                  <ns1:ultimateParentUEI>MEHNDWCSBKD5</ns1:ultimateParentUEI>
+                  <ns1:ultimateParentUEIName>ANALYTIC SERVICES INC.</ns1:ultimateParentUEIName></ns1:vendorUEIInformation>
+                <ns1:cageCode>1G3V8</ns1:cageCode></ns1:entityIdentifiers>
+              <ns1:ccrRegistrationDetails>
+                <ns1:registrationDate>2001-05-21 00:00:00</ns1:registrationDate>
+                <ns1:renewalDate>2020-02-13 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails></ns1:vendor>
+          <ns1:consortiaInformation>
+            <ns1:primaryConsortiaLocation></ns1:primaryConsortiaLocation></ns1:consortiaInformation>
+          <ns1:placeOfPerformance>
+            <ns1:principalPlaceOfPerformance>
+              <ns1:stateCode name="SOUTH CAROLINA">SC</ns1:stateCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode></ns1:principalPlaceOfPerformance>
+            <ns1:placeOfPerformanceZIPCode county="BERKELEY" city="SUMMERVILLE">294867790</ns1:placeOfPerformanceZIPCode>
+            <ns1:placeOfPerformanceCongressionalDistrict>01</ns1:placeOfPerformanceCongressionalDistrict></ns1:placeOfPerformance>
+          <ns1:competition>
+            <ns1:solicitationProcedures description="BROAD AGENCY ANNOUNCEMENT">BAA</ns1:solicitationProcedures>
+            <ns1:extentCompeted description="COMPETED">H</ns1:extentCompeted></ns1:competition>
+          <ns1:transactionInformation>
+            <ns1:createdBy>JASON.H.MELOFCHIK.CIV.W15QKN@ARMY.MIL</ns1:createdBy>
+            <ns1:createdDate>2023-12-01 11:29:42</ns1:createdDate>
+            <ns1:lastModifiedBy>ALEXANDER.ALVAREZ13.CIV.W15QKN@ARMY.MIL</ns1:lastModifiedBy>
+            <ns1:lastModifiedDate>2023-12-01 15:12:28</ns1:lastModifiedDate>
+            <ns1:status description="FINAL">F</ns1:status>
+            <ns1:approvedBy>JASON.H.MELOFCHIK.CIV.W15QKN@ARMY.MIL</ns1:approvedBy>
+            <ns1:approvedDate>2023-12-01 11:29:46</ns1:approvedDate>
+            <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation></ns1:contractDetail>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LDMMF472BB93</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans>
+            <ns1:genericBoolean01>false</ns1:genericBoolean01>
+            <ns1:genericBoolean02>false</ns1:genericBoolean02>
+            <ns1:genericBoolean03>false</ns1:genericBoolean03>
+            <ns1:genericBoolean04>false</ns1:genericBoolean04></ns1:genericBooleans></ns1:genericTags></ns1:OtherTransactionIDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[OTHER TRANSACTION IDV W15QKN1891008 (P00087) awarded to ADVANCED TECHNOLOGY INTERNATIONAL, was modified for the amount of -$6,416,002.85]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=W15QKN1891008+9700+"></link>
+    <modified>2024-01-08 08:31:03</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:OtherTransactionIDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.5">
+        <ns1:OtherTransactionIDVID>
+          <ns1:OtherTransactionIDVContractID>
+            <ns1:agencyID name="DEPT OF DEFENSE">9700</ns1:agencyID>
+            <ns1:PIID>W15QKN1891008</ns1:PIID>
+            <ns1:modNumber>P00087</ns1:modNumber></ns1:OtherTransactionIDVContractID></ns1:OtherTransactionIDVID>
+        <ns1:contractDetail>
+          <ns1:relevantContractDates>
+            <ns1:signedDate>2024-01-08 00:00:00</ns1:signedDate>
+            <ns1:effectiveDate>2018-04-11 00:00:00</ns1:effectiveDate>
+            <ns1:currentCompletionDate>2028-04-11 00:00:00</ns1:currentCompletionDate>
+            <ns1:ultimateCompletionDate>2028-04-11 00:00:00</ns1:ultimateCompletionDate>
+            <ns1:fiscalYear>2024</ns1:fiscalYear></ns1:relevantContractDates>
+          <ns1:dollarValues>
+            <ns1:obligatedAmount>-6416002.85</ns1:obligatedAmount>
+            <ns1:baseAndExercisedOptionsValue>-6416002.85</ns1:baseAndExercisedOptionsValue>
+            <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue>
+            <ns1:nonGovernmentalDollars>0.00</ns1:nonGovernmentalDollars></ns1:dollarValues>
+          <ns1:totalDollarValues>
+            <ns1:totalObligatedAmount>5113193155.46</ns1:totalObligatedAmount>
+            <ns1:totalBaseAndExercisedOptionsValue>5113193155.46</ns1:totalBaseAndExercisedOptionsValue>
+            <ns1:totalBaseAndAllOptionsValue>9998057512.46</ns1:totalBaseAndAllOptionsValue>
+            <ns1:totalNonGovernmentalDollars>0.00</ns1:totalNonGovernmentalDollars></ns1:totalDollarValues>
+          <ns1:purchaserInformation>
+            <ns1:contractingOfficeAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:contractingOfficeAgencyID>
+            <ns1:contractingOfficeID name="W6QK ACC-PICA" country="USA">W15QKN</ns1:contractingOfficeID>
+            <ns1:fundingRequestingAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:fundingRequestingAgencyID>
+            <ns1:fundingRequestingOfficeID name="W4MK CCDC ARMAMENTS CENTER">W15BW9</ns1:fundingRequestingOfficeID></ns1:purchaserInformation>
+          <ns1:contractData>
+            <ns1:contractActionType description="OTHER TRANSACTION IDV">O</ns1:contractActionType>
+            <ns1:typeOfAgreement>PROTOTYPE</ns1:typeOfAgreement>
+            <ns1:reasonForModification description="FUNDING ONLY ACTION">C</ns1:reasonForModification>
+            <ns1:descriptionOfContractRequirement>DOTC MONTHLY FUNDING MODIFICATION</ns1:descriptionOfContractRequirement>
+            <ns1:nonTraditionalGovernmentContractorParticipation description="NONTRADITIONAL SIGNIFICANT PARTICIPATION">NSP</ns1:nonTraditionalGovernmentContractorParticipation></ns1:contractData>
+          <ns1:PSCCode description="R&amp;D- DEFENSE SYSTEM: WEAPONS (ENGINEERING DEVELOPMENT)" productOrServiceType="SERVICE">AC54</ns1:PSCCode>
+          <ns1:vendor>
+            <ns1:vendorHeader>
+              <ns1:vendorName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:vendorName>
+              <ns1:vendorAlternateName>ATI</ns1:vendorAlternateName>
+              <ns1:vendorLegalOrganizationName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:vendorLegalOrganizationName></ns1:vendorHeader>
+            <ns1:vendorSiteDetails>
+              <ns1:vendorSocioEconomicIndicators>
+                <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+                <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+                <ns1:isIndianTribe>false</ns1:isIndianTribe>
+                <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+                <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+                <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+                <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+                <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+                <ns1:isWomenOwned>false</ns1:isWomenOwned>
+                <ns1:minorityOwned>
+                  <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                  <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                  <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                  <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                  <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                  <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                  <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+                <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+                <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+                <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+                <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+                <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+              <ns1:vendorBusinessTypes>
+                <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+                <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+                <ns1:federalGovernment>
+                  <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                  <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                  <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+                <ns1:isStateGovernment>false</ns1:isStateGovernment>
+                <ns1:localGovernment>
+                  <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                  <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                  <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                  <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                  <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                  <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                  <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                  <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+                <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+                <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+                <ns1:businessOrOrganizationType>
+                  <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                  <ns1:isCorporateEntityTaxExempt>true</ns1:isCorporateEntityTaxExempt>
+                  <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                  <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                  <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                  <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                  <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+              <ns1:vendorLineOfBusiness>
+                <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+                <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+                <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+                <ns1:isFoundation>false</ns1:isFoundation>
+                <ns1:isHospital>false</ns1:isHospital>
+                <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+                <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+                <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+              <ns1:vendorRelationshipWithFederalGovernment>
+                <ns1:receivesContracts>false</ns1:receivesContracts>
+                <ns1:receivesGrants>false</ns1:receivesGrants>
+                <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:typeOfGovernmentEntity>
+                <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+                <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+                <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+                <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+                <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+                <ns1:isPortAuthority>false</ns1:isPortAuthority>
+                <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+              <ns1:vendorOrganizationFactors>
+                <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+                <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+                <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+                <ns1:profitStructure>
+                  <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                  <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                  <ns1:isOtherNotForProfitOrganization>true</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+                <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+                <ns1:stateOfIncorporation name="SOUTH CAROLINA">SC</ns1:stateOfIncorporation>
+                <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+                <ns1:organizationalType>CORPORATE TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+              <ns1:typeOfEducationalEntity>
+                <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+                <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+                <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+                <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+                <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+                <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+                <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+                <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+                <ns1:isTribalCollege>false</ns1:isTribalCollege>
+                <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+                <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+                <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+              <ns1:vendorCertifications>
+                <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+                <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+                <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+                <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+                <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+              <ns1:vendorLocation>
+                <ns1:streetAddress>315 SIGMA DR</ns1:streetAddress>
+                <ns1:city>SUMMERVILLE</ns1:city>
+                <ns1:state name="SOUTH CAROLINA">SC</ns1:state>
+                <ns1:ZIPCode city="SUMMERVILLE">294867790</ns1:ZIPCode>
+                <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+                <ns1:phoneNo>8437603324</ns1:phoneNo>
+                <ns1:congressionalDistrictCode>01</ns1:congressionalDistrictCode>
+                <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+              <ns1:vendorAlternateSiteCode>29486</ns1:vendorAlternateSiteCode>
+              <ns1:entityIdentifiers>
+                <ns1:vendorUEIInformation>
+                  <ns1:UEI>LDMMF472BB93</ns1:UEI>
+                  <ns1:UEILegalBusinessName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:UEILegalBusinessName>
+                  <ns1:ultimateParentUEI>MEHNDWCSBKD5</ns1:ultimateParentUEI>
+                  <ns1:ultimateParentUEIName>ANALYTIC SERVICES INC.</ns1:ultimateParentUEIName></ns1:vendorUEIInformation>
+                <ns1:cageCode>1G3V8</ns1:cageCode></ns1:entityIdentifiers>
+              <ns1:ccrRegistrationDetails>
+                <ns1:registrationDate>2001-05-21 00:00:00</ns1:registrationDate>
+                <ns1:renewalDate>2020-02-13 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails></ns1:vendor>
+          <ns1:consortiaInformation>
+            <ns1:primaryConsortiaLocation></ns1:primaryConsortiaLocation></ns1:consortiaInformation>
+          <ns1:placeOfPerformance>
+            <ns1:principalPlaceOfPerformance>
+              <ns1:stateCode name="SOUTH CAROLINA">SC</ns1:stateCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode></ns1:principalPlaceOfPerformance>
+            <ns1:placeOfPerformanceZIPCode county="BERKELEY" city="SUMMERVILLE">294867790</ns1:placeOfPerformanceZIPCode>
+            <ns1:placeOfPerformanceCongressionalDistrict>01</ns1:placeOfPerformanceCongressionalDistrict></ns1:placeOfPerformance>
+          <ns1:competition>
+            <ns1:solicitationProcedures description="BROAD AGENCY ANNOUNCEMENT">BAA</ns1:solicitationProcedures>
+            <ns1:extentCompeted description="COMPETED">H</ns1:extentCompeted></ns1:competition>
+          <ns1:transactionInformation>
+            <ns1:createdBy>STEVEN.S.GHAZI.CIV.W15QKN@ARMY.MIL</ns1:createdBy>
+            <ns1:createdDate>2024-01-08 08:26:52</ns1:createdDate>
+            <ns1:lastModifiedBy>STEVEN.S.GHAZI.CIV.W15QKN@ARMY.MIL</ns1:lastModifiedBy>
+            <ns1:lastModifiedDate>2024-01-08 08:31:03</ns1:lastModifiedDate>
+            <ns1:status description="FINAL">F</ns1:status>
+            <ns1:approvedBy>STEVEN.S.GHAZI.CIV.W15QKN@ARMY.MIL</ns1:approvedBy>
+            <ns1:approvedDate>2024-01-08 08:26:55</ns1:approvedDate>
+            <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation></ns1:contractDetail>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LDMMF472BB93</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans>
+            <ns1:genericBoolean01>false</ns1:genericBoolean01>
+            <ns1:genericBoolean02>false</ns1:genericBoolean02>
+            <ns1:genericBoolean03>false</ns1:genericBoolean03>
+            <ns1:genericBoolean04>false</ns1:genericBoolean04></ns1:genericBooleans></ns1:genericTags></ns1:OtherTransactionIDV>
+    </content>
+  </entry>
+  <entry>
+    <title><![CDATA[OTHER TRANSACTION IDV W15QKN1891008 (P00088) awarded to ADVANCED TECHNOLOGY INTERNATIONAL, was modified for the amount of $0]]></title>
+    <link rel="alternate" type="text/html" href="https://www.fpds.gov/ezsearch/search.do?s=FPDS&amp;indexName=awardfull&amp;templateName=1.5.3&amp;q=W15QKN1891008+9700+"></link>
+    <modified>2024-02-15 11:26:30</modified>
+    <content xmlns:ns1="https://www.fpds.gov/FPDS" type="application/xml">
+      <ns1:OtherTransactionIDV xmlns:ns1="https://www.fpds.gov/FPDS" version="1.5">
+        <ns1:OtherTransactionIDVID>
+          <ns1:OtherTransactionIDVContractID>
+            <ns1:agencyID name="DEPT OF DEFENSE">9700</ns1:agencyID>
+            <ns1:PIID>W15QKN1891008</ns1:PIID>
+            <ns1:modNumber>P00088</ns1:modNumber></ns1:OtherTransactionIDVContractID></ns1:OtherTransactionIDVID>
+        <ns1:contractDetail>
+          <ns1:relevantContractDates>
+            <ns1:signedDate>2024-02-15 00:00:00</ns1:signedDate>
+            <ns1:effectiveDate>2018-04-11 00:00:00</ns1:effectiveDate>
+            <ns1:currentCompletionDate>2028-04-11 00:00:00</ns1:currentCompletionDate>
+            <ns1:ultimateCompletionDate>2028-04-11 00:00:00</ns1:ultimateCompletionDate>
+            <ns1:fiscalYear>2024</ns1:fiscalYear></ns1:relevantContractDates>
+          <ns1:dollarValues>
+            <ns1:obligatedAmount>0.00</ns1:obligatedAmount>
+            <ns1:baseAndExercisedOptionsValue>0.00</ns1:baseAndExercisedOptionsValue>
+            <ns1:baseAndAllOptionsValue>0.00</ns1:baseAndAllOptionsValue>
+            <ns1:nonGovernmentalDollars>0.00</ns1:nonGovernmentalDollars></ns1:dollarValues>
+          <ns1:totalDollarValues>
+            <ns1:totalObligatedAmount>5113193155.46</ns1:totalObligatedAmount>
+            <ns1:totalBaseAndExercisedOptionsValue>5113193155.46</ns1:totalBaseAndExercisedOptionsValue>
+            <ns1:totalBaseAndAllOptionsValue>9998057512.46</ns1:totalBaseAndAllOptionsValue>
+            <ns1:totalNonGovernmentalDollars>0.00</ns1:totalNonGovernmentalDollars></ns1:totalDollarValues>
+          <ns1:purchaserInformation>
+            <ns1:contractingOfficeAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:contractingOfficeAgencyID>
+            <ns1:contractingOfficeID name="W6QK ACC-PICA" country="USA">W15QKN</ns1:contractingOfficeID>
+            <ns1:fundingRequestingAgencyID name="DEPT OF THE ARMY" departmentID="9700" departmentName="DEPT OF DEFENSE">2100</ns1:fundingRequestingAgencyID>
+            <ns1:fundingRequestingOfficeID name="W4MK CCDC ARMAMENTS CENTER">W15BW9</ns1:fundingRequestingOfficeID></ns1:purchaserInformation>
+          <ns1:contractData>
+            <ns1:contractActionType description="OTHER TRANSACTION IDV">O</ns1:contractActionType>
+            <ns1:typeOfAgreement>PROTOTYPE</ns1:typeOfAgreement>
+            <ns1:reasonForModification description="OTHER ADMINISTRATIVE ACTION">M</ns1:reasonForModification>
+            <ns1:descriptionOfContractRequirement>MODIFICATION TO UPDATE THE TERMS AND CONDITIONS.</ns1:descriptionOfContractRequirement>
+            <ns1:listOfTreasuryAccounts>
+              <ns1:treasuryAccount>
+                <ns1:treasuryAccountSymbol>
+                  <ns1:agencyIdentifier>21</ns1:agencyIdentifier>
+                  <ns1:mainAccountCode>2040</ns1:mainAccountCode></ns1:treasuryAccountSymbol></ns1:treasuryAccount></ns1:listOfTreasuryAccounts>
+            <ns1:nonTraditionalGovernmentContractorParticipation description="NONTRADITIONAL SIGNIFICANT PARTICIPATION">NSP</ns1:nonTraditionalGovernmentContractorParticipation></ns1:contractData>
+          <ns1:PSCCode description="R&amp;D- DEFENSE SYSTEM: WEAPONS (ENGINEERING DEVELOPMENT)" productOrServiceType="SERVICE">AC54</ns1:PSCCode>
+          <ns1:vendor>
+            <ns1:vendorHeader>
+              <ns1:vendorName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:vendorName>
+              <ns1:vendorAlternateName>ATI</ns1:vendorAlternateName>
+              <ns1:vendorLegalOrganizationName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:vendorLegalOrganizationName></ns1:vendorHeader>
+            <ns1:vendorSiteDetails>
+              <ns1:vendorSocioEconomicIndicators>
+                <ns1:isAlaskanNativeOwnedCorporationOrFirm>false</ns1:isAlaskanNativeOwnedCorporationOrFirm>
+                <ns1:isAmericanIndianOwned>false</ns1:isAmericanIndianOwned>
+                <ns1:isIndianTribe>false</ns1:isIndianTribe>
+                <ns1:isNativeHawaiianOwnedOrganizationOrFirm>false</ns1:isNativeHawaiianOwnedOrganizationOrFirm>
+                <ns1:isTriballyOwnedFirm>false</ns1:isTriballyOwnedFirm>
+                <ns1:isSmallBusiness>false</ns1:isSmallBusiness>
+                <ns1:isVeteranOwned>false</ns1:isVeteranOwned>
+                <ns1:isServiceRelatedDisabledVeteranOwnedBusiness>false</ns1:isServiceRelatedDisabledVeteranOwnedBusiness>
+                <ns1:isWomenOwned>false</ns1:isWomenOwned>
+                <ns1:minorityOwned>
+                  <ns1:isMinorityOwned>false</ns1:isMinorityOwned>
+                  <ns1:isSubContinentAsianAmericanOwnedBusiness>false</ns1:isSubContinentAsianAmericanOwnedBusiness>
+                  <ns1:isAsianPacificAmericanOwnedBusiness>false</ns1:isAsianPacificAmericanOwnedBusiness>
+                  <ns1:isBlackAmericanOwnedBusiness>false</ns1:isBlackAmericanOwnedBusiness>
+                  <ns1:isHispanicAmericanOwnedBusiness>false</ns1:isHispanicAmericanOwnedBusiness>
+                  <ns1:isNativeAmericanOwnedBusiness>false</ns1:isNativeAmericanOwnedBusiness>
+                  <ns1:isOtherMinorityOwned>false</ns1:isOtherMinorityOwned></ns1:minorityOwned>
+                <ns1:isVerySmallBusiness>false</ns1:isVerySmallBusiness>
+                <ns1:isWomenOwnedSmallBusiness>false</ns1:isWomenOwnedSmallBusiness>
+                <ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isEconomicallyDisadvantagedWomenOwnedSmallBusiness>
+                <ns1:isJointVentureWomenOwnedSmallBusiness>false</ns1:isJointVentureWomenOwnedSmallBusiness>
+                <ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness>false</ns1:isJointVentureEconomicallyDisadvantagedWomenOwnedSmallBusiness></ns1:vendorSocioEconomicIndicators>
+              <ns1:vendorBusinessTypes>
+                <ns1:isCommunityDevelopedCorporationOwnedFirm>false</ns1:isCommunityDevelopedCorporationOwnedFirm>
+                <ns1:isLaborSurplusAreaFirm>false</ns1:isLaborSurplusAreaFirm>
+                <ns1:federalGovernment>
+                  <ns1:isFederalGovernment>false</ns1:isFederalGovernment>
+                  <ns1:isFederallyFundedResearchAndDevelopmentCorp>false</ns1:isFederallyFundedResearchAndDevelopmentCorp>
+                  <ns1:isFederalGovernmentAgency>false</ns1:isFederalGovernmentAgency></ns1:federalGovernment>
+                <ns1:isStateGovernment>false</ns1:isStateGovernment>
+                <ns1:localGovernment>
+                  <ns1:isLocalGovernment>false</ns1:isLocalGovernment>
+                  <ns1:isCityLocalGovernment>false</ns1:isCityLocalGovernment>
+                  <ns1:isCountyLocalGovernment>false</ns1:isCountyLocalGovernment>
+                  <ns1:isInterMunicipalLocalGovernment>false</ns1:isInterMunicipalLocalGovernment>
+                  <ns1:isLocalGovernmentOwned>false</ns1:isLocalGovernmentOwned>
+                  <ns1:isMunicipalityLocalGovernment>false</ns1:isMunicipalityLocalGovernment>
+                  <ns1:isSchoolDistrictLocalGovernment>false</ns1:isSchoolDistrictLocalGovernment>
+                  <ns1:isTownshipLocalGovernment>false</ns1:isTownshipLocalGovernment></ns1:localGovernment>
+                <ns1:isTribalGovernment>false</ns1:isTribalGovernment>
+                <ns1:isForeignGovernment>false</ns1:isForeignGovernment>
+                <ns1:businessOrOrganizationType>
+                  <ns1:isCorporateEntityNotTaxExempt>false</ns1:isCorporateEntityNotTaxExempt>
+                  <ns1:isCorporateEntityTaxExempt>true</ns1:isCorporateEntityTaxExempt>
+                  <ns1:isPartnershipOrLimitedLiabilityPartnership>false</ns1:isPartnershipOrLimitedLiabilityPartnership>
+                  <ns1:isSolePropreitorship>false</ns1:isSolePropreitorship>
+                  <ns1:isSmallAgriculturalCooperative>false</ns1:isSmallAgriculturalCooperative>
+                  <ns1:isInternationalOrganization>false</ns1:isInternationalOrganization>
+                  <ns1:isUSGovernmentEntity>false</ns1:isUSGovernmentEntity></ns1:businessOrOrganizationType></ns1:vendorBusinessTypes>
+              <ns1:vendorLineOfBusiness>
+                <ns1:isCommunityDevelopmentCorporation>false</ns1:isCommunityDevelopmentCorporation>
+                <ns1:isDomesticShelter>false</ns1:isDomesticShelter>
+                <ns1:isEducationalInstitution>false</ns1:isEducationalInstitution>
+                <ns1:isFoundation>false</ns1:isFoundation>
+                <ns1:isHospital>false</ns1:isHospital>
+                <ns1:isManufacturerOfGoods>false</ns1:isManufacturerOfGoods>
+                <ns1:isVeterinaryHospital>false</ns1:isVeterinaryHospital>
+                <ns1:isHispanicServicingInstitution>false</ns1:isHispanicServicingInstitution></ns1:vendorLineOfBusiness>
+              <ns1:vendorRelationshipWithFederalGovernment>
+                <ns1:receivesContracts>false</ns1:receivesContracts>
+                <ns1:receivesGrants>false</ns1:receivesGrants>
+                <ns1:receivesContractsAndGrants>true</ns1:receivesContractsAndGrants></ns1:vendorRelationshipWithFederalGovernment>
+              <ns1:typeOfGovernmentEntity>
+                <ns1:isAirportAuthority>false</ns1:isAirportAuthority>
+                <ns1:isCouncilOfGovernments>false</ns1:isCouncilOfGovernments>
+                <ns1:isHousingAuthoritiesPublicOrTribal>false</ns1:isHousingAuthoritiesPublicOrTribal>
+                <ns1:isInterstateEntity>false</ns1:isInterstateEntity>
+                <ns1:isPlanningCommission>false</ns1:isPlanningCommission>
+                <ns1:isPortAuthority>false</ns1:isPortAuthority>
+                <ns1:isTransitAuthority>false</ns1:isTransitAuthority></ns1:typeOfGovernmentEntity>
+              <ns1:vendorOrganizationFactors>
+                <ns1:isSubchapterSCorporation>false</ns1:isSubchapterSCorporation>
+                <ns1:isLimitedLiabilityCorporation>false</ns1:isLimitedLiabilityCorporation>
+                <ns1:isForeignOwnedAndLocated>false</ns1:isForeignOwnedAndLocated>
+                <ns1:profitStructure>
+                  <ns1:isForProfitOrganization>false</ns1:isForProfitOrganization>
+                  <ns1:isNonprofitOrganization>false</ns1:isNonprofitOrganization>
+                  <ns1:isOtherNotForProfitOrganization>true</ns1:isOtherNotForProfitOrganization></ns1:profitStructure>
+                <ns1:isShelteredWorkshop>false</ns1:isShelteredWorkshop>
+                <ns1:stateOfIncorporation name="SOUTH CAROLINA">SC</ns1:stateOfIncorporation>
+                <ns1:countryOfIncorporation name="UNITED STATES">USA</ns1:countryOfIncorporation>
+                <ns1:organizationalType>CORPORATE TAX EXEMPT</ns1:organizationalType></ns1:vendorOrganizationFactors>
+              <ns1:typeOfEducationalEntity>
+                <ns1:is1862LandGrantCollege>false</ns1:is1862LandGrantCollege>
+                <ns1:is1890LandGrantCollege>false</ns1:is1890LandGrantCollege>
+                <ns1:is1994LandGrantCollege>false</ns1:is1994LandGrantCollege>
+                <ns1:isHistoricallyBlackCollegeOrUniversity>false</ns1:isHistoricallyBlackCollegeOrUniversity>
+                <ns1:isMinorityInstitution>false</ns1:isMinorityInstitution>
+                <ns1:isPrivateUniversityOrCollege>false</ns1:isPrivateUniversityOrCollege>
+                <ns1:isSchoolOfForestry>false</ns1:isSchoolOfForestry>
+                <ns1:isStateControlledInstitutionofHigherLearning>false</ns1:isStateControlledInstitutionofHigherLearning>
+                <ns1:isTribalCollege>false</ns1:isTribalCollege>
+                <ns1:isVeterinaryCollege>false</ns1:isVeterinaryCollege>
+                <ns1:isAlaskanNativeServicingInstitution>false</ns1:isAlaskanNativeServicingInstitution>
+                <ns1:isNativeHawaiianServicingInstitution>false</ns1:isNativeHawaiianServicingInstitution></ns1:typeOfEducationalEntity>
+              <ns1:vendorCertifications>
+                <ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>false</ns1:isDOTCertifiedDisadvantagedBusinessEnterprise>
+                <ns1:isSelfCertifiedSmallDisadvantagedBusiness>false</ns1:isSelfCertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertifiedSmallDisadvantagedBusiness>false</ns1:isSBACertifiedSmallDisadvantagedBusiness>
+                <ns1:isSBACertified8AProgramParticipant>false</ns1:isSBACertified8AProgramParticipant>
+                <ns1:isSelfCertifiedHUBZoneJointVenture>false</ns1:isSelfCertifiedHUBZoneJointVenture>
+                <ns1:isSBACertifiedHUBZone>false</ns1:isSBACertifiedHUBZone>
+                <ns1:isSBACertified8AJointVenture>false</ns1:isSBACertified8AJointVenture></ns1:vendorCertifications>
+              <ns1:vendorLocation>
+                <ns1:streetAddress>315 SIGMA DR</ns1:streetAddress>
+                <ns1:city>SUMMERVILLE</ns1:city>
+                <ns1:state name="SOUTH CAROLINA">SC</ns1:state>
+                <ns1:ZIPCode city="SUMMERVILLE">294867790</ns1:ZIPCode>
+                <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode>
+                <ns1:phoneNo>8437603324</ns1:phoneNo>
+                <ns1:congressionalDistrictCode>01</ns1:congressionalDistrictCode>
+                <ns1:entityDataSource>D&amp;B</ns1:entityDataSource></ns1:vendorLocation>
+              <ns1:vendorAlternateSiteCode>29486</ns1:vendorAlternateSiteCode>
+              <ns1:entityIdentifiers>
+                <ns1:vendorUEIInformation>
+                  <ns1:UEI>LDMMF472BB93</ns1:UEI>
+                  <ns1:UEILegalBusinessName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:UEILegalBusinessName>
+                  <ns1:ultimateParentUEI>LDMMF472BB93</ns1:ultimateParentUEI>
+                  <ns1:ultimateParentUEIName>ADVANCED TECHNOLOGY INTERNATIONAL</ns1:ultimateParentUEIName></ns1:vendorUEIInformation>
+                <ns1:cageCode>1G3V8</ns1:cageCode></ns1:entityIdentifiers>
+              <ns1:ccrRegistrationDetails>
+                <ns1:registrationDate>2001-05-21 00:00:00</ns1:registrationDate>
+                <ns1:renewalDate>2020-02-13 00:00:00</ns1:renewalDate></ns1:ccrRegistrationDetails></ns1:vendorSiteDetails></ns1:vendor>
+          <ns1:consortiaInformation>
+            <ns1:primaryConsortiaLocation></ns1:primaryConsortiaLocation></ns1:consortiaInformation>
+          <ns1:placeOfPerformance>
+            <ns1:principalPlaceOfPerformance>
+              <ns1:stateCode name="SOUTH CAROLINA">SC</ns1:stateCode>
+              <ns1:countryCode name="UNITED STATES">USA</ns1:countryCode></ns1:principalPlaceOfPerformance>
+            <ns1:placeOfPerformanceZIPCode county="BERKELEY" city="SUMMERVILLE">294867790</ns1:placeOfPerformanceZIPCode>
+            <ns1:placeOfPerformanceCongressionalDistrict>01</ns1:placeOfPerformanceCongressionalDistrict></ns1:placeOfPerformance>
+          <ns1:competition>
+            <ns1:solicitationProcedures description="BROAD AGENCY ANNOUNCEMENT">BAA</ns1:solicitationProcedures>
+            <ns1:extentCompeted description="COMPETED">H</ns1:extentCompeted></ns1:competition>
+          <ns1:transactionInformation>
+            <ns1:createdBy>JASON.H.MELOFCHIK.CIV.W15QKN@ARMY.MIL</ns1:createdBy>
+            <ns1:createdDate>2024-02-15 11:26:26</ns1:createdDate>
+            <ns1:lastModifiedBy>JASON.H.MELOFCHIK.CIV.W15QKN@ARMY.MIL</ns1:lastModifiedBy>
+            <ns1:lastModifiedDate>2024-02-15 11:26:30</ns1:lastModifiedDate>
+            <ns1:status description="FINAL">F</ns1:status>
+            <ns1:approvedBy>JASON.H.MELOFCHIK.CIV.W15QKN@ARMY.MIL</ns1:approvedBy>
+            <ns1:approvedDate>2024-02-15 11:26:30</ns1:approvedDate>
+            <ns1:closedStatus>N</ns1:closedStatus></ns1:transactionInformation></ns1:contractDetail>
+        <ns1:genericTags>
+          <ns1:genericStrings>
+            <ns1:genericString02>LDMMF472BB93</ns1:genericString02></ns1:genericStrings>
+          <ns1:genericBooleans>
+            <ns1:genericBoolean01>false</ns1:genericBoolean01>
+            <ns1:genericBoolean02>false</ns1:genericBoolean02>
+            <ns1:genericBoolean03>false</ns1:genericBoolean03>
+            <ns1:genericBoolean04>false</ns1:genericBoolean04></ns1:genericBooleans></ns1:genericTags></ns1:OtherTransactionIDV>
+    </content>
+  </entry>
+</feed>

@@ -1,0 +1,13 @@
+{
+  "failures": 0,
+  "failures_detail": [],
+  "finished_at": "2026-06-11T05:34:02Z",
+  "input_csv": "input/top_ref_piids_all_years.csv",
+  "pause": 0.3,
+  "requested_piids": 2000,
+  "skipped_existing": 1,
+  "started_at": "2026-06-11T05:21:46Z",
+  "successes": 1999,
+  "timeout": 45,
+  "workers": 6
+}
