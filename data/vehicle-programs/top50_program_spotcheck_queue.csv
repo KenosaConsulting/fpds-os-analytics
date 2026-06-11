@@ -1,0 +1,29 @@
+rank,program_id,program_name,approx_top2000_obligated,matched_piid_count,seed_ref_piid,spotcheck_status
+1,gsa_mas,GSA Multiple Award Schedule,197216391667.21,235,GS35F4076D,pending
+2,va_community_care_network,VA Community Care Network,132311115257.18,8,36C10G19D0038,pending
+3,va_pharmaceutical_prime_vendor,VA Pharmaceutical Prime Vendor,131303918902.89,16,36W79720D0001,pending
+4,nasa_sewp_v,Solutions for Enterprise-Wide Procurement V,59324822070.24,52,NNG15SC71B,pending
+5,nasa_jpl_ffrdc,Jet Propulsion Laboratory FFRDC,43680093758.51,3,80NM0018D0004,pending
+6,gsa_alliant_2,Alliant 2,41559480766.13,18,47QTCK18D0004,pending
+7,gsa_oasis_unrestricted,One Acquisition Solution for Integrated Services Unrestricted,41385809312.16,35,GS00Q14OADU108,pending
+8,dla_pharmaceutical_prime_vendor,DLA Pharmaceutical Prime Vendor,37269252763.41,20,SPM2DX13D1000,pending
+9,gsa_alliant,Alliant,32681686867.64,22,GS00Q09BGD0048,pending
+10,dla_operational_equipment_ist,DLA Operational Equipment IST,29893095860.36,14,SPE8EJ21D1020,pending
+11,va_medical_disability_examinations,VA Medical Disability Examinations,29474810764.49,25,36C10X25D0003,pending
+12,va_patient_centered_community_care,VA Patient Centered Community Care,26543551869.83,4,VA79113D0054,pending
+13,cbp_southwest_border_construction,CBP Southwest Border Construction IDIQ,20199885083.82,7,70B01C26D00000012,pending
+14,gsa_oasis_small_business,One Acquisition Solution for Integrated Services Small Business,16789505660.03,22,GS00Q14OADS722,pending
+15,nih_cio_sp3,Chief Information Officer-Solutions and Partners 3,16544313589.17,18,HHSN316201200002W,pending
+16,va_t4ng,Transformation Twenty-One Total Technology Next Generation,15885812947.82,13,VA11816D1007,pending
+17,usaf_c17_gisp,C-17 Government Integrated Sustainment Program,14010115659.26,1,FA852612D0001,pending
+18,usaid_gshc_psm,Global Health Supply Chain - Procurement and Supply Management,11207034659.52,3,AIDOAAI1500004,pending
+19,usaf_lincoln_laboratory_ffrdc,MIT Lincoln Laboratory FFRDC,10276738110.52,1,FA870215D0001,pending
+20,mobility_craf,Civil Reserve Air Fleet,9388479060.82,3,HTC71118DCC39,pending
+21,usaf_f15ex,F-15EX,9253694951.45,1,FA863420D2704,pending
+22,dod_seaport_nxg,SeaPort Next Generation,9216818464.09,9,N0017819D7264,pending
+23,usaf_c130j_ordering,C-130J Ordering Contract,8260051248.36,1,FA862516D6458,pending
+24,va_ehrm,VA Electronic Health Record Modernization,7896392079.01,1,36C10B18D5000,pending
+25,gsa_eis,Enterprise Infrastructure Solutions,6492969495.54,3,GS00Q17NSD3000,pending
+26,ussocom_sof_glss,Special Operations Forces Global Logistics Support Services,6192513392.80,1,H9225417D0001,pending
+27,gsa_astro,ASTRO,5363883688.27,9,47QFCA22D0163,pending
+28,usaf_jdam,JDAM SAASM Anti-Jam,5149639442.33,1,FA821315D0002,pending
