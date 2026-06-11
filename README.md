@@ -476,6 +476,10 @@ Full details: [docs/CAVEATS.md](docs/CAVEATS.md)
 
 ---
 
+Got down here and still couldn't find what you need? No worries! Don't hesitate to reach out with your ideas and we'll build it for you.
+
+Phone: (305) 522-8140 | Email: nkalosakenyon@kenosaconsulting.com | Linkedin: https://www.linkedin.com/in/nate-kalosa-kenyon-84b132190/
+
 <p align="center">
   Built by <a href="https://kenosaconsulting.com">Kenosa Consulting</a><br/>
   <em>Evidence-first federal intelligence.</em>
