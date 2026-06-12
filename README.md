@@ -21,7 +21,7 @@
 > Every transaction is public record.
 > Contractors don't need raw data, they need to make decisions.**
 
-This API turns 99 million FPDS contract actions into the competitive
+This API turns 99 million FPDS contract actions into the
 intelligence that wins proposals — pricing patterns, incumbent maps, market
 entry difficulty scores, vehicle-program winners, recompete timelines, and 57
 more analytics datasets — ready to query from a single endpoint.
