@@ -101,6 +101,17 @@ dimensions:
     filters: ["raw_code", "vehicle_family", "is_gwac", "is_schedule", "is_idiq", "is_bpa", "is_open_market"]
     fields: ["raw_code", "label", "vehicle_family", "is_gwac", "is_schedule", "is_idiq", "is_bpa", "is_boa", "is_open_market", "sort_order", "notes"]
 
+  - id: "vehicle_programs"
+    title: "Curated Vehicle Programs"
+    backing_view: "analytics_api.dim_vehicle_programs"
+    source_table: "analytics_dims.fpds_vehicle_program"
+    key: "program_id"
+    filters: ["program_id", "program_family", "owning_agency_id", "is_governmentwide"]
+    searchable_columns: ["program_name", "program_short_name"]
+    fields: ["program_id", "program_name", "program_short_name", "program_family", "owning_agency_id", "owning_agency_name", "is_governmentwide", "successor_program_id", "name_source", "notes"]
+    caveats:
+      - "This dimension exposes only curated named programs. Pseudo-program rollups derived for unmatched PIIDs do not appear here."
+
   - id: "commercial_item_codes"
     title: "FPDS Commercial Item Acquisition Procedure Codes"
     backing_view: "analytics_api.dim_commercial_item_codes"

@@ -7,6 +7,50 @@ This project uses task-based versioning (FPDS-NNN) within development sprints.
 
 ---
 
+## [Sprint 4] — 2026-06-12 — Vehicle-Level Analytics (partial)
+
+Vehicle-program packaging work for FPDS-021 continued in repo and on the live
+Supabase project. The catalog, resolver, docs, and dimension surface landed.
+The main dataset/report-view migration is still blocked on missing normalized
+Step-4 materialized views in production.
+
+### Added
+
+- **FPDS-021f · Vehicle Program View Template** — Added
+  [sql/034_vehicle_program_views.sql](sql/034_vehicle_program_views.sql) with a
+  program-summary view, report-deck views, three `analytics_api` facades, and
+  reader grants. The template correctly targets the `_norm` Step-4 MVs only and
+  intentionally fails rather than reading the stale non-`_norm` objects.
+
+- **FPDS-021g · Catalog Metadata** — Added three dataset catalog entries:
+  `acquisition.vehicle_program_usage_fy`,
+  `acquisition.vehicle_program_summary`, and
+  `acquisition.vehicle_program_vendors`, including example queries,
+  required-filter discipline, recent-program defaults, and caveats for
+  one-level referencing, MAS undercounting, and order-activity-vs-seat-holder
+  interpretation.
+
+- **FPDS-021h · Vehicle Programs Dimension** — Added
+  [sql/035_vehicle_program_dimension.sql](sql/035_vehicle_program_dimension.sql),
+  `catalog/dimensions.yaml` exposure for `vehicle_programs`, and MCP resolver
+  support so `fpds_resolve` can search curated vehicle-program names.
+
+### Verified
+
+- `./.venv/bin/python -m pytest tests -q` green with **75 passing tests**.
+- Supabase migration `035_vehicle_program_dimension` applied successfully to
+  project `tfrhforjvaafmqmxmtrt`; verified `analytics_api.dim_vehicle_programs`
+  columns, reader grant, and a bounded `LIMIT 5` smoke select.
+
+### Blocked
+
+- Supabase migration `034_vehicle_program_views` failed on project
+  `tfrhforjvaafmqmxmtrt` with `ERROR: relation
+  customer_intelligence.mv_fpds_vehicle_program_agency_fy_norm does not exist`.
+  The repo now reflects the intended `_norm`-only surface, but the live dataset
+  facades cannot deploy until the external refresh/build path creates the two
+  normalized Step-4 materialized views.
+
 ## [Sprint 3] — 2026-06-10 — Distribution & New Analytics
 
 The analytics platform grows from query tool to intelligence engine: four new

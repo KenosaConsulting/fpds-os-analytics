@@ -941,6 +941,84 @@ datasets:
     caveats:
       - "High cardinality. At least one customer filter is required."
 
+  - id: "acquisition.vehicle_program_usage_fy"
+    title: "Vehicle Program Usage By Fiscal Year"
+    domain: "acquisition"
+    description: "Vehicle Program Usage By Fiscal Year shows which named GWACs, schedules, and agency vehicles a customer actually uses each year. Use it to see whether demand is concentrated on specific programs, how competitive those orders are, and how much small-business obligation flows through each vehicle."
+    example_queries:
+      - query: "/v1/datasets/acquisition.vehicle_program_usage_fy/rows?vehicle_program_id=gsa_oasis_small_business&fiscal_year=2025&limit=25"
+        explanation: "Show fiscal-year usage for one named vehicle program."
+    field_descriptions:
+      avg_offers_received: "Average numeric offers_received value on the underlying FPDS actions in this program x customer x fiscal-year cell."
+      competed_action_share: "Share of actions in the cell whose extent competed code maps to competed."
+      small_biz_obligation_share: "Share of net obligations in the cell awarded to actions flagged small business in FPDS."
+    backing_view: "analytics_api.acquisition_vehicle_program_usage_fy"
+    source_view: "customer_intelligence.report_deck_vehicle_program_usage_fy"
+    grain: "vehicle_program_id x contracting_agency_id x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["vehicle_program_id", "contracting_dept_id", "contracting_agency_id"]
+    filters: ["vehicle_program_id", "program_family", "program_owner_agency_id", "is_governmentwide", "is_pseudo_program", "contracting_dept_id", "contracting_agency_id", "fiscal_year", "fiscal_year_min", "fiscal_year_max"]
+    sortable: ["fiscal_year", "obligated_amount", "action_count", "distinct_vendor_count", "avg_offers_received", "competed_action_share", "small_biz_obligation_share"]
+    default_sort: "-fiscal_year"
+    fields: ["vehicle_program_id", "vehicle_program_name", "vehicle_program_short_name", "program_family", "is_pseudo_program", "program_owner_agency_id", "program_owner_agency_name", "is_governmentwide", "contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "fiscal_year", "is_current_fiscal_year_ytd", "obligated_amount", "action_count", "distinct_vendor_count", "competed_action_count", "not_competed_action_count", "avg_offers_received", "small_biz_obligated", "competed_action_share", "not_competed_action_share", "small_biz_obligation_share"]
+    caveats:
+      - "FPDS carries one level of contract referencing. If an order routes through a BPA under a schedule, FPDS shows the BPA parent and the underlying schedule is invisible here."
+      - "GSA MAS totals in this package capture direct schedule orders only. BPA-routed schedule spending is not visible at FPDS's single reference level."
+      - "Pseudo-program rows are derived from owning agency plus referenced-type when no curated program rule matched."
+
+  - id: "acquisition.vehicle_program_summary"
+    title: "Vehicle Program Summary"
+    domain: "acquisition"
+    description: "Vehicle Program Summary ranks named vehicle programs and pseudo-program rollups by lifetime obligations, customer reach, and winner breadth. Use it to see which specific vehicles matter most government-wide while the default recent-program filter keeps stale legacy vehicles off the first page."
+    example_queries:
+      - query: "/v1/datasets/acquisition.vehicle_program_summary/rows?program_family=GWAC&limit=25"
+        explanation: "List recently active GWAC programs first, with lifetime obligations and customer reach."
+    field_descriptions:
+      is_active_recent: "True when the program has observed order activity in the current or two prior federal fiscal years."
+      distinct_winning_vendors: "Count of distinct vendor UEIs seen winning orders on the program across all observed fiscal years."
+      name_source: "Curated programs retain their registry provenance; pseudo-program rows surface as derived_pseudo."
+    backing_view: "analytics_api.acquisition_vehicle_program_summary"
+    source_view: "customer_intelligence.report_deck_vehicle_program_summary"
+    grain: "vehicle_program_id"
+    public_access: "api_key"
+    filters: ["vehicle_program_id", "program_family", "program_owner_agency_id", "is_governmentwide", "is_pseudo_program", "is_active_recent"]
+    sortable: ["last_order_fy", "lifetime_obligated_amount", "lifetime_action_count", "distinct_using_agencies", "distinct_winning_vendors"]
+    default_sort: "-last_order_fy"
+    default_predicates:
+      - field: "is_active_recent"
+        include_values: [true]
+        unless_filter: "is_active_recent"
+    fields: ["vehicle_program_id", "vehicle_program_name", "vehicle_program_short_name", "program_family", "is_pseudo_program", "program_owner_agency_id", "program_owner_agency_name", "is_governmentwide", "lifetime_obligated_amount", "lifetime_action_count", "distinct_using_departments", "distinct_using_agencies", "distinct_winning_vendors", "first_order_fy", "last_order_fy", "is_active_recent", "lifetime_small_biz_obligated", "small_biz_obligation_share", "successor_program_id", "name_source", "notes"]
+    caveats:
+      - "Defaults to recently active programs only. Supply is_active_recent=false to inspect dormant or legacy programs."
+      - "GSA MAS totals in this package capture direct schedule orders only. BPA-routed schedule spending is not visible at FPDS's single reference level."
+      - "FPDS carries one level of contract referencing, so summarized totals can understate nested schedule activity."
+
+  - id: "acquisition.vehicle_program_vendors"
+    title: "Vehicle Program Vendors By Fiscal Year"
+    domain: "acquisition"
+    description: "Vehicle Program Vendors By Fiscal Year shows who actually wins orders on a named vehicle in each fiscal year, how concentrated that winner pool is, and how large each vendor's share is. Use it to see the active order-winner set on a vehicle rather than an official contract-holder roster."
+    example_queries:
+      - query: "/v1/datasets/acquisition.vehicle_program_vendors/rows?vehicle_program_id=gsa_oasis_small_business&fiscal_year=2025&limit=25"
+        explanation: "Show the leading FY2025 winners on one named vehicle program."
+    field_descriptions:
+      vendor_rank_in_program_fy: "Rank of the vendor within the program-year by obligated amount, then order count."
+      vendor_obligation_share: "Vendor share of total obligated amount for that program-year."
+      distinct_customer_agencies: "Count of contracting agencies that placed orders with this vendor on the program in the fiscal year."
+    backing_view: "analytics_api.acquisition_vehicle_program_vendors"
+    source_view: "customer_intelligence.report_deck_vehicle_program_vendors"
+    grain: "vehicle_program_id x vendor_uei x fiscal_year"
+    public_access: "api_key"
+    required_filters_any: ["vehicle_program_id", "program_owner_agency_id"]
+    filters: ["vehicle_program_id", "program_family", "program_owner_agency_id", "is_governmentwide", "is_pseudo_program", "vendor_uei", "fiscal_year", "fiscal_year_min", "fiscal_year_max"]
+    sortable: ["fiscal_year", "obligated_amount", "order_count", "distinct_customer_agencies", "vendor_rank_in_program_fy", "vendor_obligation_share"]
+    default_sort: "-fiscal_year"
+    fields: ["vehicle_program_id", "vehicle_program_name", "vehicle_program_short_name", "program_family", "is_pseudo_program", "program_owner_agency_id", "program_owner_agency_name", "is_governmentwide", "vendor_uei", "vendor_name", "fiscal_year", "is_current_fiscal_year_ytd", "obligated_amount", "order_count", "distinct_customer_agencies", "vendor_rank_in_program_fy", "total_program_obligated", "total_program_orders", "distinct_winning_vendors_fy", "vendor_obligation_share"]
+    caveats:
+      - "Vendor rows reflect observed order activity, not an official seat-holder list. A contract holder with zero observed orders is invisible here."
+      - "GSA MAS totals in this package capture direct schedule orders only. BPA-routed schedule spending is not visible at FPDS's single reference level."
+      - "FPDS carries one level of contract referencing only, so nested schedule or BPA structures can hide upstream vehicles."
+
   # ── Funding Flow Analysis (Build 6) ──────────────────────────────────────
 
   - id: "funding.mismatch_flows_fy"

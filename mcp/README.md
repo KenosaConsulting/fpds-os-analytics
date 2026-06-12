@@ -23,7 +23,7 @@ The API base URL is the only server configuration. Public bounded REST access do
 - `fpds_query_dataset`: wraps `GET /v1/datasets/{dataset_id}/rows`.
 - `fpds_list_dimensions`: wraps `GET /v1/dimensions`.
 - `fpds_lookup_dimension`: wraps `GET /v1/dimensions/{dimension_id}`.
-- `fpds_resolve`: searches name-bearing dimensions with the FPDS-009 `q` search.
+- `fpds_resolve`: searches name-bearing dimensions with the FPDS-009 `q` search, including vehicle programs.
 - `fpds_customer_profile`: wraps `GET /v1/profiles/customer`.
 
 ## Guardrails

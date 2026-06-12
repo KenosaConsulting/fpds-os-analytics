@@ -388,6 +388,9 @@ components:
         enum:
         - acquisition.agency_vehicle_mix_fy
         - acquisition.office_vehicle_mix_fy
+        - acquisition.vehicle_program_summary
+        - acquisition.vehicle_program_usage_fy
+        - acquisition.vehicle_program_vendors
         - acquisition.vehicle_trend_fy
         - competition.agency_profile_fy
         - competition.commercial_mix_fy

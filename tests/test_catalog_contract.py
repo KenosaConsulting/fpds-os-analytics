@@ -27,7 +27,7 @@ from app.routes.catalog import describe_dataset, list_catalog, list_dimensions  
 from app.routes.datasets import dataset_data_as_of, dataset_rows  # noqa: E402
 from app.routes.health import ai_assistant_guide, health, metadata  # noqa: E402
 from app.routes.profiles import customer_profile  # noqa: E402
-from mcp.fpds_mcp_server import FPDSServer, _clean_params, handle_message  # noqa: E402
+from mcp.fpds_mcp_server import FPDSServer, TYPE_TO_DIMENSION, _clean_params, handle_message  # noqa: E402
 
 
 def _sample_value(filter_name: str) -> str:
@@ -72,8 +72,8 @@ async def _streaming_response_text(response) -> str:
 
 def test_catalog_has_expected_dataset_count() -> None:
     catalog = load_catalog()
-    assert len(catalog.datasets) == 58
-    assert len(catalog.dimensions) == 15
+    assert len(catalog.datasets) == 61
+    assert len(catalog.dimensions) == 16
     assert {item["public_access"] for item in catalog.datasets.values()} == {"public_bounded", "api_key"}
 
 
@@ -494,6 +494,55 @@ def test_seasonality_template_builds_two_materialized_views_and_grants_reader() 
     assert "GRANT SELECT ON analytics_api.seasonality_office_quarter_fy TO fpds_analytics_api_readonly" in sql
 
 
+def test_vehicle_program_agency_fy_template_canonicalizes_pseudo_program_labels() -> None:
+    sql = (SERVICE_ROOT / "sql" / "029_vehicle_program_agency_fy.sql").read_text(encoding="utf-8")
+    assert "owner_agm.agency_short_name" in sql
+    assert "COALESCE(vp.program_id, vc.program_id) AS resolved_program_id" in sql
+    assert "regexp_replace(lower(cb.vehicle_family_label), '[^a-z0-9]+', '_', 'g')" in sql
+    assert "AVG(na.offers_received) AS avg_offers_received" in sql
+    assert "COUNT(DISTINCT na.winner_uei)" in sql
+
+
+def test_vehicle_program_vendor_fy_template_rolls_up_by_uei_not_vendor_alias() -> None:
+    sql = (SERVICE_ROOT / "sql" / "030_vehicle_program_vendor_fy.sql").read_text(encoding="utf-8")
+    assert "vendor_alias_totals AS (" in sql
+    assert "ROW_NUMBER() OVER (" in sql
+    assert "COALESCE(ra.vendor_name, vt.vendor_uei) AS vendor_name" in sql
+    assert "vehicle_program_id,\n        vendor_uei,\n        fiscal_year" in sql
+    assert "vendor_name,\n        fiscal_year" not in sql.split("CREATE UNIQUE INDEX IF NOT EXISTS mv_vehicle_program_vendor_fy_uq", 1)[1]
+
+
+def test_vehicle_program_runtime_replacement_templates_document_no_drop_protocol() -> None:
+    agency_sql = (SERVICE_ROOT / "sql" / "031_vehicle_program_agency_fy_runtime.sql").read_text(encoding="utf-8")
+    vendor_sql = (SERVICE_ROOT / "sql" / "032_vehicle_program_vendor_fy_runtime.sql").read_text(encoding="utf-8")
+    assert "mv_fpds_vehicle_program_agency_fy_norm" in agency_sql
+    assert "mv_fpds_vehicle_program_vendor_fy_norm" in vendor_sql
+    assert "protocol forbids DROP / ALTER / REFRESH" in agency_sql
+    assert "protocol forbids DROP / ALTER / REFRESH" in vendor_sql
+    assert "COMMENT ON MATERIALIZED VIEW customer_intelligence.mv_fpds_vehicle_program_agency_fy_norm" in agency_sql
+    assert "COMMENT ON MATERIALIZED VIEW customer_intelligence.mv_fpds_vehicle_program_vendor_fy_norm" in vendor_sql
+
+
+def test_vehicle_program_views_template_targets_norm_mvs_and_grants_reader() -> None:
+    sql = (SERVICE_ROOT / "sql" / "034_vehicle_program_views.sql").read_text(encoding="utf-8")
+    assert "mv_fpds_vehicle_program_agency_fy_norm" in sql
+    assert "mv_fpds_vehicle_program_vendor_fy_norm" in sql
+    assert "CREATE OR REPLACE VIEW customer_intelligence.report_deck_vehicle_program_summary" in sql
+    assert "CREATE OR REPLACE VIEW analytics_api.acquisition_vehicle_program_usage_fy" in sql
+    assert "CREATE OR REPLACE VIEW analytics_api.acquisition_vehicle_program_summary" in sql
+    assert "CREATE OR REPLACE VIEW analytics_api.acquisition_vehicle_program_vendors" in sql
+    assert "GRANT SELECT ON analytics_api.acquisition_vehicle_program_usage_fy TO fpds_analytics_api_readonly" in sql
+    assert "GRANT SELECT ON analytics_api.acquisition_vehicle_program_summary TO fpds_analytics_api_readonly" in sql
+    assert "GRANT SELECT ON analytics_api.acquisition_vehicle_program_vendors TO fpds_analytics_api_readonly" in sql
+
+
+def test_vehicle_program_dimension_template_exposes_curated_registry() -> None:
+    sql = (SERVICE_ROOT / "sql" / "035_vehicle_program_dimension.sql").read_text(encoding="utf-8")
+    assert "CREATE OR REPLACE VIEW analytics_api.dim_vehicle_programs" in sql
+    assert "FROM analytics_dims.fpds_vehicle_program" in sql
+    assert "GRANT SELECT ON analytics_api.dim_vehicle_programs TO fpds_analytics_api_readonly" in sql
+
+
 def test_dimension_q_search_uses_parameterized_ilike() -> None:
     catalog = load_catalog()
     dimension = catalog.get_dimension("departments")
@@ -569,6 +618,30 @@ def test_v1_label_enrichment_template_is_append_only_and_protocol_safe() -> None
     assert "UPDATE " not in sql
     assert "DELETE " not in sql
     assert "SELECT\n    r.*," in sql
+
+
+def test_vehicle_program_catalog_entries_have_required_filters_and_recent_default() -> None:
+    catalog = load_catalog()
+    usage = catalog.get_dataset("acquisition.vehicle_program_usage_fy")
+    summary = catalog.get_dataset("acquisition.vehicle_program_summary")
+    vendors = catalog.get_dataset("acquisition.vehicle_program_vendors")
+    assert usage["required_filters_any"] == ["vehicle_program_id", "contracting_dept_id", "contracting_agency_id"]
+    assert summary["default_predicates"] == [
+        {"field": "is_active_recent", "include_values": [True], "unless_filter": "is_active_recent"}
+    ]
+    assert vendors["required_filters_any"] == ["vehicle_program_id", "program_owner_agency_id"]
+    assert "BPA-routed schedule spending is not visible" in " ".join(summary["caveats"])
+    assert "official seat-holder list" in " ".join(vendors["caveats"])
+
+
+def test_vehicle_program_dimension_is_searchable_and_resolvable() -> None:
+    catalog = load_catalog()
+    dimension = catalog.get_dimension("vehicle_programs")
+    assert dimension["backing_view"] == "analytics_api.dim_vehicle_programs"
+    assert dimension["searchable_columns"] == ["program_name", "program_short_name"]
+    assert TYPE_TO_DIMENSION["vehicle_programs"] == "vehicle_programs"
+    assert TYPE_TO_DIMENSION["vehicle_program"] == "vehicle_programs"
+    assert TYPE_TO_DIMENSION["vehicles"] == "vehicle_programs"
 
 
 def test_invalid_sort_is_rejected() -> None:
@@ -983,6 +1056,24 @@ def test_mcp_resolve_wraps_dimension_search() -> None:
         ("/v1/dimensions/contracting_offices", {"q": "defense", "limit": 3}),
     ]
     assert result["results"][0]["dimension_id"] == "departments"
+
+
+def test_mcp_resolve_supports_vehicle_program_types() -> None:
+    class FakeClient:
+        def __init__(self) -> None:
+            self.calls = []
+
+        def get(self, path: str, params: dict[str, object] | None = None) -> dict[str, object]:
+            self.calls.append((path, params))
+            return {"data": [{"program_id": "gsa_oasis_small_business"}], "meta": {"dimension_id": path.rsplit("/", 1)[-1]}}
+
+    client = FakeClient()
+    server = FPDSServer(client)
+    result = server.resolve({"q": "oasis", "types": ["vehicle_programs"], "limit": 2})
+    assert client.calls == [
+        ("/v1/dimensions/vehicle_programs", {"q": "oasis", "limit": 2}),
+    ]
+    assert result["results"][0]["dimension_id"] == "vehicle_programs"
 
 
 def test_mcp_clean_params_flattens_filters_and_lists() -> None:

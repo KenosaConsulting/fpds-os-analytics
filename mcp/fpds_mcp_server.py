@@ -25,6 +25,9 @@ TYPE_TO_DIMENSION = {
     "naics": "naics",
     "psc": "psc_codes",
     "psc_codes": "psc_codes",
+    "vehicle_program": "vehicle_programs",
+    "vehicle_programs": "vehicle_programs",
+    "vehicles": "vehicle_programs",
 }
 
 
@@ -153,13 +156,13 @@ class FPDSServer:
             ),
             _tool(
                 "fpds_resolve",
-                "Resolve plain-English names to FPDS codes using the FPDS-009 dimension search. Searches departments, agencies, contracting offices, NAICS, and PSC codes unless types are supplied.",
+                "Resolve plain-English names to FPDS codes using the FPDS-009 dimension search. Searches departments, agencies, contracting offices, NAICS, PSC codes, and vehicle programs unless types are supplied.",
                 {
                     "q": {"type": "string", "description": "Name or description fragment to search for."},
                     "types": {
                         "type": "array",
                         "items": {"type": "string"},
-                        "description": "Optional types: departments, agencies, offices, naics, psc.",
+                        "description": "Optional types: departments, agencies, offices, naics, psc, vehicle_programs.",
                     },
                     "limit": {"type": "integer", "minimum": 1, "maximum": 100},
                 },
@@ -208,7 +211,7 @@ class FPDSServer:
 
     def resolve(self, arguments: dict[str, Any]) -> dict[str, Any]:
         q = arguments["q"]
-        raw_types = arguments.get("types") or ["departments", "agencies", "offices", "naics", "psc"]
+        raw_types = arguments.get("types") or ["departments", "agencies", "offices", "naics", "psc", "vehicle_programs"]
         limit = min(int(arguments.get("limit") or 10), 100)
         results = []
         for raw_type in raw_types:

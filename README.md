@@ -10,7 +10,7 @@
         ║     ▁▂▃▄▅▆▇  COMPETITIVE INTELLIGENCE ENGINE  ▇▆▅▄▃▂▁             ║
         ║                                                                   ║
         ║     ┌───────────────────────────────────────────────────────┐     ║
-        ║     │  58 datasets · 15 dimensions · 99M+ federal actions   │     ║
+        ║     │  61 datasets · 16 dimensions · 99M+ federal actions   │     ║
         ║     │  REST + MCP  · MIT License   · Zero config to start   │     ║
         ║     └───────────────────────────────────────────────────────┘     ║
         ║                                                                   ║
@@ -23,8 +23,8 @@
 
 This API turns 99 million FPDS contract actions into the competitive
 intelligence that wins proposals — pricing patterns, incumbent maps, market
-entry difficulty scores, recompete timelines, and 54 more analytics datasets —
-ready to query from a single endpoint.
+entry difficulty scores, vehicle-program winners, recompete timelines, and 57
+more analytics datasets — ready to query from a single endpoint.
 
 No database to run. No data to download. No PhD required.
 
@@ -73,7 +73,7 @@ Think of it this way:
 
 ---
 
-## 🧬 What You Get: 11 Intelligence Packages
+## 🧬 What You Get: 12 Intelligence Packages
 
 Each package answers a strategic question. Each contains multiple datasets
 tuned for different grains and use cases.
@@ -92,6 +92,7 @@ tuned for different grains and use cases.
   │  Set-Aside Programs           Which small-biz programs get used?    │
   │  PSC Classification           What exactly do they buy?             │
   │  Vehicle Mix                  Do I need a GWAC, Schedule, or IDIQ? │
+  │  Vehicle Programs             Which exact OASIS / SEWP / MAS paths?│
   │  Funding Flows                Who funds the work vs. who buys it?  │
   │  Recompete Pipeline           What contracts are expiring soon?     │
   │  Fiscal Seasonality           When does this customer spend?        │
@@ -108,8 +109,19 @@ Plus four **cross-cutting analytics** that don't belong to a single package:
 | **Market Entry Difficulty** | A composite score blending HHI concentration, sole-source share, vehicle dependence, average offers received, and incumbent tenure — one number that says "how hard is this market to crack" |
 | **Award-Size Distribution** | Median, P25, and P75 award sizes by agency × NAICS, plus under-SAT (simplified acquisition threshold) share |
 
-**58 datasets. 15 code-lookup dimensions. Every query bounded, parameterized,
+**61 datasets. 16 code-lookup dimensions. Every query bounded, parameterized,
 and documented.**
+
+### Vehicle-program deployment note
+
+The vehicle-program package adds three dataset surfaces:
+`acquisition.vehicle_program_usage_fy`,
+`acquisition.vehicle_program_summary`, and
+`acquisition.vehicle_program_vendors`, plus the `vehicle_programs`
+dimension. These dataset views depend on the corrected Step-4
+`customer_intelligence.mv_fpds_vehicle_program_*_norm` materialized views.
+If those `_norm` MVs are not present in the target database, only the
+`vehicle_programs` dimension will be live after migration.
 
 ---
 
@@ -193,12 +205,12 @@ FPDS_API_BASE_URL=https://analytics-api.kenosaconsulting.com \
 
 | MCP Tool | What it does |
 |---|---|
-| `fpds_list_datasets` | Browse all 58 analytics datasets with descriptions |
+| `fpds_list_datasets` | Browse all 61 analytics datasets with descriptions |
 | `fpds_describe_dataset` | See fields, filters, sorts, caveats, and example queries for any dataset |
 | `fpds_query_dataset` | Query rows with filters, sorting, and pagination |
 | `fpds_list_dimensions` | Browse code-lookup tables (agencies, NAICS, PSC, etc.) |
 | `fpds_lookup_dimension` | Translate coded values to human-readable names |
-| `fpds_resolve` | Search by name across agencies, offices, NAICS, PSC, and departments |
+| `fpds_resolve` | Search by name across agencies, offices, NAICS, PSC, departments, and vehicle programs |
 | `fpds_customer_profile` | Get a full Customer 360 profile — eight analytical sections in one call |
 
 **Try asking your AI:**
@@ -397,7 +409,7 @@ limits are all validated against the catalog before any query is built.
 | [CHANGELOG.md](CHANGELOG.md) | What changed and when — sprint by sprint |
 | [docs/QUICKSTART.md](docs/QUICKSTART.md) | Your first API calls in 2 minutes |
 | [docs/METHODOLOGY.md](docs/METHODOLOGY.md) | How every number is computed — source data, MVs, formulas |
-| [docs/DATASETS.md](docs/DATASETS.md) | Field-by-field reference for all 58 datasets |
+| [docs/DATASETS.md](docs/DATASETS.md) | Field-by-field reference for all 61 datasets |
 | [docs/API_FUNCTIONS.md](docs/API_FUNCTIONS.md) | Detailed endpoint documentation |
 | [docs/AI_ASSISTANT_GUIDE.md](docs/AI_ASSISTANT_GUIDE.md) | Instructions for AI assistants |
 | [docs/LLM_INTEGRATIONS.md](docs/LLM_INTEGRATIONS.md) | MCP, ChatGPT, Claude, and Gemini integration guide |
@@ -429,8 +441,8 @@ without a database connection. To run the API server against live data, see the
 fpds-os-analytics/
 ├── app/              FastAPI service (routes, query builder, catalog loader)
 ├── catalog/          Dataset + dimension registries (single source of truth)
-│   ├── datasets.yaml     58 datasets with filters, sorts, fields, caveats
-│   └── dimensions.yaml   15 code-lookup dimensions
+│   ├── datasets.yaml     61 datasets with filters, sorts, fields, caveats
+│   └── dimensions.yaml   16 code-lookup dimensions
 ├── mcp/              MCP server for AI assistants (7 tools, stdio transport)
 ├── sql/              26 numbered database templates (MVs, views, indexes)
 ├── tests/            Guardrail + contract tests (67 tests)
