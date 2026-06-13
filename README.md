@@ -81,19 +81,19 @@ tuned for different grains and use cases.
 ```
   ┌─────────────────────────────────────────────────────────────────────┐
   │                                                                     │
-  │  PACKAGE                      QUESTION IT ANSWERS                  │
+  │  PACKAGE                      QUESTION IT ANSWERS                   │
   │  ═══════                      ════════════════════                  │
   │                                                                     │
   │  Pricing Strategy             How does this customer prefer to buy? │
   │  Vendor Concentration         Who already owns this market?         │
   │  Competition Dynamics         Can a new vendor actually get in?     │
-  │  Industry / NAICS Demand      What work is growing — and where?    │
+  │  Industry / NAICS Demand      What work is growing — and where?     │
   │  Geography                    Does local presence matter here?      │
   │  Set-Aside Programs           Which small-biz programs get used?    │
   │  PSC Classification           What exactly do they buy?             │
-  │  Vehicle Mix                  Do I need a GWAC, Schedule, or IDIQ? │
-  │  Vehicle Programs             Which exact OASIS / SEWP / MAS paths?│
-  │  Funding Flows                Who funds the work vs. who buys it?  │
+  │  Vehicle Mix                  Do I need a GWAC, Schedule, or IDIQ?  │
+  │  Vehicle Programs             Which exact OASIS / SEWP / MAS paths? │
+  │  Funding Flows                Who funds the work vs. who buys it?   │
   │  Recompete Pipeline           What contracts are expiring soon?     │
   │  Fiscal Seasonality           When does this customer spend?        │
   │                                                                     │
