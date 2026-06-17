@@ -403,6 +403,12 @@ components:
         - concentration.small_biz_health_fy
         - concentration.trend_fy
         - concentration.vendor_market_leaders
+        - contacts.detail
+        - contacts.naics_buyers
+        - contacts.office_coverage
+        - contacts.office_roster
+        - contacts.profile_fy
+        - contacts.recompete_handlers
         - customer.agency_profile_fy
         - customer.kpi_summary
         - customer.office_profile_fy

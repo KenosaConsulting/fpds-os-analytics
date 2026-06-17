@@ -1249,7 +1249,7 @@ datasets:
     domain: "contacts"
     description: "Contracting Officer Detail provides rich per-contact profiles including career span, primary assignments, behavioral indicators (set-aside rates, sole-source rates), and lifetime procurement volume. Use this dataset to identify key procurement personnel and understand their buying patterns."
     example_queries:
-      - query: "/v1/datasets/contacts.detail/rows?contracting_agency_id=9700&is_active_recent=true&limit=25"
+      - query: "/v1/datasets/contacts.detail/rows?primary_agency_id=9700&is_active_recent=true&limit=25"
         explanation: "Return active contracting officers at a specific agency."
     backing_view: "analytics_api.contacts_detail"
     source_view: "pipeline_intelligence.report_deck_contact_detail"
