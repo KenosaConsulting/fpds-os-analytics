@@ -7,6 +7,30 @@ This project uses task-based versioning (FPDS-NNN) within development sprints.
 
 ---
 
+## [Sprint 5] — 2026-06-17 — Contracting Officer Analytics (FPDS-022)
+
+Procurement contact analytics: who handles the contracts at each agency, office, and NAICS code.
+
+### Added
+
+- **FPDS-022 · CO Analytics** — Six new datasets in the `contacts` domain:
+  `contacts.detail` (rich per-contact profiles), `contacts.office_roster` (who buys at each office),
+  `contacts.profile_fy` (CO year-over-year activity), `contacts.naics_buyers` (who buys your NAICS),
+  `contacts.recompete_handlers` (who handled expiring contracts), and `contacts.office_coverage`
+  (human attribution share per office). Backed by three new materialized views:
+  `mv_fpds_contact_office_fy` (1.6M rows), `mv_fpds_contact_naics_agency_fy` (12M rows),
+  and `mv_fpds_contract_contacts` (69.3M rows).
+
+- **Enhanced Recompete Watchlist** — `pipeline.recompete_watchlist` now includes 7 contact columns:
+  `contact_creator_user_id`, `contact_creator_name`, `contact_creator_class`,
+  `contact_creator_award_date`, `contact_approver_user_id`, `contact_approver_name`,
+  `contact_approver_last_seen_fy`. Every expiring contract now shows who handled it.
+
+- **Contact Directory** — `analytics_dims.fpds_procurement_contact` (189,784 entries:
+  133,881 human, 468 system, 55,435 unknown). Classification via 42 pattern-matching rules.
+
+---
+
 ## [Sprint 4] — 2026-06-12 — Vehicle-Level Analytics (partial)
 
 Vehicle-program packaging work for FPDS-021 continued in repo and on the live

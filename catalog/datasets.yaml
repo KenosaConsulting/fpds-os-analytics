@@ -1,4 +1,4 @@
-version: "2026-06-04"
+version: "2026-06-17"
 source_reference: "docs/analytics-schema-reference.md"
 notes:
   - "Initial public API catalog exposes report-deck views first."
@@ -1077,7 +1077,7 @@ datasets:
     grain: "piid x contracting_agency_id"
     public_access: "api_key"
     required_filters_any: ["contracting_agency_id", "contracting_dept_id", "contracting_office_id", "vendor_uei", "principal_naics_code", "expiration_bucket", "recompete_confidence"]
-    filters: ["contracting_dept_id", "contracting_agency_id", "contracting_office_id", "vendor_uei", "principal_naics_code", "product_or_service_code", "expiration_bucket", "recompete_confidence", "set_aside_code"]
+    filters: ["contracting_dept_id", "contracting_agency_id", "contracting_office_id", "vendor_uei", "principal_naics_code", "product_or_service_code", "expiration_bucket", "recompete_confidence", "set_aside_code", "contact_creator_class", "contact_creator_user_id", "contact_approver_user_id"]
     sortable: ["remaining_months", "total_obligated", "base_and_all_options_value", "current_completion_date", "duration_months"]
     default_sort: "remaining_months"
     default_predicates:
@@ -1085,7 +1085,7 @@ datasets:
         exclude_values: ["recently_expired"]
         unless_filter: "expiration_bucket"
     max_limit: 500
-    fields: ["piid", "contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "contracting_office_id", "contracting_office_name", "vendor_uei", "vendor_name", "principal_naics_code", "principal_naics_description", "product_or_service_code", "psc_description", "set_aside_code", "set_aside_label", "extent_competed", "competition_family", "effective_date", "current_completion_date", "ultimate_completion_date", "base_award_date", "latest_action_date", "total_obligated", "base_and_all_options_value", "action_count", "modification_count", "duration_months", "remaining_months", "expiration_bucket", "recompete_confidence"]
+    fields: ["piid", "contracting_dept_id", "contracting_dept_name", "department_short_name", "contracting_agency_id", "contracting_agency_name", "agency_short_name", "contracting_office_id", "contracting_office_name", "vendor_uei", "vendor_name", "principal_naics_code", "principal_naics_description", "product_or_service_code", "psc_description", "set_aside_code", "set_aside_label", "extent_competed", "competition_family", "effective_date", "current_completion_date", "ultimate_completion_date", "base_award_date", "latest_action_date", "total_obligated", "base_and_all_options_value", "action_count", "modification_count", "duration_months", "remaining_months", "expiration_bucket", "recompete_confidence", "contact_creator_user_id", "contact_creator_name", "contact_creator_class", "contact_creator_award_date", "contact_approver_user_id", "contact_approver_name", "contact_approver_last_seen_fy"]
     caveats:
       - "CRITICAL: Period-of-performance end dates are signals, not guaranteed recompete dates. Contracts may be extended, consolidated, or cancelled."
       - "Recompete confidence: HIGH = competed, 12+ months, $100K+, 2+ actions. MEDIUM = 6+ months, $25K+. LOW = incomplete data or micro-purchases."
@@ -1241,3 +1241,119 @@ datasets:
     sortable: ["metric_scope", "net_obligated_amount", "setaside_action_share_known"]
     default_sort: "metric_scope"
     fields: ["metric_scope", "min_fiscal_year", "max_fiscal_year", "action_count", "known_setaside_status_count", "unknown_setaside_status_count", "no_setaside_action_count", "positive_setaside_action_count", "net_obligated_amount", "setaside_action_share_known", "unknown_status_share"]
+
+  # ── Contracting Officer Analytics (FPDS-022) ─────────────────────────────
+
+  - id: "contacts.detail"
+    title: "Contact Detail"
+    domain: "contacts"
+    description: "Contracting Officer Detail provides rich per-contact profiles including career span, primary assignments, behavioral indicators (set-aside rates, sole-source rates), and lifetime procurement volume. Use this dataset to identify key procurement personnel and understand their buying patterns."
+    example_queries:
+      - query: "/v1/datasets/contacts.detail/rows?contracting_agency_id=9700&is_active_recent=true&limit=25"
+        explanation: "Return active contracting officers at a specific agency."
+    backing_view: "analytics_api.contacts_detail"
+    source_view: "pipeline_intelligence.report_deck_contact_detail"
+    grain: "user_id"
+    public_access: "public_bounded"
+    required_filters_any: ["user_id", "contracting_agency_id", "contracting_dept_id", "contracting_office_id", "primary_naics_code"]
+    filters: ["user_id", "user_class", "contracting_agency_id", "contracting_dept_id", "contracting_office_id", "primary_naics_code", "primary_naics_sector", "is_active_recent"]
+    sortable: ["lifetime_actions_created", "lifetime_obligated_created", "career_span_years", "last_seen_fy", "recent_2fy_actions"]
+    default_sort: "lifetime_actions_created"
+    max_limit: 500
+    fields: ["user_id", "user_class", "class_source", "display_name", "email", "name_confidence", "roles_seen", "is_active_recent", "first_seen_fy", "last_seen_fy", "career_span_years", "active_fiscal_years", "primary_dept_id", "primary_dept_name", "primary_agency_id", "primary_agency_name", "primary_office_id", "primary_office_name", "primary_naics_code", "primary_naics_sector", "distinct_offices", "distinct_agencies", "distinct_depts", "distinct_naics_codes", "distinct_naics_sectors", "lifetime_actions_created", "lifetime_actions_approved", "lifetime_obligated_created", "lifetime_obligated_approved", "distinct_vendors_created", "distinct_vendors_approved", "set_aside_action_pct", "sole_source_action_pct", "small_biz_obligated_pct", "set_aside_obligated_pct", "sole_source_obligated_pct", "recent_2fy_actions", "recent_2fy_obligated", "max_actions_any_single_fy"]
+    caveats:
+      - "Contact classification (human/system/unknown) is derived from user_id patterns and may miscategorize some entries."
+      - "Email addresses are extracted from FPDS created_by/approved_by fields and may be stale."
+      - "PII note: this dataset surfaces individual procurement officer activity. Handle according to your organization's data governance policy."
+
+  - id: "contacts.office_roster"
+    title: "Office Roster"
+    domain: "contacts"
+    description: "Office Roster shows which contracting officers are actively handling procurement at each office, with year-by-year buying statistics. Use this dataset to identify who buys what at a specific office."
+    example_queries:
+      - query: "/v1/datasets/contacts.office_roster/rows?contracting_office_id=W91CRB&fiscal_year=2025&user_class=human&limit=25"
+        explanation: "Return human contracting officers at a specific office for fiscal year 2025."
+    backing_view: "analytics_api.contacts_office_roster"
+    source_view: "pipeline_intelligence.report_deck_contact_office_roster"
+    grain: "user_id x contracting_office_id x fiscal_year"
+    public_access: "public_bounded"
+    required_filters_any: ["contracting_agency_id", "contracting_dept_id", "contracting_office_id"]
+    filters: ["user_id", "user_class", "contracting_dept_id", "contracting_agency_id", "contracting_office_id", "fiscal_year", "is_active_recent"]
+    sortable: ["action_count", "obligated_amount", "fiscal_year", "last_seen_fy"]
+    default_sort: "-fiscal_year"
+    max_limit: 500
+    fields: ["user_id", "user_class", "display_name", "email", "name_confidence", "role", "contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "contracting_office_id", "contracting_office_name", "fiscal_year", "action_count", "obligated_amount", "distinct_vendor_count", "small_biz_obligated", "set_aside_action_count", "sole_source_action_count", "is_active_recent", "first_seen_fy", "last_seen_fy", "lifetime_actions_created", "lifetime_actions_approved"]
+
+  - id: "contacts.profile_fy"
+    title: "Contact Profile By Fiscal Year"
+    domain: "contacts"
+    description: "Contact Profile By Fiscal Year shows a single contracting officer's year-over-year procurement activity across all offices and agencies. Use this dataset to understand an individual CO's buying trajectory."
+    example_queries:
+      - query: "/v1/datasets/contacts.profile_fy/rows?user_id=JANE.SMITH@AGENCY.GOV&limit=25"
+        explanation: "Return all fiscal years of activity for a specific contracting officer."
+    backing_view: "analytics_api.contacts_profile_fy"
+    source_view: "pipeline_intelligence.report_deck_contact_profile_fy"
+    grain: "user_id x fiscal_year"
+    public_access: "public_bounded"
+    required_filters_any: ["user_id"]
+    filters: ["user_id", "user_class", "fiscal_year", "is_active_recent"]
+    sortable: ["action_count", "obligated_amount", "fiscal_year", "offices_active"]
+    default_sort: "-fiscal_year"
+    max_limit: 500
+    fields: ["user_id", "user_class", "display_name", "email", "name_confidence", "fiscal_year", "offices_active", "agencies_active", "action_count", "obligated_amount", "distinct_vendor_count", "small_biz_obligated", "set_aside_action_count", "sole_source_action_count", "is_active_recent", "first_seen_fy", "last_seen_fy"]
+
+  - id: "contacts.naics_buyers"
+    title: "NAICS Buyers"
+    domain: "contacts"
+    description: "NAICS Buyers identifies which contracting officers buy in a specific NAICS code at each agency, with set-aside and sole-source rates. Use this dataset to find the people who buy your services."
+    example_queries:
+      - query: "/v1/datasets/contacts.naics_buyers/rows?contracting_agency_id=9700&principal_naics_code=541512&fiscal_year=2025&limit=25"
+        explanation: "Return contracting officers who bought IT consulting services at a specific agency in FY2025."
+    backing_view: "analytics_api.contacts_naics_buyers"
+    source_view: "pipeline_intelligence.report_deck_contact_naics_buyers"
+    grain: "user_id x principal_naics_code x contracting_agency_id x fiscal_year"
+    public_access: "public_bounded"
+    required_filters_any: ["contracting_agency_id", "contracting_dept_id", "principal_naics_code"]
+    filters: ["user_id", "user_class", "contracting_dept_id", "contracting_agency_id", "principal_naics_code", "naics_group", "naics_sector", "fiscal_year", "is_active_recent"]
+    sortable: ["action_count", "obligated_amount", "fiscal_year", "set_aside_pct", "sole_source_pct"]
+    default_sort: "-fiscal_year"
+    max_limit: 500
+    fields: ["user_id", "user_class", "display_name", "email", "name_confidence", "contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "principal_naics_code", "naics_group", "naics_sector", "fiscal_year", "action_count", "obligated_amount", "distinct_vendor_count", "set_aside_obligated", "sole_source_obligated", "set_aside_pct", "sole_source_pct", "is_active_recent", "first_seen_fy", "last_seen_fy"]
+
+  - id: "contacts.recompete_handlers"
+    title: "Recompete Handlers"
+    domain: "contacts"
+    description: "Recompete Handlers links expiring contracts to the contracting officers who created and approved them. Use this dataset to identify who handled the contracts you're chasing for recompete."
+    example_queries:
+      - query: "/v1/datasets/contacts.recompete_handlers/rows?contracting_agency_id=9700&limit=25"
+        explanation: "Return expiring contracts with their creator and approver contact details for a specific agency."
+    backing_view: "analytics_api.contacts_recompete_handlers"
+    source_view: "pipeline_intelligence.report_deck_contact_recompete_handlers"
+    grain: "piid x contracting_agency_id"
+    public_access: "public_bounded"
+    required_filters_any: ["contracting_agency_id", "contracting_dept_id", "contracting_office_id", "principal_naics_code"]
+    filters: ["contracting_agency_id", "contracting_dept_id", "contracting_office_id", "principal_naics_code", "creator_class"]
+    sortable: ["total_obligated", "remaining_months", "current_completion_date"]
+    default_sort: "remaining_months"
+    max_limit: 500
+    fields: ["piid", "contracting_agency_id", "contracting_agency_name", "creator_user_id", "creator_class", "creator_display_name", "creator_email", "creator_last_seen_fy", "creator_action_date", "approver_user_id", "approver_display_name", "approver_email", "approver_last_seen_fy", "approver_action_date", "contracting_dept_id", "contracting_office_id", "vendor_name", "principal_naics_code", "total_obligated", "current_completion_date", "remaining_months"]
+    caveats:
+      - "Approver is the most recent HUMAN approver only — system accounts are excluded from the approver column."
+      - "Filters to contracts within -6 to +24 months of expiration with $25K+ obligation."
+
+  - id: "contacts.office_coverage"
+    title: "Office Human Coverage"
+    domain: "contacts"
+    description: "Office Human Coverage shows what share of each office's procurement activity can be attributed to identified human contracting officers. Use this dataset to assess data quality and identify offices with strong contact attribution."
+    example_queries:
+      - query: "/v1/datasets/contacts.office_coverage/rows?contracting_agency_id=9700&fiscal_year=2025&limit=25"
+        explanation: "Return human attribution share by office for a specific agency in FY2025."
+    backing_view: "analytics_api.contacts_office_coverage"
+    source_view: "pipeline_intelligence.report_deck_office_human_coverage"
+    grain: "contracting_office_id x fiscal_year"
+    public_access: "public_bounded"
+    required_filters_any: ["contracting_agency_id", "contracting_dept_id", "contracting_office_id"]
+    filters: ["contracting_dept_id", "contracting_agency_id", "contracting_office_id", "fiscal_year"]
+    sortable: ["human_attribution_share", "total_obligated", "fiscal_year", "distinct_human_contacts"]
+    default_sort: "-fiscal_year"
+    fields: ["contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "contracting_office_id", "contracting_office_name", "fiscal_year", "total_actions", "total_obligated", "human_actions", "human_obligated", "human_attribution_share", "distinct_human_contacts"]
