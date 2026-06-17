@@ -1255,8 +1255,8 @@ datasets:
     source_view: "pipeline_intelligence.report_deck_contact_detail"
     grain: "user_id"
     public_access: "public_bounded"
-    required_filters_any: ["user_id", "contracting_agency_id", "contracting_dept_id", "contracting_office_id", "primary_naics_code"]
-    filters: ["user_id", "user_class", "contracting_agency_id", "contracting_dept_id", "contracting_office_id", "primary_naics_code", "primary_naics_sector", "is_active_recent"]
+    required_filters_any: ["user_id", "primary_agency_id", "primary_dept_id", "primary_office_id", "primary_naics_code"]
+    filters: ["user_id", "user_class", "primary_agency_id", "primary_dept_id", "primary_office_id", "primary_naics_code", "primary_naics_sector", "is_active_recent"]
     sortable: ["lifetime_actions_created", "lifetime_obligated_created", "career_span_years", "last_seen_fy", "recent_2fy_actions"]
     default_sort: "lifetime_actions_created"
     max_limit: 500
