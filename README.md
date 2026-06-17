@@ -73,7 +73,7 @@ Think of it this way:
 
 ---
 
-## 🧬 What You Get: 12 Intelligence Packages
+## 🧬 What You Get: 13 Intelligence Packages
 
 Each package answers a strategic question. Each contains multiple datasets
 tuned for different grains and use cases.
@@ -95,10 +95,19 @@ tuned for different grains and use cases.
   │  Vehicle Programs             Which exact OASIS / SEWP / MAS paths? │
   │  Funding Flows                Who funds the work vs. who buys it?   │
   │  Recompete Pipeline           What contracts are expiring soon?     │
+  │  Contracting Officers         Who handles the buying — and how?     │
   │  Fiscal Seasonality           When does this customer spend?        │
   │                                                                     │
   └─────────────────────────────────────────────────────────────────────┘
 ```
+
+The **Contracting Officers** package is a unique differentiator — no competing
+platform maps individual procurement personnel to their buying behavior,
+NAICS specialties, set-aside tendencies, and contract history. Six datasets
+cover office rosters, per-CO year-over-year profiles, NAICS buyer maps,
+recompete contract handlers, and human-attribution coverage per office.
+The enhanced Recompete Pipeline now shows who created and approved each
+expiring contract.
 
 Plus four **cross-cutting analytics** that don't belong to a single package:
 
@@ -364,7 +373,7 @@ Every response includes:
 | Service metadata | `GET /v1` | API version and status |
 | Health check | `GET /v1/health` | Service and catalog health |
 | AI assistant guide | `GET /v1/ai-assistant-guide` | Paste-ready instructions for any AI |
-| List datasets | `GET /v1/catalog` | Browse all 58 analytics datasets |
+| List datasets | `GET /v1/catalog` | Browse all 67 analytics datasets |
 | Describe dataset | `GET /v1/datasets/{id}` | Fields, filters, sorts, caveats, examples |
 | Query rows | `GET /v1/datasets/{id}/rows` | Bounded analytics with filters and pagination |
 | Customer 360 | `GET /v1/profiles/customer` | Eight-section customer intelligence profile |
