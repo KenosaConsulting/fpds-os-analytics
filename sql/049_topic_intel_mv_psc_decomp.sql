@@ -39,9 +39,9 @@ CREATE MATERIALIZED VIEW topic_intelligence.mv_psc_decomposition AS
 SELECT
   -- PSC dimension
   pa.psc_code,
-  COALESCE(ps.psc_description, pa.psc_description) AS psc_description,
-  COALESCE(ps.psc_category_label, 'Unknown') AS psc_category,
-  COALESCE(ps.psc_group, 'Unknown') AS psc_group,
+  max(COALESCE(ps.psc_description, pa.psc_description)) AS psc_description,
+  max(COALESCE(ps.psc_category_label, 'Unknown')) AS psc_category,
+  max(COALESCE(ps.psc_group, 'Unknown')) AS psc_group,
   -- USASpending org
   ta.department_code,
   -- FPDS org hierarchy
@@ -84,9 +84,6 @@ WHERE ta.corpus_type = 'awards'
   AND pa.psc_code IS NOT NULL
 GROUP BY
   pa.psc_code,
-  COALESCE(ps.psc_description, pa.psc_description),
-  COALESCE(ps.psc_category_label, 'Unknown'),
-  COALESCE(ps.psc_group, 'Unknown'),
   ta.department_code,
   COALESCE(om.contracting_dept_id, 'UNKNOWN'),
   COALESCE(dm.department_name, pa.awarding_agency_name),

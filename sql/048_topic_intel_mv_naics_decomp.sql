@@ -36,7 +36,7 @@ CREATE MATERIALIZED VIEW topic_intelligence.mv_naics_decomposition AS
 SELECT
   -- NAICS dimension
   pa.naics_code,
-  pa.naics_description,
+  max(pa.naics_description) AS naics_description,
   -- USASpending org (topic model boundary)
   ta.department_code,
   -- FPDS org hierarchy
@@ -77,7 +77,7 @@ WHERE ta.corpus_type = 'awards'
   AND tl.corpus_type = 'merged'
   AND pa.naics_code IS NOT NULL
 GROUP BY
-  pa.naics_code, pa.naics_description,
+  pa.naics_code,
   ta.department_code,
   COALESCE(om.contracting_dept_id, 'UNKNOWN'),
   COALESCE(dm.department_name, pa.awarding_agency_name),
