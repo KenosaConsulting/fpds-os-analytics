@@ -55,14 +55,30 @@ provenance_summary AS (
   GROUP BY model_id, topic_id
 ),
 assignment_counts AS (
-  -- Assignment totals per merged topic
-  SELECT merged_model_id AS model_id, merged_topic_id AS topic_id,
-    count(*) AS assignment_count,
-    count(*) FILTER (WHERE corpus_type = 'awards') AS awards_count,
-    count(*) FILTER (WHERE corpus_type = 'sam') AS sam_count
-  FROM v2.topic_assignments
-  WHERE merged_topic_id IS NOT NULL
-  GROUP BY merged_model_id, merged_topic_id
+  -- Assignment totals: merged path for merged topics, origin path for per-corpus topics
+  SELECT model_id, topic_id,
+    sum(cnt) AS assignment_count,
+    sum(awards_cnt) AS awards_count,
+    sum(sam_cnt) AS sam_count
+  FROM (
+    -- Merged assignments (for merged topics)
+    SELECT merged_model_id AS model_id, merged_topic_id AS topic_id,
+      count(*) AS cnt,
+      count(*) FILTER (WHERE corpus_type = 'awards') AS awards_cnt,
+      count(*) FILTER (WHERE corpus_type = 'sam') AS sam_cnt
+    FROM v2.topic_assignments
+    WHERE merged_topic_id IS NOT NULL
+    GROUP BY merged_model_id, merged_topic_id
+    UNION ALL
+    -- Origin assignments (for per-corpus topics: awards, sam, web, web-govwide)
+    SELECT origin_model_id AS model_id, origin_topic_id AS topic_id,
+      count(*) AS cnt,
+      count(*) FILTER (WHERE corpus_type = 'awards') AS awards_cnt,
+      count(*) FILTER (WHERE corpus_type = 'sam') AS sam_cnt
+    FROM v2.topic_assignments
+    GROUP BY origin_model_id, origin_topic_id
+  ) combined
+  GROUP BY model_id, topic_id
 )
 SELECT
   tl.model_id,
