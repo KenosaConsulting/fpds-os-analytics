@@ -286,76 +286,55 @@ class FPDSServer:
             )
         return {"query": q, "results": results}
 
-    def _fetch_topics(self, dataset_id: str, params: dict[str, Any]) -> list[dict[str, Any]]:
-        """Fetch topic data. With API key, use large limit. Without, use public max (25)."""
-        if self.client.has_api_key:
-            params["limit"] = 1000
-        else:
-            params["limit"] = 25
-        response = self.client.get(f"/v1/datasets/{dataset_id}/rows", params)
-        return response.get("data", [])
-
     def topic_search(self, arguments: dict[str, Any]) -> dict[str, Any]:
         """Search topic labels across merged catalog and govwide canonical topics.
 
-        The API does not support text search on topic labels directly, so we
-        fetch results sorted by assignment count and filter client-side by
-        case-insensitive substring match on label, description, and NAICS.
-
-        Without an API key, searches the top 25 topics per dataset (public limit).
-        With an API key, searches up to 1000.
+        Uses server-side ILIKE search via the q parameter on datasets that
+        have searchable_columns configured. This searches the full corpus
+        regardless of API key status (public tier gets up to 25 matching
+        results, API key tier gets up to 1000).
         """
-        q = arguments["q"].lower()
+        q = arguments["q"]
         limit = min(int(arguments.get("limit") or 10), 100)
         include_canonical = arguments.get("include_canonical", True)
         department_code = arguments.get("department_code")
-        has_key = self.client.has_api_key
 
-        results: dict[str, Any] = {"query": arguments["q"], "sections": []}
-        if not has_key:
-            results["note"] = "Searching top 25 topics only (public access). Supply an API key for full search across all 9,313 merged topics."
+        results: dict[str, Any] = {"query": q, "sections": []}
 
-        # Search merged topics in the catalog
+        # Search merged topics in the catalog (server-side ILIKE)
         catalog_params: dict[str, Any] = {
             "corpus_type": "merged",
             "sort": "-assignment_count",
+            "q": q,
+            "limit": limit,
             "fields": "model_id,topic_id,department_code,label,description,naics_alignment,assignment_count,awards_count,sam_count",
         }
         if department_code:
             catalog_params["department_code"] = department_code
         try:
-            rows = self._fetch_topics("topics.catalog", catalog_params)
-            matched = [
-                row for row in rows
-                if q in (row.get("label") or "").lower()
-                or q in (row.get("description") or "").lower()
-                or q in (row.get("naics_alignment") or "").lower()
-            ][:limit]
+            response = self.client.get("/v1/datasets/topics.catalog/rows", catalog_params)
+            data = response.get("data", [])
             results["sections"].append({
                 "source": "topics.catalog (merged topics)",
-                "matched": len(matched),
-                "searched": len(rows),
-                "data": matched,
+                "matched": len(data),
+                "data": data,
             })
         except Exception as exc:
             results["sections"].append({"source": "topics.catalog", "error": str(exc)})
 
-        # Search govwide canonical topics
+        # Search govwide canonical topics (server-side ILIKE)
         if include_canonical:
             try:
-                rows = self._fetch_topics("topics.govwide_canonical", {
+                response = self.client.get("/v1/datasets/topics.govwide_canonical/rows", {
                     "sort": "-department_count",
+                    "q": q,
+                    "limit": limit,
                 })
-                matched = [
-                    row for row in rows
-                    if q in (row.get("canonical_label") or "").lower()
-                    or q in (row.get("canonical_description") or "").lower()
-                ][:limit]
+                data = response.get("data", [])
                 results["sections"].append({
                     "source": "topics.govwide_canonical (cross-department)",
-                    "matched": len(matched),
-                    "searched": len(rows),
-                    "data": matched,
+                    "matched": len(data),
+                    "data": data,
                 })
             except Exception as exc:
                 results["sections"].append({"source": "topics.govwide_canonical", "error": str(exc)})

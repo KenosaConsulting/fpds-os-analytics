@@ -1076,6 +1076,28 @@ def test_mcp_resolve_supports_vehicle_program_types() -> None:
     assert result["results"][0]["dimension_id"] == "vehicle_programs"
 
 
+def test_topic_catalog_supports_server_side_search() -> None:
+    catalog = load_catalog()
+    topics_catalog = catalog.get_dataset("topics.catalog")
+    govwide_canonical = catalog.get_dataset("topics.govwide_canonical")
+    assert topics_catalog.get("searchable_columns") == ["label", "description", "naics_alignment"]
+    assert govwide_canonical.get("searchable_columns") == ["canonical_label", "canonical_description"]
+    # Verify searchable columns are declared fields
+    for col in topics_catalog["searchable_columns"]:
+        assert col in topics_catalog["fields"]
+    for col in govwide_canonical["searchable_columns"]:
+        assert col in govwide_canonical["fields"]
+    # Verify query builder generates ILIKE for _search_q
+    sql, values, _limit, _offset = build_rows_query(
+        topics_catalog,
+        {"department_code": "036", "corpus_type": "merged", "_search_q": "cyber"},
+    )
+    assert '"label" ilike %s' in sql
+    assert '"description" ilike %s' in sql
+    assert '"naics_alignment" ilike %s' in sql
+    assert values[-5:-2] == ["%cyber%", "%cyber%", "%cyber%"]
+
+
 def test_mcp_clean_params_flattens_filters_and_lists() -> None:
     assert _clean_params(
         {

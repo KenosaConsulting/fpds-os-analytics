@@ -1365,12 +1365,15 @@ datasets:
     example_queries:
       - query: "/v1/datasets/topics.catalog/rows?department_code=036&corpus_type=merged&limit=25"
         explanation: "Browse all merged topics for the Department of Veterans Affairs."
+      - query: "/v1/datasets/topics.catalog/rows?department_code=036&corpus_type=merged&q=cybersecurity&limit=25"
+        explanation: "Search for cybersecurity-related topics at VA."
     backing_view: "analytics_api.topics_catalog"
     source_view: "topic_intelligence.mv_topic_catalog"
     grain: "model_id x topic_id"
     public_access: "public_bounded"
     required_filters_any: ["department_code", "corpus_type"]
     filters: ["department_code", "corpus_type", "naics_alignment"]
+    searchable_columns: ["label", "description", "naics_alignment"]
     sortable: ["assignment_count", "department_code", "corpus_type", "label"]
     default_sort: "-assignment_count"
     fields: ["model_id", "topic_id", "department_code", "corpus_type", "label", "description", "contextual_description", "naics_alignment", "document_count", "coherence_score", "model_keywords", "top_keywords", "source_corpus_count", "lineage_classification", "assignment_count", "awards_count", "sam_count"]
@@ -1535,6 +1538,9 @@ datasets:
     example_queries:
       - query: "/v1/datasets/topics.govwide_canonical/rows?limit=25"
         explanation: "Top 25 canonical topics ranked by cross-department prevalence."
+      - query: "/v1/datasets/topics.govwide_canonical/rows?q=cloud&limit=25"
+        explanation: "Search for cloud-related canonical topics across all departments."
+    searchable_columns: ["canonical_label", "canonical_description"]
     backing_view: "analytics_api.topics_govwide_canonical"
     source_view: "topic_intelligence.mv_govwide_canonical"
     grain: "canonical_topic_id"

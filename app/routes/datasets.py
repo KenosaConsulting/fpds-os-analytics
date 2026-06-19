@@ -60,6 +60,9 @@ def dataset_rows(
     catalog = load_catalog()
     dataset = catalog.get_dataset(dataset_id)
     params = {key: value for key, value in request.query_params.items()}
+    raw_q = params.pop("q", None)
+    if raw_q:
+        params["_search_q"] = raw_q
     response_format = params.get("format", "json").lower()
     if response_format not in {"json", "csv"}:
         raise APIError(400, "invalid_format", "Format must be 'json' or 'csv'.", param="format")
