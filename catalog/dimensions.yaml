@@ -101,6 +101,18 @@ dimensions:
     filters: ["raw_code", "vehicle_family", "is_gwac", "is_schedule", "is_idiq", "is_bpa", "is_open_market"]
     fields: ["raw_code", "label", "vehicle_family", "is_gwac", "is_schedule", "is_idiq", "is_bpa", "is_boa", "is_open_market", "sort_order", "notes"]
 
+  - id: "canonical_topics"
+    title: "Govwide Canonical Procurement Topics"
+    backing_view: "analytics_api.topics_govwide_canonical"
+    source_table: "topic_intelligence.mv_govwide_canonical"
+    key: "canonical_topic_id"
+    filters: ["canonical_topic_id", "department_count"]
+    searchable_columns: ["canonical_label", "canonical_description"]
+    fields: ["canonical_topic_id", "canonical_label", "canonical_description", "department_count", "departments", "total_assignments_govwide", "naics_alignment"]
+    caveats:
+      - "Topics are machine-derived semantic clusters from BERTopic, not official government classifications."
+      - "Canonical topics merge per-department topics at cosine similarity >= 0.85 across 30 departments."
+
   - id: "vehicle_programs"
     title: "Curated Vehicle Programs"
     backing_view: "analytics_api.dim_vehicle_programs"

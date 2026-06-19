@@ -73,7 +73,7 @@ async def _streaming_response_text(response) -> str:
 def test_catalog_has_expected_dataset_count() -> None:
     catalog = load_catalog()
     assert len(catalog.datasets) == 78
-    assert len(catalog.dimensions) == 16
+    assert len(catalog.dimensions) == 17
     assert {item["public_access"] for item in catalog.datasets.values()} == {"public_bounded", "api_key"}
 
 
@@ -292,6 +292,12 @@ def test_ai_assistant_guide_defines_safe_workflow() -> None:
     assert "9700" in " ".join(response["critical_notices"])
     assert "customer targeting" in response["copy_paste_prompt"]
     assert "notices" in response["copy_paste_prompt"]
+    goals = {goal["start_with_dataset"] for goal in response["common_user_goals"]}
+    assert "topics.agency_profile" in goals
+    assert "topics.catalog" in goals
+    assert "pipeline.recompete_watchlist" in goals
+    assert "contacts.office_roster" in goals
+    assert "market.entry_difficulty_score" in goals
 
 
 def test_query_builder_uses_facade_relation() -> None:
@@ -1058,6 +1064,22 @@ def test_mcp_resolve_wraps_dimension_search() -> None:
     assert result["results"][0]["dimension_id"] == "departments"
 
 
+def test_mcp_resolve_includes_topics_in_default_search() -> None:
+    class FakeClient:
+        def __init__(self) -> None:
+            self.calls = []
+
+        def get(self, path: str, params: dict[str, object] | None = None) -> dict[str, object]:
+            self.calls.append((path, params))
+            return {"data": [], "meta": {"dimension_id": path.rsplit("/", 1)[-1]}}
+
+    client = FakeClient()
+    server = FPDSServer(client)
+    result = server.resolve({"q": "cybersecurity", "limit": 3})
+    searched_dimensions = [call[0].rsplit("/", 1)[-1] for call in client.calls]
+    assert "canonical_topics" in searched_dimensions
+
+
 def test_mcp_resolve_supports_vehicle_program_types() -> None:
     class FakeClient:
         def __init__(self) -> None:
@@ -1074,6 +1096,16 @@ def test_mcp_resolve_supports_vehicle_program_types() -> None:
         ("/v1/dimensions/vehicle_programs", {"q": "oasis", "limit": 2}),
     ]
     assert result["results"][0]["dimension_id"] == "vehicle_programs"
+
+
+def test_canonical_topics_dimension_is_searchable_and_resolvable() -> None:
+    catalog = load_catalog()
+    dimension = catalog.get_dimension("canonical_topics")
+    assert dimension["backing_view"] == "analytics_api.topics_govwide_canonical"
+    assert dimension["key"] == "canonical_topic_id"
+    assert dimension["searchable_columns"] == ["canonical_label", "canonical_description"]
+    assert TYPE_TO_DIMENSION["topics"] == "canonical_topics"
+    assert TYPE_TO_DIMENSION["canonical_topics"] == "canonical_topics"
 
 
 def test_topic_catalog_supports_server_side_search() -> None:

@@ -64,11 +64,23 @@ paths:
         schema:
           type: string
           enum:
-          - pricing
-          - concentration
+          - acquisition
           - competition
-          - naics
+          - concentration
+          - contacts
+          - customer
+          - entrants
+          - funding
           - geography
+          - incumbent
+          - market
+          - naics
+          - pipeline
+          - pricing
+          - psc
+          - seasonality
+          - set_aside
+          - topics
       responses:
         '200':
           description: Dataset catalog.
@@ -309,13 +321,23 @@ paths:
         schema:
           type: string
           enum:
-          - pricing_codes
-          - competition_codes
-          - business_size_codes
+          - agencies
           - bundling_codes
+          - business_size_codes
+          - canonical_topics
+          - commercial_item_codes
+          - competition_codes
+          - contracting_offices
+          - departments
           - financing_codes
           - naics
+          - pricing_codes
+          - psc_codes
+          - reason_not_competed_codes
+          - set_aside_codes
           - states
+          - vehicle_programs
+          - vehicle_type_codes
       - name: q
         in: query
         description: Optional text search for dimensions that support it.

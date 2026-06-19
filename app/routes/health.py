@@ -84,6 +84,11 @@ def ai_assistant_guide() -> dict[str, object]:
             {"goal": "Identify dominant vendors or incumbents", "start_with_dataset": "concentration.vendor_market_leaders"},
             {"goal": "Find growing industries", "start_with_dataset": "naics.growth_leaders"},
             {"goal": "Understand where work happens", "start_with_dataset": "geography.state_trend_fy"},
+            {"goal": "Discover what an agency actually buys at sub-NAICS resolution", "start_with_dataset": "topics.agency_profile"},
+            {"goal": "Search procurement topics by keyword (e.g. cybersecurity, cloud, medical devices)", "start_with_dataset": "topics.catalog"},
+            {"goal": "Find expiring contracts to chase", "start_with_dataset": "pipeline.recompete_watchlist"},
+            {"goal": "Identify key contracting officers at an agency", "start_with_dataset": "contacts.office_roster"},
+            {"goal": "Assess how hard a market is to enter", "start_with_dataset": "market.entry_difficulty_score"},
         ],
         "copy_paste_prompt": (
             "You are helping me use the FPDS Analytics API. First read the API guide at /v1/ai-assistant-guide, "

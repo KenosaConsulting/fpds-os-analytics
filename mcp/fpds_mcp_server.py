@@ -28,6 +28,8 @@ TYPE_TO_DIMENSION = {
     "vehicle_program": "vehicle_programs",
     "vehicle_programs": "vehicle_programs",
     "vehicles": "vehicle_programs",
+    "topics": "canonical_topics",
+    "canonical_topics": "canonical_topics",
 }
 
 
@@ -200,13 +202,13 @@ class FPDSServer:
             ),
             _tool(
                 "fpds_resolve",
-                "Resolve plain-English names to FPDS codes using the FPDS-009 dimension search. Searches departments, agencies, contracting offices, NAICS, PSC codes, and vehicle programs unless types are supplied.",
+                "Resolve plain-English names to FPDS codes using dimension search. Searches departments, agencies, contracting offices, NAICS, PSC codes, vehicle programs, and canonical procurement topics unless types are supplied.",
                 {
                     "q": {"type": "string", "description": "Name or description fragment to search for."},
                     "types": {
                         "type": "array",
                         "items": {"type": "string"},
-                        "description": "Optional types: departments, agencies, offices, naics, psc, vehicle_programs.",
+                        "description": "Optional types: departments, agencies, offices, naics, psc, vehicle_programs, topics.",
                     },
                     "limit": {"type": "integer", "minimum": 1, "maximum": 100},
                 },
@@ -222,7 +224,7 @@ class FPDSServer:
             ),
             _tool(
                 "fpds_topic_search",
-                "Search procurement topics by keyword. Finds machine-derived sub-market topics matching a text query across 9,313 merged topics and 4,969 govwide canonical topics. Returns topic labels, descriptions, NAICS alignment, department, and assignment counts. Use this when a user asks about specific procurement domains like 'cybersecurity', 'cloud migration', 'medical devices', etc.",
+                "Search procurement topics by keyword. Finds machine-derived sub-market topics matching a text query across 9,313 merged topics and 4,969 govwide canonical topics. Topics are a semantic dimension parallel to NAICS — they decompose broad classification codes into what agencies actually buy. Use fpds_resolve(types=['topics']) for quick canonical topic lookups, or this tool for comprehensive cross-corpus search with department scoping. Use when a user asks about specific procurement domains like 'cybersecurity', 'cloud migration', 'medical devices', etc.",
                 {
                     "q": {"type": "string", "description": "Topic search query — a procurement domain, technology, or capability (e.g. 'cybersecurity', 'cloud', 'medical devices')."},
                     "department_code": {"type": "string", "description": "Optional USASpending department code to scope results to one agency."},
@@ -268,7 +270,7 @@ class FPDSServer:
 
     def resolve(self, arguments: dict[str, Any]) -> dict[str, Any]:
         q = arguments["q"]
-        raw_types = arguments.get("types") or ["departments", "agencies", "offices", "naics", "psc", "vehicle_programs"]
+        raw_types = arguments.get("types") or ["departments", "agencies", "offices", "naics", "psc", "vehicle_programs", "topics"]
         limit = min(int(arguments.get("limit") or 10), 100)
         results = []
         for raw_type in raw_types:
