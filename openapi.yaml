@@ -453,6 +453,17 @@ components:
         - set_aside.kpi_summary
         - set_aside.office_profile_fy
         - set_aside.trend_fy
+        - topics.agency_profile
+        - topics.catalog
+        - topics.competitive_landscape
+        - topics.contract_type_profile
+        - topics.document_links
+        - topics.govwide_canonical
+        - topics.lineage
+        - topics.naics_decomposition
+        - topics.psc_decomposition
+        - topics.set_aside_profile
+        - topics.trends
   schemas:
     ServiceMetadata:
       type: object

@@ -149,7 +149,9 @@ class FPDSServer:
         return self._catalog_cache
 
     def tools(self) -> list[dict[str, Any]]:
-        domain_summary = _domain_summary(self.catalog())
+        catalog = self.catalog()
+        domain_summary = _domain_summary(catalog)
+        dataset_listing = _dataset_summary(catalog)
         return [
             _tool(
                 "fpds_list_datasets",
@@ -165,7 +167,9 @@ class FPDSServer:
             _tool(
                 "fpds_query_dataset",
                 "Query bounded rows from a documented FPDS dataset. Use fpds_list_datasets or fpds_describe_dataset first to discover dataset IDs and allowed filters. Documented datasets only, allowlisted filters, bounded rows, no SQL.\n\nDomains: "
-                + domain_summary,
+                + domain_summary
+                + "\n\n"
+                + dataset_listing,
                 {
                     "dataset_id": {"type": "string", "description": "Dataset ID from fpds_list_datasets."},
                     "filters": {"type": "object", "description": "Allowed dataset filters as key/value pairs."},
