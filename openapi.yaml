@@ -1,8 +1,8 @@
 openapi: 3.1.0
 info:
   title: FPDS Analytics API
-  version: '2026-06-02'
-  summary: Public read-only API over Kenosa's FPDS analytics schemas.
+  version: '2026-06-18'
+  summary: Public read-only API over Kenosa's FPDS analytics schemas — 78 datasets across 11 domains including topic intelligence.
   description: 'Dataset-oriented API for FPDS procurement analytics report views.
 
     The API exposes curated analytics datasets and dimensions only; it does not expose arbitrary SQL or raw FPDS tables.

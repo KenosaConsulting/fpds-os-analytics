@@ -10,7 +10,7 @@
         ║     ▁▂▃▄▅▆▇  COMPETITIVE INTELLIGENCE ENGINE  ▇▆▅▄▃▂▁             ║
         ║                                                                   ║
         ║     ┌───────────────────────────────────────────────────────┐     ║
-        ║     │  67 datasets · 16 dimensions · 99M+ federal actions   │     ║
+        ║     │  78 datasets · 16 dimensions · 99M+ federal actions   │     ║
         ║     │  REST + MCP  · MIT License   · Zero config to start   │     ║
         ║     └───────────────────────────────────────────────────────┘     ║
         ║                                                                   ║
@@ -23,7 +23,7 @@
 
 This API turns 99 million FPDS contract actions into the
 intelligence that wins proposals — pricing patterns, incumbent maps, market
-entry difficulty scores, vehicle-program winners, recompete timelines, and 63
+entry difficulty scores, vehicle-program winners, recompete timelines, and 74
 more analytics datasets — ready to query from a single endpoint.
 
 No database to run. No data to download. No PhD required.
@@ -73,7 +73,7 @@ Think of it this way:
 
 ---
 
-## 🧬 What You Get: 13 Intelligence Packages
+## 🧬 What You Get: 14 Intelligence Packages
 
 Each package answers a strategic question. Each contains multiple datasets
 tuned for different grains and use cases.
@@ -97,6 +97,7 @@ tuned for different grains and use cases.
   │  Recompete Pipeline           What contracts are expiring soon?     │
   │  Contracting Officers         Who handles the buying — and how?     │
   │  Fiscal Seasonality           When does this customer spend?        │
+  │  Topic Intelligence           What sub-markets exist in this NAICS? │
   │                                                                     │
   └─────────────────────────────────────────────────────────────────────┘
 ```
@@ -109,6 +110,14 @@ recompete contract handlers, and human-attribution coverage per office.
 The enhanced Recompete Pipeline now shows who created and approved each
 expiring contract.
 
+The **Topic Intelligence** package is the first machine-derived procurement
+topic layer across the federal government — 9,313 topics discovered by
+BERTopic decomposing broad NAICS codes into the actual sub-markets
+agencies buy. 11 datasets cover topic catalogs, NAICS/PSC decomposition,
+set-aside and contract-type profiles, YoY trends, competitive landscape
+(all vendors, no cap), document links to strategic plans, and 4,969
+govwide canonical topics clustered across 30 departments.
+
 Plus four **cross-cutting analytics** that don't belong to a single package:
 
 | Dataset | What it tells you |
@@ -118,7 +127,7 @@ Plus four **cross-cutting analytics** that don't belong to a single package:
 | **Market Entry Difficulty** | A composite score blending HHI concentration, sole-source share, vehicle dependence, average offers received, and incumbent tenure — one number that says "how hard is this market to crack" |
 | **Award-Size Distribution** | Median, P25, and P75 award sizes by agency × NAICS, plus under-SAT (simplified acquisition threshold) share |
 
-**67 datasets. 16 code-lookup dimensions. Every query bounded, parameterized,
+**78 datasets. 16 code-lookup dimensions. Every query bounded, parameterized,
 and documented.**
 
 ### Vehicle-program deployment note
@@ -274,13 +283,18 @@ target, why, and when":
   ──────   geography.city_leaders → Sub-state drill-down
            geography.mismatch_leaders → Vendor HQ vs. performance site
 
-  Step 9   One-call summary
+  Step 9   What exactly do they buy — beyond NAICS?
+  ──────   topics.naics_decomposition → Sub-markets within a NAICS code
+           topics.competitive_landscape → Who dominates each sub-market?
+           topics.trends → Which sub-markets are growing/declining?
+
+  Step 10  One-call summary
   ──────   GET /v1/profiles/customer → Full Customer 360 in one request
 ```
 
 > **The goal:** Who should we target, why them, how hard will entry be, what's
-> expiring soon, and what customer-specific story should we tell in the
-> proposal?
+> expiring soon, what sub-markets are growing, and what customer-specific
+> story should we tell in the proposal?
 
 ---
 
@@ -373,7 +387,7 @@ Every response includes:
 | Service metadata | `GET /v1` | API version and status |
 | Health check | `GET /v1/health` | Service and catalog health |
 | AI assistant guide | `GET /v1/ai-assistant-guide` | Paste-ready instructions for any AI |
-| List datasets | `GET /v1/catalog` | Browse all 67 analytics datasets |
+| List datasets | `GET /v1/catalog` | Browse all 78 analytics datasets |
 | Describe dataset | `GET /v1/datasets/{id}` | Fields, filters, sorts, caveats, examples |
 | Query rows | `GET /v1/datasets/{id}/rows` | Bounded analytics with filters and pagination |
 | Customer 360 | `GET /v1/profiles/customer` | Eight-section customer intelligence profile |
@@ -418,7 +432,7 @@ limits are all validated against the catalog before any query is built.
 | [CHANGELOG.md](CHANGELOG.md) | What changed and when — sprint by sprint |
 | [docs/QUICKSTART.md](docs/QUICKSTART.md) | Your first API calls in 2 minutes |
 | [docs/METHODOLOGY.md](docs/METHODOLOGY.md) | How every number is computed — source data, MVs, formulas |
-| [docs/DATASETS.md](docs/DATASETS.md) | Field-by-field reference for all 67 datasets |
+| [docs/DATASETS.md](docs/DATASETS.md) | Field-by-field reference for all 78 datasets |
 | [docs/API_FUNCTIONS.md](docs/API_FUNCTIONS.md) | Detailed endpoint documentation |
 | [docs/AI_ASSISTANT_GUIDE.md](docs/AI_ASSISTANT_GUIDE.md) | Instructions for AI assistants |
 | [docs/LLM_INTEGRATIONS.md](docs/LLM_INTEGRATIONS.md) | MCP, ChatGPT, Claude, and Gemini integration guide |
@@ -435,7 +449,7 @@ git clone https://github.com/KenosaConsulting/fpds-os-analytics.git
 cd fpds-os-analytics
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-python -m pytest tests -q   # 67 tests, should be green
+python -m pytest tests -q   # 78+ tests, should be green
 ```
 
 The test suite validates catalog contracts, query guardrails, and API behavior
@@ -450,11 +464,11 @@ without a database connection. To run the API server against live data, see the
 fpds-os-analytics/
 ├── app/              FastAPI service (routes, query builder, catalog loader)
 ├── catalog/          Dataset + dimension registries (single source of truth)
-│   ├── datasets.yaml     67 datasets with filters, sorts, fields, caveats
+│   ├── datasets.yaml     78 datasets with filters, sorts, fields, caveats
 │   └── dimensions.yaml   16 code-lookup dimensions
 ├── mcp/              MCP server for AI assistants (7 tools, stdio transport)
 ├── sql/              26 numbered database templates (MVs, views, indexes)
-├── tests/            Guardrail + contract tests (67 tests)
+├── tests/            Guardrail + contract tests (78+ tests)
 ├── docs/             User and developer documentation
 ├── examples/         Example API calls
 ├── openapi.yaml      OpenAPI 3.1 specification
