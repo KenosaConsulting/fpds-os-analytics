@@ -34,16 +34,24 @@ TYPE_TO_DIMENSION = {
 @dataclass
 class FPDSClient:
     api_base_url: str
+    api_key: str | None = None
 
     def __post_init__(self) -> None:
         self.api_base_url = self.api_base_url.rstrip("/")
+
+    @property
+    def has_api_key(self) -> bool:
+        return bool(self.api_key)
 
     def get(self, path: str, params: dict[str, Any] | None = None) -> dict[str, Any]:
         query = _clean_params(params or {})
         url = f"{self.api_base_url}{path}"
         if query:
             url = f"{url}?{urlencode(query, doseq=True)}"
-        request = Request(url, headers=JSON_HEADERS)
+        headers = dict(JSON_HEADERS)
+        if self.api_key:
+            headers["X-API-Key"] = self.api_key
+        request = Request(url, headers=headers)
         with urlopen(request, timeout=30) as response:
             return json.loads(response.read().decode("utf-8"))
 
@@ -72,6 +80,38 @@ def _dataset_summary(catalog: dict[str, Any]) -> str:
         if dataset_id:
             lines.append(f"{dataset_id}: {description}")
     return "\n".join(lines)
+
+
+def _domain_summary(catalog: dict[str, Any]) -> str:
+    """Compact domain → dataset count + one-line purpose for the query tool description."""
+    domains: dict[str, list[str]] = {}
+    for dataset in catalog.get("data", []):
+        domain = dataset.get("domain", "other")
+        dataset_id = dataset.get("id", "")
+        domains.setdefault(domain, []).append(dataset_id)
+    lines = []
+    domain_descriptions = {
+        "pricing": "Contract pricing structures and risk",
+        "concentration": "Vendor concentration and incumbent strength",
+        "competition": "Competed vs sole-source, bundling, offer patterns",
+        "naics": "Industry demand by NAICS sector",
+        "geography": "Where federal work is performed",
+        "customer": "Agency and office buying profiles",
+        "market": "Market sizing by agency x NAICS x office",
+        "incumbent": "Who wins and how entrenched they are",
+        "set_aside": "Small business and socioeconomic programs",
+        "psc": "Product/service code analytics",
+        "vehicle": "GWAC, Schedule, IDIQ vehicle usage",
+        "recompete": "Expiring contracts and recompete pipeline",
+        "seasonality": "Fiscal-month and quarter spending patterns",
+        "topics": "Machine-derived procurement sub-markets (topic intelligence)",
+        "contacts": "Contracting officer profiles and activity",
+        "entrants": "New vendor market entry and survival",
+    }
+    for domain, ids in sorted(domains.items()):
+        desc = domain_descriptions.get(domain, "")
+        lines.append(f"{domain} ({len(ids)} datasets): {desc}")
+    return "; ".join(lines)
 
 
 def _json_text(payload: Any) -> dict[str, Any]:
@@ -109,23 +149,23 @@ class FPDSServer:
         return self._catalog_cache
 
     def tools(self) -> list[dict[str, Any]]:
-        dataset_descriptions = _dataset_summary(self.catalog())
+        domain_summary = _domain_summary(self.catalog())
         return [
             _tool(
                 "fpds_list_datasets",
-                "List documented FPDS analytics datasets with descriptions, filters, fields, examples, and caveats.",
-                {"domain": {"type": "string", "description": "Optional dataset domain filter."}},
+                "List documented FPDS analytics datasets with descriptions, filters, fields, examples, and caveats. Use domain filter to narrow results. Call this first to discover dataset IDs before querying.",
+                {"domain": {"type": "string", "description": "Optional domain filter: pricing, concentration, competition, naics, geography, customer, market, incumbent, set_aside, psc, vehicle, recompete, seasonality, topics, contacts, entrants."}},
             ),
             _tool(
                 "fpds_describe_dataset",
-                "Describe one FPDS dataset, including allowed filters, sortable fields, examples, caveats, and field descriptions.",
+                "Describe one FPDS dataset, including allowed filters, sortable fields, examples, caveats, and field descriptions. Call this before querying an unfamiliar dataset.",
                 {"dataset_id": {"type": "string", "description": "Dataset ID from fpds_list_datasets."}},
                 ["dataset_id"],
             ),
             _tool(
                 "fpds_query_dataset",
-                "Query bounded rows from a documented FPDS dataset. Same REST guardrails apply: documented datasets only, allowlisted filters, bounded rows, no SQL.\n\nAvailable datasets:\n"
-                + dataset_descriptions,
+                "Query bounded rows from a documented FPDS dataset. Use fpds_list_datasets or fpds_describe_dataset first to discover dataset IDs and allowed filters. Documented datasets only, allowlisted filters, bounded rows, no SQL.\n\nDomains: "
+                + domain_summary,
                 {
                     "dataset_id": {"type": "string", "description": "Dataset ID from fpds_list_datasets."},
                     "filters": {"type": "object", "description": "Allowed dataset filters as key/value pairs."},
@@ -176,6 +216,17 @@ class FPDSServer:
                     "contracting_agency_id": {"type": "string", "description": "Contracting agency code."},
                 },
             ),
+            _tool(
+                "fpds_topic_search",
+                "Search procurement topics by keyword. Finds machine-derived sub-market topics matching a text query across 9,313 merged topics and 4,969 govwide canonical topics. Returns topic labels, descriptions, NAICS alignment, department, and assignment counts. Use this when a user asks about specific procurement domains like 'cybersecurity', 'cloud migration', 'medical devices', etc.",
+                {
+                    "q": {"type": "string", "description": "Topic search query — a procurement domain, technology, or capability (e.g. 'cybersecurity', 'cloud', 'medical devices')."},
+                    "department_code": {"type": "string", "description": "Optional USASpending department code to scope results to one agency."},
+                    "limit": {"type": "integer", "minimum": 1, "maximum": 100, "description": "Max results (default 10)."},
+                    "include_canonical": {"type": "boolean", "description": "Also search govwide canonical topics (default true)."},
+                },
+                ["q"],
+            ),
         ]
 
     def call_tool(self, name: str, arguments: dict[str, Any]) -> dict[str, Any]:
@@ -207,6 +258,8 @@ class FPDSServer:
             return _json_text(self.resolve(arguments))
         if name == "fpds_customer_profile":
             return _json_text(self.client.get("/v1/profiles/customer", arguments))
+        if name == "fpds_topic_search":
+            return _json_text(self.topic_search(arguments))
         raise ValueError(f"Unknown tool: {name}")
 
     def resolve(self, arguments: dict[str, Any]) -> dict[str, Any]:
@@ -228,6 +281,82 @@ class FPDSServer:
                 }
             )
         return {"query": q, "results": results}
+
+    def _fetch_topics(self, dataset_id: str, params: dict[str, Any]) -> list[dict[str, Any]]:
+        """Fetch topic data. With API key, use large limit. Without, use public max (25)."""
+        if self.client.has_api_key:
+            params["limit"] = 1000
+        else:
+            params["limit"] = 25
+        response = self.client.get(f"/v1/datasets/{dataset_id}/rows", params)
+        return response.get("data", [])
+
+    def topic_search(self, arguments: dict[str, Any]) -> dict[str, Any]:
+        """Search topic labels across merged catalog and govwide canonical topics.
+
+        The API does not support text search on topic labels directly, so we
+        fetch results sorted by assignment count and filter client-side by
+        case-insensitive substring match on label, description, and NAICS.
+
+        Without an API key, searches the top 25 topics per dataset (public limit).
+        With an API key, searches up to 1000.
+        """
+        q = arguments["q"].lower()
+        limit = min(int(arguments.get("limit") or 10), 100)
+        include_canonical = arguments.get("include_canonical", True)
+        department_code = arguments.get("department_code")
+        has_key = self.client.has_api_key
+
+        results: dict[str, Any] = {"query": arguments["q"], "sections": []}
+        if not has_key:
+            results["note"] = "Searching top 25 topics only (public access). Supply an API key for full search across all 9,313 merged topics."
+
+        # Search merged topics in the catalog
+        catalog_params: dict[str, Any] = {
+            "corpus_type": "merged",
+            "sort": "-assignment_count",
+            "fields": "model_id,topic_id,department_code,label,description,naics_alignment,assignment_count,awards_count,sam_count",
+        }
+        if department_code:
+            catalog_params["department_code"] = department_code
+        try:
+            rows = self._fetch_topics("topics.catalog", catalog_params)
+            matched = [
+                row for row in rows
+                if q in (row.get("label") or "").lower()
+                or q in (row.get("description") or "").lower()
+                or q in (row.get("naics_alignment") or "").lower()
+            ][:limit]
+            results["sections"].append({
+                "source": "topics.catalog (merged topics)",
+                "matched": len(matched),
+                "searched": len(rows),
+                "data": matched,
+            })
+        except Exception as exc:
+            results["sections"].append({"source": "topics.catalog", "error": str(exc)})
+
+        # Search govwide canonical topics
+        if include_canonical:
+            try:
+                rows = self._fetch_topics("topics.govwide_canonical", {
+                    "sort": "-department_count",
+                })
+                matched = [
+                    row for row in rows
+                    if q in (row.get("canonical_label") or "").lower()
+                    or q in (row.get("canonical_description") or "").lower()
+                ][:limit]
+                results["sections"].append({
+                    "source": "topics.govwide_canonical (cross-department)",
+                    "matched": len(matched),
+                    "searched": len(rows),
+                    "data": matched,
+                })
+            except Exception as exc:
+                results["sections"].append({"source": "topics.govwide_canonical", "error": str(exc)})
+
+        return results
 
 
 def _success(request_id: Any, result: Any) -> dict[str, Any]:
@@ -282,6 +411,11 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         default=os.environ.get("FPDS_API_BASE_URL"),
         help="Base URL for the FPDS Analytics API, for example https://analytics-api.example.com",
     )
+    parser.add_argument(
+        "--api-key",
+        default=os.environ.get("FPDS_API_KEY"),
+        help="Optional API key for higher rate limits and larger result sets.",
+    )
     return parser.parse_args(argv)
 
 
@@ -290,7 +424,7 @@ def main(argv: list[str] | None = None) -> int:
     if not args.api_base_url:
         sys.stderr.write("Set --api-base-url or FPDS_API_BASE_URL.\n")
         return 2
-    serve(FPDSServer(FPDSClient(args.api_base_url)))
+    serve(FPDSServer(FPDSClient(args.api_base_url, api_key=args.api_key)))
     return 0
 
 
