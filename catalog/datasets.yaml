@@ -1,4 +1,4 @@
-version: "2026-06-17"
+version: "2026-06-18"
 source_reference: "docs/analytics-schema-reference.md"
 notes:
   - "Initial public API catalog exposes report-deck views first."
@@ -1357,3 +1357,189 @@ datasets:
     sortable: ["human_attribution_share", "total_obligated", "fiscal_year", "distinct_human_contacts"]
     default_sort: "-fiscal_year"
     fields: ["contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "contracting_office_id", "contracting_office_name", "fiscal_year", "total_actions", "total_obligated", "human_actions", "human_obligated", "human_attribution_share", "distinct_human_contacts"]
+
+  - id: "topics.catalog"
+    title: "Topic Catalog"
+    domain: "topics"
+    description: "Browsable directory of all machine-derived procurement topics. Each topic is a semantically coherent cluster of federal procurement language discovered by BERTopic. Topics decompose broad NAICS codes into actual sub-markets. Entry point for all topic intelligence queries."
+    example_queries:
+      - query: "/v1/datasets/topics.catalog/rows?department_code=036&corpus_type=merged&limit=25"
+        explanation: "Browse all merged topics for the Department of Veterans Affairs."
+    backing_view: "analytics_api.topics_catalog"
+    source_view: "topic_intelligence.mv_topic_catalog"
+    grain: "model_id x topic_id"
+    public_access: "public_bounded"
+    required_filters_any: ["department_code", "corpus_type"]
+    filters: ["department_code", "corpus_type", "naics_alignment"]
+    sortable: ["assignment_count", "department_code", "corpus_type", "label"]
+    default_sort: "-assignment_count"
+    fields: ["model_id", "topic_id", "department_code", "corpus_type", "label", "description", "contextual_description", "naics_alignment", "document_count", "coherence_score", "model_keywords", "top_keywords", "source_corpus_count", "lineage_classification", "assignment_count", "awards_count", "sam_count"]
+
+  - id: "topics.agency_profile"
+    title: "Topic Agency Profile"
+    domain: "topics"
+    description: "What does this agency buy, decomposed into topics? Shows the full topic distribution for a department at office-level grain with FPDS org hierarchy for cross-analytics compatibility. Use to understand an agency's procurement portfolio at sub-NAICS resolution."
+    example_queries:
+      - query: "/v1/datasets/topics.agency_profile/rows?department_code=036&limit=25"
+        explanation: "Top topics for the Department of Veterans Affairs ranked by assignment count."
+    backing_view: "analytics_api.topics_agency_profile"
+    source_view: "topic_intelligence.mv_agency_profile"
+    grain: "department_code x contracting_office_id x topic"
+    public_access: "public_bounded"
+    required_filters_any: ["department_code", "contracting_dept_id", "contracting_office_id"]
+    filters: ["department_code", "contracting_dept_id", "contracting_agency_id", "contracting_office_id", "model_id", "topic_id"]
+    sortable: ["assignment_count", "total_obligated", "topic_share", "rank"]
+    default_sort: "-assignment_count"
+    fields: ["department_code", "contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "contracting_office_id", "contracting_office_name", "model_id", "topic_id", "topic_label", "topic_description", "naics_alignment", "assignment_count", "awards_count", "sam_count", "total_obligated", "topic_share", "rank"]
+
+  - id: "topics.lineage"
+    title: "Topic Lineage"
+    domain: "topics"
+    description: "Provenance and lineage of merged topics — which per-corpus topics (awards, SAM, web) merged into each merged topic. Shows classification (awards_only, awards_sam, all_three, etc.) and source topic details."
+    example_queries:
+      - query: "/v1/datasets/topics.lineage/rows?department_code=036&limit=25"
+        explanation: "Lineage of merged topics for VA — shows which awards and SAM topics merged."
+    backing_view: "analytics_api.topics_lineage"
+    source_view: "topic_intelligence.topic_lineage"
+    grain: "merged_model_id x merged_topic_id x source_corpus"
+    public_access: "public_bounded"
+    required_filters_any: ["department_code", "merged_model_id", "classification"]
+    filters: ["department_code", "merged_model_id", "merged_topic_id", "source_corpus", "classification"]
+    sortable: ["merged_topic_id", "classification", "source_corpus"]
+    default_sort: "merged_topic_id"
+    fields: ["merged_model_id", "merged_topic_id", "merged_topic_label", "department_code", "source_corpus", "source_topic_id", "source_model_id", "source_topic_label", "source_doc_count", "source_description", "source_naics_alignment", "classification", "merge_similarity", "similarity_score", "provenance_doc_count"]
+
+  - id: "topics.naics_decomposition"
+    title: "Topic NAICS Decomposition"
+    domain: "topics"
+    description: "One NAICS code decomposed into its constituent topics — the signature differentiation view. Shows what sub-markets exist within a broad classification code. Bidirectional: query by NAICS to see topics, or by topic to see NAICS alignment."
+    example_queries:
+      - query: "/v1/datasets/topics.naics_decomposition/rows?naics_code=541512&department_code=036&limit=25"
+        explanation: "What sub-markets exist within NAICS 541512 (Computer Systems Design) at VA?"
+    backing_view: "analytics_api.topics_naics_decomposition"
+    source_view: "topic_intelligence.mv_naics_decomposition"
+    grain: "naics_code x department_code x contracting_office_id x topic"
+    public_access: "public_bounded"
+    required_filters_any: ["naics_code", "department_code", "contracting_dept_id"]
+    filters: ["naics_code", "department_code", "contracting_dept_id", "contracting_agency_id", "contracting_office_id", "model_id", "topic_id"]
+    sortable: ["assignment_count", "total_obligated", "naics_topic_share"]
+    default_sort: "-assignment_count"
+    fields: ["naics_code", "naics_description", "department_code", "contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "contracting_office_id", "contracting_office_name", "model_id", "topic_id", "topic_label", "topic_description", "assignment_count", "total_obligated", "naics_topic_share", "document_count"]
+
+  - id: "topics.psc_decomposition"
+    title: "Topic PSC Decomposition"
+    domain: "topics"
+    description: "One PSC code decomposed into its constituent topics. Shows what sub-markets exist within a product/service code, enriched with PSC category and group classifications."
+    example_queries:
+      - query: "/v1/datasets/topics.psc_decomposition/rows?psc_code=D302&department_code=036&limit=25"
+        explanation: "What sub-markets exist within PSC D302 (IT Systems Development) at VA?"
+    backing_view: "analytics_api.topics_psc_decomposition"
+    source_view: "topic_intelligence.mv_psc_decomposition"
+    grain: "psc_code x department_code x contracting_office_id x topic"
+    public_access: "public_bounded"
+    required_filters_any: ["psc_code", "department_code", "contracting_dept_id"]
+    filters: ["psc_code", "psc_group", "department_code", "contracting_dept_id", "contracting_agency_id", "contracting_office_id", "model_id", "topic_id"]
+    sortable: ["assignment_count", "total_obligated", "psc_topic_share"]
+    default_sort: "-assignment_count"
+    fields: ["psc_code", "psc_description", "psc_category", "psc_group", "department_code", "contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "contracting_office_id", "contracting_office_name", "model_id", "topic_id", "topic_label", "assignment_count", "total_obligated", "psc_topic_share", "document_count"]
+
+  - id: "topics.set_aside_profile"
+    title: "Topic Set-Aside Profile"
+    domain: "topics"
+    description: "How topics intersect with socioeconomic set-aside programs. Shows what percentage of each topic's awards use small business, 8(a), HUBZone, SDVOSB, WOSB, and other set-aside categories. Directly actionable for small businesses evaluating which technical domains have set-aside opportunities."
+    example_queries:
+      - query: "/v1/datasets/topics.set_aside_profile/rows?department_code=036&set_aside_family=Small%20business&limit=25"
+        explanation: "Which VA topics have the most small business set-aside activity?"
+    backing_view: "analytics_api.topics_set_aside_profile"
+    source_view: "topic_intelligence.mv_set_aside_profile"
+    grain: "department_code x contracting_office_id x topic x set_aside_family"
+    public_access: "public_bounded"
+    required_filters_any: ["department_code", "contracting_dept_id", "model_id"]
+    filters: ["department_code", "contracting_dept_id", "contracting_agency_id", "contracting_office_id", "model_id", "topic_id", "set_aside_family", "is_positive_set_aside"]
+    sortable: ["assignment_count", "obligated_amount", "set_aside_share"]
+    default_sort: "-assignment_count"
+    fields: ["department_code", "contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "contracting_office_id", "contracting_office_name", "model_id", "topic_id", "topic_label", "set_aside_family", "set_aside_code", "is_positive_set_aside", "assignment_count", "set_aside_share", "obligated_amount"]
+
+  - id: "topics.contract_type_profile"
+    title: "Topic Contract Type Profile"
+    domain: "topics"
+    description: "How topics intersect with contract pricing types. Shows what percentage of each topic uses FFP, T&M, cost-reimbursable, and other pricing structures, with risk profile classification. Helps contractors understand how agencies structure deals in each topic domain."
+    example_queries:
+      - query: "/v1/datasets/topics.contract_type_profile/rows?department_code=036&pricing_family=Fixed%20Price&limit=25"
+        explanation: "Which VA topics are predominantly fixed-price?"
+    backing_view: "analytics_api.topics_contract_type_profile"
+    source_view: "topic_intelligence.mv_contract_type_profile"
+    grain: "department_code x contracting_office_id x topic x pricing_family"
+    public_access: "public_bounded"
+    required_filters_any: ["department_code", "contracting_dept_id", "model_id"]
+    filters: ["department_code", "contracting_dept_id", "contracting_agency_id", "contracting_office_id", "model_id", "topic_id", "pricing_family", "risk_profile"]
+    sortable: ["assignment_count", "obligated_amount", "pricing_share"]
+    default_sort: "-assignment_count"
+    fields: ["department_code", "contracting_dept_id", "contracting_dept_name", "contracting_agency_id", "contracting_agency_name", "contracting_office_id", "contracting_office_name", "model_id", "topic_id", "topic_label", "pricing_family", "pricing_type_raw", "risk_profile", "assignment_count", "pricing_share", "obligated_amount"]
+
+  - id: "topics.trends"
+    title: "Topic Trends"
+    domain: "topics"
+    description: "Year-over-year topic growth and decline signals. Reveals which technical domains within a department are expanding, contracting, emerging, or fading. Trend classification based on YoY assignment count changes. Awards corpus only; FY >= 2010."
+    example_queries:
+      - query: "/v1/datasets/topics.trends/rows?department_code=036&trend_classification=growing&limit=25"
+        explanation: "Which VA topics are growing year-over-year?"
+    backing_view: "analytics_api.topics_trends"
+    source_view: "topic_intelligence.mv_topic_trends"
+    grain: "department_code x topic x fiscal_year"
+    public_access: "public_bounded"
+    required_filters_any: ["department_code", "contracting_dept_id"]
+    filters: ["department_code", "contracting_dept_id", "model_id", "topic_id", "fiscal_year", "trend_classification"]
+    sortable: ["fiscal_year", "assignment_count", "total_obligated", "yoy_growth_rate"]
+    default_sort: "-fiscal_year"
+    fields: ["department_code", "contracting_dept_id", "contracting_dept_name", "model_id", "topic_id", "topic_label", "fiscal_year", "assignment_count", "total_obligated", "prior_fy_count", "yoy_change", "yoy_growth_rate", "trend_classification", "first_fy", "last_fy"]
+
+  - id: "topics.competitive_landscape"
+    title: "Topic Competitive Landscape"
+    domain: "topics"
+    description: "Who dominates each topic? Vendor market share at semantic resolution. All vendors included — no artificial top-N cap. Use required filters for bounded queries. Shows contract count, obligations, and market share rank per topic."
+    example_queries:
+      - query: "/v1/datasets/topics.competitive_landscape/rows?department_code=036&topic_id=10&limit=25"
+        explanation: "Top vendors competing in topic 10 at VA, ranked by market share."
+    backing_view: "analytics_api.topics_competitive_landscape"
+    source_view: "topic_intelligence.mv_competitive_landscape"
+    grain: "department_code x topic x vendor_uei"
+    public_access: "public_bounded"
+    required_filters_any: ["department_code", "model_id", "vendor_uei"]
+    filters: ["department_code", "model_id", "topic_id", "vendor_uei"]
+    sortable: ["total_obligated", "topic_market_share", "rank", "contract_count"]
+    default_sort: "-total_obligated"
+    fields: ["department_code", "model_id", "topic_id", "topic_label", "vendor_uei", "vendor_name", "contract_count", "total_obligated", "topic_market_share", "rank"]
+
+  - id: "topics.document_links"
+    title: "Topic Document Links"
+    domain: "topics"
+    description: "Connects procurement topics to government strategic documents — plans, budgets, oversight reports, and policy. Shows which topics are referenced in which documents, with relevance scores. Bridges 'what the government buys' with 'why they buy it'."
+    example_queries:
+      - query: "/v1/datasets/topics.document_links/rows?department_code_document=036&document_type=agency-strategic-plan&limit=25"
+        explanation: "Which topics appear in VA strategic plans?"
+    backing_view: "analytics_api.topics_document_links"
+    source_view: "topic_intelligence.mv_document_links"
+    grain: "topic x document"
+    public_access: "public_bounded"
+    required_filters_any: ["department_code_topic", "department_code_document", "document_type", "model_id"]
+    filters: ["model_id", "topic_id", "department_code_topic", "department_code_document", "document_type", "fiscal_year"]
+    sortable: ["relevance_score", "fiscal_year"]
+    default_sort: "-relevance_score"
+    fields: ["model_id", "topic_id", "topic_label", "department_code_topic", "document_id", "document_title", "document_type", "document_subtype", "department_code_document", "fiscal_year", "source_url", "relevance_score", "link_type", "budget_signal", "temporal_signal", "confidence"]
+
+  - id: "topics.govwide_canonical"
+    title: "Govwide Canonical Topics"
+    domain: "topics"
+    description: "Cross-agency unified topic vocabulary — the N things the federal government actually buys, derived from language data across 30 departments. Topics clustered at cosine similarity >= 0.85. Ranked by cross-department prevalence. This doesn't exist anywhere else."
+    example_queries:
+      - query: "/v1/datasets/topics.govwide_canonical/rows?limit=25"
+        explanation: "Top 25 canonical topics ranked by cross-department prevalence."
+    backing_view: "analytics_api.topics_govwide_canonical"
+    source_view: "topic_intelligence.mv_govwide_canonical"
+    grain: "canonical_topic_id"
+    public_access: "public_bounded"
+    filters: ["canonical_topic_id", "department_count"]
+    sortable: ["department_count", "total_assignments_govwide", "canonical_label"]
+    default_sort: "-department_count"
+    fields: ["canonical_topic_id", "canonical_label", "canonical_description", "department_count", "departments", "total_assignments_govwide", "naics_alignment"]
