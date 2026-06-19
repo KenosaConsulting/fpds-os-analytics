@@ -111,7 +111,7 @@ The enhanced Recompete Pipeline now shows who created and approved each
 expiring contract.
 
 The **Topic Intelligence** package is the first machine-derived procurement
-topic layer across the federal government — 9,313 topics discovered by
+topic layer across the federal government — 24,000+ topics discovered by
 BERTopic decomposing broad NAICS codes into the actual sub-markets
 agencies buy. 11 datasets cover topic catalogs, NAICS/PSC decomposition,
 set-aside and contract-type profiles, YoY trends, competitive landscape
