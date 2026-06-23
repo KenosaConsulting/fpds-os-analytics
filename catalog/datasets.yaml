@@ -967,6 +967,60 @@ datasets:
   - small_biz_obligation_share
   - not_competed_action_share
   caveats: [Rolled up from office-level data. For office detail use market.office_naics_fy.]
+- id: market.naics_group_agency_fy
+  title: NAICS Group (4-Digit) Agency Market Sizing By Fiscal Year
+  domain: market
+  description: Pre-aggregated NAICS industry group dataset at the 4-digit level. Answers questions
+    like "which agencies buy the most IT professional services (5415)?" in a single bounded query
+    instead of requiring per-code lookups across dozens of 6-digit NAICS codes. Use naics_group
+    (4-digit) for industry-level analysis and market.agency_naics_fy for 6-digit detail.
+  example_queries:
+  - query: /v1/datasets/market.naics_group_agency_fy/rows?naics_group=5415&fiscal_year=2025&limit=25
+    explanation: Top agencies buying Computer Systems Design services in FY2025.
+  - query: /v1/datasets/market.naics_group_agency_fy/rows?contracting_dept_id=9700&fiscal_year_min=2022&limit=25
+    explanation: DoD industry group spending since FY2022.
+  backing_view: analytics_api.market_naics_group_agency_fy
+  source_view: naics_breakdown.report_deck_naics_group_agency_fy
+  grain: contracting_dept_id x contracting_agency_id x naics_group (4-digit) x fiscal_year
+  public_access: api_key
+  required_filters_any: [contracting_agency_id, contracting_dept_id, naics_group, sector_code]
+  filters: [fiscal_year, fiscal_year_min, fiscal_year_max, contracting_dept_id, contracting_agency_id,
+    naics_group, sector_code]
+  sortable: [fiscal_year, net_obligated_amount, approx_vendor_count, naics_code_count, total_action_count]
+  default_sort: -net_obligated_amount
+  fields:
+  - contracting_dept_id
+  - contracting_dept_name
+  - department_short_name
+  - contracting_agency_id
+  - contracting_agency_name
+  - agency_short_name
+  - naics_group
+  - naics_group_description
+  - sector_code
+  - sector_label
+  - fiscal_year
+  - is_current_fiscal_year_ytd
+  - total_action_count
+  - contract_scope_action_count
+  - net_obligated_amount
+  - contract_scope_obligated
+  - positive_obligated_amount
+  - base_and_all_options_value
+  - approx_vendor_count
+  - naics_code_count
+  field_descriptions:
+    naics_group: 4-digit NAICS industry group code (e.g. 5415 for Computer Systems Design).
+    naics_group_description: Industry group name from the NAICS hierarchy.
+    approx_vendor_count: Upper-bound estimate of distinct vendors. Vendors active in multiple
+      6-digit codes within the group are counted once per code, so the true distinct count may
+      be lower.
+    naics_code_count: Number of distinct 6-digit NAICS codes with activity in this group.
+  caveats:
+  - approx_vendor_count is an upper-bound sum of per-code vendor counts. Vendors active in
+    multiple 6-digit codes within the same 4-digit group are overcounted. Use market.agency_naics_fy
+    for exact per-code vendor counts.
+  - Rolled up from agency-level MV data. Office-level detail is not available at this grain.
 - id: market.office_naics_fy
   title: Office NAICS Market Sizing By Fiscal Year
   domain: market

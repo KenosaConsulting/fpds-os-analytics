@@ -447,6 +447,7 @@ components:
         - incumbent.agency_vendor_leaders
         - incumbent.office_vendor_leaders
         - market.agency_naics_fy
+        - market.naics_group_agency_fy
         - market.entry_difficulty_score
         - market.naics_customer_leaders
         - market.office_naics_fy
