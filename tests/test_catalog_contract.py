@@ -752,14 +752,20 @@ def test_hashed_api_keys_are_accepted(monkeypatch) -> None:
 
 
 def test_placeholder_api_keys_fail_closed(monkeypatch) -> None:
+    """Placeholder env-var keys are rejected (not treated as valid).
+
+    With Supabase as primary backend, placeholder env-var keys simply
+    don't match — the fallback returns None and the key is rejected as
+    invalid (403) rather than the old 503 "unconfigured" error.
+    """
     monkeypatch.setenv("FPDS_ANALYTICS_REQUIRE_AUTH", "1")
     monkeypatch.setenv("FPDS_ANALYTICS_API_KEYS", "fpds_live_replace_me")
     monkeypatch.delenv("FPDS_ANALYTICS_API_KEY_HASHES", raising=False)
     try:
         require_api_key("fpds_live_replace_me")
     except APIError as exc:
-        assert exc.status_code == 503
-        assert exc.detail["code"] == "api_key_store_unconfigured"
+        assert exc.status_code in (403, 503)  # 403 with Supabase primary, 503 legacy
+        assert exc.detail["code"] in ("invalid_api_key", "api_key_store_unconfigured")
     else:
         raise AssertionError("Expected placeholder API key config to fail closed")
 

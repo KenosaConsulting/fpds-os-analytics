@@ -9,7 +9,7 @@ from fastapi import APIRouter, Depends, Request
 from psycopg2 import errors as pg_errors
 from fastapi.responses import StreamingResponse
 
-from app.auth import APIAccess, optional_api_access, public_row_limit
+from app.auth import APIAccess, optional_api_access
 from app.catalog import load_catalog
 from app.db import db_cursor
 from app.errors import APIError
@@ -66,8 +66,8 @@ def dataset_rows(
     response_format = params.get("format", "json").lower()
     if response_format not in {"json", "csv"}:
         raise APIError(400, "invalid_format", "Format must be 'json' or 'csv'.", param="format")
-    if not access.is_authenticated:
-        params["_max_limit_override"] = str(public_row_limit())
+    # Enforce per-tier row limit (public gets default, authenticated keys get their tier limit)
+    params["_max_limit_override"] = str(access.max_rows_per_request)
     fields = selected_fields(dataset, params.get("fields"))
     sql, values, limit, offset = build_rows_query(dataset, params)
     try:

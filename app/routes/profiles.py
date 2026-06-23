@@ -7,7 +7,7 @@ from typing import Any
 
 from fastapi import APIRouter, Depends, Request
 
-from app.auth import APIAccess, optional_api_access, public_row_limit
+from app.auth import APIAccess, optional_api_access
 from app.catalog import load_catalog
 from app.db import db_cursor
 from app.errors import APIError
@@ -39,8 +39,7 @@ def _section_query(
     dataset = catalog.get_dataset(dataset_id)
     query_params = dict(params)
     query_params["limit"] = str(min(int(query_params.get("limit", SECTION_LIMIT)), SECTION_LIMIT))
-    if not access.is_authenticated:
-        query_params["_max_limit_override"] = str(public_row_limit())
+    query_params["_max_limit_override"] = str(access.max_rows_per_request)
 
     try:
         sql, values, limit, offset = build_rows_query(dataset, query_params)

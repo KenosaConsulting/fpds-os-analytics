@@ -27,14 +27,22 @@ def database_dsn() -> str:
 
 
 @contextmanager
-def db_cursor() -> Iterator[psycopg2.extensions.cursor]:
+def db_cursor(read_only: bool = True) -> Iterator[psycopg2.extensions.cursor]:
+    """Open a database cursor.
+
+    Args:
+        read_only: If True (default), sets the transaction to read-only.
+            Set to False for operations that need writes, such as
+            api_admin.validate_api_key() which updates rate-limit counters.
+    """
     conn = psycopg2.connect(database_dsn(), cursor_factory=psycopg2.extras.RealDictCursor)
     try:
         with conn:
             with conn.cursor() as cur:
                 statement_timeout = os.environ.get("FPDS_ANALYTICS_STATEMENT_TIMEOUT", "15s")
                 cur.execute("set local statement_timeout = %s", (statement_timeout,))
-                cur.execute("set local default_transaction_read_only = on")
+                if read_only:
+                    cur.execute("set local default_transaction_read_only = on")
                 yield cur
     finally:
         conn.close()
