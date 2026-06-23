@@ -11,7 +11,7 @@
 | ID | Status | Task | Acceptance Criteria |
 |---|---|---|---|
 | S7-001 | done | Design + deploy `private.api_keys` schema on Supabase | Tables: `api_keys`, `api_key_usage_log`, `rate_limits`. RPC: `validate_api_key()`. pgcrypto enabled. Grants to analytics readonly role. SQL template committed to `sql/`. Smoke tested: create→validate→revoke→reject cycle passed. Applied to kenosa-federal-intel `tfrhforjvaafmqmxmtrt`. |
-| S7-002 | todo | Modify `app/auth.py` to validate keys against Supabase | `optional_api_access` checks Supabase RPC when key is supplied. Env-var fallback for backward compat during migration. Per-tier row limits enforced. |
+| S7-002 | done | Modify `app/auth.py` to validate keys against Supabase | `optional_api_access` checks Supabase RPC when key is supplied. Env-var fallback for backward compat during migration. Per-tier row limits enforced. 429 for rate-limited keys. Public default raised 25→100. 78/78 tests green. |
 | S7-003 | todo | Admin key provisioning script | `scripts/manage_keys.py`: create, revoke, list, set-tier. Outputs plaintext key once on creation (never stored). |
 | S7-004 | todo | Define tier system in catalog/config | Tiers: public (25 rows, 60/min), beta (250 rows, 300/min), partner (1000 rows, 1000/min), internal (10000 rows, no limit). Tier metadata in `api_keys` table. |
 | S7-005 | todo | Issue beta keys for this week's testers | At least 2 beta keys generated and ready to distribute. |
