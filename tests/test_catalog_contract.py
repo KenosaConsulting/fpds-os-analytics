@@ -30,9 +30,16 @@ from app.routes.profiles import customer_profile  # noqa: E402
 from mcp.fpds_mcp_server import FPDSServer, TYPE_TO_DIMENSION, _clean_params, handle_message  # noqa: E402
 
 
+# Synthetic filters that don't map to a declared field — they generate
+# special SQL (prefix match, range bounds, etc.) rather than equality.
+SYNTHETIC_FILTERS = {"fiscal_year_min", "fiscal_year_max", "naics_prefix"}
+
+
 def _sample_value(filter_name: str) -> str:
     if filter_name in {"fiscal_year", "fiscal_year_min", "fiscal_year_max"}:
         return "2024"
+    if filter_name == "naics_prefix":
+        return "5415"
     if filter_name.endswith("_min") or filter_name.endswith("_max"):
         return "10000000"
     if filter_name.startswith("is_"):
@@ -166,6 +173,8 @@ def test_dataset_filters_and_sortables_are_declared_fields_or_synthetic() -> Non
     for dataset in catalog.datasets.values():
         fields = set(dataset.get("fields", []))
         for filter_name in dataset.get("filters", []):
+            if filter_name in SYNTHETIC_FILTERS:
+                continue  # Synthetic filters generate special SQL, no backing field
             if filter_name.endswith("_min") or filter_name.endswith("_max"):
                 base_field = filter_name.rsplit("_", 1)[0]
                 if base_field not in fields:

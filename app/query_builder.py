@@ -14,6 +14,12 @@ from .errors import APIError
 IDENT_RE = re.compile(r"^[a-z][a-z0-9_]*$")
 CONTROL_PARAMS = {"fields", "sort", "limit", "cursor", "format", "_max_limit_override", "_search_q"}
 
+# Synthetic prefix filters: map from filter name to the underlying column.
+# These generate LEFT(column, len(value)) = value instead of equality.
+PREFIX_FILTERS = {
+    "naics_prefix": "principal_naics_code",
+}
+
 
 def quote_ident(identifier: str) -> str:
     if not IDENT_RE.match(identifier):
@@ -206,7 +212,19 @@ def build_where(dataset: dict[str, Any], params: dict[str, str]) -> tuple[list[s
                 extra={"allowed_filters": sorted(allowed_filters)},
             )
 
-        if name == "fiscal_year_min":
+        if name in PREFIX_FILTERS:
+            target_column = PREFIX_FILTERS[name]
+            prefix_value = str(value).strip()
+            if not prefix_value.isdigit() or not (2 <= len(prefix_value) <= 5):
+                raise APIError(
+                    400,
+                    "invalid_filter",
+                    f"Prefix filter '{name}' must be 2-5 digits (e.g. '5415' for Computer Systems Design group).",
+                    param=name,
+                )
+            clauses.append(f"left({quote_ident(target_column)}, %s) = %s")
+            values.extend([len(prefix_value), prefix_value])
+        elif name == "fiscal_year_min":
             clauses.append(f"{quote_ident('fiscal_year')} >= %s")
             values.append(int(value))
         elif name == "fiscal_year_max":
