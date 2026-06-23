@@ -186,15 +186,15 @@ BEGIN
         v_count := 1;
     ELSIF v_now >= v_window_start + interval '60 seconds' THEN
         -- Window expired — reset
-        UPDATE api_admin.rate_limits
+        UPDATE api_admin.rate_limits AS rl
         SET window_start = v_now, request_count = 1
-        WHERE api_key_id = v_key.id;
+        WHERE rl.api_key_id = v_key.id;
         v_count := 1;
     ELSE
         -- Within window — increment
-        UPDATE api_admin.rate_limits
+        UPDATE api_admin.rate_limits AS rl
         SET request_count = request_count + 1
-        WHERE api_key_id = v_key.id
+        WHERE rl.api_key_id = v_key.id
         RETURNING request_count INTO v_count;
     END IF;
 
