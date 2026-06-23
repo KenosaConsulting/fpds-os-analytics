@@ -15,16 +15,16 @@
 | S7-003 | done | Admin key provisioning script | `scripts/manage_keys.py`: create, revoke, list, usage. Tested all 4 commands. Internal key created for CEO, stored in keychain. |
 | S7-004 | done | Define tier system in catalog/config | Tiers enforced in DB: public (100 rows default), beta (250/300rpm), partner (1000/1000rpm), internal (10K/unlimited). Key format: `fpds_{tier}_{base64url}`. |
 | S7-005 | done | Issue beta keys for this week's testers | 2 beta keys (90-day, 250 rows/300rpm) + 1 internal key (CEO, keychain). Keys in `memory/beta-keys-2026-06-22.md`. |
-| S7-006 | blocked | Deploy auth changes to Render | Git push blocked — gh token expired. Chairman deploying manually. |
+| S7-006 | done | Deploy auth changes to Render | gh token fixed. All commits pushed to origin. Chairman deploying to Render. |
 
 ## Phase B: API Usability Fixes (backlog items blocking AI consumers)
 
 | ID | Status | Task | Acceptance Criteria |
 |---|---|---|---|
 | S7-007 | done | BL-002: NAICS prefix filter | `naics_prefix=5415` works on 12 datasets. Server-side `LEFT()` match. 2-5 digit validation. Catalog + query_builder + tests updated. 78/78 green. |
-| S7-008 | todo | BL-003: Pre-aggregated NAICS group dataset | New MV at 4-digit NAICS group × dept × agency × FY grain. Catalog entry `market.naics_group_agency_fy`. |
+| S7-008 | done | BL-003: Pre-aggregated NAICS group dataset | View-based (no MV build). `market.naics_group_agency_fy` — 79 datasets total. sql/058 applied. Smoke tested. |
 | S7-009 | done | BL-004: Raise public row limit + pagination metadata | Public limit 25→100 (done in S7-002). Authenticated tiers get their configured limit. Cursor pagination already working. |
-| S7-010 | todo | Update MCP tool descriptions for new capabilities | `fpds_query_dataset` description updated with NAICS prefix, new dataset, tier info. |
+| S7-010 | done | Update MCP tool descriptions for new capabilities | Catalog-driven — MCP auto-discovers new datasets/filters from live API. No code changes needed. |
 
 ## Phase C: Testing + Validation
 
