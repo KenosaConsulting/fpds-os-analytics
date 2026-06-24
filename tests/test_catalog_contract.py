@@ -704,6 +704,50 @@ def test_public_limit_override_rejects_large_no_key_queries() -> None:
         raise AssertionError("Expected limit_too_large")
 
 
+def test_bl014_public_default_limit_matches_public_row_limit(monkeypatch) -> None:
+    """BL-014: public tier max_rows_per_request must match public_row_limit(),
+    not a hardcoded 25. Catalog max_limit values (500-1000) must be respected
+    for public access unless explicitly overridden."""
+    monkeypatch.setenv("FPDS_ANALYTICS_PUBLIC_ROW_LIMIT", "100")
+    access = APIAccess(key_id="public", is_authenticated=False)
+    assert access.max_rows_per_request == 100, (
+        f"Public default should be 100 (via public_row_limit), got {access.max_rows_per_request}"
+    )
+
+    # The override mechanism should cap at 100, not 25
+    catalog = load_catalog()
+    dataset = catalog.get_dataset("pricing.risk_scorecard")
+    # limit=50 should now succeed (was 400 when capped at 25)
+    sql, values, limit, offset = build_rows_query(
+        dataset, {"limit": "50", "_max_limit_override": str(access.max_rows_per_request)}
+    )
+    assert limit == 50
+    assert values[-2:] == [51, 0]
+
+    # limit=100 should also succeed
+    sql, values, limit, offset = build_rows_query(
+        dataset, {"limit": "100", "_max_limit_override": str(access.max_rows_per_request)}
+    )
+    assert limit == 100
+
+    # limit=101 should still fail (over the cap)
+    try:
+        build_rows_query(
+            dataset, {"limit": "101", "_max_limit_override": str(access.max_rows_per_request)}
+        )
+    except APIError as exc:
+        assert exc.detail["code"] == "limit_too_large"
+    else:
+        raise AssertionError("Expected limit_too_large for 101 > 100")
+
+
+def test_bl014_health_endpoint_reports_correct_public_limit(monkeypatch) -> None:
+    """BL-014: AI assistant guide must report the actual public_row_limit(), not hardcoded 25."""
+    monkeypatch.setenv("FPDS_ANALYTICS_PUBLIC_ROW_LIMIT", "100")
+    response = ai_assistant_guide()
+    assert response["auth"]["public_row_limit"] == 100
+
+
 def test_dataset_notices_include_dod_and_geography_limitations() -> None:
     catalog = load_catalog()
     competition_notices = " ".join(data_notices(catalog.get_dataset("competition.sole_source_hotspots")))

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter
 
+from app.auth import public_row_limit
 from app.catalog import load_catalog
 from app.notices import AGENCY_CODE_NOTICES, BRIEF_DATA_NOTICE, GEOGRAPHY_NOTICES, GLOBAL_DATA_NOTICES
 
@@ -99,6 +100,6 @@ def ai_assistant_guide() -> dict[str, object]:
         "auth": {
             "header": "X-Api-Key",
             "note": "Discovery and bounded dataset row endpoints are public. API keys are for paid, partner, or higher-volume access.",
-            "public_row_limit": 25,
+            "public_row_limit": public_row_limit(),
         },
     }

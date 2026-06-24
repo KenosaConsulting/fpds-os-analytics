@@ -32,7 +32,7 @@ class APIAccess:
     key_id: str
     is_authenticated: bool
     tier: str = "public"
-    max_rows_per_request: int = 25      # public default
+    max_rows_per_request: int = field(default_factory=lambda: public_row_limit())
     rate_limited: bool = False
 
 
