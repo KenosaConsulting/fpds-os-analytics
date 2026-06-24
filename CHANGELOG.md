@@ -244,3 +244,53 @@ every dataset show useful recent data.
 - 67-test guardrail suite
 - Dockerized deployment
 - MIT License
+
+## [Sprint 7] — 2026-06-24 — API User Management + Usability (in progress)
+
+### S7-011 — MCP Inspector Validation (done)
+
+Validated all 8 MCP tools via direct JSON-RPC stdio protocol test (14 checks).
+13/14 passed; 1 apparent failure was a test-harness key mismatch, not a server
+bug — the `fpds_customer_profile` response wraps sections under `data.*`
+(9 sections: spend_trend, top_naics, competition_posture, pricing_posture,
+set_aside_mix, top_incumbents, vehicle_mix, recompete_signals, narrative_hints),
+not top-level `sections`. Server returns correct structure.
+
+**Tools validated:**
+- `fpds_list_datasets` (79 datasets, domain filter works)
+- `fpds_describe_dataset` (returns filters, fields, examples, caveats)
+- `fpds_query_dataset` (rows + filters + pagination params)
+- `fpds_list_dimensions` (17 dimensions)
+- `fpds_lookup_dimension` (q=search works)
+- `fpds_resolve` (7-type cross-dimension search)
+- `fpds_customer_profile` (9 sections for VA dept 3600)
+- `fpds_topic_search` (cybersecurity → 5 matches across 2 sections)
+
+**Protocol checks:**
+- `initialize` handshake → server info returned
+- `notifications/initialized` → no response (correct)
+- `ping` → pong
+- `tools/list` → 8 tools
+- Unknown tool → JSON-RPC error -32601
+- Missing required param → error surfaced
+
+**Test harness:** `/tmp/mcp-s7-011-test.py` (re-runnable)
+
+### S7-013 — UEI→vendor name audit (done)
+
+Audited all 79 datasets for UEI exposure. 7 views expose UEI variants; 6 already
+had `vendor_name`. 1 gap: `incumbent.agency_naics_vendor_leaders`.
+
+Fix: sql/059 creates `analytics_dims.vendor_name_by_uei` (materialized lookup,
+561,261 rows, 4 source tables unioned). Facade view recreated with LEFT JOIN.
+
+Performance: v1 inline UNION made queries 66+ seconds; v2 materialized lookup
+brings latency to 216ms (309× speedup).
+
+Coverage: 99.998% (476,487 of 476,496 rows have vendor_name; 9 rows with
+unresolved UEIs).
+
+Catalog updated: `vendor_name` added to `incumbent.agency_naics_vendor_leaders`
+fields list.
+
+Pending: Render redeploy for live API to expose `vendor_name` in responses.

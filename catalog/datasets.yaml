@@ -1280,6 +1280,7 @@ datasets:
   - principal_naics_description
   - sector_label
   - uei
+  - vendor_name
   - is_small_business
   - total_obligated
   - recent_3yr_obligated
