@@ -249,7 +249,7 @@ every dataset show useful recent data.
 
 ### S7-014 — API Limitation Quick Wins (done, 2026-06-24)
 
-### S7-015 — Pre-Aggregated Cross-Cut Datasets (MV builds pending, 2026-06-24)
+### S7-015 — Pre-Aggregated Cross-Cut Datasets (done, 2026-06-24)
 
 Two new cross-cut datasets drafted to close the BL-019 gap from S7-012b.
 SQL written, catalog entries added, tests passing. MV builds pending.
