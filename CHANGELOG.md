@@ -247,6 +247,63 @@ every dataset show useful recent data.
 
 ## [Sprint 7] — 2026-06-24 — API User Management + Usability (in progress)
 
+### S7-014 — API Limitation Quick Wins (done, 2026-06-24)
+
+Resolved 9 backlog items from the S7-012b cross-cutting test findings. 10 new
+tests added (88 total, all passing). 3 commits: `50c129e`, `82728b6`, `d43ff6c`.
+
+**Critical fix:**
+
+- **BL-014 — Public row limit raised 25 → 100.** `APIAccess.max_rows_per_request`
+  was hardcoded to 25, ignoring the existing `public_row_limit()` function (which
+  returns 100 via `FPDS_ANALYTICS_PUBLIC_ROW_LIMIT` env var). The catalog declares
+  `max_limit: 500–1000`, but the override mechanism clamped to 25 before the query
+  builder saw it. Fixed in `app/auth.py` (uses `field(default_factory=public_row_limit)`)
+  and `app/routes/health.py` (calls `public_row_limit()` instead of hardcoded 25).
+  This was the root cause of 6 of 12 S7-012b test query failures.
+
+**Misattributions (were BL-014, not real bugs):**
+
+- **BL-015 — Documented filters rejected.** All 9 flagged filters (`is_in_state`,
+  `fiscal_year_min/max`, `is_cross_department`, `user_class`) and 3 sort params
+  work correctly. The 400 errors were `limit_too_large` from BL-014, misattributed
+  to the filter. Regression tests added.
+
+- **BL-017 — `fields` projection rejected.** The `fields` parameter works correctly
+  with sort + filter. Same root cause as BL-015. Regression test added.
+
+**Data quality fixes:**
+
+- **BL-024 — `sector_label` null.** All 1,722 rows in `fpds_naics_hierarchy_map`
+  had `sector_code` populated but `sector_label` NULL. Fixed via SQL migration
+  [sql/060_bl024_populate_sector_labels.sql](sql/060_bl024_populate_sector_labels.sql).
+  Affects `psc.naics_crosswalk`, `market.naics_customer_leaders`, `naics.growth_leaders`.
+
+- **BL-013 — `agency_short_name` null.** 120 of 371 agencies (up from 59) and 17
+  departments now have short names. Major civilian agencies (USDA, EPA, GSA, NASA,
+  DOE, HHS, HUD, DOJ, State, DOT, DHS, ED, USAID, SBA, NSF, NRC, etc.) all populated.
+  Via SQL migration [sql/061_bl013_populate_agency_short_names.sql](sql/061_bl013_populate_agency_short_names.sql).
+
+- **BL-021 — `data_as_of` timestamp.** 79 `dataset_refresh_log` entries populated
+  (table existed but was empty). `data_as_of` now returns real timestamps in API
+  responses.
+
+- **BL-022 — Negative obligations.** Rows with negative obligation values
+  (de-obligations) are now flagged with `_negative_obligation: true`. Response
+  meta includes `negative_obligation_count` when any negative rows are present.
+  Prevents misleading share calculations.
+
+- **BL-023 — `source_fiscal_years` hardcoded.** Was `[1958, 2026]` on every
+  response. Now computed from actual returned rows. `null` when the dataset has
+  no `fiscal_year` column.
+
+**Resolver fix:**
+
+- **BL-016/BL-012 — `fpds_resolve` fails for numeric codes.** Code columns
+  (`naics_code`, `psc_code`, `department_id`, `agency_id`) added to
+  `searchable_columns` in `catalog/dimensions.yaml`. Resolver now matches
+  numeric/alphanumeric codes, not just description text.
+
 ### S7-011 — MCP Inspector Validation (done)
 
 Validated all 8 MCP tools via direct JSON-RPC stdio protocol test (14 checks).
