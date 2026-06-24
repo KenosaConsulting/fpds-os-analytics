@@ -143,6 +143,7 @@ Improvements and enhancements tracked for future sprints.
 
 **Priority:** Low
 **Reported:** 2026-06-23 (S7-012 Q2, Q3)
+**Status:** FIXED 2026-06-24 (commit `82728b6`). Folded into BL-016 fix — code columns added to searchable_columns.
 **Context:** `fpds_resolve(q="541512")` and `fpds_resolve(q="541519")` returned 0 results. Only description-string queries ("Other Computer Related Services") resolved the code. Counter-intuitive — users naturally search by code, not description.
 
 **Impact:** Minor friction. AI fell back to `fpds_lookup_dimension(dimension_id=naics, filters={naics_code:"541512"})` which works, but the resolve tool should handle both.
@@ -155,6 +156,7 @@ Improvements and enhancements tracked for future sprints.
 
 **Priority:** Low
 **Reported:** 2026-06-23 (S7-012 Q3)
+**Status:** FIXED 2026-06-24 (commit `82728b6`). 120 agencies + 17 departments populated via SQL migration 061.
 **Context:** `agency_short_name` returned null for VA, State, IRS, NASA, and others in `market.entry_difficulty_score` and related datasets. AI had to fall back to `contracting_agency_name` for labeling.
 
 **Impact:** Cosmetic — doesn't block queries but makes output uglier and harder to scan.
@@ -182,6 +184,7 @@ Improvements and enhancements tracked for future sprints.
 
 **Priority:** High
 **Reported:** 2026-06-24 (S7-012b — Q4, Q8, Q9, Q10, Q14)
+**Status:** FIXED 2026-06-24 (commit `82728b6`). Confirmed as BL-014 misattribution — all filters work correctly. Regression tests added.
 **Context:** At least 6 filter parameters are documented in the catalog but rejected by the server:
 - `is_in_state` (geography.mismatch_leaders) — both boolean and string
 - `fiscal_year_min`/`fiscal_year_max` (set_aside.family_trend_fy, naics.trend_fy)
@@ -199,6 +202,7 @@ Improvements and enhancements tracked for future sprints.
 
 **Priority:** High
 **Reported:** 2026-06-24 (S7-012b — Q7, Q10, Q11)
+**Status:** FIXED 2026-06-24 (commit `82728b6`). Code columns (naics_code, psc_code, department_id, agency_id) added to searchable_columns in dimensions.yaml.
 **Context:** `fpds_resolve` returns 0 results for valid PSC codes ("R425"), NAICS codes ("541512", "541519"), and department codes ("97AK", "9761"). Only description-string queries resolve. This expands BL-012 (which only noted NAICS) — the resolver is broken across multiple dimension types.
 
 **Impact:** AI had to fall back to `fpds_lookup_dimension` with filters, adding friction. Users naturally search by code.
@@ -211,6 +215,7 @@ Improvements and enhancements tracked for future sprints.
 
 **Priority:** Medium
 **Reported:** 2026-06-24 (S7-012b — Q6, Q10, Q15)
+**Status:** FIXED 2026-06-24 (commit `82728b6`). Confirmed as BL-014 misattribution — fields param works with sort+filter. Regression test added.
 **Context:** The `fields` parameter (to select specific columns) returns 400 when combined with sort or filter. Every call returns all fields, bloating payloads.
 
 **Proposed fix:** Implement `fields` projection or remove from documentation if unsupported.
@@ -268,6 +273,7 @@ Improvements and enhancements tracked for future sprints.
 
 **Priority:** Low
 **Reported:** 2026-06-24 (S7-012b — Q8, Q12)
+**Status:** FIXED 2026-06-24 (commit `82728b6`). 79 dataset_refresh_log entries populated. data_as_of now returns real timestamps.
 **Context:** No response includes a `data_as_of` or `last_refreshed` timestamp. Users can't tell if FY2025 data is current or stale. Q8 found FY2025 set-aside totals that look like MV refresh lag, but couldn't confirm.
 
 **Proposed fix:** Add `data_as_of` field to all responses, sourced from the underlying MV's last refresh timestamp.
@@ -278,6 +284,7 @@ Improvements and enhancements tracked for future sprints.
 
 **Priority:** Medium
 **Reported:** 2026-06-24 (S7-012b — Q6, Q8, Q10, Q12)
+**Status:** FIXED 2026-06-24 (commit `82728b6`). Rows with negative obligations flagged with _negative_obligation. Response meta includes negative_obligation_count.
 **Context:** De-obligations exceed positive obligations for some agencies/periods, producing negative shares and zero-floored percentages. Examples:
 - HUD: risk_score = −0.7848, sole-source share = −0.2539
 - NARA: cost-type dollars negative but share silently zero-floored
@@ -294,6 +301,7 @@ Improvements and enhancements tracked for future sprints.
 
 **Priority:** Low
 **Reported:** 2026-06-24 (S7-012b — Q4, Q6, Q7, Q11)
+**Status:** FIXED 2026-06-24 (commit `82728b6`). source_fiscal_years now computed from actual returned rows. Null when no fiscal_year column.
 **Context:** Every response includes `source_fiscal_years: [1958, 2026]` in metadata, reflecting the full corpus span rather than the actual rows returned. Misleading — suggests the data includes 68 years of records when it's typically a 3-year window.
 
 **Proposed fix:** Set `source_fiscal_years` to the actual min/max FY of returned rows, not the corpus.
@@ -304,6 +312,7 @@ Improvements and enhancements tracked for future sprints.
 
 **Priority:** Low
 **Reported:** 2026-06-24 (S7-012b — Q7, Q14)
+**Status:** FIXED 2026-06-24 (commit `82728b6`). 1,722 rows updated via SQL migration 060. sector_label + subsector_label populated.
 **Context:** `sector_label` (e.g., "Manufacturing," "Professional, Scientific, and Technical Services") is null on every row of `psc.naics_crosswalk`, `market.naics_customer_leaders`, and `naics.growth_leaders`, while `sector_code` (e.g., 54) is populated.
 
 **Proposed fix:** Join against the NAICS sector dimension to populate `sector_label` wherever `sector_code` is present.
