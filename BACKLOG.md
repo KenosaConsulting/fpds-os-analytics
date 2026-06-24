@@ -167,11 +167,14 @@ Improvements and enhancements tracked for future sprints.
 
 **Priority:** Critical
 **Reported:** 2026-06-24 (S7-012b — 6 of 12 queries)
+**Status:** FIXED 2026-06-24 (commit `50c129e`)
 **Context:** The single most impactful finding. Catalog metadata declares `max_limit: 500` or `max_limit: 1000` on most datasets, but any `limit` value > 25 returns HTTP 400. Affected: `geography.mismatch_leaders`, `acquisition.vehicle_program_vendors`, `contacts.naics_buyers`, `geography.place_profile_fy`, `pipeline.recompete_watchlist`, and others. AI had to page in batches of 25, making large analyses impractical.
 
 **Impact:** Any query needing >25 rows per call requires 4–40× more API calls than necessary. Rate limits compound the problem. This is the #1 blocker for real analytical use.
 
-**Proposed fix:** Raise the actual server-side limit cap to match documented `max_limit`. If 25 is intentional for public tier, document it clearly and raise for authenticated beta tier.
+**Fix applied:** `APIAccess.max_rows_per_request` now uses `field(default_factory=public_row_limit)` (returns 100 via `FPDS_ANALYTICS_PUBLIC_ROW_LIMIT` env var, default 100). Was hardcoded 25. Health/ai_assistant_guide endpoint updated to call `public_row_limit()` instead of hardcoded 25. Authenticated tiers (beta=250, internal=10000) were already correct. Tests added: `test_bl014_public_default_limit_matches_public_row_limit`, `test_bl014_health_endpoint_reports_correct_public_limit`.
+
+**Remaining:** Deploy to Render (auto-deploy triggered). Consider raising to 250 for public tier in future if rate limits tolerate it.
 
 ---
 
