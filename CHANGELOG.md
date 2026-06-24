@@ -249,6 +249,27 @@ every dataset show useful recent data.
 
 ### S7-014 — API Limitation Quick Wins (done, 2026-06-24)
 
+### S7-015 — Pre-Aggregated Cross-Cut Datasets (MV builds pending, 2026-06-24)
+
+Two new cross-cut datasets drafted to close the BL-019 gap from S7-012b.
+SQL written, catalog entries added, tests passing. MV builds pending.
+
+**BL-019.1 — geography.state_naics_fy:**
+State × NAICS × fiscal year grain. Enables "where is money flowing for
+NAICS 541512 by state" and "vendor concentration by state for this NAICS."
+MV: `geographic_analysis.mv_fpds_geo_state_naics_fy` (~3-5M rows est.).
+SQL: [sql/062_bl019_state_naics_fy.sql](sql/062_bl019_state_naics_fy.sql).
+
+**BL-019.2 — psc.naics_agency_fy:**
+Agency × PSC × NAICS × fiscal year grain. Enables "what PSCs does DOE buy
+under NAICS 541712" and "which NAICS codes map to PSC R425 government-wide."
+MV: `psc_analysis.mv_fpds_psc_naics_agency_fy` (~5-8M rows est.).
+SQL: [sql/063_bl019_psc_naics_agency_fy.sql](sql/063_bl019_psc_naics_agency_fy.sql).
+
+Both datasets include positive/negative obligation splits, competition
+metrics, small business share, and vendor diversity counts. Catalog and
+OpenAPI enum updated (81 datasets total). 88 tests pass.
+
 Resolved 9 backlog items from the S7-012b cross-cutting test findings. 10 new
 tests added (88 total, all passing). 3 commits: `50c129e`, `82728b6`, `d43ff6c`.
 
