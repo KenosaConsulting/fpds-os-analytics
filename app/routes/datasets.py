@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+from decimal import Decimal
 from io import StringIO
 
 from fastapi import APIRouter, Depends, Request
@@ -89,6 +90,20 @@ def dataset_rows(
             error_type="service_error",
         ) from exc
     data, next_cursor = page_rows(raw_rows, limit=limit, offset=offset)
+    # BL-022: Flag rows with negative obligations to prevent misleading metrics
+    obligation_fields = (
+        "total_obligated", "net_obligated_amount", "total_obligated_3yr",
+        "obligated_amount", "cost_type_obligated_3yr", "tm_obligated_3yr",
+        "not_competed_obligated_3yr",
+    )
+    negative_count = 0
+    for row in data:
+        for field in obligation_fields:
+            val = row.get(field)
+            if val is not None and str(val).lstrip("-").replace(".", "").isdigit() and Decimal(str(val)) < 0:
+                row["_negative_obligation"] = True
+                negative_count += 1
+                break
     if response_format == "csv":
         filename = f"{dataset_id.replace('.', '_')}_rows.csv"
         return StreamingResponse(
@@ -97,6 +112,16 @@ def dataset_rows(
             headers={"Content-Disposition": f'attachment; filename="{filename}"'},
         )
     data_as_of = dataset_data_as_of(dataset)
+    # Compute actual fiscal year range from returned rows
+    fiscal_years = [
+        row.get("fiscal_year")
+        for row in data
+        if row.get("fiscal_year") is not None
+    ]
+    if fiscal_years:
+        source_fiscal_years = [min(fiscal_years), max(fiscal_years)]
+    else:
+        source_fiscal_years = None
     return {
         "notice": BRIEF_DATA_NOTICE,
         "data": data,
@@ -108,12 +133,13 @@ def dataset_rows(
             "api_version": catalog.version,
             "dataset_id": dataset_id,
             "source": "FPDS analytics schema",
-            "source_fiscal_years": [1958, 2026],
+            "source_fiscal_years": source_fiscal_years,
             "data_as_of": data_as_of,
             "row_count": len(data),
             "caveats": dataset.get("caveats", []),
             "notices": data_notices(dataset),
             "access": "api_key" if access.is_authenticated else "public",
             "api_key_id": access.key_id if access.is_authenticated else None,
+            "negative_obligation_count": negative_count if negative_count > 0 else None,
         },
     }

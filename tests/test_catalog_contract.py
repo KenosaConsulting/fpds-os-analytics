@@ -571,6 +571,32 @@ def test_dimension_q_search_uses_parameterized_ilike() -> None:
     assert values[:2] == ["%homeland%", "%homeland%"]
 
 
+def test_bl016_dimension_search_includes_code_columns() -> None:
+    """BL-016/BL-012: fpds_resolve must find dimensions by numeric/alphanumeric codes,
+    not just description text. Code columns must be in searchable_columns."""
+    catalog = load_catalog()
+    cases = [
+        ("naics", "naics_code", "541512"),
+        ("psc_codes", "psc_code", "R425"),
+        ("departments", "department_id", "9700"),
+        ("agencies", "agency_id", "1700"),
+    ]
+    for dim_id, code_field, code_value in cases:
+        dimension = catalog.get_dimension(dim_id)
+        assert code_field in dimension["searchable_columns"], (
+            f"{dim_id}: {code_field} missing from searchable_columns"
+        )
+        # Verify the query builder generates ILIKE for the code column
+        sql, values, _limit, _offset = build_rows_query(
+            _dimension_dataset_like(dimension),
+            {"_search_q": code_value},
+        )
+        assert f'"{code_field}" ilike %s' in sql, (
+            f"{dim_id}: {code_field} ILIKE not in SQL"
+        )
+        assert f"%{code_value}%" in values
+
+
 def test_office_q_search_defaults_to_active_high_or_medium_confidence() -> None:
     catalog = load_catalog()
     dimension = catalog.get_dimension("contracting_offices")
@@ -746,6 +772,185 @@ def test_bl014_health_endpoint_reports_correct_public_limit(monkeypatch) -> None
     monkeypatch.setenv("FPDS_ANALYTICS_PUBLIC_ROW_LIMIT", "100")
     response = ai_assistant_guide()
     assert response["auth"]["public_row_limit"] == 100
+
+
+def test_bl015_documented_filters_are_accepted() -> None:
+    """BL-015 regression: filters that were reported as 'documented but rejected'
+    in S7-012b must all work. Root cause was BL-014 (limit=25 cap masquerading
+    as filter rejection), not the filters themselves."""
+    catalog = load_catalog()
+    # Each tuple: (dataset_id, params_with_required_filter, tested_filter_name)
+    cases = [
+        ("geography.mismatch_leaders", {"is_in_state": "true"}, "is_in_state"),
+        ("geography.mismatch_leaders", {"is_in_state": "false"}, "is_in_state"),
+        ("set_aside.family_trend_fy", {"fiscal_year_min": "2022"}, "fiscal_year_min"),
+        ("set_aside.family_trend_fy", {"fiscal_year_max": "2025"}, "fiscal_year_max"),
+        ("naics.trend_fy", {"fiscal_year_min": "2022"}, "fiscal_year_min"),
+        ("contacts.naics_buyers", {"user_class": "human", "contracting_dept_id": "9700"}, "user_class"),
+        ("funding.mismatch_flows_fy", {"is_cross_department": "true", "fiscal_year": "2024"}, "is_cross_department"),
+        ("funding.mismatch_flows_fy", {"is_cross_department": "false", "fiscal_year": "2024"}, "is_cross_department"),
+    ]
+    for dataset_id, params, filter_name in cases:
+        dataset = catalog.get_dataset(dataset_id)
+        # Will raise APIError if the filter is rejected
+        build_rows_query(dataset, params)
+
+
+def test_bl015_documented_sorts_are_accepted() -> None:
+    """BL-015 regression: sort params reported as rejected must work."""
+    catalog = load_catalog()
+    cases = [
+        ("acquisition.vehicle_program_vendors", {"sort": "-obligated_amount", "vehicle_program_id": "gsa_oasis_small_business"}),
+        ("entrants.agency_cohort_fy", {"sort": "-new_vendor_count", "contracting_dept_id": "9700"}),
+        ("funding.mismatch_flows_fy", {"sort": "-net_obligated_amount", "fiscal_year": "2024"}),
+    ]
+    for dataset_id, params in cases:
+        dataset = catalog.get_dataset(dataset_id)
+        build_rows_query(dataset, params)
+
+
+def test_bl023_source_fiscal_years_reflects_actual_rows(monkeypatch) -> None:
+    """BL-023: source_fiscal_years must reflect actual returned rows, not hardcode [1958, 2026]."""
+    class FakeCursor:
+        def execute(self, sql, values):
+            self.sql = sql
+            self.values = values
+
+        def fetchall(self):
+            return [
+                {"fiscal_year": 2023, "total_obligated": Decimal("1.0")},
+                {"fiscal_year": 2024, "total_obligated": Decimal("2.0")},
+                {"fiscal_year": 2025, "total_obligated": Decimal("3.0")},
+            ]
+
+        def fetchone(self):
+            return None
+
+    @contextmanager
+    def fake_db_cursor():
+        yield FakeCursor()
+
+    monkeypatch.setattr("app.routes.datasets.db_cursor", fake_db_cursor)
+    response = dataset_rows(
+        "pricing.trend_fy",
+        SimpleNamespace(query_params={"limit": "3"}),
+        APIAccess(key_id="public", is_authenticated=False),
+    )
+    assert response["meta"]["source_fiscal_years"] == [2023, 2025]
+
+
+def test_bl023_source_fiscal_years_null_when_no_fy_column(monkeypatch) -> None:
+    """BL-023: source_fiscal_years should be null when rows have no fiscal_year column."""
+    class FakeCursor:
+        def execute(self, sql, values):
+            self.sql = sql
+            self.values = values
+
+        def fetchall(self):
+            return [{"vendor_name": "Test Co", "uei": "ABC123"}]
+
+        def fetchone(self):
+            return None
+
+    @contextmanager
+    def fake_db_cursor():
+        yield FakeCursor()
+
+    monkeypatch.setattr("app.routes.datasets.db_cursor", fake_db_cursor)
+    response = dataset_rows(
+        "concentration.vendor_market_leaders",
+        SimpleNamespace(query_params={"limit": "1", "uei": "ABC123"}),
+        APIAccess(key_id="public", is_authenticated=False),
+    )
+    assert response["meta"]["source_fiscal_years"] is None
+
+
+def test_bl017_fields_projection_works_with_sort_and_filter() -> None:
+    """BL-017 regression: fields parameter must work when combined with sort and filter.
+    Root cause was BL-014 (limit=25 cap), not the fields parameter itself."""
+    catalog = load_catalog()
+    # Q6 scenario: acquisition.vehicle_program_vendors
+    dataset = catalog.get_dataset("acquisition.vehicle_program_vendors")
+    sql, values, limit, offset = build_rows_query(dataset, {
+        "fields": "vendor_name,vendor_uei,obligated_amount",
+        "sort": "-obligated_amount",
+        "vehicle_program_id": "gsa_oasis_small_business",
+        "limit": "50",
+        "_max_limit_override": "100",
+    })
+    assert limit == 50
+    assert 'select "vendor_name", "vendor_uei", "obligated_amount"' in sql
+
+    # Q10 scenario: contacts.naics_buyers
+    dataset2 = catalog.get_dataset("contacts.naics_buyers")
+    sql2, values2, limit2, offset2 = build_rows_query(dataset2, {
+        "fields": "user_id,display_name,action_count",
+        "contracting_dept_id": "9700",
+        "principal_naics_code": "541712",
+        "limit": "50",
+        "_max_limit_override": "100",
+    })
+    assert limit2 == 50
+    assert 'select "user_id", "display_name", "action_count"' in sql2
+
+
+def test_bl022_negative_obligations_flagged_in_response(monkeypatch) -> None:
+    """BL-022: rows with negative obligations must be flagged with _negative_obligation
+    and the response meta must include negative_obligation_count."""
+    class FakeCursor:
+        def execute(self, sql, values):
+            self.sql = sql
+            self.values = values
+
+        def fetchall(self):
+            return [
+                {"fiscal_year": 2024, "total_obligated": Decimal("-5000000.00"), "contracting_dept_id": "7500"},
+                {"fiscal_year": 2023, "total_obligated": Decimal("10000000.00"), "contracting_dept_id": "7500"},
+            ]
+
+        def fetchone(self):
+            return None
+
+    @contextmanager
+    def fake_db_cursor():
+        yield FakeCursor()
+
+    monkeypatch.setattr("app.routes.datasets.db_cursor", fake_db_cursor)
+    response = dataset_rows(
+        "pricing.trend_fy",
+        SimpleNamespace(query_params={"limit": "2"}),
+        APIAccess(key_id="public", is_authenticated=False),
+    )
+    # First row is negative, second is positive
+    assert response["data"][0]["_negative_obligation"] is True
+    assert "_negative_obligation" not in response["data"][1]
+    assert response["meta"]["negative_obligation_count"] == 1
+
+
+def test_bl022_no_negative_count_when_all_positive(monkeypatch) -> None:
+    """BL-022: negative_obligation_count should be null when all rows are positive."""
+    class FakeCursor:
+        def execute(self, sql, values):
+            self.sql = sql
+            self.values = values
+
+        def fetchall(self):
+            return [{"fiscal_year": 2024, "total_obligated": Decimal("1000000.00")}]
+
+        def fetchone(self):
+            return None
+
+    @contextmanager
+    def fake_db_cursor():
+        yield FakeCursor()
+
+    monkeypatch.setattr("app.routes.datasets.db_cursor", fake_db_cursor)
+    response = dataset_rows(
+        "pricing.trend_fy",
+        SimpleNamespace(query_params={"limit": "1"}),
+        APIAccess(key_id="public", is_authenticated=False),
+    )
+    assert response["meta"]["negative_obligation_count"] is None
 
 
 def test_dataset_notices_include_dod_and_geography_limitations() -> None:
@@ -925,6 +1130,7 @@ def test_dataset_rows_defaults_to_json(monkeypatch) -> None:
     )
     assert response["data"] == [{"fiscal_year": 2024, "total_obligated": "10.50"}]
     assert response["pagination"]["limit"] == 1
+    assert response["meta"]["source_fiscal_years"] == [2024, 2024]
 
 
 def test_dataset_rows_csv_uses_same_bounds_and_escapes(monkeypatch) -> None:

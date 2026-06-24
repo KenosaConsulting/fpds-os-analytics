@@ -43,7 +43,7 @@ dimensions:
     source_table: "analytics_dims.fpds_naics_hierarchy_map"
     key: "naics_code"
     filters: ["naics_code", "sector_code", "subsector_code"]
-    searchable_columns: ["naics_desc", "sector_label", "subsector_label"]
+    searchable_columns: ["naics_code", "naics_desc", "sector_label", "subsector_label"]
     fields: ["naics_code", "naics_desc", "sector_code", "subsector_code", "sector_label", "subsector_label", "sort_order", "notes"]
 
   - id: "states"
@@ -60,7 +60,7 @@ dimensions:
     source_table: "analytics_dims.fpds_department_map"
     key: "department_id"
     filters: ["department_id", "is_dod", "is_civilian", "is_active"]
-    searchable_columns: ["department_name", "department_short_name"]
+    searchable_columns: ["department_id", "department_name", "department_short_name"]
     fields: ["department_id", "department_name", "department_short_name", "is_dod", "is_civilian", "is_active", "sort_order", "notes"]
 
   - id: "agencies"
@@ -69,7 +69,7 @@ dimensions:
     source_table: "analytics_dims.fpds_agency_map"
     key: "agency_id"
     filters: ["agency_id", "parent_department_id", "is_active"]
-    searchable_columns: ["agency_name", "agency_short_name"]
+    searchable_columns: ["agency_id", "agency_name", "agency_short_name"]
     fields: ["agency_id", "agency_name", "agency_short_name", "parent_department_id", "is_active", "sort_order", "notes"]
 
   - id: "contracting_offices"
@@ -90,7 +90,7 @@ dimensions:
     source_table: "analytics_dims.fpds_psc_map"
     key: "psc_code"
     filters: ["psc_code", "psc_category_code", "psc_group", "is_service", "is_product", "is_r_and_d", "is_construction"]
-    searchable_columns: ["psc_description", "psc_category_label"]
+    searchable_columns: ["psc_code", "psc_description", "psc_category_label"]
     fields: ["psc_code", "psc_description", "psc_category_code", "psc_category_label", "psc_group", "is_service", "is_product", "is_r_and_d", "is_construction", "sort_order", "notes"]
 
   - id: "vehicle_type_codes"
