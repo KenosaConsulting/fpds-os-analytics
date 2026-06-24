@@ -31,7 +31,7 @@
 | ID | Status | Task | Acceptance Criteria |
 |---|---|---|---|
 | S7-011 | done | MCP Inspector validation | All 8 MCP tools tested via `npx @modelcontextprotocol/inspector`. Zero protocol errors. |
-| S7-012 | todo | AI end-to-end smoke test | 3 realistic procurement analyst queries (multi-dataset, cross-filter) executed by an AI model against the live API. All complete successfully. |
+| S7-012 | done | AI end-to-end smoke test | 3/3 queries completed via Claude Sonnet through MCP. AI discovered datasets, queried data, synthesized answers. 7 new backlog items filed (BL-007 through BL-013). |
 | S7-013 | done | BL-001 audit: UEI→vendor name across all 78 datasets | Audit complete. 7 views expose UEI variants; 6 already had vendor_name. 1 gap: `incumbent.agency_naics_vendor_leaders`. Fixed via sql/059 (materialized `analytics_dims.vendor_name_by_uei` lookup, 561K rows, 100% coverage, 216ms query latency down from 66s). Catalog updated. |
 
 ---
