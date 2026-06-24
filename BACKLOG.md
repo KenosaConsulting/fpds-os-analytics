@@ -89,15 +89,17 @@ Improvements and enhancements tracked for future sprints.
 
 ---
 
-### BL-008: Topic catalog gaps — zero trust, ICAM, identity management
+### BL-008: Topic catalog — department code mismatch and missing FY filter
 
 **Priority:** Medium
-**Reported:** 2026-06-23 (S7-012 Q3)
-**Context:** `fpds_topic_search` returned 0 results for "zero trust," "zero trust architecture," "ICAM," "identity credential access," "access control authentication," "PIV HSPD-12," and "smart card." "Identity management" returned only 2 weak hits, neither aligned to NAICS 541519. The topic dimension only indexes generic "cybersecurity" topics aligned to 541512/541513.
+**Reported:** 2026-06-23 (S7-012 Q3), expanded 2026-06-24 (S7-012b Q11)
+**Context:** Two real issues found (NOT the literal program-name matching — topics are derived from corpus text, so "zero trust" not appearing as a literal topic is expected behavior):
+1. **Department code mismatch** — `fpds_lookup_dimension` uses `department_id` (FPDS format "1900"/"7500") but topic catalog uses `department_code` (USASpending CGAC format "019"/"075"/"97AK"). Required cross-walking via `topics.agency_profile`.
+2. **No FY filter on `topics.competitive_landscape`** — vendor totals cumulative back to FY1958 per `source_fiscal_years`. Cannot isolate current market share.
 
-**Impact:** Cannot rank agencies by topic alignment for zero-trust / identity-management work — a core capture intelligence question for any cybersecurity-focused vendor.
+**Note:** Literal program names ("zero trust," "ICAM," "cloud migration") not resolving as exact topic matches is **not a gap** — topic derivation works from corpus text, not a controlled vocabulary. The derived topics that *do* exist cover these capability areas under different labels.
 
-**Proposed fix:** Ingest zero-trust and ICAM topic definitions into the topic catalog. Likely requires curating keyword sets from CISA ZTMM reference documents and federal identity guidance (FICAM, HSPD-12, OMB M-22-09). Map to NAICS 541519 where appropriate.
+**Proposed fix:** (1) Align department code format between dimensions and topic catalog, or add a crosswalk. (2) Add `fiscal_year` filter to `topics.competitive_landscape`.
 
 ---
 
@@ -158,6 +160,150 @@ Improvements and enhancements tracked for future sprints.
 **Impact:** Cosmetic — doesn't block queries but makes output uglier and harder to scan.
 
 **Proposed fix:** Populate `agency_short_name` in the agency dimension table for all major civilian agencies. Likely a one-time UPDATE against `analytics_dims.agencies`.
+
+---
+
+### BL-014: `limit` parameter universally capped at 25 despite docs claiming 500–1000
+
+**Priority:** Critical
+**Reported:** 2026-06-24 (S7-012b — 6 of 12 queries)
+**Context:** The single most impactful finding. Catalog metadata declares `max_limit: 500` or `max_limit: 1000` on most datasets, but any `limit` value > 25 returns HTTP 400. Affected: `geography.mismatch_leaders`, `acquisition.vehicle_program_vendors`, `contacts.naics_buyers`, `geography.place_profile_fy`, `pipeline.recompete_watchlist`, and others. AI had to page in batches of 25, making large analyses impractical.
+
+**Impact:** Any query needing >25 rows per call requires 4–40× more API calls than necessary. Rate limits compound the problem. This is the #1 blocker for real analytical use.
+
+**Proposed fix:** Raise the actual server-side limit cap to match documented `max_limit`. If 25 is intentional for public tier, document it clearly and raise for authenticated beta tier.
+
+---
+
+### BL-015: Documented filters rejected as 400
+
+**Priority:** High
+**Reported:** 2026-06-24 (S7-012b — Q4, Q8, Q9, Q10, Q14)
+**Context:** At least 6 filter parameters are documented in the catalog but rejected by the server:
+- `is_in_state` (geography.mismatch_leaders) — both boolean and string
+- `fiscal_year_min`/`fiscal_year_max` (set_aside.family_trend_fy, naics.trend_fy)
+- `user_class` (contacts.naics_buyers) — documented example uses exactly this value
+- `is_cross_department` (funding.mismatch_flows_fy) — boolean rejected, string "true" works
+- `sort` params listed as sortable but rejected on multiple datasets
+
+**Impact:** Users following documentation hit 400 errors and don't know why. Erodes trust in the API contract.
+
+**Proposed fix:** Audit every documented filter against actual server behavior. Either implement the filter or remove it from the catalog. Add integration tests that validate catalog claims.
+
+---
+
+### BL-016: `fpds_resolve` fails for valid codes (PSC, NAICS, department)
+
+**Priority:** High
+**Reported:** 2026-06-24 (S7-012b — Q7, Q10, Q11)
+**Context:** `fpds_resolve` returns 0 results for valid PSC codes ("R425"), NAICS codes ("541512", "541519"), and department codes ("97AK", "9761"). Only description-string queries resolve. This expands BL-012 (which only noted NAICS) — the resolver is broken across multiple dimension types.
+
+**Impact:** AI had to fall back to `fpds_lookup_dimension` with filters, adding friction. Users naturally search by code.
+
+**Proposed fix:** Update `fpds_resolve` to match numeric/code strings against all dimension ID fields, not just description text.
+
+---
+
+### BL-017: `fields` projection parameter rejected
+
+**Priority:** Medium
+**Reported:** 2026-06-24 (S7-012b — Q6, Q10, Q15)
+**Context:** The `fields` parameter (to select specific columns) returns 400 when combined with sort or filter. Every call returns all fields, bloating payloads.
+
+**Proposed fix:** Implement `fields` projection or remove from documentation if unsupported.
+
+---
+
+### BL-018: Multi-level drill-down queries structurally fail
+
+**Priority:** High
+**Reported:** 2026-06-24 (S7-012b — Q5, Q13)
+**Context:** Q5 (DHS → offices → monthly → NAICS) hit max turns (30). Q13 (VA → offices → vendors → cross-agency market leaders) timed out at 600s. Both involve 4-level fan-outs where each level requires multiple API calls. The agent turn/time budget cannot accommodate these patterns.
+
+**Impact:** Real analytical questions that require deep drill-downs (agency → office → vendor → cross-agency) are unanswerable in a single agent session. Users would need to manually break these into sub-queries.
+
+**Proposed fix:** Two approaches:
+1. **Pre-aggregated datasets** — build cross-cut views that answer common drill-down patterns in one call (e.g., `customer.top_office_vendor_cross_agency`)
+2. **Higher turn budget** — raise `--max-turns` for analytical use cases (band-aid, not a real fix)
+
+---
+
+### BL-019: Missing cross-cut datasets
+
+**Priority:** Medium
+**Reported:** 2026-06-24 (S7-012b — Q4, Q7, Q8, Q9, Q14)
+**Context:** 11 cross-cut datasets would have unblocked specific queries:
+- Agency × PSC × NAICS (Q7)
+- State × NAICS × FY (Q14)
+- Funding department × small-business indicator (Q9)
+- Set-aside family × entrant cohort (Q8)
+- State-scoped HHI / concentration (Q4)
+- Vendor-level data tied to performance state (Q4)
+- Vehicle filter on recompete watchlist (Q6)
+- FY filter on recompete watchlist (Q10)
+- FY filter on topics.competitive_landscape (Q11)
+- Bureau-level grain on risk scorecards (Q12)
+- Agency-level duration baseline filtered to >$10M tier (Q15)
+
+**Proposed fix:** Triage by impact. State × NAICS × FY and Agency × PSC × NAICS are the highest-value gaps — they unblock the most common analytical questions.
+
+---
+
+### BL-020: Vendor UEI fragmentation
+
+**Priority:** Medium
+**Reported:** 2026-06-24 (S7-012b — Q6, Q15)
+**Context:** Same legal entity appears under multiple UEIs (Boeing: 13+ UEIs, Leidos: 3, SAIC: 2, CACI: 2, IBM: 2, Lockheed Martin: multiple, Raytheon: multiple). UEI-based vendor concentration analysis severely undercounts primes. Same entity counted as separate vendors in market share calculations.
+
+**Impact:** Vendor concentration, market share, and competitive landscape analyses are all unreliable at the UEI level. AI had to hand-collapse via name matching.
+
+**Proposed fix:** Build a UEI→canonical-vendor mapping table (similar to `vendor_name_by_uei` but with parent-entity grouping). Consider using SAM.gov's ultimate-parent-UEI field if available.
+
+---
+
+### BL-021: No `data_as_of` timestamp on responses
+
+**Priority:** Low
+**Reported:** 2026-06-24 (S7-012b — Q8, Q12)
+**Context:** No response includes a `data_as_of` or `last_refreshed` timestamp. Users can't tell if FY2025 data is current or stale. Q8 found FY2025 set-aside totals that look like MV refresh lag, but couldn't confirm.
+
+**Proposed fix:** Add `data_as_of` field to all responses, sourced from the underlying MV's last refresh timestamp.
+
+---
+
+### BL-022: Negative obligations producing misleading metrics
+
+**Priority:** Medium
+**Reported:** 2026-06-24 (S7-012b — Q6, Q8, Q10, Q12)
+**Context:** De-obligations exceed positive obligations for some agencies/periods, producing negative shares and zero-floored percentages. Examples:
+- HUD: risk_score = −0.7848, sole-source share = −0.2539
+- NARA: cost-type dollars negative but share silently zero-floored
+- GSA Alliant FY2025 = −$103.7M (all de-obligations)
+- Multiple buyers with negative obligated amounts
+
+**Impact:** Risk scores, share metrics, and rankings are misleading when de-obligations dominate. No flag in data to warn users.
+
+**Proposed fix:** (1) Add a `net_obligation_sign` flag (`positive`/`negative`/`mixed`) to affected datasets. (2) Consider showing gross obligation + de-obligation separately rather than net. (3) Suppress share calculations when denominator is negative, with an explicit `null` + reason.
+
+---
+
+### BL-023: `source_fiscal_years: [1958, 2026]` on every response
+
+**Priority:** Low
+**Reported:** 2026-06-24 (S7-012b — Q4, Q6, Q7, Q11)
+**Context:** Every response includes `source_fiscal_years: [1958, 2026]` in metadata, reflecting the full corpus span rather than the actual rows returned. Misleading — suggests the data includes 68 years of records when it's typically a 3-year window.
+
+**Proposed fix:** Set `source_fiscal_years` to the actual min/max FY of returned rows, not the corpus.
+
+---
+
+### BL-024: `sector_label` null while `sector_code` populated
+
+**Priority:** Low
+**Reported:** 2026-06-24 (S7-012b — Q7, Q14)
+**Context:** `sector_label` (e.g., "Manufacturing," "Professional, Scientific, and Technical Services") is null on every row of `psc.naics_crosswalk`, `market.naics_customer_leaders`, and `naics.growth_leaders`, while `sector_code` (e.g., 54) is populated.
+
+**Proposed fix:** Join against the NAICS sector dimension to populate `sector_label` wherever `sector_code` is present.
 
 ---
 
