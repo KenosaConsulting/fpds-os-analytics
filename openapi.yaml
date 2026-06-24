@@ -442,6 +442,7 @@ components:
         - geography.mismatch_leaders
         - geography.place_profile_fy
         - geography.regional_summary_fy
+        - geography.state_naics_fy
         - geography.state_trend_fy
         - incumbent.agency_naics_vendor_leaders
         - incumbent.agency_vendor_leaders
@@ -465,6 +466,7 @@ components:
         - pricing.risk_scorecard
         - pricing.trend_fy
         - psc.agency_profile_fy
+        - psc.naics_agency_fy
         - psc.naics_crosswalk
         - psc.office_profile_fy
         - psc.trend_fy

@@ -3044,3 +3044,120 @@ datasets:
   default_sort: -department_count
   fields: [canonical_topic_id, canonical_label, canonical_description, department_count, departments, total_assignments_govwide,
     naics_alignment]
+
+# ── BL-019.1: State × NAICS × FY cross-cut ─────────────────────────────────────
+
+- id: geography.state_naics_fy
+  title: State NAICS Spending By Fiscal Year
+  domain: geography
+  description: >
+    Geographic spending by state × NAICS × fiscal year. Shows where federal money
+    flows by industry at the state level. Enables queries like "which states receive
+    the most funding for NAICS 541512" and "what is the vendor concentration for
+    this NAICS in Virginia." Includes obligation amounts, vendor counts, competition
+    metrics, and small business share.
+  example_queries:
+  - query: /v1/datasets/geography.state_naics_fy/rows?principal_naics_code=541512&fiscal_year=2024&limit=50
+    explanation: Top states receiving funding for Custom Computer Programming Services in FY2024
+  - query: /v1/datasets/geography.state_naics_fy/rows?pop_state_code=VA&fiscal_year_min=2022&fiscal_year_max=2024&limit=50
+    explanation: All NAICS activity in Virginia FY2022-2024
+  backing_view: analytics_api.geography_state_naics_fy
+  source_view: geographic_analysis.report_deck_geo_state_naics_fy
+  grain: pop_state_code x principal_naics_code x fiscal_year
+  public_access: public_bounded
+  required_filters_any: [pop_state_code, principal_naics_code, contracting_dept_id, sector_code]
+  filters: [fiscal_year, fiscal_year_min, fiscal_year_max, pop_state_code, principal_naics_code, naics_prefix, sector_code, contracting_dept_id, is_us_state]
+  sortable: [fiscal_year, net_obligated_amount, action_count, distinct_vendor_count, small_biz_obligated, competed_action_count]
+  default_sort: -net_obligated_amount
+  max_limit: 1000
+  fields:
+  - pop_state_code
+  - pop_state_name
+  - pop_state_name_clean
+  - pop_country_code
+  - pop_census_region
+  - pop_census_division
+  - is_us_state
+  - contracting_dept_id
+  - department_name
+  - department_short_name
+  - principal_naics_code
+  - naics_desc
+  - sector_code
+  - subsector_code
+  - sector_label
+  - subsector_label
+  - fiscal_year
+  - action_count
+  - net_obligated_amount
+  - positive_obligated_amount
+  - negative_obligated_amount
+  - base_and_all_options_value_sum
+  - contract_scope_action_count
+  - contract_scope_obligated
+  - small_biz_obligated
+  - competed_action_count
+  - not_competed_action_count
+  - distinct_vendor_count
+  - distinct_agency_count
+  - distinct_office_count
+
+# ── BL-019.2: Agency × PSC × NAICS × FY cross-cut ──────────────────────────────
+
+- id: psc.naics_agency_fy
+  title: Agency PSC NAICS Cross-Cut By Fiscal Year
+  domain: psc
+  description: >
+    Agency spending by PSC × NAICS × fiscal year. Shows what product/service codes
+    agencies are buying under each NAICS code, enabling cross-dimensional analysis
+    of procurement categories. Answers questions like "what PSCs does DOE buy under
+    NAICS 541712" and "which NAICS codes map to PSC R425 across government."
+    Includes competition, small business, and vendor diversity metrics.
+  example_queries:
+  - query: /v1/datasets/psc.naics_agency_fy/rows?contracting_agency_id=8900&principal_naics_code=541712&fiscal_year=2024&limit=50
+    explanation: DOE spending by PSC under NAICS 541712 in FY2024
+  - query: /v1/datasets/psc.naics_agency_fy/rows?product_or_service_code=R425&fiscal_year=2024&limit=50
+    explanation: All agencies buying PSC R425 by NAICS in FY2024
+  backing_view: analytics_api.psc_naics_agency_fy
+  source_view: psc_analysis.report_deck_psc_naics_agency_fy
+  grain: contracting_agency_id x product_or_service_code x principal_naics_code x fiscal_year
+  public_access: public_bounded
+  required_filters_any: [contracting_agency_id, contracting_dept_id, product_or_service_code, principal_naics_code]
+  filters: [fiscal_year, fiscal_year_min, fiscal_year_max, contracting_agency_id, contracting_dept_id, product_or_service_code, psc_category_code, psc_group, principal_naics_code, naics_prefix, sector_code, is_service, is_product, is_r_and_d, is_construction]
+  sortable: [fiscal_year, net_obligated_amount, action_count, distinct_vendor_count, small_biz_obligated, competed_action_count]
+  default_sort: -net_obligated_amount
+  max_limit: 1000
+  fields:
+  - contracting_dept_id
+  - department_name
+  - department_short_name
+  - contracting_agency_id
+  - agency_name
+  - agency_short_name
+  - product_or_service_code
+  - psc_description
+  - psc_category_code
+  - psc_category_label
+  - psc_group
+  - is_service
+  - is_product
+  - is_r_and_d
+  - is_construction
+  - principal_naics_code
+  - naics_desc
+  - sector_code
+  - subsector_code
+  - sector_label
+  - subsector_label
+  - fiscal_year
+  - action_count
+  - net_obligated_amount
+  - positive_obligated_amount
+  - negative_obligated_amount
+  - contract_scope_action_count
+  - contract_scope_obligated
+  - small_biz_obligated
+  - competed_action_count
+  - not_competed_action_count
+  - distinct_vendor_count
+  - distinct_office_count
