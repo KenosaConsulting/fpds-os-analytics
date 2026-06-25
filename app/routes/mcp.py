@@ -11,38 +11,31 @@ definitions and call handlers serve both stdio and HTTP transports.
 from __future__ import annotations
 
 import json
-import os
 from typing import Any
 
 from fastapi import APIRouter, Request
 from fastapi.responses import JSONResponse, StreamingResponse
 
-from mcp.fpds_mcp_server import FPDSClient, FPDSServer
+from mcp.fpds_mcp_server import FPDSServer
 
 
 router = APIRouter(prefix="/v1/mcp", tags=["mcp"])
 
 
 def _build_server(request: Request) -> FPDSServer:
-    """Build an FPDSServer using the API base URL and optional API key.
+    """Build an FPDSServer using the internal client (no HTTP round-trips).
     
-    Priority: FPDS_API_BASE_URL env var > request.base_url (for local dev).
-    On Render, FPDS_API_BASE_URL should be set to the public URL.
+    When running inside the API process, InternalFPDSClient routes requests
+    through the ASGI app directly — no network I/O, no self-referencing calls.
     """
-    base_url = os.environ.get(
-        "FPDS_API_BASE_URL",
-        str(request.base_url).rstrip("/"),
-    )
-    # Render internal URLs (http://0.0.0.0:PORT) won't work for self-calls.
-    # Fall back to the public API URL if the env var isn't set.
-    if "0.0.0.0" in base_url or "localhost" in base_url:
-        base_url = "https://analytics-api.kenosaconsulting.com"
     api_key = request.headers.get("X-Api-Key")
     if not api_key:
         auth_header = request.headers.get("Authorization", "")
         if auth_header.startswith("Bearer "):
             api_key = auth_header[7:]
-    client = FPDSClient(api_base_url=base_url, api_key=api_key or None)
+    
+    from app.mcp_internal_client import InternalFPDSClient
+    client = InternalFPDSClient(api_key=api_key or None)
     return FPDSServer(client)
 
 
