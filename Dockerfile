@@ -9,6 +9,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app ./app
+COPY mcp ./mcp
 COPY catalog ./catalog
 COPY openapi.yaml ./openapi.yaml
 
