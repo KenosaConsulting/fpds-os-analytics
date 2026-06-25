@@ -146,7 +146,7 @@ If those `_norm` MVs are not present in the target database, only the
 ## 🤖 Wire It Into Your AI — MCP Integration
 
 The API ships with a built-in **Model Context Protocol (MCP) server** — which
-means Claude, Cursor, Windsurf, VS Code Copilot, and any MCP-compatible AI
+means Claude, Cursor, Windsurf, VS Code Copilot, OpenClaw, and any MCP-compatible AI
 assistant can query federal procurement data directly, without you writing a
 single line of code.
 
@@ -155,69 +155,62 @@ your AI assistant becomes a procurement analyst. It can browse the catalog,
 pick the right dataset, apply filters, interpret caveats, and explain what the
 data means for your capture strategy — all in natural language.
 
-### Claude Desktop
+### Two Ways to Connect
 
-Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
+**Option A — Remote MCP (zero install):**
 
-```json
-{
-  "mcpServers": {
-    "fpds-analytics": {
-      "command": "python",
-      "args": ["-m", "mcp.fpds_mcp_server"],
-      "cwd": "/path/to/fpds-os-analytics",
-      "env": {
-        "FPDS_API_BASE_URL": "https://analytics-api.kenosaconsulting.com"
-      }
-    }
-  }
-}
-```
-
-### Cursor / Windsurf
-
-Add to your project's `.cursor/mcp.json` (Cursor) or MCP config (Windsurf):
+Point your AI client at the hosted endpoint. No Python, no repo clone.
 
 ```json
 {
   "mcpServers": {
     "fpds-analytics": {
-      "command": "python",
-      "args": ["-m", "mcp.fpds_mcp_server"],
-      "cwd": "/path/to/fpds-os-analytics",
-      "env": {
-        "FPDS_API_BASE_URL": "https://analytics-api.kenosaconsulting.com"
-      }
+      "url": "https://analytics-api.kenosaconsulting.com/v1/mcp",
+      "transport": "http"
     }
   }
 }
 ```
 
-### VS Code (GitHub Copilot / Continue)
-
-Add to `.vscode/mcp.json`:
-
-```json
-{
-  "servers": {
-    "fpds-analytics": {
-      "command": "python",
-      "args": ["-m", "mcp.fpds_mcp_server"],
-      "cwd": "${workspaceFolder}",
-      "env": {
-        "FPDS_API_BASE_URL": "https://analytics-api.kenosaconsulting.com"
-      }
-    }
-  }
-}
-```
-
-### Any MCP Client (Generic stdio)
+**Option B — Local stdio (pip install):**
 
 ```bash
-FPDS_API_BASE_URL=https://analytics-api.kenosaconsulting.com \
-  python -m mcp.fpds_mcp_server
+pip install fpds-os-analytics-mcp
 ```
+
+```json
+{
+  "mcpServers": {
+    "fpds-analytics": {
+      "command": "fpds-mcp",
+      "env": {
+        "FPDS_API_BASE_URL": "https://analytics-api.kenosaconsulting.com"
+      }
+    }
+  }
+}
+```
+
+**No API key required** for bounded public queries. Add an `X-Api-Key` header
+for higher rate limits and larger result sets. Get a key at
+[kenosaconsulting.com/api](https://kenosaconsulting.com/api).
+
+For full setup instructions including OpenClaw, Claude Desktop, Cursor, and
+VS Code configurations, see **[docs/OPENCLAW_INTEGRATION.md](docs/OPENCLAW_INTEGRATION.md)**.
+
+### Pre-built Skills
+
+The repo includes 5 ready-to-use skills for common govcon activities:
+
+| Skill | Activity |
+|---|---|
+| [`vendor-market-analysis`](skills/vendor-market-analysis/SKILL.md) | Competitive landscape analysis |
+| [`recompete-pipeline`](skills/recompete-pipeline/SKILL.md) | Expiring contract watchlist |
+| [`contracting-officer-patterns`](skills/contracting-officer-patterns/SKILL.md) | Office buying patterns + contacts |
+| [`account-plan-builder`](skills/account-plan-builder/SKILL.md) | Structured account plan |
+| [`naics-opportunity-scan`](skills/naics-opportunity-scan/SKILL.md) | Growth opportunities by NAICS |
+
+See [`skills/README.md`](skills/README.md) for the full catalog.
 
 ### What Your AI Can Do Once Connected
 
@@ -435,6 +428,7 @@ limits are all validated against the catalog before any query is built.
 | [docs/DATASETS.md](docs/DATASETS.md) | Field-by-field reference for all 78 datasets |
 | [docs/API_FUNCTIONS.md](docs/API_FUNCTIONS.md) | Detailed endpoint documentation |
 | [docs/AI_ASSISTANT_GUIDE.md](docs/AI_ASSISTANT_GUIDE.md) | Instructions for AI assistants |
+| [docs/OPENCLAW_INTEGRATION.md](docs/OPENCLAW_INTEGRATION.md) | OpenClaw + MCP setup guide (remote endpoint + pip install) |
 | [docs/LLM_INTEGRATIONS.md](docs/LLM_INTEGRATIONS.md) | MCP, ChatGPT, Claude, and Gemini integration guide |
 | [docs/CAVEATS.md](docs/CAVEATS.md) | Data limitations you should know about |
 | [openapi.yaml](openapi.yaml) | Machine-readable API contract (OpenAPI 3.1) |
