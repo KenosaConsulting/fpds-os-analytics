@@ -10,7 +10,7 @@
         ║     ▁▂▃▄▅▆▇  COMPETITIVE INTELLIGENCE ENGINE  ▇▆▅▄▃▂▁             ║
         ║                                                                   ║
         ║     ┌───────────────────────────────────────────────────────┐     ║
-        ║     │  79 datasets · 16 dimensions · 99M+ federal actions   │     ║
+        ║     │  81 datasets · 16 dimensions · 99M+ federal actions   │     ║
         ║     │  REST + MCP  · MIT License   · Zero config to start   │     ║
         ║     └───────────────────────────────────────────────────────┘     ║
         ║                                                                   ║
@@ -127,7 +127,7 @@ Plus four **cross-cutting analytics** that don't belong to a single package:
 | **Market Entry Difficulty** | A composite score blending HHI concentration, sole-source share, vehicle dependence, average offers received, and incumbent tenure — one number that says "how hard is this market to crack" |
 | **Award-Size Distribution** | Median, P25, and P75 award sizes by agency × NAICS, plus under-SAT (simplified acquisition threshold) share |
 
-**78 datasets. 16 code-lookup dimensions. Every query bounded, parameterized,
+**81 datasets. 16 code-lookup dimensions. Every query bounded, parameterized,
 and documented.**
 
 ### Vehicle-program deployment note
@@ -216,7 +216,7 @@ See [`skills/README.md`](skills/README.md) for the full catalog.
 
 | MCP Tool | What it does |
 |---|---|
-| `fpds_list_datasets` | Browse all 61 analytics datasets with descriptions |
+| `fpds_list_datasets` | Browse all 81 analytics datasets with descriptions |
 | `fpds_describe_dataset` | See fields, filters, sorts, caveats, and example queries for any dataset |
 | `fpds_query_dataset` | Query rows with filters, sorting, and pagination |
 | `fpds_list_dimensions` | Browse code-lookup tables (agencies, NAICS, PSC, etc.) |
