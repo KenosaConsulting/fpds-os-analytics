@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fpds-os-analytics-mcp"
+version = "0.1.0"
+description = "MCP server for the FPDS Analytics API — federal procurement intelligence for AI agents."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Kenosa Consulting", email = "oogway@kenosaconsulting.com"},
+]
+keywords = ["mcp", "fpds", "federal procurement", "government contracts", "govcon", "analytics"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = []
+
+[project.scripts]
+fpds-mcp = "mcp.fpds_mcp_server:main"
+
+[project.urls]
+Homepage = "https://github.com/KenosaConsulting/fpds-os-analytics"
+Repository = "https://github.com/KenosaConsulting/fpds-os-analytics"
+Documentation = "https://analytics-api.kenosaconsulting.com/docs"
+"API Key" = "https://kenosaconsulting.com/api"
+
+[tool.setuptools]
+packages = ["mcp"]

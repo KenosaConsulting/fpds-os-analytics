@@ -11,7 +11,7 @@ It covers two things:
    activities that any OpenClaw session can pick up.
 
 If your team uses a different agent runtime (Claude Desktop, Cursor, VS Code),
-the MCP server works there too — see [MCP Clients](#other-mcp-clients) below.
+the MCP server works there too — see [Other MCP Clients](#other-mcp-clients) below.
 
 ---
 
@@ -19,8 +19,7 @@ the MCP server works there too — see [MCP Clients](#other-mcp-clients) below.
 
 - An OpenClaw installation (`npm install -g openclaw`)
 - A running OpenClaw gateway (`openclaw gateway`)
-- Python 3.10+ (for the MCP server)
-- This repo cloned locally
+- Python 3.10+ (for the stdio MCP server — not needed for the remote endpoint)
 
 ---
 
@@ -53,7 +52,7 @@ OpenClaw supports several credential storage methods natively:
 | Method | Best for | Example |
 |--------|----------|---------|
 | **macOS Keychain** | Mac-based teams | `security add-generic-password -s "fpds-analytics-api" -a "$USER" -w "YOUR_KEY"` |
-| **Environment variable** | Linux / containers / CI | `export FPDS_API_KEY="YOUR_KEY"` in `~/.zshrc` or `~/.bashrc` |
+| **Environment variable** | Linux / containers / CI | `export FPDS_API_KEY="***"` in `~/.zshrc` or `~/.bashrc` |
 | **Secret file** | Shared dev machines | `echo "YOUR_KEY" > ~/.config/fpds-api-key && chmod 600 ~/.config/fpds-api-key` |
 | **Vault / cloud secrets** | Enterprise deployments | Depends on your vault — OpenClaw's `SecretRef` supports `env`, `file`, and `exec` providers |
 
@@ -67,42 +66,16 @@ for. If you store the key in Keychain or a file, make sure it ends up in
 
 ---
 
-## 3. Install the MCP Server
+## 3. Connect to the MCP Server
 
-The FPDS Analytics MCP server is a stdio-based server — it runs as a subprocess
-that OpenClaw (or any MCP-compatible client) spawns and communicates with via
-JSON-RPC over stdin/stdout.
+There are two ways to connect your agent to the FPDS Analytics MCP server.
 
-### From source (this repo)
+### Option A: Remote MCP Endpoint (simplest — no local install)
 
-```bash
-git clone https://github.com/KenosaConsulting/fpds-os-analytics.git
-cd fpds-os-analytics
-pip install -e .
-```
+The MCP server is hosted at `https://analytics-api.kenosaconsulting.com/v1/mcp`.
+Point your agent at the URL — no Python, no local process, no repo clone.
 
-### Verify it runs
-
-```bash
-export FPDS_API_KEY="your-key-here"
-python -m mcp.fpds_mcp_server --help
-```
-
-You should see usage information. If you get an import error, make sure you're
-in the right virtual environment and installed with `pip install -e .`.
-
----
-
-## 4. Configure OpenClaw to Use the MCP Server
-
-OpenClaw doesn't have a single "MCP config file" — instead, MCP servers are
-registered as tools that your agent can call. The exact configuration depends
-on how your OpenClaw deployment is structured. Here are the common patterns:
-
-### Pattern A: Local stdio MCP (simplest)
-
-If your OpenClaw gateway runs on the same machine as the MCP server, add the
-MCP server as a local tool in your `openclaw.json`:
+**OpenClaw configuration:**
 
 ```json
 {
@@ -110,12 +83,10 @@ MCP server as a local tool in your `openclaw.json`:
     "mcp": {
       "servers": {
         "fpds-analytics": {
-          "command": "python",
-          "args": ["-m", "mcp.fpds_mcp_server"],
-          "cwd": "/path/to/fpds-os-analytics",
-          "env": {
-            "FPDS_API_KEY": { "env": "FPDS_API_KEY" },
-            "FPDS_ANALYTICS_API_BASE_URL": "https://analytics-api.kenosaconsulting.com"
+          "url": "https://analytics-api.kenosaconsulting.com/v1/mcp",
+          "transport": "http",
+          "headers": {
+            "X-Api-Key": { "env": "FPDS_API_KEY" }
           }
         }
       }
@@ -124,27 +95,32 @@ MCP server as a local tool in your `openclaw.json`:
 }
 ```
 
-OpenClaw resolves the `FPDS_API_KEY` environment variable from your shell or
-Keychain at runtime. The MCP server starts automatically when your agent first
-calls an FPDS tool.
+That's it. OpenClaw connects to the remote MCP server on first tool call.
 
-### Pattern B: Custom tool wrapper
+**For teams without an API key yet:** Remove the `headers` block — the server
+works without a key for bounded public queries (lower rate limits).
 
-Some teams prefer to wrap the MCP server in a custom tool definition. This gives
-you more control over which tools are exposed and how they're named:
+### Option B: Local stdio MCP server (pip install)
+
+For teams that want the MCP server running locally (lower latency, no network
+dependency, works behind firewalls):
+
+```bash
+pip install fpds-os-analytics-mcp
+```
+
+Then configure OpenClaw to spawn it as a subprocess:
 
 ```json
 {
   "tools": {
-    "profile": "coding",
     "mcp": {
       "servers": {
-        "fpds": {
-          "command": "python",
-          "args": ["-m", "mcp.fpds_mcp_server"],
-          "cwd": "/path/to/fpds-os-analytics",
+        "fpds-analytics": {
+          "command": "fpds-mcp",
           "env": {
-            "FPDS_API_KEY": { "env": "FPDS_API_KEY" }
+            "FPDS_API_KEY": { "env": "FPDS_API_KEY" },
+            "FPDS_API_BASE_URL": "https://analytics-api.kenosaconsulting.com"
           }
         }
       }
@@ -153,16 +129,26 @@ you more control over which tools are exposed and how they're named:
 }
 ```
 
-### Pattern C: Remote MCP (future)
+The `fpds-mcp` command is installed by the pip package. OpenClaw starts it
+automatically when your agent first calls an FPDS tool.
 
-A remote HTTP MCP endpoint is on the roadmap (see [issue #4](https://github.com/KenosaConsulting/fpds-os-analytics/issues/4)).
-Once deployed, you'll be able to point OpenClaw at a URL instead of running the
-server locally. This is useful for teams that don't want to manage Python
-dependencies.
+### Which option should I use?
+
+| | Remote (Option A) | Local (Option B) |
+|---|---|---|
+| **Setup time** | 1 minute | 5 minutes |
+| **Dependencies** | None | Python 3.10+ |
+| **Network** | Requires internet | Works offline (after install) |
+| **Latency** | +50-100ms per call | Local IPC |
+| **Firewall** | Needs outbound HTTPS | No inbound/outbound needed |
+| **Updates** | Automatic | `pip install --upgrade` |
+
+**Recommendation:** Start with Option A (remote). Switch to Option B if you
+need lower latency, offline access, or have firewall constraints.
 
 ---
 
-## 5. Available MCP Tools
+## 4. Available MCP Tools
 
 Once configured, your OpenClaw agent gains access to these tools:
 
@@ -187,7 +173,7 @@ the right filters, then explain the results.
 
 ---
 
-## 6. Skills
+## 5. Skills
 
 Pre-built skills for common government contracting activities live in the
 [`/skills`](../skills) folder. Each skill is a markdown file with instructions
@@ -211,24 +197,40 @@ To use a skill, either:
 
 ---
 
-## 7. Other MCP Clients
+## 6. Other MCP Clients
 
-The MCP server works with any MCP-compatible client, not just OpenClaw:
+The MCP server works with any MCP-compatible client, not just OpenClaw.
 
 ### Claude Desktop
 
-Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):
+**Remote endpoint (recommended):**
+
+Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
     "fpds-analytics": {
-      "command": "python",
-      "args": ["-m", "mcp.fpds_mcp_server"],
-      "cwd": "/path/to/fpds-os-analytics",
+      "url": "https://analytics-api.kenosaconsulting.com/v1/mcp",
+      "transport": "http",
+      "headers": {
+        "X-Api-Key": "your-key-here"
+      }
+    }
+  }
+}
+```
+
+**Local stdio:**
+
+```json
+{
+  "mcpServers": {
+    "fpds-analytics": {
+      "command": "fpds-mcp",
       "env": {
         "FPDS_API_KEY": "your-key-here",
-        "FPDS_ANALYTICS_API_BASE_URL": "https://analytics-api.kenosaconsulting.com"
+        "FPDS_API_BASE_URL": "https://analytics-api.kenosaconsulting.com"
       }
     }
   }
@@ -243,11 +245,10 @@ Add to `.cursor/mcp.json` in your project:
 {
   "mcpServers": {
     "fpds-analytics": {
-      "command": "python",
-      "args": ["-m", "mcp.fpds_mcp_server"],
-      "cwd": "/path/to/fpds-os-analytics",
-      "env": {
-        "FPDS_API_KEY": "your-key-here"
+      "url": "https://analytics-api.kenosaconsulting.com/v1/mcp",
+      "transport": "http",
+      "headers": {
+        "X-Api-Key": "your-key-here"
       }
     }
   }
@@ -256,34 +257,67 @@ Add to `.cursor/mcp.json` in your project:
 
 ### VS Code (Continue.dev or similar)
 
-Follow the MCP server configuration for your specific extension. The server
-command is always:
+Follow the MCP server configuration for your specific extension. For the local
+stdio server, the command is always:
 
 ```
-python -m mcp.fpds_mcp_server
+fpds-mcp
 ```
 
-with `FPDS_API_KEY` and `FPDS_ANALYTICS_API_BASE_URL` set in the environment.
+with `FPDS_API_KEY` and `FPDS_API_BASE_URL` set in the environment. For the
+remote endpoint, use the URL `https://analytics-api.kenosaconsulting.com/v1/mcp`.
+
+---
+
+## 7. Testing Your Connection
+
+### Test the remote endpoint
+
+```bash
+# Check server info
+curl -s https://analytics-api.kenosaconsulting.com/v1/mcp | jq .
+
+# List available tools (JSON-RPC)
+curl -s -X POST https://analytics-api.kenosaconsulting.com/v1/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' | jq '.result.tools[].name'
+
+# Query a dataset
+curl -s -X POST https://analytics-api.kenosaconsulting.com/v1/mcp \
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: your-key-here" \
+  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"fpds_resolve","arguments":{"query":"Army"}}}' | jq .
+```
+
+### Test the local stdio server
+
+```bash
+# Verify the command is installed
+fpds-mcp --help
+
+# Send a test message (tools/list)
+echo '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' | FPDS_API_BASE_URL=https://analytics-api.kenosaconsulting.com fpds-mcp
+```
 
 ---
 
 ## 8. Troubleshooting
 
-**MCP server won't start:**
+**Remote MCP returns 401 or 403:**
+- Verify your API key is valid at [kenosaconsulting.com/api](https://kenosaconsulting.com/api)
+- Check that the key is being passed as `X-Api-Key` header
+- The server works without a key for bounded queries — if you're getting 401, you're hitting a key-required endpoint
+
+**Local MCP server won't start:**
 - Verify Python 3.10+ is installed: `python --version`
-- Verify the package is installed: `pip show fpds-os-analytics`
-- Run the server manually to see errors: `python -m mcp.fpds_mcp_server`
+- Verify the package is installed: `pip show fpds-os-analytics-mcp`
+- Run the server manually to see errors: `fpds-mcp --api-base-url https://analytics-api.kenosaconsulting.com`
 - Check that `FPDS_API_KEY` is set in the environment OpenClaw uses
 
 **Agent can't find FPDS tools:**
-- Check that the MCP server is registered in your OpenClaw config
+- For remote: check the URL in your OpenClaw config, verify the endpoint is reachable with curl
+- For local: check that `fpds-mcp` is on the PATH OpenClaw uses
 - Restart the gateway after config changes: `openclaw gateway restart`
-- Verify the server path: OpenClaw needs to find `mcp.fpds_mcp_server` in its Python path
-
-**API returns 401 or 403:**
-- Verify your API key is valid at [kenosaconsulting.com/api](https://kenosaconsulting.com/api)
-- Check that the key is being passed correctly (the MCP server sends it as `X-Api-Key` header)
-- If using environment variables, make sure they're loaded in the shell that runs OpenClaw
 
 **Queries return empty results:**
 - Start with `fpds_list_datasets` to see what's available
