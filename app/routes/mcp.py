@@ -14,10 +14,9 @@ import json
 import os
 from typing import Any
 
-from fastapi import APIRouter, Header, Request
+from fastapi import APIRouter, Request
 from fastapi.responses import JSONResponse, StreamingResponse
 
-from app.auth import optional_api_access, APIAccess
 from mcp.fpds_mcp_server import FPDSClient, FPDSServer
 
 
@@ -25,11 +24,19 @@ router = APIRouter(prefix="/v1/mcp", tags=["mcp"])
 
 
 def _build_server(request: Request) -> FPDSServer:
-    """Build an FPDSServer using the API base URL and optional API key."""
+    """Build an FPDSServer using the API base URL and optional API key.
+    
+    Priority: FPDS_API_BASE_URL env var > request.base_url (for local dev).
+    On Render, FPDS_API_BASE_URL should be set to the public URL.
+    """
     base_url = os.environ.get(
-        "FPDS_ANALYTICS_API_BASE_URL",
+        "FPDS_API_BASE_URL",
         str(request.base_url).rstrip("/"),
     )
+    # Render internal URLs (http://0.0.0.0:PORT) won't work for self-calls.
+    # Fall back to the public API URL if the env var isn't set.
+    if "0.0.0.0" in base_url or "localhost" in base_url:
+        base_url = "https://analytics-api.kenosaconsulting.com"
     api_key = request.headers.get("X-Api-Key")
     if not api_key:
         auth_header = request.headers.get("Authorization", "")
@@ -62,7 +69,6 @@ def mcp_info() -> dict[str, Any]:
 @router.post("/", response_model=None)
 async def mcp_handle(
     request: Request,
-    x_api_key: str | None = Header(default=None, alias="X-Api-Key"),
 ) -> JSONResponse | StreamingResponse:
     """Handle a JSON-RPC 2.0 request over HTTP.
 
