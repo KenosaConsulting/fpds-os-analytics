@@ -39,7 +39,7 @@ def db_cursor(read_only: bool = True) -> Iterator[psycopg2.extensions.cursor]:
     try:
         with conn:
             with conn.cursor() as cur:
-                statement_timeout = os.environ.get("FPDS_ANALYTICS_STATEMENT_TIMEOUT", "15s")
+                statement_timeout = os.environ.get("FPDS_ANALYTICS_STATEMENT_TIMEOUT", "45s")
                 cur.execute("set local statement_timeout = %s", (statement_timeout,))
                 if read_only:
                     cur.execute("set local default_transaction_read_only = on")

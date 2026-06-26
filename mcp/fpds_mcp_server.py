@@ -156,7 +156,7 @@ class FPDSServer:
             domain_summary = _domain_summary(catalog)
             dataset_listing = _dataset_summary(catalog)
             query_description = (
-                "Query bounded rows from a documented FPDS dataset. Use fpds_list_datasets or fpds_describe_dataset first to discover dataset IDs and allowed filters. Documented datasets only, allowlisted filters, bounded rows, no SQL.\n\nDomains: "
+                "Query bounded rows from a documented FPDS dataset. Use fpds_list_datasets or fpds_describe_dataset first to discover dataset IDs and allowed filters. Documented datasets only, allowlisted filters, bounded rows, no SQL.\n\nIMPORTANT: Always include at least one filter (e.g. contracting_dept_id, fiscal_year, principal_naics_code) to avoid query timeouts. Unfiltered queries on large datasets may time out. Use fpds_resolve to find filter values from names.\n\nDomains: "
                 + domain_summary
                 + "\n\n"
                 + dataset_listing
@@ -166,12 +166,13 @@ class FPDSServer:
                 "Query bounded rows from a documented FPDS dataset. "
                 "Use fpds_list_datasets or fpds_describe_dataset first to discover "
                 "dataset IDs and allowed filters. Documented datasets only, "
-                "allowlisted filters, bounded rows, no SQL."
+                "allowlisted filters, bounded rows, no SQL. "
+                "Always include at least one filter to avoid timeouts."
             )
         return [
             _tool(
                 "fpds_list_datasets",
-                "List documented FPDS analytics datasets (81 datasets across 15 domains) with descriptions, filters, fields, examples, and caveats. Use domain filter to narrow results. Call this first to discover dataset IDs before querying.",
+                "List documented FPDS analytics datasets (86 datasets across 15 domains) with descriptions, filters, fields, examples, and caveats. Use domain filter to narrow results. Call this first to discover dataset IDs before querying.",
                 {"domain": {"type": "string", "description": "Optional domain filter: pricing, concentration, competition, naics, geography, customer, market, incumbent, set_aside, psc, vehicle, recompete, seasonality, topics, contacts, entrants."}},
             ),
             _tool(
