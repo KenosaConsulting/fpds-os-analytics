@@ -173,7 +173,7 @@ def protected_resource_metadata(request: Request) -> dict[str, Any]:
     base = _base_url(request)
     return {
         "resource": f"{base}/v1/mcp",
-        "authorization_servers": [f"{base}/v1/oauth"],
+        "authorization_servers": [base],
         "scopes_supported": _SUPPORTED_SCOPES,
         "bearer_methods_supported": ["header"],
         "resource_documentation": f"{base}/v1",
