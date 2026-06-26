@@ -160,9 +160,16 @@ def _cleanup_expired():
 # ---------------------------------------------------------------------------
 
 @router.get("/.well-known/oauth-protected-resource")
+@router.get("/.well-known/oauth-protected-resource/mcp")
 def protected_resource_metadata(request: Request) -> dict[str, Any]:
     """RFC 9728 protected resource metadata.
-    Tells MCP clients where to find the authorization server."""
+    Tells MCP clients where to find the authorization server.
+    
+    Two paths are served:
+    - /.well-known/oauth-protected-resource (standard)
+    - /.well-known/oauth-protected-resource/mcp (path-suffixed variant per RFC 9728 §3.1)
+      Claude tries this first when the MCP URL has a path component (/v1/mcp).
+    """
     base = _base_url(request)
     return {
         "resource": f"{base}/v1/mcp",

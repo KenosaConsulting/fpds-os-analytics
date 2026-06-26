@@ -33,6 +33,68 @@ LATEST_PROTOCOL_VERSION = "2025-03-26"
 # In-memory session registry.
 _sessions: dict[str, dict[str, Any]] = {}
 
+# ── Lazy authentication ─────────────────────────────────────────────────
+# Tools that work without authentication (public tier).
+# Any tool NOT in this set requires auth and triggers 401 + OAuth flow.
+_PUBLIC_TOOLS: set[str] = {
+    "fpds_list_datasets",
+    "fpds_describe_dataset",
+    "fpds_list_dimensions",
+    "fpds_lookup_dimension",
+    "fpds_resolve",
+    "fpds_topic_search",
+}
+
+# Datasets that require an API key (public_access=api_key in catalog).
+_API_KEY_DATASETS: set[str] | None = None
+
+
+def _get_api_key_datasets() -> set[str]:
+    """Lazily load the set of datasets that require an API key."""
+    global _API_KEY_DATASETS
+    if _API_KEY_DATASETS is None:
+        try:
+            from app.catalog import load_catalog
+            cat = load_catalog()
+            _API_KEY_DATASETS = {
+                ds_id for ds_id, ds in cat.datasets.items()
+                if ds.get("public_access") == "api_key"
+            }
+        except Exception:
+            logger.warning("Could not load catalog for API-key dataset check")
+            _API_KEY_DATASETS = set()
+    return _API_KEY_DATASETS
+
+
+def _calls_protected_tool(body: dict[str, Any] | list) -> bool:
+    """Check if a JSON-RPC request calls a tool that requires authentication.
+    
+    This implements Claude's lazy authentication pattern:
+    - Public tools (list, describe, resolve, etc.) work without auth
+    - Protected tools (query_dataset on gated data, customer_profile) require auth
+    
+    Returns True if the request targets a protected tool without auth.
+    """
+    messages = body if isinstance(body, list) else [body]
+    for msg in messages:
+        if not isinstance(msg, dict):
+            continue
+        if msg.get("method") != "tools/call":
+            continue
+        tool_name = (msg.get("params") or {}).get("name", "")
+        if tool_name in _PUBLIC_TOOLS:
+            continue  # Public tool — no auth needed
+        # fpds_query_dataset is conditionally protected:
+        # public_bounded datasets work without auth, api_key datasets don't
+        if tool_name == "fpds_query_dataset":
+            dataset_id = (msg.get("params") or {}).get("arguments", {}).get("dataset_id", "")
+            if dataset_id and dataset_id in _get_api_key_datasets():
+                return True  # Gated dataset — auth required
+            continue  # public_bounded dataset — no auth needed
+        # All other tools (fpds_customer_profile, etc.) require auth
+        return True
+    return False
+
 router = APIRouter(prefix="/v1/mcp", tags=["mcp"])
 
 
@@ -98,20 +160,26 @@ def _unauthorized_response(request: Request) -> JSONResponse:
     
     Claude's connector framework uses this to discover the OAuth flow.
     The resource_metadata parameter points to our protected resource metadata.
+    The scope parameter tells Claude which scopes to request.
+    
+    Per Claude docs: the 401 status is required — Claude does not honor
+    WWW-Authenticate on a 200 response. Only a transport-level 401 causes
+    Claude to pause the call, run the OAuth flow, and retry.
     """
     base = _base_url(request)
     return JSONResponse(
         status_code=401,
         content={
-            "jsonrpc": "2.0",
-            "error": {
-                "code": -32001,
-                "message": "Authentication required. Connect your API key via OAuth or pass X-Api-Key header.",
-            },
-            "id": None,
+            "error": "invalid_token",
+            "error_description": "Authentication required for this tool. Connect your API key via OAuth.",
         },
         headers={
-            "WWW-Authenticate": f'Bearer resource_metadata="{base}/.well-known/oauth-protected-resource"',
+            "WWW-Authenticate": (
+                f'Bearer error="invalid_token", '
+                f'error_description="Authentication required for this tool", '
+                f'resource_metadata="{base}/.well-known/oauth-protected-resource", '
+                f'scope="fpds:read"'
+            ),
         },
     )
 
@@ -160,19 +228,24 @@ async def mcp_handle(
             },
         )
 
-    # Check if this is an initialize request — allow without auth
+    # Check if this is an initialize request — always allowed without auth
     method = body.get("method", "") if isinstance(body, dict) else ""
     is_initialize = method == "initialize"
 
-    # Resolve auth
-    has_auth = bool(_resolve_api_key(request))
+    # Resolve auth state
+    api_key = _resolve_api_key(request)
+    has_auth = bool(api_key)
     auth_header = request.headers.get("Authorization", "")
     has_bearer = auth_header.startswith("Bearer ")
-    has_api_key = bool(request.headers.get("X-Api-Key"))
 
-    # If client sent a Bearer token but it's invalid, return 401
-    # to trigger OAuth flow (Claude uses this to discover auth endpoints)
+    # ── Lazy authentication (Claude connector pattern) ────────────────
+    # If client sent an invalid OAuth Bearer token, return 401 immediately.
+    # If client has no auth AND is calling a protected tool, return 401
+    # with WWW-Authenticate — this triggers Claude's OAuth flow.
+    # Public tools (initialize, ping, tools/list, public tool calls) pass through.
     if has_bearer and not has_auth and not is_initialize:
+        return _unauthorized_response(request)
+    if not has_auth and not is_initialize and _calls_protected_tool(body):
         return _unauthorized_response(request)
 
     server = _build_server(request)
