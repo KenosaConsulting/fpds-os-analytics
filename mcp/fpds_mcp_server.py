@@ -171,7 +171,7 @@ class FPDSServer:
         return [
             _tool(
                 "fpds_list_datasets",
-                "List documented FPDS analytics datasets with descriptions, filters, fields, examples, and caveats. Use domain filter to narrow results. Call this first to discover dataset IDs before querying.",
+                "List documented FPDS analytics datasets (81 datasets across 15 domains) with descriptions, filters, fields, examples, and caveats. Use domain filter to narrow results. Call this first to discover dataset IDs before querying.",
                 {"domain": {"type": "string", "description": "Optional domain filter: pricing, concentration, competition, naics, geography, customer, market, incumbent, set_aside, psc, vehicle, recompete, seasonality, topics, contacts, entrants."}},
             ),
             _tool(
@@ -281,7 +281,7 @@ class FPDSServer:
 
     def resolve(self, arguments: dict[str, Any]) -> dict[str, Any]:
         q = arguments["q"]
-        raw_types = arguments.get("types") or ["departments", "agencies", "offices", "naics", "psc", "vehicle_programs", "topics"]
+        raw_types = arguments.get("types") or ["agencies", "departments", "offices", "naics", "psc", "vehicle_programs", "topics"]
         limit = min(int(arguments.get("limit") or 10), 100)
         results = []
         for raw_type in raw_types:
@@ -372,8 +372,8 @@ def handle_message(server: FPDSServer, message: dict[str, Any]) -> dict[str, Any
             return _success(
                 request_id,
                 {
-                    "protocolVersion": params.get("protocolVersion", "2024-11-05"),
-                    "serverInfo": {"name": "fpds-os-analytics", "version": "0.1.0"},
+                    "protocolVersion": params.get("protocolVersion", "2025-03-26"),
+                    "serverInfo": {"name": "fpds-os-analytics", "version": "0.2.0"},
                     "capabilities": {"tools": {}},
                 },
             )

@@ -849,6 +849,62 @@ datasets:
   default_sort: scope_name
   fields: [scope_name, distinct_offices, distinct_agencies, total_actions, total_obligated, total_vendor_interactions, competed_action_share,
     small_biz_obligation_share]
+- id: customer.agency_month_naics_fy
+  title: Agency Monthly NAICS Patterns By Fiscal Year
+  domain: customer
+  description: Agency Monthly NAICS Patterns By Fiscal Year shows how each agency distributes
+    obligations across NAICS codes by fiscal month. Use it to analyze monthly procurement
+    patterns, identify seasonal NAICS spikes, and time capture activity around when
+    agencies buy specific services or products.
+  example_queries:
+  - query: /v1/datasets/customer.agency_month_naics_fy/rows?contracting_dept_id=9700&fiscal_year=2024&limit=25
+    explanation: Show DoD FY2024 monthly NAICS patterns.
+  field_descriptions:
+    fiscal_month: Federal fiscal month where October is 1 and September is 12.
+    calendar_month: Calendar month number (1=January, 12=December).
+    distinct_vendor_count: Number of unique vendors (UEI) in this cell.
+    distinct_piid_count: Number of unique contract instruments (PIID) in this cell.
+    distinct_office_count: Number of unique contracting offices in this cell.
+    competed_action_count: Actions where competition was observed.
+    not_competed_action_count: Actions without full and open competition.
+  backing_view: analytics_api.customer_agency_month_naics_fy
+  source_view: customer_intelligence.report_deck_agency_month_naics_fy
+  grain: contracting_agency_id x fiscal_year x fiscal_month x principal_naics_code x set_aside_code
+  public_access: api_key
+  required_filters_any: [contracting_dept_id, contracting_agency_id, fiscal_year]
+  filters: [fiscal_year, fiscal_year_min, fiscal_year_max, contracting_dept_id, contracting_agency_id, fiscal_month, principal_naics_code, set_aside_code]
+  sortable: [net_obligated_amount, action_count, fiscal_year, fiscal_month]
+  default_sort: -net_obligated_amount
+  fields:
+  - contracting_dept_id
+  - contracting_agency_id
+  - principal_naics_code
+  - fiscal_year
+  - fiscal_month
+  - calendar_month
+  - set_aside_code
+  - action_count
+  - net_obligated_amount
+  - positive_obligated_amount
+  - negative_obligated_amount
+  - base_and_all_options_value_sum
+  - distinct_vendor_count
+  - distinct_piid_count
+  - distinct_office_count
+  - contract_scope_action_count
+  - contract_scope_obligated
+  - competed_action_count
+  - not_competed_action_count
+  - naics_desc
+  - sector_code
+  - subsector_code
+  - sector_label
+  - subsector_label
+  - department_name
+  - department_short_name
+  - contracting_agency_name
+  - contracting_agency_short_name
+  - set_aside_name
 - id: seasonality.agency_month_fy
   title: Agency Fiscal-Month Seasonality
   domain: seasonality
@@ -3161,3 +3217,206 @@ datasets:
   - not_competed_action_count
   - distinct_vendor_count
   - distinct_office_count
+
+# ── BL-019.3: Office × PSC × NAICS × FY cross-cut ──────────────────────────────
+
+- id: psc.naics_office_fy
+  title: Office PSC NAICS Cross-Cut By Fiscal Year
+  domain: psc
+  description: >
+    Office-level spending by PSC × NAICS × fiscal year. Shows what product/service codes
+    contracting offices are buying under each NAICS code, enabling granular cross-dimensional
+    analysis of procurement categories. Answers questions like "what PSCs does the Army
+    AMCOM office buy under NAICS 336413" and "which offices buy PSC Z2JZ."
+    Includes competition and vendor diversity metrics.
+  example_queries:
+  - query: /v1/datasets/psc.naics_office_fy/rows?contracting_office_id=W912DY&fiscal_year=2024&limit=25
+    explanation: Army Corps of Engineers Walla Walla FY2024 PSC×NAICS breakdown
+  - query: /v1/datasets/psc.naics_office_fy/rows?contracting_dept_id=9700&product_or_service_code=R425&fiscal_year=2024&limit=50
+    explanation: All DoD offices buying PSC R425 by NAICS in FY2024
+  backing_view: analytics_api.psc_naics_office_fy
+  source_view: psc_analysis.report_deck_psc_naics_office_fy
+  grain: contracting_office_id x product_or_service_code x principal_naics_code x fiscal_year x set_aside_code
+  public_access: api_key
+  required_filters_any: [contracting_office_id, contracting_agency_id, contracting_dept_id, product_or_service_code, principal_naics_code]
+  filters: [fiscal_year, fiscal_year_min, fiscal_year_max, contracting_dept_id, contracting_agency_id, contracting_office_id, product_or_service_code, principal_naics_code, set_aside_code]
+  sortable: [fiscal_year, net_obligated_amount, action_count, distinct_vendor_count]
+  default_sort: -net_obligated_amount
+  max_limit: 1000
+  fields:
+  - contracting_dept_id
+  - contracting_agency_id
+  - contracting_office_id
+  - product_or_service_code
+  - principal_naics_code
+  - fiscal_year
+  - set_aside_code
+  - action_count
+  - net_obligated_amount
+  - positive_obligated_amount
+  - negative_obligated_amount
+  - base_and_all_options_value_sum
+  - distinct_vendor_count
+  - distinct_piid_count
+  - contract_scope_action_count
+  - contract_scope_obligated
+  - competed_action_count
+  - not_competed_action_count
+  - naics_desc
+  - sector_code
+  - subsector_code
+  - sector_label
+  - subsector_label
+  - psc_name
+  - psc_group
+  - psc_group_name
+  - department_name
+  - department_short_name
+  - contracting_agency_name
+  - contracting_agency_short_name
+  - contracting_office_name
+  - set_aside_name
+- id: customer.office_month_naics_fy
+  title: Office Monthly NAICS Patterns By Fiscal Year
+  domain: customer
+  description: >
+    Office-level spending by month × NAICS × fiscal year. Shows how each contracting office
+    distributes obligations across NAICS codes by fiscal month. Enables queries like "DHS →
+    offices → monthly → NAICS" (Q5) and monthly procurement pattern analysis at office grain.
+    Includes competition, vendor diversity, and set-aside breakdowns.
+  example_queries:
+  - query: /v1/datasets/customer.office_month_naics_fy/rows?contracting_office_id=W912DY&fiscal_year=2024&limit=25
+    explanation: Army Corps of Engineers Walla Walla FY2024 monthly NAICS breakdown
+  - query: /v1/datasets/customer.office_month_naics_fy/rows?contracting_dept_id=9700&fiscal_month=9&fiscal_year=2024&limit=50
+    explanation: All DoD offices September FY2024 NAICS patterns
+  backing_view: analytics_api.customer_office_month_naics_fy
+  source_view: customer_intelligence.report_deck_office_month_naics_fy
+  grain: contracting_office_id x fiscal_year x fiscal_month x principal_naics_code x set_aside_code
+  public_access: api_key
+  required_filters_any: [contracting_office_id, contracting_agency_id, contracting_dept_id, fiscal_year]
+  filters: [fiscal_year, fiscal_year_min, fiscal_year_max, contracting_dept_id, contracting_agency_id, contracting_office_id, fiscal_month, principal_naics_code, set_aside_code]
+  sortable: [fiscal_year, fiscal_month, net_obligated_amount, action_count, distinct_vendor_count]
+  default_sort: -net_obligated_amount
+  max_limit: 1000
+  fields:
+  - contracting_dept_id
+  - contracting_agency_id
+  - contracting_office_id
+  - principal_naics_code
+  - fiscal_year
+  - fiscal_month
+  - calendar_month
+  - set_aside_code
+  - action_count
+  - net_obligated_amount
+  - positive_obligated_amount
+  - negative_obligated_amount
+  - base_and_all_options_value_sum
+  - distinct_vendor_count
+  - distinct_piid_count
+  - contract_scope_action_count
+  - contract_scope_obligated
+  - competed_action_count
+  - not_competed_action_count
+  - naics_desc
+  - sector_code
+  - subsector_code
+  - sector_label
+  - subsector_label
+  - department_name
+  - department_short_name
+  - contracting_agency_name
+  - contracting_agency_short_name
+  - contracting_office_name
+  - set_aside_name
+- id: concentration.vendor_cross_agency_rank
+  title: Vendor Cross-Agency Rank
+  domain: concentration
+  description: >
+    Shows each vendor's rank and obligation share across all agencies for each fiscal year.
+    Enables queries like "what other agencies does vendor X lead?" (Q13) and cross-agency
+    vendor market analysis. Includes agency_rank, total_across_agencies, agency_share_pct,
+    and agency_count for each vendor × agency × year cell.
+  example_queries:
+  - query: /v1/datasets/concentration.vendor_cross_agency_rank/rows?uei=C114HTL5ADV7&fiscal_year=2024&limit=25
+    explanation: Show all agencies where CUMMINS INC. had obligations in FY2024, ranked
+  - query: /v1/datasets/concentration.vendor_cross_agency_rank/rows?fiscal_year=2024&agency_rank=1&limit=50
+    explanation: Vendors ranked #1 in any agency for FY2024
+  backing_view: analytics_api.concentration_vendor_cross_agency_rank
+  source_view: vendor_concentration.report_deck_vendor_cross_agency_rank
+  grain: uei x contracting_agency_id x fiscal_year
+  public_access: api_key
+  required_filters_any: [uei, contracting_agency_id, fiscal_year]
+  filters: [fiscal_year, fiscal_year_min, fiscal_year_max, uei, contracting_agency_id, is_small_business, agency_rank]
+  sortable: [fiscal_year, net_obligated_amount, agency_rank, agency_share_pct]
+  default_sort: -net_obligated_amount
+  max_limit: 1000
+  fields:
+  - uei
+  - vendor_name
+  - contracting_agency_id
+  - contracting_agency_name
+  - agency_short_name
+  - fiscal_year
+  - is_small_business
+  - net_obligated_amount
+  - action_count
+  - positive_obligated_amount
+  - negative_obligated_amount
+  - contract_scope_obligated_amount
+  - agency_rank
+  - total_across_agencies
+  - agency_share_pct
+  - agency_count
+- id: concentration.vendor_office_naics_year
+  title: Vendor Office NAICS By Fiscal Year
+  domain: concentration
+  description: >
+    Office-level vendor spending by NAICS × fiscal year. Shows what NAICS codes each vendor
+    works under in each contracting office. Enables queries like "what NAICS does vendor X
+    do in office Y" and office-level vendor market share analysis. Includes action counts,
+    obligations, and date ranges.
+  example_queries:
+  - query: /v1/datasets/concentration.vendor_office_naics_year/rows?contracting_office_id=W912DY&fiscal_year=2024&limit=25
+    explanation: Army Corps Walla Walla FY2024 vendors by NAICS
+  - query: /v1/datasets/concentration.vendor_office_naics_year/rows?vendor_uei=C114HTL5ADV7&fiscal_year=2024&limit=50
+    explanation: All offices and NAICS where CUMMINS INC. had obligations in FY2024
+  backing_view: analytics_api.concentration_vendor_office_naics_year
+  source_view: vendor_concentration.report_deck_vendor_office_naics_year
+  grain: contracting_office_id x vendor_uei x principal_naics_code x fiscal_year x set_aside_code
+  public_access: api_key
+  required_filters_any: [contracting_office_id, contracting_agency_id, contracting_dept_id, vendor_uei, fiscal_year]
+  filters: [fiscal_year, fiscal_year_min, fiscal_year_max, contracting_dept_id, contracting_agency_id, contracting_office_id, vendor_uei, principal_naics_code, set_aside_code]
+  sortable: [fiscal_year, net_obligated_amount, action_count, distinct_piid_count]
+  default_sort: -net_obligated_amount
+  max_limit: 1000
+  fields:
+  - contracting_dept_id
+  - contracting_agency_id
+  - contracting_office_id
+  - vendor_uei
+  - vendor_name
+  - principal_naics_code
+  - fiscal_year
+  - set_aside_code
+  - action_count
+  - net_obligated_amount
+  - positive_obligated_amount
+  - negative_obligated_amount
+  - max_base_all_options_value
+  - distinct_piid_count
+  - contract_scope_action_count
+  - contract_scope_obligated
+  - first_action_date
+  - last_action_date
+  - naics_desc
+  - sector_code
+  - subsector_code
+  - sector_label
+  - subsector_label
+  - department_name
+  - department_short_name
+  - contracting_agency_name
+  - contracting_agency_short_name
+  - contracting_office_name
+  - set_aside_name

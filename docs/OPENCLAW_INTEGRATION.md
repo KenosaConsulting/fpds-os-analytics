@@ -84,7 +84,7 @@ Point your agent at the URL — no Python, no local process, no repo clone.
       "servers": {
         "fpds-analytics": {
           "url": "https://analytics-api.kenosaconsulting.com/v1/mcp",
-          "transport": "http",
+          "transport": "streamable-http",
           "headers": {
             "X-Api-Key": { "env": "FPDS_API_KEY" }
           }
@@ -212,10 +212,23 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
   "mcpServers": {
     "fpds-analytics": {
       "url": "https://analytics-api.kenosaconsulting.com/v1/mcp",
-      "transport": "http",
+      "transport": "streamable-http",
       "headers": {
         "X-Api-Key": "your-key-here"
       }
+    }
+  }
+}
+```
+
+**Alternative: mcp-remote bridge** (if your Claude Desktop build doesn't support native streamable-http):
+
+```json
+{
+  "mcpServers": {
+    "fpds-analytics": {
+      "command": "npx",
+      "args": ["mcp-remote", "https://analytics-api.kenosaconsulting.com/v1/mcp"]
     }
   }
 }
@@ -246,7 +259,7 @@ Add to `.cursor/mcp.json` in your project:
   "mcpServers": {
     "fpds-analytics": {
       "url": "https://analytics-api.kenosaconsulting.com/v1/mcp",
-      "transport": "http",
+      "transport": "streamable-http",
       "headers": {
         "X-Api-Key": "your-key-here"
       }

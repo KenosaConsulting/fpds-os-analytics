@@ -71,9 +71,32 @@ When a user asks about customer targeting, market openness, incumbent strength, 
 
 ## Claude Connector / MCP
 
-Best path for Claude: build a remote MCP server that wraps the same safe API functions.
+The FPDS Analytics API includes a built-in remote MCP server at `/v1/mcp`.
 
-MCP tools should be thin wrappers:
+**For Claude.ai users:** Add a custom connector with URL
+`https://analytics-api.kenosaconsulting.com/v1/mcp`. When Claude detects
+the server requires authentication, it automatically triggers the OAuth flow.
+You'll be redirected to a page where you enter your FPDS API key — or request
+one for free on the spot. Once authorized, all API-key-gated datasets
+(recompete watchlist, customer profiles, etc.) are unlocked automatically.
+
+**For Claude Desktop users:** Add to `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "fpds-analytics": {
+      "url": "https://analytics-api.kenosaconsulting.com/v1/mcp",
+      "transport": "streamable-http",
+      "headers": { "X-Api-Key": "fpds_beta_..." }
+    }
+  }
+}
+```
+
+Or use the `mcp-remote` bridge if native streamable-http isn't supported.
+
+MCP tools are thin wrappers:
 
 - `fpds_list_datasets`
 - `fpds_describe_dataset`

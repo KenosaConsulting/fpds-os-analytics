@@ -14,6 +14,7 @@ from app.catalog import load_catalog
 from app.errors import APIError
 from app.rate_limit import RateLimitMiddleware
 from app.routes import catalog, datasets, dimensions, exports, health, keys, mcp, profiles
+from app import oauth
 
 
 def _allowed_origins() -> list[str]:
@@ -36,7 +37,7 @@ app.add_middleware(
     allow_origins=_allowed_origins(),
     allow_credentials=False,
     allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["X-Api-Key", "X-Api-Version", "Content-Type"],
+    allow_headers=["X-Api-Key", "X-Api-Version", "Content-Type", "Authorization", "Mcp-Session-Id"],
 )
 
 
@@ -72,3 +73,4 @@ app.include_router(profiles.router)
 app.include_router(exports.router)
 app.include_router(keys.router)
 app.include_router(mcp.router)
+app.include_router(oauth.router)

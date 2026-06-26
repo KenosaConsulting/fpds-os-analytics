@@ -166,11 +166,35 @@ Point your AI client at the hosted endpoint. No Python, no repo clone.
   "mcpServers": {
     "fpds-analytics": {
       "url": "https://analytics-api.kenosaconsulting.com/v1/mcp",
-      "transport": "http"
+      "transport": "streamable-http"
     }
   }
 }
 ```
+
+**Claude.ai / Claude Desktop (OAuth flow):**
+
+When you add this as a custom connector in Claude, the OAuth flow starts automatically.
+You'll be redirected to a page where you enter your FPDS API key. If you don't have one,
+the authorization page links to the free self-service signup. Once authorized, Claude
+receives a Bearer token and all API-key-gated datasets (recompete watchlist, customer
+profiles, etc.) are unlocked automatically.
+
+**Claude Desktop alternative** (if native streamable-http not supported):
+
+```json
+{
+  "mcpServers": {
+    "fpds-analytics": {
+      "command": "npx",
+      "args": ["mcp-remote", "https://analytics-api.kenosaconsulting.com/v1/mcp"]
+    }
+  }
+}
+```
+
+For Claude Desktop with `mcp-remote` or `claude_desktop_config.json`, you can pass your
+API key directly in the headers:
 
 **Option B — Local stdio (pip install):**
 

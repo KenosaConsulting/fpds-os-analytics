@@ -18,3 +18,4 @@ docs/ANALYTICS_SCHEMA_DESIGN.md
 docs/SCOPE-vehicle-level-analytics.md
 .DS_Store
 fpds_os_analytics_mcp.egg-info/
+dist/
