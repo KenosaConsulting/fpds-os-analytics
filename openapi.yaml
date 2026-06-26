@@ -470,6 +470,7 @@ components:
         - naics.trend_fy
         - pipeline.agency_recompete_summary
         - pipeline.award_size_distribution
+        - pipeline.contract_transactions
         - pipeline.duration_profile
         - pipeline.recompete_watchlist
         - pricing.agency_profile_fy

@@ -10,7 +10,7 @@
         ║     ▁▂▃▄▅▆▇  COMPETITIVE INTELLIGENCE ENGINE  ▇▆▅▄▃▂▁             ║
         ║                                                                   ║
         ║     ┌───────────────────────────────────────────────────────┐     ║
-        ║     │  81 datasets · 16 dimensions · 99M+ federal actions   │     ║
+        ║     │  87 datasets · 16 dimensions · 99M+ federal actions   │     ║
         ║     │  REST + MCP  · MIT License   · Zero config to start   │     ║
         ║     └───────────────────────────────────────────────────────┘     ║
         ║                                                                   ║
@@ -127,7 +127,7 @@ Plus four **cross-cutting analytics** that don't belong to a single package:
 | **Market Entry Difficulty** | A composite score blending HHI concentration, sole-source share, vehicle dependence, average offers received, and incumbent tenure — one number that says "how hard is this market to crack" |
 | **Award-Size Distribution** | Median, P25, and P75 award sizes by agency × NAICS, plus under-SAT (simplified acquisition threshold) share |
 
-**81 datasets. 16 code-lookup dimensions. Every query bounded, parameterized,
+**87 datasets. 16 code-lookup dimensions. Every query bounded, parameterized,
 and documented.**
 
 ### Vehicle-program deployment note

@@ -172,7 +172,7 @@ class FPDSServer:
         return [
             _tool(
                 "fpds_list_datasets",
-                "List documented FPDS analytics datasets (86 datasets across 15 domains) with descriptions, filters, fields, examples, and caveats. Use domain filter to narrow results. Call this first to discover dataset IDs before querying.",
+                "List documented FPDS analytics datasets (87 datasets across 15 domains) with descriptions, filters, fields, examples, and caveats. Use domain filter to narrow results. Call this first to discover dataset IDs before querying.",
                 {"domain": {"type": "string", "description": "Optional domain filter: pricing, concentration, competition, naics, geography, customer, market, incumbent, set_aside, psc, vehicle, recompete, seasonality, topics, contacts, entrants."}},
             ),
             _tool(
@@ -245,6 +245,18 @@ class FPDSServer:
                 },
                 ["q"],
             ),
+            _tool(
+                "fpds_contract_history",
+                "Get the transaction-level modification history for a specific contract PIID. Returns every modification with descriptions, reason codes, obligation amounts, and dates. Use this when you need to understand WHAT HAPPENED on a contract — scope changes, option exercises, funding increments, de-obligations, and more. This is the drill-down layer that the recompete watchlist and vendor dashboards point to.",
+                {
+                    "piid": {"type": "string", "description": "Contract PIID (e.g. W31P4Q21FB004, N0001920C0009). Required."},
+                    "reason_for_modification": {"type": "string", "description": "Filter by modification reason code (B=supplemental agreement within scope, F=exercise an option, C=funding only, A=change order, etc.)."},
+                    "contract_action_type": {"type": "string", "description": "Filter by action type code (A=definitive contract, B=purchase order, C=delivery order, D=BPA call)."},
+                    "sort": {"type": "string", "description": "Sort field (default: -signed_date for newest first)."},
+                    "limit": {"type": "integer", "minimum": 1, "maximum": 1000, "description": "Max rows (default 100)."},
+                },
+                ["piid"],
+            ),
         ]
 
     def call_tool(self, name: str, arguments: dict[str, Any]) -> dict[str, Any]:
@@ -278,6 +290,18 @@ class FPDSServer:
             return _json_text(self.client.get("/v1/profiles/customer", arguments))
         if name == "fpds_topic_search":
             return _json_text(self.topic_search(arguments))
+        if name == "fpds_contract_history":
+            filters = {"piid": arguments["piid"]}
+            if arguments.get("reason_for_modification"):
+                filters["reason_for_modification"] = arguments["reason_for_modification"]
+            if arguments.get("contract_action_type"):
+                filters["contract_action_type"] = arguments["contract_action_type"]
+            params = {
+                **filters,
+                "sort": arguments.get("sort", "-signed_date"),
+                "limit": arguments.get("limit", 100),
+            }
+            return _json_text(self.client.get("/v1/datasets/pipeline.contract_transactions/rows", params))
         raise ValueError(f"Unknown tool: {name}")
 
     def resolve(self, arguments: dict[str, Any]) -> dict[str, Any]:
