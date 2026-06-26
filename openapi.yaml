@@ -2,10 +2,12 @@ openapi: 3.1.0
 info:
   title: FPDS Analytics API
   version: '2026-06-18'
-  summary: Public read-only API over Kenosa's FPDS analytics schemas — 78 datasets across 11 domains including topic intelligence.
+  summary: Public read-only API over Kenosa's FPDS analytics schemas — 78 datasets
+    across 11 domains including topic intelligence.
   description: 'Dataset-oriented API for FPDS procurement analytics report views.
 
-    The API exposes curated analytics datasets and dimensions only; it does not expose arbitrary SQL or raw FPDS tables.
+    The API exposes curated analytics datasets and dimensions only; it does not expose
+    arbitrary SQL or raw FPDS tables.
 
     '
 servers:
@@ -41,7 +43,8 @@ paths:
   /v1/ai-assistant-guide:
     get:
       summary: AI assistant usage guide
-      description: 'Human- and model-readable instructions for using the API from ChatGPT,
+      description: 'Human- and model-readable instructions for using the API from
+        ChatGPT,
 
         Claude, Gemini, or similar AI assistants.
 
@@ -130,7 +133,8 @@ paths:
   /v1/datasets/{dataset_id}/rows:
     get:
       summary: Query rows from an approved dataset
-      description: 'Canonical row endpoint. Filters, fields, and sort keys are allowlisted per dataset.
+      description: 'Canonical row endpoint. Filters, fields, and sort keys are allowlisted
+        per dataset.
 
         Unsupported filters are rejected instead of silently ignored.
 
@@ -210,8 +214,8 @@ paths:
           type: string
       - name: limit
         in: query
-        description: Public no-key requests are capped by deployment policy, default 25. API-key requests can use the dataset
-          maximum.
+        description: Public no-key requests are capped by deployment policy, default
+          25. API-key requests can use the dataset maximum.
         schema:
           type: integer
           default: 25
@@ -223,7 +227,8 @@ paths:
           type: string
       - name: format
         in: query
-        description: Response format. Omit for JSON; use csv for a bounded spreadsheet-friendly export.
+        description: Response format. Omit for JSON; use csv for a bounded spreadsheet-friendly
+          export.
         schema:
           type: string
           enum:
@@ -260,7 +265,9 @@ paths:
   /v1/profiles/customer:
     get:
       summary: Build a composite customer profile from existing datasets
-      description: 'Customer 360 endpoint. Requires contracting_dept_id or contracting_agency_id and returns bounded sections assembled from documented dataset queries only. Section-level failures return null for that section and are described in meta.sections.'
+      description: Customer 360 endpoint. Requires contracting_dept_id or contracting_agency_id
+        and returns bounded sections assembled from documented dataset queries only.
+        Section-level failures return null for that section and are described in meta.sections.
       security:
       - {}
       - ApiKeyAuth: []
@@ -364,7 +371,8 @@ paths:
   /v1/exports:
     post:
       summary: Create a bounded async export
-      description: Optional phase-2 endpoint. Exports must use the same dataset registry restrictions as row queries.
+      description: Optional phase-2 endpoint. Exports must use the same dataset registry
+        restrictions as row queries.
       requestBody:
         required: true
         content:
@@ -424,15 +432,19 @@ components:
         - concentration.kpi_summary
         - concentration.small_biz_health_fy
         - concentration.trend_fy
+        - concentration.vendor_cross_agency_rank
         - concentration.vendor_market_leaders
+        - concentration.vendor_office_naics_year
         - contacts.detail
         - contacts.naics_buyers
         - contacts.office_coverage
         - contacts.office_roster
         - contacts.profile_fy
         - contacts.recompete_handlers
+        - customer.agency_month_naics_fy
         - customer.agency_profile_fy
         - customer.kpi_summary
+        - customer.office_month_naics_fy
         - customer.office_profile_fy
         - entrants.agency_cohort_fy
         - funding.assisted_acquisition_fy
@@ -448,9 +460,9 @@ components:
         - incumbent.agency_vendor_leaders
         - incumbent.office_vendor_leaders
         - market.agency_naics_fy
-        - market.naics_group_agency_fy
         - market.entry_difficulty_score
         - market.naics_customer_leaders
+        - market.naics_group_agency_fy
         - market.office_naics_fy
         - naics.agency_profile_fy
         - naics.growth_leaders
@@ -468,6 +480,7 @@ components:
         - psc.agency_profile_fy
         - psc.naics_agency_fy
         - psc.naics_crosswalk
+        - psc.naics_office_fy
         - psc.office_profile_fy
         - psc.trend_fy
         - seasonality.agency_month_fy
@@ -827,7 +840,8 @@ components:
           - string
           - 'null'
           format: date-time
-          description: Dataset freshness timestamp from the analytics refresh log, or null when unavailable.
+          description: Dataset freshness timestamp from the analytics refresh log,
+            or null when unavailable.
         last_refreshed_at:
           type: string
           format: date-time
@@ -915,17 +929,20 @@ components:
               type: array
               items:
                 type: string
-              description: Present on invalid_filter when a dataset-specific filter list can help the caller recover.
+              description: Present on invalid_filter when a dataset-specific filter
+                list can help the caller recover.
             sortable:
               type: array
               items:
                 type: string
-              description: Present on invalid_sort with the dataset's supported sort fields.
+              description: Present on invalid_sort with the dataset's supported sort
+                fields.
             example_query:
               type:
               - string
               - 'null'
-              description: Present on missing_required_filter when the catalog has an example query for the dataset.
+              description: Present on missing_required_filter when the catalog has
+                an example query for the dataset.
   responses:
     Error:
       description: Error response.
