@@ -6,7 +6,7 @@
   █████   ██████  ██   ██ ███████     Data Science
   ██      ██      ██   ██      ██     Analytics API
   ██      ██      ██████  ███████
-                    Competitive Intelligence Engine
+                    
 ```
 
 | | |
