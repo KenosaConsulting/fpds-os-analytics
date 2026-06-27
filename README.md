@@ -61,8 +61,8 @@ Most contractors solve this by paying five- or six-figure subscriptions to
 platforms that repackage the same public data behind login walls. Or they assign
 a human analyst to spend weeks in spreadsheets. Or they guess.
 
-**This API is a different approach.** We pre-compute the analytical questions
-that actually matter for capture strategy — and serve the answers as clean,
+**This is a different approach.** We pre-compute the analysis
+that actually matters for contractors, government and procurement analysts — and serve the answers as clean,
 filterable, documented datasets with human-readable labels, metadata, caveats,
 and enough context for an analyst (human or AI) to draw conclusions without
 touching raw data.
