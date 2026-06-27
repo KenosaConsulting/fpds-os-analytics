@@ -79,7 +79,7 @@ async def _streaming_response_text(response) -> str:
 
 def test_catalog_has_expected_dataset_count() -> None:
     catalog = load_catalog()
-    assert len(catalog.datasets) == 87
+    assert len(catalog.datasets) == 88
     assert len(catalog.dimensions) == 17
     assert {item["public_access"] for item in catalog.datasets.values()} == {"public_bounded", "api_key"}
 

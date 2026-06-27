@@ -1,4 +1,4 @@
-version: '2026-06-18'
+version: '2026-06-27'
 source_reference: docs/analytics-schema-reference.md
 notes: [Initial public API catalog exposes report-deck views first., The source reference headline says 21 report views; this
     catalog includes 22 because naics_breakdown.report_deck_naics_kpi_summary is defined in the migration., Numeric money
@@ -3242,6 +3242,59 @@ datasets:
   - distinct_vendor_count
   - distinct_agency_count
   - distinct_office_count
+
+# ── BL-018: State × Vendor × FY cross-cut (Gap 4) ──────────────────────────────
+
+- id: geography.state_vendor_year
+  title: State Vendor Spending By Fiscal Year
+  domain: geography
+  description: >
+    Geographic spending by state × vendor × fiscal year. Shows which vendors
+    receive federal funding in each state, enabling vendor footprint analysis,
+    place-of-performance market mapping, and competitive landscape studies.
+    Answers questions like "who are the top vendors in Virginia for FY2024"
+    and "which states does vendor X have a presence in." Includes obligation
+    amounts, action counts, and distinct agency/office/NAICS counts per
+    vendor-state-year combination. Covers FY2017-present.
+  example_queries:
+  - query: /v1/datasets/geography.state_vendor_year/rows?pop_state_code=VA&fiscal_year=2024&limit=25
+    explanation: Top vendors in Virginia for FY2024 by obligation amount
+  - query: /v1/datasets/geography.state_vendor_year/rows?vendor_uei=JF1HN11D8NU5&fiscal_year_min=2022&fiscal_year_max=2024&limit=50
+    explanation: All state footprints for a specific vendor FY2022-2024
+  - query: /v1/datasets/geography.state_vendor_year/rows?contracting_dept_id=9700&pop_state_code=TX&fiscal_year=2024&limit=25
+    explanation: DoD vendors in Texas for FY2024
+  backing_view: analytics_api.geography_state_vendor_year
+  source_view: geographic_analysis.mv_fpds_geo_state_vendor_year
+  grain: pop_state_code x vendor_uei x fiscal_year
+  public_access: public_bounded
+  filters: [fiscal_year, fiscal_year_min, fiscal_year_max, pop_state_code, vendor_uei, contracting_dept_id, is_us_state]
+  sortable: [fiscal_year, net_obligated_amount, action_count, distinct_piid_count, distinct_agency_count]
+  default_sort: -net_obligated_amount
+  max_limit: 1000
+  fields:
+  - pop_state_code
+  - pop_state_name_raw
+  - pop_state_name_clean
+  - pop_country_code
+  - pop_census_region
+  - pop_census_division
+  - is_us_state
+  - contracting_dept_id
+  - department_name
+  - department_short_name
+  - vendor_uei
+  - vendor_name
+  - fiscal_year
+  - action_count
+  - net_obligated_amount
+  - positive_obligated_amount
+  - negative_obligated_amount
+  - distinct_piid_count
+  - distinct_agency_count
+  - distinct_office_count
+  - distinct_naics_count
+  - first_action_date
+  - last_action_date
 
 # ── BL-019.2: Agency × PSC × NAICS × FY cross-cut ──────────────────────────────
 

@@ -456,6 +456,7 @@ components:
         - geography.regional_summary_fy
         - geography.state_naics_fy
         - geography.state_trend_fy
+        - geography.state_vendor_year
         - incumbent.agency_naics_vendor_leaders
         - incumbent.agency_vendor_leaders
         - incumbent.office_vendor_leaders
