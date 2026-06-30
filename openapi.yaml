@@ -469,10 +469,12 @@ components:
         - naics.growth_leaders
         - naics.kpi_summary
         - naics.trend_fy
+        - opportunity.radar
         - pipeline.agency_recompete_summary
         - pipeline.award_size_distribution
         - pipeline.contract_transactions
         - pipeline.duration_profile
+        - pipeline.modification_intelligence
         - pipeline.recompete_watchlist
         - pricing.agency_profile_fy
         - pricing.dept_year_summary

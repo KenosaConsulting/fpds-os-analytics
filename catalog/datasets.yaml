@@ -3467,6 +3467,49 @@ datasets:
   - contracting_agency_short_name
   - contracting_office_name
   - set_aside_name
+- id: opportunity.radar
+  title: Cross-Agency Opportunity Radar
+  domain: opportunity
+  description: >
+    Collaborative-filtering recommendation engine for federal procurement.
+    For each vendor with a multi-agency footprint, finds agencies they don't
+    currently sell to but should — based on NAICS portfolio similarity to
+    agencies where they already win. Scores recommendations by market similarity,
+    agency spend, and entry accessibility. Think "agencies like the ones you
+    already succeed at, where you have zero presence."
+  example_queries:
+  - query: /v1/datasets/opportunity.radar/rows?vendor_uei=JF1HN11D8NU5&limit=25
+    explanation: Top agency recommendations for a specific vendor ranked by score.
+  - query: /v1/datasets/opportunity.radar/rows?vendor_uei=JF1HN11D8NU5&vendor_is_small_business=true&recommendation_score_min=50&limit=50
+    explanation: Strong recommendations filtered for small business status.
+  backing_view: analytics_api.opportunity_radar
+  source_view: opportunity_intelligence.report_deck_cross_agency_opportunity_radar
+  grain: vendor_uei x recommended_agency_id
+  public_access: api_key
+  required_filters_any: [vendor_uei]
+  filters: [vendor_uei, recommended_agency_id, vendor_is_small_business, recommendation_score_min, jaccard_similarity_min]
+  sortable: [recommendation_score, jaccard_similarity, candidate_agency_3yr_obligated, avg_entry_difficulty]
+  default_sort: -recommendation_score
+  max_limit: 500
+  fields:
+  - vendor_uei
+  - vendor_name
+  - vendor_is_small_business
+  - vendor_current_agency_count
+  - recommended_agency_id
+  - recommended_agency_name
+  - shared_naics_codes
+  - jaccard_similarity
+  - candidate_agency_3yr_obligated
+  - avg_entry_difficulty
+  - recommendation_score
+  - vendor_existing_agencies
+  - recommended_agency_top_naics
+  caveats:
+  - Recommendations are based on NAICS portfolio similarity, not win probability. Always cross-reference with entry difficulty and competition data.
+  - Vendors must have a footprint at 2+ agencies to generate recommendations.
+  - Data refreshes with the analytics refresh cycle. New vendor wins may not be reflected immediately.
+
 - id: concentration.vendor_cross_agency_rank
   title: Vendor Cross-Agency Rank
   domain: concentration
@@ -3558,3 +3601,80 @@ datasets:
   - contracting_agency_short_name
   - contracting_office_name
   - set_aside_name
+- id: pipeline.modification_intelligence
+  title: Contract Modification Intelligence
+  domain: pipeline
+  description: >
+    Analyzes every contract's modification trail to surface strategic signals.
+    Classifies modification patterns (scope growth, option-heavy, funding-only,
+    change-driven) and computes a lock-in score indicating incumbent entrenchment.
+    Flags anomalous modification activity compared to agency×NAICS medians.
+    Answers: is this contract growing or static? Is the incumbent locked in or
+    vulnerable? Are the modifications unusual for this market?
+  example_queries:
+  - query: /v1/datasets/pipeline.modification_intelligence/rows?contracting_agency_id=9700&pattern_classification=scope_growth&limit=25
+    explanation: Find Army contracts with significant scope growth (incumbents are expanding their footprint).
+  - query: /v1/datasets/pipeline.modification_intelligence/rows?contracting_agency_id=9700&anomaly_flag=true&limit=25
+    explanation: Contracts with unusual modification activity at Army.
+  - query: /v1/datasets/pipeline.modification_intelligence/rows?contracting_agency_id=9700&lock_in_score_min=70&limit=25
+    explanation: Contracts where the incumbent is strongly entrenched.
+  backing_view: analytics_api.pipeline_modification_intelligence
+  source_view: pipeline_intelligence.report_deck_contract_modification_intelligence
+  grain: piid
+  public_access: api_key
+  required_filters_any: [contracting_agency_id, contracting_dept_id, contracting_office_id, piid, uei, pattern_classification]
+  filters:
+  - piid
+  - uei
+  - contracting_dept_id
+  - contracting_agency_id
+  - contracting_office_id
+  - principal_naics_code
+  - pattern_classification
+  - anomaly_flag
+  - lock_in_score_min
+  sortable: [lock_in_score, mod_count, mod_span_months, scope_growth_count, option_exercise_count, net_obligation_change]
+  default_sort: -lock_in_score
+  max_limit: 500
+  fields:
+  - piid
+  - vendor_name
+  - uei
+  - contracting_dept_id
+  - contracting_dept_name
+  - contracting_agency_id
+  - contracting_agency_name
+  - contracting_office_id
+  - contracting_office_name
+  - principal_naics_code
+  - principal_naics_code_desc
+  - product_or_service_code
+  - product_or_service_code_desc
+  - extent_competed
+  - extent_competed_desc
+  - base_signed_date
+  - base_obligated_amount
+  - base_completion_date
+  - mod_count
+  - mod_pattern
+  - first_mod_date
+  - last_mod_date
+  - mod_span_months
+  - scope_growth_count
+  - option_exercise_count
+  - funding_mod_count
+  - change_order_count
+  - deobligation_count
+  - deobligation_total
+  - net_obligation_change
+  - max_single_mod_amount
+  - pattern_classification
+  - lock_in_score
+  - agency_naics_median_mod_count
+  - mod_count_vs_median_pct
+  - anomaly_flag
+  caveats:
+  - Pattern classification is heuristic. A 'static' contract may still have unexercised options not visible in FPDS.
+  - Agency×NAICS medians require a minimum of 5 contracts per cell; cells below this threshold use the agency-wide median.
+  - Modification reason codes are reported by contracting officers and may be inconsistently applied across agencies.
+  - The lock-in score is a directional signal, not a guarantee. Always cross-reference with competition data.
