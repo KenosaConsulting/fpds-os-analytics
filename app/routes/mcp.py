@@ -43,6 +43,7 @@ _PUBLIC_TOOLS: set[str] = {
     "fpds_lookup_dimension",
     "fpds_resolve",
     "fpds_topic_search",
+    "fpds_onboarding",
 }
 
 # Datasets that require an API key (public_access=api_key in catalog).
@@ -194,6 +195,8 @@ def mcp_info() -> dict[str, Any]:
         "protocolVersion": LATEST_PROTOCOL_VERSION,
         "capabilities": {
             "tools": {},
+            "prompts": {},
+            "resources": {},
         },
         "instructions": (
             "FPDS Analytics MCP server. Use 'tools/list' to discover available "
@@ -299,7 +302,7 @@ def _handle_message(server: FPDSServer, message: dict[str, Any]) -> dict[str, An
             "id": msg_id,
             "result": {
                 "protocolVersion": negotiated,
-                "capabilities": {"tools": {}},
+                "capabilities": {"tools": {}, "prompts": {}, "resources": {}},
                 "serverInfo": {
                     "name": "fpds-analytics-mcp",
                     "version": "0.2.0",
@@ -319,6 +322,61 @@ def _handle_message(server: FPDSServer, message: dict[str, Any]) -> dict[str, An
             "id": msg_id,
             "result": {"tools": server.tools()},
         }
+
+    if method == "prompts/list":
+        return {
+            "jsonrpc": "2.0",
+            "id": msg_id,
+            "result": {"prompts": server.prompts()},
+        }
+
+    if method == "prompts/get":
+        params = message.get("params", {})
+        prompt_name = params.get("name", "")
+        prompt_args = params.get("arguments", {})
+        try:
+            result = server.get_prompt(prompt_name, prompt_args)
+            return {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "result": result,
+            }
+        except Exception as exc:
+            return {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "error": {
+                    "code": -32603,
+                    "message": f"Prompts error: {exc}",
+                },
+            }
+
+    if method == "resources/list":
+        return {
+            "jsonrpc": "2.0",
+            "id": msg_id,
+            "result": {"resources": server.resources()},
+        }
+
+    if method == "resources/read":
+        params = message.get("params", {})
+        uri = params.get("uri", "")
+        try:
+            result = server.read_resource(uri)
+            return {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "result": result,
+            }
+        except Exception as exc:
+            return {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "error": {
+                    "code": -32603,
+                    "message": f"Resources error: {exc}",
+                },
+            }
 
     if method == "tools/call":
         params = message.get("params", {})
