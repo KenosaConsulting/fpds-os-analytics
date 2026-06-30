@@ -38,23 +38,23 @@ Call `fpds_query_dataset` on `naics.growth_leaders` with:
 - `principal_naics_code` = the NAICS code
 - `fiscal_year_min` = start of time range
 - `limit` = 30
-- `sort` = `growth_rate_desc`
+- `sort` = `-obligation_growth_rate`
 
 This returns agencies ranked by growth rate — which agencies are increasing
 spending in your NAICS the fastest.
 
 ### Step 2: Get the market leaders by agency
 
-Call `fpds_query_dataset` on `concentration.vendor_market_leaders` with:
+Call `fpds_query_dataset` on `market.naics_customer_leaders` with:
 
 - `principal_naics_code` = the NAICS code
 - `fiscal_year_min` = start of time range
 - `limit` = 50
-- `sort` = `net_obligated_amount_desc`
+- `sort` = `customer_rank`
 
-This shows where the money is going — which agencies spend the most in this
-NAICS, regardless of growth rate. Cross-reference with Step 1 to find the
-sweet spot: agencies with both high spend AND high growth.
+This shows which agencies spend the most in this NAICS, regardless of growth
+rate. Cross-reference with Step 1 to find the sweet spot: agencies with both
+high spend AND high growth.
 
 ### Step 3: Geographic breakdown (if geographic focus specified)
 
@@ -69,9 +69,30 @@ This shows which states have the most contract activity in this NAICS — useful
 for identifying where the work is being performed (not just where it's being
 bought). A DC-area buying office may fund work performed nationwide.
 
-### Step 4: Identify the sweet spot agencies
+### Step 4: Assess market accessibility
 
-Cross-reference the growth leaders (Step 1) with the market leaders (Step 2):
+Call `fpds_query_dataset` on `market.entry_difficulty_score` with:
+
+- `principal_naics_code` = the NAICS code
+- `limit` = 30
+- `sort` = `entry_difficulty_score`
+
+The entry difficulty score (0-100) combines 5 components:
+- **Incumbent stickiness** — how hard it is to displace existing vendors
+- **Concentration** — whether a few vendors dominate the market
+- **Set-aside prevalence** — how much of the market is restricted to
+  small/disadvantaged businesses
+- **New-entrant win rate** — the observed success rate of vendors with no
+  prior agency contracts
+- **Contract churn** — how frequently contracts change hands
+
+Lower scores indicate more accessible markets. Cross-reference with the
+growth leaders to identify markets that are BOTH growing AND accessible.
+
+### Step 5: Identify the sweet spot agencies
+
+Cross-reference the growth leaders (Step 1), market leaders (Step 2),
+and entry difficulty scores (Step 4):
 
 - **High spend + High growth** → Prime targets. Active market, growing budget.
 - **Low spend + High growth** → Emerging markets. Getting in early could pay off.
@@ -79,15 +100,30 @@ Cross-reference the growth leaders (Step 1) with the market leaders (Step 2):
   pursuing for recompetes, but the long-term trend is unfavorable.
 - **Low spend + Low growth** → Skip. Not enough market to justify the effort.
 
-### Step 5: Drill into the top 3-5 agencies
+For the top 3 sweet-spot agencies, call `fpds_query_dataset` on
+`topics.naics_decomposition` with:
+
+- `naics_code` = the NAICS code
+- `department_code` = the agency's department code
+
+This reveals what sub-markets exist within the broad NAICS code at each
+agency — critical for differentiation. A single NAICS like 541512 can span
+cloud migration, cybersecurity, application development, and IT support at
+different agencies.
+
+### Step 6: Drill into the top 3-5 agencies
 
 For each sweet-spot agency, call `fpds_query_dataset` on
-`concentration.vendor_market_leaders` filtered to that department to see:
-- Who the incumbents are
-- Market concentration
-- Whether there's room for a new entrant
+`incumbent.agency_vendor_leaders` with:
 
-### Step 6: Present the scan
+- `contracting_dept_id` = the agency's department code
+- `limit` = 10
+- `sort` = `vendor_rank`
+
+This shows who the incumbents are at each agency, their market concentration,
+and whether there's room for a new entrant.
+
+### Step 7: Present the scan
 
 ```
 ## NAICS Opportunity Scan: [code] ([description])
@@ -98,7 +134,7 @@ For each sweet-spot agency, call `fpds_query_dataset` on
 - Agencies awarding in this NAICS: NNN
 - Distinct vendors: N,NNN
 
-### Growth Leaders (Top 10 by growth rate)
+### Growth Leaders (Top 10 by obligation growth rate)
 | Rank | Department | FY[YYYY] Obligations | 5-Yr Growth | Trend |
 |------|-----------|---------------------|-------------|-------|
 | 1 | [name] | $X.XM | +NN% | ↑ |
@@ -111,9 +147,9 @@ For each sweet-spot agency, call `fpds_query_dataset` on
 | ... | | | | |
 
 ### Sweet Spot Agencies (high spend + high growth)
-| Department | 5-Yr Obligations | Growth | Concentration | Opportunity |
-|-----------|------------------|--------|---------------|-------------|
-| [name] | $X.XM | +NN% | [H/M/L] | [assessment] |
+| Department | 5-Yr Obligations | Growth | Entry Difficulty | Concentration | Opportunity |
+|-----------|------------------|--------|------------------|---------------|-------------|
+| [name] | $X.XM | +NN% | [score] | [H/M/L] | [assessment] |
 
 ### Geographic Distribution (top 10 states by performance location)
 | State | 5-Yr Obligations | % of National | Trend |
@@ -129,6 +165,7 @@ For each sweet-spot agency, call `fpds_query_dataset` on
 - **Concentration:** [high/moderate/low] (top 5 = NN%)
 - **Set-aside usage:** NN% of actions
 - **Recompete pipeline:** [N] contracts expiring in next 12 months ($X.XM)
+- **Sub-Market Topics:** [topic1], [topic2], [topic3]
 - **Assessment:** [why this is or isn't a good target for your company]
 
 ### Recommendations
@@ -161,8 +198,10 @@ For each sweet-spot agency, call `fpds_query_dataset` on
 
 **Agent:**
 1. Queries `naics.growth_leaders` for NAICS 541512, last 5 FYs
-2. Queries `concentration.vendor_market_leaders` for the same NAICS
-3. Identifies sweet-spot agencies (high spend + high growth)
-4. Drills into top 3 agencies for competitive detail
-5. Optionally checks geographic distribution
-6. Presents scan with prioritized recommendations
+2. Queries `market.naics_customer_leaders` for the same NAICS
+3. Optionally checks geographic distribution via `geography.state_naics_fy`
+4. Queries `market.entry_difficulty_score` to identify accessible markets
+5. Identifies sweet-spot agencies (high spend + high growth + accessible)
+6. Decomposes NAICS into sub-market topics at top agencies
+7. Drills into top 3 agencies for incumbent and competitive detail
+8. Presents scan with prioritized recommendations

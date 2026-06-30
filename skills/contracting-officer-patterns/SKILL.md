@@ -75,21 +75,45 @@ From the same dataset, look at the `set_aside_code` breakdown:
 - **"8AN" (8(a))** → HUBZone or 8(a) set-asides. If you're not in the program,
   you need a teaming partner who is.
 
+For more precise competition metrics, also call `fpds_query_dataset` on
+`competition.agency_profile_fy` with `contracting_dept_id=<resolved>` and
+`fiscal_year=<latest>` to get `competed_action_share`,
+`not_competed_action_share`, `avg_offers_received`, and `bundled_action_share`.
+
 ### Step 5: Get contact information (if available)
 
-Call `fpds_query_dataset` on `contacts.contact_directory` with:
+Call `fpds_query_dataset` on `contacts.office_roster` with:
 
 - `contracting_office_id` = resolved office code
+- `contracting_agency_id` = resolved agency code
+- `contracting_dept_id` = resolved department code
+- `user_id` (optional)
+- `user_class` (optional)
+- `fiscal_year` (optional)
 - `limit` = 50
+- `sort` = `-action_count` or `-obligated_amount`
 
-This returns the list of known contracting officers and specialists in that
-office, with their names, titles, and contact information (where available).
+Returns the list of known human contracting officers in that office with their
+buying statistics.
 
 **Note:** Contact data comes from FPDS award records. Not all contracting
 officers are listed. The data is most complete for offices that have made
 recent awards.
 
-### Step 6: Present the analysis
+### Step 6: Find NAICS-specific buyers
+
+If the user provided a target NAICS code, call `fpds_query_dataset` on
+`contacts.naics_buyers` with:
+
+- `principal_naics_code` = target NAICS code
+- `contracting_agency_id` = resolved agency code
+- `limit` = 50
+- `sort` = `-obligated_amount`
+
+This returns the specific contracting officers who buy in that NAICS code,
+which is more targeted than the office-level roster.
+
+### Step 7: Present the analysis
 
 ```
 ## Contracting Office Analysis: [Office Name] ([Office ID])
@@ -116,12 +140,22 @@ recent awards.
 | 8A | NN | $X.XM | NN% |
 | ... | | | |
 
+**Department-Level Competition Metrics** (FY [year])
+| Avg Offers Received | Competed % | Not Competed % | Bundled % |
+|---------------------|------------|----------------|-----------|
+| N.N | NN% | NN% | NN% |
+
 **Assessment:** [Open competition / set-aside preferred / mixed]
 
-### Known Contracting Officers (from award records)
-| Name | Title | Awards (last 5 FY) | Primary NAICS |
-|------|-------|-------------------|---------------|
-| ... | ... | NNN | [code] |
+### Known Contracting Officers (from office roster)
+| Name | Role | FY Actions / Obligated | Primary NAICS |
+|------|------|----------------------|---------------|
+| ... | ... | NNN / $X.XM | [code] |
+
+### NAICS-Specific Buyers (NAICS [code] at [agency])
+| Name | Office | FY Actions / Obligated |
+|------|--------|----------------------|
+| ... | ... | NNN / $X.XM |
 
 ### Key Findings
 1. [Most important pattern]
@@ -158,5 +192,6 @@ recent awards.
 2. Queries `customer.office_month_naics_fy` for last 5 FYs
 3. Analyzes monthly pattern → identifies Q4 surge
 4. Checks set-aside breakdown → mostly open competition
-5. Queries `contacts.contact_directory` for known COs
-6. Presents analysis with seasonality, competition profile, and contacts
+5. Queries `contacts.office_roster` for known COs
+6. Queries `contacts.naics_buyers` for NAICS-specific buyers
+7. Presents analysis with seasonality, competition profile, and contacts

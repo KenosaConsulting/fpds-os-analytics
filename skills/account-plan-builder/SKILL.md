@@ -52,6 +52,24 @@ Run the [vendor-market-analysis](../vendor-market-analysis/SKILL.md) workflow:
 - Concentration metrics
 - Office-level breakdown
 
+### Step 3b: Entry difficulty assessment
+
+Query `market.entry_difficulty_score` with `principal_naics_code=<focus NAICS>` and
+optionally `contracting_agency_id=<resolved>`. Returns a 0-100 entry difficulty score
+with component breakdown (concentration, competition rate, incumbent stickiness, etc.).
+
+### Step 3c: Pricing risk assessment
+
+Query `pricing.risk_scorecard` with `contracting_dept_id=<resolved>`. Shows the
+agency's cost-type exposure and T&M exposure — high cost-type share means higher
+risk for fixed-price vendors.
+
+### Step 3d: New entrant viability
+
+Query `entrants.agency_cohort_fy` with `contracting_agency_id=<resolved>` for the
+last 5 fiscal years. Shows new vendor count, median first-year foothold, and 2-year
+survival rate — critical for gauging whether new entrants succeed at this agency.
+
 ### Step 4: Recompete pipeline
 
 Run the [recompete-pipeline](../recompete-pipeline/SKILL.md) workflow:
@@ -61,17 +79,18 @@ Run the [recompete-pipeline](../recompete-pipeline/SKILL.md) workflow:
 
 ### Step 5: Contracting office patterns
 
-For the top 3-5 offices (by obligation volume in the target NAICS), run the
-[contracting-officer-patterns](../contracting-officer-patterns/SKILL.md) workflow:
-- Monthly award patterns
-- Competition profile
-- Known contracting officers
+For the top 3-5 offices (by obligation volume in the target NAICS):
+- Query `contacts.office_roster` (filters: `contracting_office_id`, `contracting_agency_id`, `contracting_dept_id`) for the top 3-5 offices to get office-level contacts and buying profiles.
+- Query `contacts.naics_buyers` with `principal_naics_code=<focus NAICS>` and `contracting_agency_id=<resolved>` to find COs who specifically buy in the target NAICS.
+- Use these results to identify key relationships and office-level buying patterns.
 
 ### Step 6: Competitive positioning (if company info provided)
 
 If the user provides their company's UEI, check whether they already have
 a footprint in this department:
-- Query `concentration.vendor_market_leaders` filtered to their UEI
+- Query `concentration.vendor_market_leaders` with `uei=<your_uei>` to see market share within the target.
+- Query `concentration.vendor_cross_agency_rank` with `uei=<your_uei>` to see the vendor's rank across ALL agencies — this provides competitive positioning context beyond a single department.
+- Query `incumbent.agency_vendor_leaders` with `uei=<your_uei>` and `contracting_agency_id=<resolved>` to check if your company already has a ranked position at this agency.
 - Identify which offices they've won in
 - Identify which NAICS they're strongest in
 - Compare against the target department's top vendors
@@ -105,6 +124,12 @@ a footprint in this department:
 - Competition profile: [open / set-aside heavy / mixed]
 - Socio-economic preferences: [8(a) / SDVOSB / WOSB / HUBZone usage]
 - Q4 spending pattern: [NN% of annual obligations in Q4]
+
+### Risk Profile
+- Entry difficulty score: [0-100] — [rationale from component breakdown]
+- Cost-type exposure: [N]% (H/M/L risk for fixed-price)
+- T&M exposure: [N]%
+- New entrant 2-year survival rate: [N]%
 
 ## 3. Market Landscape (Focus NAICS)
 ### Market Size
@@ -169,6 +194,30 @@ a footprint in this department:
 |------|-----------|--------|------------|
 | [risk] | H/M/L | H/M/L | [action] |
 | ... | | | |
+
+## 7. Business Case Summary
+
+### Addressable Pipeline
+- Active expiring contracts (next 18 months): [N] contracts, $[X]M total value
+- Average contract size: $[X]M
+- Recompete rate (from duration profile): [N]% of contracts recompeted
+- Estimated addressable pipeline: $[X]M
+
+### Win Probability Assessment
+- Entry difficulty score: [score]/100 ([rationale from components])
+- Average offers per action: [N] (higher = more competitive)
+- New entrant 2-year survival rate: [N]%
+- Estimated win probability range: [X]% - [Y]%
+
+### Investment Required
+- Recommended B&P budget (next 12 months): $[X]K - $[Y]K
+- Teaming partner investment: [yes/no], estimated [cost]
+- Vehicle access cost (if high vehicle dependence): [estimate]
+
+### Projected Return
+- Conservative (Pwin low end): $[X]M pipeline x [X]% win rate = $[Y]M
+- Expected (Pwin mid): $[X]M pipeline x [X]% win rate = $[Y]M
+- ROI ratio (expected return / investment): [X]:1
 ```
 
 ## Caveats

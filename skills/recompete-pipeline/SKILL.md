@@ -41,11 +41,10 @@ Call `fpds_resolve` with the department or agency name to get the
 Call `fpds_query_dataset` on `pipeline.recompete_watchlist` with:
 
 - `contracting_dept_id` = resolved code
-- `remaining_months_max` = your time window (e.g., 12)
+- `expiration_bucket` = your time window (values: `0-6 months`, `6-12 months`, `12-18 months`, `18-24 months`, `recently_expired`)
 - `principal_naics_code` = NAICS code (if specified)
-- `min_obligated_amount` = minimum value (if specified)
 - `limit` = 50
-- `sort` = `expiration_date_asc` (soonest expiring first)
+- `sort` = `remaining_months` (soonest expiring first)
 
 This returns contracts with:
 - PIID (contract number)
@@ -55,7 +54,25 @@ This returns contracts with:
 - Total obligated amount
 - Contract description (if available)
 
-### Step 3: Group and prioritize
+### Step 3: Link contracts to contracting officers
+
+Call `fpds_query_dataset` on `contacts.recompete_handlers` with:
+
+- `contracting_agency_id` = resolved agency code
+
+Sort by `remaining_months`. This returns the contracting officer who created
+each contract and the most recent human approver — the most actionable data
+for capture teams building outreach lists.
+
+### Step 4: Get modification history for top contracts
+
+For the top 3-5 highest-value contracts, use the `fpds_contract_history` MCP
+tool to pull the full modification trail: scope changes, option exercises,
+funding increments, and de-obligations. This tells the real story of each
+contract — whether the incumbent is executing steadily or the requirement is
+being restructured.
+
+### Step 5: Group and prioritize
 
 Organize the results by:
 
@@ -67,14 +84,21 @@ Organize the results by:
    This is where capture work adds the most value.
 4. **Long-range (12+ months)** — Strategic visibility. Monitor for changes.
 
-### Step 4: Enrich with office-level context
+### Step 6: Enrich with duration context
 
 For each opportunity worth tracking, call `fpds_query_dataset` on
-`customer.office_month_naics_fy` with the contracting office ID and NAICS code.
-This shows the office's historical buying pattern in that NAICS — useful for
-understanding whether they typically recompete or extend.
+`pipeline.duration_profile` with:
 
-### Step 5: Present the watchlist
+- `contracting_dept_id` = resolved code
+- `contracting_agency_id` = agency code (if available)
+- `principal_naics_code` = NAICS code (if specified)
+- `naics_prefix` = NAICS prefix (optional broader lookup)
+
+This shows typical contract durations at this office/agency for this NAICS —
+answering whether contracts are typically 1-year or 5-year here, and whether
+they tend to recompete or have long durations that lock in incumbents.
+
+### Step 7: Present the watchlist
 
 ```
 ## Recompete Watchlist: [Department] — Next [N] Months
@@ -86,6 +110,10 @@ understanding whether they typically recompete or extend.
 - Near-term (3-6 months): N opportunities ($X.XB)
 - Pipeline (6-12 months): N opportunities ($X.XB)
 
+### Duration Context
+This agency typically awards [N]-year contracts in this NAICS, with median
+duration of [X] months. [Assessment of recompete likelihood based on profile.]
+
 ### Top Opportunities (by value, expiring soonest)
 
 #### 1. [PIID] — [Vendor Name] (Incumbent)
@@ -93,8 +121,9 @@ understanding whether they typically recompete or extend.
 - **Value:** $X.XM (total obligated)
 - **Office:** [Office name] ([office ID])
 - **NAICS:** [code] ([description])
+- **Contracting Officer:** [Name] ([email]) — from recompete handlers
 - **Description:** [contract description]
-- **Historical pattern:** This office has recompeted N of N similar contracts in the past 5 FYs.
+- **Modification history:** [Summary: N mods issued, X option exercises exercised, Y% funding change, last action date]
 - **Action:** [Recommended next step based on timing]
 
 #### 2. [PIID] — ...
@@ -120,8 +149,9 @@ understanding whether they typically recompete or extend.
 - Not all expiring contracts will be recompeted — some are one-time buys,
   some get cancelled, some transition to other vehicles. Use the office
   buying pattern data to assess recompete likelihood.
-- The `min_obligated_amount` filter uses total obligated amount, not ceiling
-  value. A contract with a high ceiling but low actual spending may not appear.
+- The dataset's default predicates already filter to contracts with $25K+
+  total obligated amount. Contracts with high ceilings but low actual spending
+  may appear lower in value rankings.
 
 ## Example Conversation
 
@@ -129,7 +159,9 @@ understanding whether they typically recompete or extend.
 
 **Agent:**
 1. Resolves "DHS" → `contracting_dept_id`
-2. Queries `pipeline.recompete_watchlist` with remaining_months_max=12
-3. Groups results by timing (imminent / near-term / pipeline)
-4. Enriches top 5 opportunities with office buying patterns
-5. Presents the watchlist with recommendations
+2. Queries `pipeline.recompete_watchlist` with expiration_bucket filter
+3. Links contracts to contracting officers via `contacts.recompete_handlers`
+4. Pulls modification history for top-value contracts via `fpds_contract_history`
+5. Groups results by timing (imminent / near-term / pipeline)
+6. Enriches with contract duration context from `pipeline.duration_profile`
+7. Presents the watchlist with recommendations
