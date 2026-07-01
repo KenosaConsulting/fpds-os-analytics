@@ -86,6 +86,8 @@ def _supabase_validate(api_key: str, endpoint: str | None = None, ip: str | None
                 (api_key, endpoint, ip),
             )
             row = cur.fetchone()
+    except APIError:
+        raise
     except Exception as exc:
         logger.warning("Supabase key validation failed: %s", exc)
         return None

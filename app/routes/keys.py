@@ -4,63 +4,26 @@ POST /v1/keys/request — public signup endpoint.
 Accepts email + optional metadata, provisions a beta-tier key,
 returns the plaintext key exactly once.
 
-Uses a separate admin-privilege DB connection (not the readonly role)
-since create_api_key() writes to api_admin tables.
+Uses the standard DB connection. api_admin.create_api_key() is
+SECURITY DEFINER with PUBLIC EXECUTE, so the readonly role can
+call it; the function runs with postgres privileges internally.
 """
 
 from __future__ import annotations
 
 import logging
-import os
 import re
-from contextlib import contextmanager
-from typing import Iterator
 
-import psycopg2
-import psycopg2.extras
 from fastapi import APIRouter, Request
 from pydantic import BaseModel, field_validator
 
+from app.db import db_cursor
 from app.errors import APIError
 
 logger = logging.getLogger("fpds.keys")
 router = APIRouter(prefix="/v1")
 
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
-
-
-# ---------------------------------------------------------------------------
-# Admin DB connection (separate from readonly)
-# ---------------------------------------------------------------------------
-
-def _admin_dsn() -> str:
-    """Build DSN for admin access. Falls back to the main DSN if no separate
-    admin DSN is configured (single-user dev mode)."""
-    dsn = os.environ.get("ADMIN_DATABASE_URL")
-    if dsn:
-        return dsn
-
-    host = os.environ.get("DB_HOST")
-    password = os.environ.get("DB_PASS")
-    admin_user = os.environ.get("DB_ADMIN_USER")
-    if not host or not password or not admin_user:
-        raise RuntimeError("Key provisioning requires ADMIN_DATABASE_URL or DB_HOST + DB_PASS + DB_ADMIN_USER.")
-
-    port = os.environ.get("DB_PORT", "5432")
-    name = os.environ.get("DB_NAME", "postgres")
-    return f"host={host} port={port} dbname={name} user={admin_user} password=***{password}*** connect_timeout=10"
-
-
-@contextmanager
-def _admin_cursor() -> Iterator[psycopg2.extensions.cursor]:
-    conn = psycopg2.connect(_admin_dsn(), cursor_factory=psycopg2.extras.RealDictCursor)
-    try:
-        with conn:
-            with conn.cursor() as cur:
-                cur.execute("set local statement_timeout = '10s'")
-                yield cur
-    finally:
-        conn.close()
 
 
 # ---------------------------------------------------------------------------
@@ -104,7 +67,7 @@ def request_api_key(body: KeyRequest, request: Request) -> dict:
 
     # Check for duplicate email (one active key per email)
     try:
-        with _admin_cursor() as cur:
+        with db_cursor(read_only=False) as cur:
             cur.execute(
                 "SELECT id, key_prefix FROM api_admin.api_keys "
                 "WHERE user_email = %s AND is_active = TRUE AND (expires_at IS NULL OR expires_at > now())",
@@ -132,7 +95,7 @@ def request_api_key(body: KeyRequest, request: Request) -> dict:
     notes = " | ".join(notes_parts)
 
     try:
-        with _admin_cursor() as cur:
+        with db_cursor(read_only=False) as cur:
             cur.execute(
                 "SELECT * FROM api_admin.create_api_key("
                 "p_tier := 'beta', p_user_email := %s, p_user_name := %s, "
