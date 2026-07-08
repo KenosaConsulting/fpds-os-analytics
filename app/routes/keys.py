@@ -65,25 +65,25 @@ class KeyRequest(BaseModel):
 def request_api_key(body: KeyRequest, request: Request) -> dict:
     """Self-service API key signup. Returns a beta-tier key."""
 
-    # Check for duplicate email (one active key per email)
+    # Check for duplicate email (max 3 active keys per email)
     try:
         with db_cursor(read_only=False) as cur:
             cur.execute(
-                "SELECT id, key_prefix FROM api_admin.api_keys "
+                "SELECT count(*)::int AS active_count FROM api_admin.api_keys "
                 "WHERE user_email = %s AND is_active = TRUE AND (expires_at IS NULL OR expires_at > now())",
                 (body.email,),
             )
-            existing = cur.fetchone()
+            row = cur.fetchone()
     except Exception as exc:
         logger.error("DB check failed: %s", exc)
         raise APIError(503, "service_unavailable", "Key provisioning is temporarily unavailable.") from exc
 
-    if existing:
+    if row and row["active_count"] >= 3:
         raise APIError(
             409,
-            "key_already_exists",
-            f"An active API key already exists for this email (prefix: {existing['key_prefix']}...). "
-            "Contact support@kenosaconsulting.com to rotate or recover your key.",
+            "too_many_keys",
+            "This email already has the maximum of 3 active API keys. "
+            "Contact support@kenosaconsulting.com if you need additional keys.",
             param="email",
         )
 
