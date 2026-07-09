@@ -114,12 +114,14 @@ def _domain_summary(catalog: dict[str, Any]) -> str:
         "incumbent": "Who wins and how entrenched they are",
         "set_aside": "Small business and socioeconomic programs",
         "psc": "Product/service code analytics",
-        "vehicle": "GWAC, Schedule, IDIQ vehicle usage",
-        "recompete": "Expiring contracts and recompete pipeline",
+        "acquisition": "GWAC, Schedule, IDIQ vehicle usage",
+        "pipeline": "Expiring contracts and recompete pipeline",
         "seasonality": "Fiscal-month and quarter spending patterns",
         "topics": "Machine-derived procurement sub-markets (topic intelligence)",
         "contacts": "Contracting officer profiles and activity",
         "entrants": "New vendor market entry and survival",
+        "funding": "Who funds vs who executes across agencies",
+        "opportunity": "Cross-agency vendor opportunity analysis",
     }
     for domain, ids in sorted(domains.items()):
         desc = domain_descriptions.get(domain, "")
@@ -842,7 +844,7 @@ class FPDSServer:
         results, API key tier gets up to 1000).
         """
         q = self._require(arguments, "q")
-        limit = min(int(arguments.get("limit") or 10), 100)
+        limit = min(int(arguments.get("limit") or DEFAULT_LIMIT), 100)
         include_canonical = arguments.get("include_canonical", True)
         department_code = arguments.get("department_code")
 
