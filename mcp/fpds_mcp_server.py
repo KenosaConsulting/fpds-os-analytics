@@ -79,8 +79,19 @@ def _dataset_summary(catalog: dict[str, Any]) -> str:
     for dataset in catalog.get("data", []):
         dataset_id = dataset.get("id")
         description = dataset.get("description") or dataset.get("title") or ""
-        if dataset_id:
-            lines.append(f"{dataset_id}: {description}")
+        if not dataset_id:
+            continue
+        meta_parts = []
+        filters = dataset.get("filters") or []
+        if filters:
+            meta_parts.append("filters: " + ", ".join(filters))
+        sortable = dataset.get("sortable") or []
+        if sortable:
+            meta_parts.append("sort: " + ", ".join(sortable))
+        line = f"{dataset_id}: {description}"
+        if meta_parts:
+            line += " [" + " | ".join(meta_parts) + "]"
+        lines.append(line)
     return "\n".join(lines)
 
 
