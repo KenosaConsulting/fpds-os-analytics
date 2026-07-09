@@ -24,14 +24,17 @@ through the existing api_admin.validate_api_key() function.
 from __future__ import annotations
 
 import hashlib
+import hmac
 import json
 import logging
 import os
 import secrets
+import threading
 import time
 import uuid
 from dataclasses import dataclass
 from typing import Any
+from urllib.parse import urlparse
 
 from fastapi import APIRouter, Form, Query, Request, Response
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
@@ -80,6 +83,8 @@ _access_tokens: dict[str, dict[str, Any]] = {}
 # refresh_tokens[token] = {api_key, scope, client_id, access_token}
 _refresh_tokens: dict[str, dict[str, Any]] = {}
 
+_lock = threading.Lock()
+
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -98,61 +103,81 @@ def _base_url(request: Request) -> str:
 def _jwt_secret() -> str:
     """Get the signing secret, deriving one if not configured."""
     global _JWT_SECRET
-    if _JWT_SECRET:
+    with _lock:
+        if _JWT_SECRET:
+            return _JWT_SECRET
+        # Derive from DB password using PBKDF2 for dev convenience
+        db_pass = os.environ.get("DB_PASS", "")
+        if db_pass:
+            _JWT_SECRET = hashlib.pbkdf2_hmac(
+                "sha256", f"fpds-oauth-{db_pass}".encode(),
+                b"fpds-oauth-salt", 100000, dklen=32,
+            ).hex()
+        else:
+            _JWT_SECRET = hashlib.pbkdf2_hmac(
+                "sha256", f"fpds-oauth-dev-{secrets.token_hex(16)}".encode(),
+                b"fpds-oauth-dev-salt", 100000, dklen=32,
+            ).hex()
         return _JWT_SECRET
-    # Derive from DB password for dev convenience
-    db_pass = os.environ.get("DB_PASS", "")
-    if db_pass:
-        _JWT_SECRET = hashlib.sha256(f"fpds-oauth-{db_pass}".encode()).hexdigest()
-    else:
-        _JWT_SECRET = hashlib.sha256(f"fpds-oauth-dev-{secrets.token_hex(16)}".encode()).hexdigest()
-    return _JWT_SECRET
 
 
 def _issue_access_token(api_key: str, scope: str, client_id: str) -> str:
     """Issue an opaque access token mapped to an API key."""
     token = f"fpds_at_{secrets.token_urlsafe(32)}"
-    _access_tokens[token] = {
-        "api_key": api_key,
-        "scope": scope,
-        "client_id": client_id,
-        "expires_at": time.time() + _ACCESS_TOKEN_TTL,
-    }
+    with _lock:
+        _access_tokens[token] = {
+            "api_key": api_key,
+            "scope": scope,
+            "client_id": client_id,
+            "expires_at": time.time() + _ACCESS_TOKEN_TTL,
+        }
     return token
 
 
 def _issue_refresh_token(api_key: str, scope: str, client_id: str) -> str:
     """Issue a refresh token."""
     token = f"fpds_rt_{secrets.token_urlsafe(32)}"
-    _refresh_tokens[token] = {
-        "api_key": api_key,
-        "scope": scope,
-        "client_id": client_id,
-    }
+    with _lock:
+        _refresh_tokens[token] = {
+            "api_key": api_key,
+            "scope": scope,
+            "client_id": client_id,
+        }
     return token
 
 
 def resolve_access_token(token: str) -> str | None:
     """Resolve an OAuth access token to the underlying API key.
     Returns None if the token is invalid or expired."""
-    entry = _access_tokens.get(token)
-    if not entry:
-        return None
-    if time.time() > entry["expires_at"]:
-        _access_tokens.pop(token, None)
-        return None
-    return entry["api_key"]
+    with _lock:
+        entry = _access_tokens.get(token)
+        if not entry:
+            return None
+        if time.time() > entry["expires_at"]:
+            _access_tokens.pop(token, None)
+            return None
+        return entry["api_key"]
 
 
 def _cleanup_expired():
-    """Remove expired auth codes and access tokens."""
+    """Remove expired auth codes, access tokens, clients and refresh tokens."""
     now = time.time()
-    expired_codes = [k for k, v in _auth_codes.items() if now > v["expires_at"]]
-    for k in expired_codes:
-        _auth_codes.pop(k, None)
-    expired_tokens = [k for k, v in _access_tokens.items() if now > v["expires_at"]]
-    for k in expired_tokens:
-        _access_tokens.pop(k, None)
+    with _lock:
+        expired_codes = [k for k, v in _auth_codes.items() if now > v["expires_at"]]
+        for k in expired_codes:
+            _auth_codes.pop(k, None)
+        expired_tokens = [k for k, v in _access_tokens.items() if now > v["expires_at"]]
+        for k in expired_tokens:
+            _access_tokens.pop(k, None)
+        expired_clients = [k for k, v in _registered_clients.items()
+                          if now > v.get("created_at", 0) + _ACCESS_TOKEN_TTL * 3]
+        for k in expired_clients:
+            _registered_clients.pop(k, None)
+        stale_refresh = [k for k, v in _refresh_tokens.items()
+                        if k not in _auth_codes and k not in _access_tokens]
+        if len(stale_refresh) > 1000:
+            for k in stale_refresh[:len(stale_refresh) - 500]:
+                _refresh_tokens.pop(k, None)
 
 
 # ---------------------------------------------------------------------------
@@ -225,19 +250,23 @@ def register_client(body: ClientRegistrationRequest, request: Request) -> JSONRe
     # Validate redirect URIs — allow Claude's callback + localhost for dev
     valid_redirects = []
     for uri in body.redirect_uris:
-        if uri.startswith("https://claude.ai/") or uri.startswith("http://localhost") or uri.startswith("http://127.0.0.1"):
+        parsed = urlparse(uri)
+        if parsed.hostname in ("claude.ai", "anthropic.com") and parsed.scheme == "https":
+            valid_redirects.append(uri)
+        elif parsed.hostname in ("localhost", "127.0.0.1") and parsed.scheme == "http":
             valid_redirects.append(uri)
 
-    _registered_clients[client_id] = {
-        "client_id": client_id,
-        "client_secret": client_secret,
-        "client_name": body.client_name,
-        "redirect_uris": valid_redirects,
-        "grant_types": body.grant_types,
-        "token_endpoint_auth_method": body.token_endpoint_auth_method,
-        "scope": body.scope,
-        "created_at": int(time.time()),
-    }
+    with _lock:
+        _registered_clients[client_id] = {
+            "client_id": client_id,
+            "client_secret": client_secret,
+            "client_name": body.client_name,
+            "redirect_uris": valid_redirects,
+            "grant_types": body.grant_types,
+            "token_endpoint_auth_method": body.token_endpoint_auth_method,
+            "scope": body.scope,
+            "created_at": int(time.time()),
+        }
 
     logger.info("OAuth client registered: %s (%s)", body.client_name, client_id[:30])
 
@@ -375,15 +404,16 @@ def authorize_post(
 
     # Generate authorization code
     code = f"fpds_ac_{secrets.token_urlsafe(24)}"
-    _auth_codes[code] = {
-        "client_id": client_id,
-        "api_key": api_key,
-        "scope": scope,
-        "redirect_uri": redirect_uri,
-        "code_challenge": code_challenge,
-        "code_challenge_method": code_challenge_method,
-        "expires_at": time.time() + _AUTH_CODE_TTL,
-    }
+    with _lock:
+        _auth_codes[code] = {
+            "client_id": client_id,
+            "api_key": api_key,
+            "scope": scope,
+            "redirect_uri": redirect_uri,
+            "code_challenge": code_challenge,
+            "code_challenge_method": code_challenge_method,
+            "expires_at": time.time() + _AUTH_CODE_TTL,
+        }
 
     # Redirect with code
     params = f"code={code}"
@@ -420,7 +450,7 @@ def token_endpoint(
 
     # Validate client secret (skip for public clients with method "none")
     if client.get("token_endpoint_auth_method") != "none":
-        if client.get("client_secret") != client_secret:
+        if not hmac.compare_digest(client.get("client_secret", ""), client_secret):
             return JSONResponse(
                 status_code=401,
                 content={"error": "invalid_client", "error_description": "Invalid client secret"},
@@ -441,58 +471,59 @@ def _handle_authorization_code(
     code: str, redirect_uri: str, client_id: str, code_verifier: str, client: dict
 ) -> JSONResponse:
     """Process authorization_code grant."""
-    entry = _auth_codes.get(code)
-    if not entry:
-        return JSONResponse(
-            status_code=400,
-            content={"error": "invalid_grant", "error_description": "Invalid or expired authorization code"},
-        )
+    with _lock:
+        entry = _auth_codes.get(code)
+        if not entry:
+            return JSONResponse(
+                status_code=400,
+                content={"error": "invalid_grant", "error_description": "Invalid or expired authorization code"},
+            )
 
-    # Check expiry
-    if time.time() > entry["expires_at"]:
+        # Check expiry
+        if time.time() > entry["expires_at"]:
+            _auth_codes.pop(code, None)
+            return JSONResponse(
+                status_code=400,
+                content={"error": "invalid_grant", "error_description": "Authorization code expired"},
+            )
+
+        # Verify client matches
+        if entry["client_id"] != client_id:
+            return JSONResponse(
+                status_code=400,
+                content={"error": "invalid_grant", "error_description": "Client ID mismatch"},
+            )
+
+        # Verify redirect URI matches
+        if redirect_uri and entry["redirect_uri"] != redirect_uri:
+            return JSONResponse(
+                status_code=400,
+                content={"error": "invalid_grant", "error_description": "Redirect URI mismatch"},
+            )
+
+        # Verify PKCE code_verifier against code_challenge
+        if entry.get("code_challenge"):
+            if not code_verifier:
+                return JSONResponse(
+                    status_code=400,
+                    content={"error": "invalid_grant", "error_description": "Missing code_verifier (PKCE required)"},
+                )
+            import hashlib, base64
+            expected = base64.urlsafe_b64encode(
+                hashlib.sha256(code_verifier.encode()).digest()
+            ).rstrip(b"=").decode()
+            if expected != entry["code_challenge"]:
+                return JSONResponse(
+                    status_code=400,
+                    content={"error": "invalid_grant", "error_description": "PKCE verification failed"},
+                )
+
+        # Consume the code (atomically under lock)
+        api_key = entry["api_key"]
+        scope = entry["scope"]
         _auth_codes.pop(code, None)
-        return JSONResponse(
-            status_code=400,
-            content={"error": "invalid_grant", "error_description": "Authorization code expired"},
-        )
 
-    # Verify client matches
-    if entry["client_id"] != client_id:
-        return JSONResponse(
-            status_code=400,
-            content={"error": "invalid_grant", "error_description": "Client ID mismatch"},
-        )
-
-    # Verify redirect URI matches
-    if redirect_uri and entry["redirect_uri"] != redirect_uri:
-        return JSONResponse(
-            status_code=400,
-            content={"error": "invalid_grant", "error_description": "Redirect URI mismatch"},
-        )
-
-    # Verify PKCE code_verifier against code_challenge
-    if entry.get("code_challenge"):
-        if not code_verifier:
-            return JSONResponse(
-                status_code=400,
-                content={"error": "invalid_grant", "error_description": "Missing code_verifier (PKCE required)"},
-            )
-        import hashlib, base64
-        expected = base64.urlsafe_b64encode(
-            hashlib.sha256(code_verifier.encode()).digest()
-        ).rstrip(b"=").decode()
-        if expected != entry["code_challenge"]:
-            return JSONResponse(
-                status_code=400,
-                content={"error": "invalid_grant", "error_description": "PKCE verification failed"},
-            )
-
-    # Consume the code
-    api_key = entry["api_key"]
-    scope = entry["scope"]
-    _auth_codes.pop(code, None)
-
-    # Issue tokens
+    # Issue tokens (outside lock — _issue_* methods acquire their own lock)
     access_token = _issue_access_token(api_key, scope, client_id)
     token_response: dict[str, Any] = {
         "access_token": access_token,
@@ -511,25 +542,26 @@ def _handle_authorization_code(
 
 def _handle_refresh_token(refresh_token: str, client_id: str, client: dict) -> JSONResponse:
     """Process refresh_token grant."""
-    entry = _refresh_tokens.get(refresh_token)
-    if not entry:
-        return JSONResponse(
-            status_code=400,
-            content={"error": "invalid_grant", "error_description": "Invalid refresh token"},
-        )
+    with _lock:
+        entry = _refresh_tokens.get(refresh_token)
+        if not entry:
+            return JSONResponse(
+                status_code=400,
+                content={"error": "invalid_grant", "error_description": "Invalid refresh token"},
+            )
 
-    if entry["client_id"] != client_id:
-        return JSONResponse(
-            status_code=400,
-            content={"error": "invalid_grant", "error_description": "Client ID mismatch"},
-        )
+        if entry["client_id"] != client_id:
+            return JSONResponse(
+                status_code=400,
+                content={"error": "invalid_grant", "error_description": "Client ID mismatch"},
+            )
 
-    # Rotate: invalidate old refresh token
-    api_key = entry["api_key"]
-    scope = entry["scope"]
-    _refresh_tokens.pop(refresh_token, None)
+        # Rotate: invalidate old refresh token
+        api_key = entry["api_key"]
+        scope = entry["scope"]
+        _refresh_tokens.pop(refresh_token, None)
 
-    # Issue new tokens
+    # Issue new tokens (outside lock)
     access_token = _issue_access_token(api_key, scope, client_id)
     new_refresh = _issue_refresh_token(api_key, scope, client_id)
 
@@ -555,16 +587,17 @@ def introspect_token(
     """RFC 7662 token introspection."""
     # Validate client
     client = _registered_clients.get(client_id)
-    if not client or client.get("client_secret") != client_secret:
+    if not client or not hmac.compare_digest(client.get("client_secret", ""), client_secret):
         return JSONResponse(content={"active": False})
 
-    entry = _access_tokens.get(token)
-    if not entry:
-        return JSONResponse(content={"active": False})
+    with _lock:
+        entry = _access_tokens.get(token)
+        if not entry:
+            return JSONResponse(content={"active": False})
 
-    if time.time() > entry["expires_at"]:
-        _access_tokens.pop(token, None)
-        return JSONResponse(content={"active": False})
+        if time.time() > entry["expires_at"]:
+            _access_tokens.pop(token, None)
+            return JSONResponse(content={"active": False})
 
     return JSONResponse(content={
         "active": True,
@@ -587,9 +620,10 @@ def revoke_token(
 ) -> Response:
     """RFC 7009 token revocation."""
     client = _registered_clients.get(client_id)
-    if not client or client.get("client_secret") != client_secret:
+    if not client or not hmac.compare_digest(client.get("client_secret", ""), client_secret):
         return Response(status_code=401)
 
-    _access_tokens.pop(token, None)
-    _refresh_tokens.pop(token, None)
+    with _lock:
+        _access_tokens.pop(token, None)
+        _refresh_tokens.pop(token, None)
     return Response(status_code=200)

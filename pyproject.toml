@@ -25,7 +25,14 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
     "Topic :: Scientific/Engineering :: Information Analysis",
 ]
-dependencies = []
+dependencies = [
+    "fastapi>=0.100",
+    "uvicorn>=0.23",
+    "psycopg2-binary>=2.9",
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "starlette>=0.27",
+]
 
 [project.scripts]
 fpds-mcp = "mcp.fpds_mcp_server:main"
@@ -37,4 +44,7 @@ Documentation = "https://analytics-api.kenosaconsulting.com/docs"
 "API Key" = "https://kenosaconsulting.com/api"
 
 [tool.setuptools]
-packages = ["mcp"]
+packages = ["mcp", "app"]
+
+[tool.setuptools.package-data]
+app = ["*.py"]

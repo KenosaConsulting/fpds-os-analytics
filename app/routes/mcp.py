@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import json
 import logging
+import time
 import uuid
 from typing import Any
 
@@ -30,8 +31,22 @@ logger = logging.getLogger("fpds.mcp")
 # Latest MCP protocol version we support.
 LATEST_PROTOCOL_VERSION = "2025-03-26"
 
-# In-memory session registry.
+# In-memory session registry (TTL: 1 hour, max 1000 entries).
+_SESSIONS_MAX = 1000
+_SESSIONS_TTL = 3600
 _sessions: dict[str, dict[str, Any]] = {}
+
+
+def _cleanup_sessions() -> None:
+    """Remove expired sessions; evict oldest if still over max."""
+    now = time.time()
+    expired = [k for k, v in _sessions.items() if now - v.get("created_at", 0) > _SESSIONS_TTL]
+    for k in expired:
+        _sessions.pop(k, None)
+    if len(_sessions) > _SESSIONS_MAX:
+        oldest = sorted(_sessions.items(), key=lambda kv: kv[1].get("created_at", 0))
+        for k, _ in oldest[:len(_sessions) - _SESSIONS_MAX]:
+            _sessions.pop(k, None)
 
 # ── Lazy authentication ─────────────────────────────────────────────────
 # Tools that work without authentication (public tier).
@@ -47,11 +62,16 @@ _PUBLIC_TOOLS: set[str] = {
 }
 
 # Datasets that require an API key (public_access=api_key in catalog).
+# None = not yet loaded. Empty set = catalog failed to load (fail-closed).
 _API_KEY_DATASETS: set[str] | None = None
 
 
 def _get_api_key_datasets() -> set[str]:
-    """Lazily load the set of datasets that require an API key."""
+    """Lazily load the set of datasets that require an API key.
+    
+    Returns an empty set on catalog load failure, which causes 
+    _calls_protected_tool to treat all datasets as requiring auth (fail-closed).
+    """
     global _API_KEY_DATASETS
     if _API_KEY_DATASETS is None:
         try:
@@ -62,9 +82,17 @@ def _get_api_key_datasets() -> set[str]:
                 if ds.get("public_access") == "api_key"
             }
         except Exception:
-            logger.warning("Could not load catalog for API-key dataset check")
+            logger.exception("Could not load catalog for API-key dataset check — failing closed")
             _API_KEY_DATASETS = set()
     return _API_KEY_DATASETS
+
+
+def _is_gated_dataset(dataset_id: str) -> bool:
+    """Check if a dataset requires auth. Fails closed on catalog error."""
+    gated = _get_api_key_datasets()
+    if not gated:
+        return True
+    return dataset_id in gated
 
 
 def _calls_protected_tool(body: dict[str, Any] | list) -> bool:
@@ -89,7 +117,7 @@ def _calls_protected_tool(body: dict[str, Any] | list) -> bool:
         # public_bounded datasets work without auth, api_key datasets don't
         if tool_name == "fpds_query_dataset":
             dataset_id = (msg.get("params") or {}).get("arguments", {}).get("dataset_id", "")
-            if dataset_id and dataset_id in _get_api_key_datasets():
+            if dataset_id and _is_gated_dataset(dataset_id):
                 return True  # Gated dataset — auth required
             continue  # public_bounded dataset — no auth needed
         # All other tools (fpds_customer_profile, etc.) require auth
@@ -274,9 +302,10 @@ async def mcp_handle(
 
     # If this is an initialize response, attach session ID header
     if is_initialize:
+        _cleanup_sessions()
         session_id = str(uuid.uuid4())
         _sessions[session_id] = {
-            "created_at": json.dumps(None),
+            "created_at": time.time(),
             "protocol_version": LATEST_PROTOCOL_VERSION,
         }
         resp = JSONResponse(content=result)

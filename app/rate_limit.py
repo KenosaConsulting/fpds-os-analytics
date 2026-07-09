@@ -27,9 +27,12 @@ class RateLimit:
 
 
 class MemoryRateLimitStore:
+    _MAX_ENTRIES = 100_000
+
     def __init__(self) -> None:
         self._lock = Lock()
         self._counters: dict[str, tuple[int, int]] = {}
+        self._last_cleanup = time.time()
 
     def increment(self, key: str, window_seconds: int) -> tuple[int, int]:
         now = int(time.time())
@@ -41,7 +44,22 @@ class MemoryRateLimitStore:
                 count = 0
             count += 1
             self._counters[key] = (count, expires_at)
+            self._maybe_cleanup(now)
         return count, max(expires_at - now, 1)
+
+    def _maybe_cleanup(self, now: int) -> None:
+        if len(self._counters) <= self._MAX_ENTRIES:
+            return
+        if now - self._last_cleanup < 60:
+            return
+        self._last_cleanup = now
+        stale = [k for k, (_, expires) in self._counters.items() if now > expires]
+        for k in stale:
+            del self._counters[k]
+        if len(self._counters) > self._MAX_ENTRIES:
+            excess = len(self._counters) - self._MAX_ENTRIES + 1000
+            for k in list(self._counters.keys())[:excess]:
+                del self._counters[k]
 
 
 class RedisRateLimitStore:
@@ -71,7 +89,14 @@ def _limit_from_env(prefix: str, default_requests: int, default_window: int) -> 
 def _client_ip(request: Request) -> str:
     forwarded_for = request.headers.get("x-forwarded-for")
     if forwarded_for:
-        return forwarded_for.split(",", 1)[0].strip()
+        forwarded_host = request.headers.get("x-forwarded-host", "")
+        forwarded_proto = request.headers.get("x-forwarded-proto", "")
+        trusted = os.environ.get("FPDS_ANALYTICS_TRUSTED_PROXIES", "")
+        trusted_set = {p.strip() for p in trusted.split(",") if p.strip()}
+        if forwarded_host or forwarded_proto:
+            return forwarded_for.split(",", 1)[0].strip()
+        if trusted_set and request.client and request.client.host in trusted_set:
+            return forwarded_for.split(",", 1)[0].strip()
     if request.client:
         return request.client.host
     return "unknown"

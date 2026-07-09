@@ -9,6 +9,7 @@ Used by the remote MCP endpoint (app/routes/mcp.py).
 
 from __future__ import annotations
 
+import json
 from typing import Any
 
 from starlette.testclient import TestClient
@@ -49,8 +50,13 @@ class InternalFPDSClient(FPDSClient):
         response = client.get(path, params=clean, headers=headers)
 
         if response.status_code >= 400:
+            try:
+                error_body = response.json()
+            except Exception:
+                error_body = response.text[:500]
             raise RuntimeError(
-                f"Internal API call failed: {response.status_code} {response.text[:500]}"
+                f"Internal API call failed: {response.status_code} "
+                f"{json.dumps(error_body) if isinstance(error_body, dict) else error_body[:500]}"
             )
 
         return response.json()

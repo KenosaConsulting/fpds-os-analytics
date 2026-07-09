@@ -435,6 +435,8 @@ class FPDSServer:
             "- Map vendor competitive landscape\n"
             "- Find set-aside opportunities\n"
         )
+
+    def prompts(self) -> list[dict[str, Any]]:
         return [
             {
                 "name": "assess_market_entry_difficulty",
@@ -760,7 +762,7 @@ class FPDSServer:
         if name == "fpds_list_datasets":
             return _json_text(self.client.get("/v1/catalog", {"domain": arguments.get("domain")}))
         if name == "fpds_describe_dataset":
-            return _json_text(self.client.get(f"/v1/datasets/{arguments['dataset_id']}"))
+            return _json_text(self.client.get(f"/v1/datasets/{self._require(arguments, 'dataset_id')}"))
         if name == "fpds_query_dataset":
             params = {
                 **(arguments.get("filters") or {}),
@@ -769,7 +771,7 @@ class FPDSServer:
                 "limit": arguments.get("limit", DEFAULT_LIMIT),
                 "cursor": arguments.get("cursor"),
             }
-            return _json_text(self.client.get(f"/v1/datasets/{arguments['dataset_id']}/rows", params))
+            return _json_text(self.client.get(f"/v1/datasets/{self._require(arguments, 'dataset_id')}/rows", params))
         if name == "fpds_list_dimensions":
             return _json_text(self.client.get("/v1/dimensions"))
         if name == "fpds_lookup_dimension":
@@ -780,7 +782,7 @@ class FPDSServer:
                 "limit": arguments.get("limit", DEFAULT_LIMIT),
                 "cursor": arguments.get("cursor"),
             }
-            return _json_text(self.client.get(f"/v1/dimensions/{arguments['dimension_id']}", params))
+            return _json_text(self.client.get(f"/v1/dimensions/{self._require(arguments, 'dimension_id')}", params))
         if name == "fpds_resolve":
             return _json_text(self.resolve(arguments))
         if name == "fpds_customer_profile":
@@ -788,7 +790,8 @@ class FPDSServer:
         if name == "fpds_topic_search":
             return _json_text(self.topic_search(arguments))
         if name == "fpds_contract_history":
-            filters = {"piid": arguments["piid"]}
+            piid = self._require(arguments, "piid")
+            filters: dict[str, Any] = {"piid": piid}
             if arguments.get("reason_for_modification"):
                 filters["reason_for_modification"] = arguments["reason_for_modification"]
             if arguments.get("contract_action_type"):
@@ -803,8 +806,15 @@ class FPDSServer:
             return {"content": [{"type": "text", "text": self._onboarding_guide()}]}
         raise ValueError(f"Unknown tool: {name}")
 
+    @staticmethod
+    def _require(args: dict[str, Any], key: str) -> Any:
+        value = args.get(key)
+        if value is None:
+            raise ValueError(f"Missing required argument: {key}")
+        return value
+
     def resolve(self, arguments: dict[str, Any]) -> dict[str, Any]:
-        q = arguments["q"]
+        q = self._require(arguments, "q")
         raw_types = arguments.get("types") or ["agencies", "departments", "offices", "naics", "psc", "vehicle_programs", "topics"]
         limit = min(int(arguments.get("limit") or 10), 100)
         results = []
@@ -831,7 +841,7 @@ class FPDSServer:
         regardless of API key status (public tier gets up to 25 matching
         results, API key tier gets up to 1000).
         """
-        q = arguments["q"]
+        q = self._require(arguments, "q")
         limit = min(int(arguments.get("limit") or 10), 100)
         include_canonical = arguments.get("include_canonical", True)
         department_code = arguments.get("department_code")
@@ -922,15 +932,27 @@ def handle_message(server: FPDSServer, message: dict[str, Any]) -> dict[str, Any
         if method == "resources/read":
             return _success(request_id, server.read_resource(params["uri"]))
         return _error(request_id, -32601, f"Method not found: {method}")
+    except json.JSONDecodeError:
+        return _error(request_id, -32700, "Parse error")
+    except KeyError as exc:
+        return _error(request_id, -32602, f"Invalid params: missing {exc}")
+    except ValueError:
+        return _error(request_id, -32602, "Invalid params")
     except Exception as exc:
-        return _error(request_id, -32000, str(exc))
+        return _error(request_id, -32603, str(exc))
 
 
 def serve(server: FPDSServer) -> None:
     for line in sys.stdin:
         if not line.strip():
             continue
-        response = handle_message(server, json.loads(line))
+        try:
+            message = json.loads(line)
+        except json.JSONDecodeError:
+            sys.stdout.write(json.dumps({"jsonrpc": "2.0", "id": None, "error": {"code": -32700, "message": "Parse error"}}, separators=(",", ":")) + "\n")
+            sys.stdout.flush()
+            continue
+        response = handle_message(server, message)
         if response is not None:
             sys.stdout.write(json.dumps(response, separators=(",", ":")) + "\n")
             sys.stdout.flush()

@@ -265,7 +265,7 @@ datasets:
   source_view: vendor_concentration.report_deck_vendor_market_leaders
   grain: uei
   public_access: public_bounded
-  required_filters_any: []
+  required_filters_any: [uei]
   filters: [uei, is_small_business_ever]
   sortable: [lifetime_total_obligated, agencies_served, avg_tenure_years, avg_annual_obligated]
   default_sort: -lifetime_total_obligated
