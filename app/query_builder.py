@@ -8,6 +8,7 @@ import re
 from decimal import Decimal
 from typing import Any
 
+from .db import db_cursor
 from .errors import APIError
 
 
@@ -19,6 +20,13 @@ CONTROL_PARAMS = {"fields", "sort", "limit", "cursor", "format", "_max_limit_ove
 PREFIX_FILTERS = {
     "naics_prefix": "principal_naics_code",
 }
+
+# Filter names that represent department-level codes (not sub-agency codes).
+# These are eligible for auto-crosswalk between FPDS 4-digit and USASpending 3-digit formats.
+DEPT_CODE_FIELDS = {"contracting_dept_id", "department_code", "funding_dept_id"}
+
+# Module-level cache for the FPDS↔USASpending department code crosswalk.
+_crosswalk_cache: dict[str, dict[str, str]] | None = None
 
 
 def quote_ident(identifier: str) -> str:
@@ -167,6 +175,102 @@ def build_default_where(dataset: dict[str, Any], params: dict[str, str]) -> tupl
     return clauses, values
 
 
+def _load_crosswalk() -> dict[str, dict[str, str]]:
+    """Load and cache the FPDS↔USASpending department code crosswalk.
+
+    Returns a dict with two keys:
+        "fpds_to_usa": maps 4-digit FPDS department IDs → 3-digit USASpending codes
+        "usa_to_fpds": maps 3-digit USASpending codes → 4-digit FPDS department IDs
+
+    The crosswalk is fetched once and cached at module level.
+    If the table doesn't exist or is inaccessible, returns empty dicts
+    so translation is silently skipped.
+    """
+    global _crosswalk_cache
+    if _crosswalk_cache is not None:
+        return _crosswalk_cache
+
+    fpds_to_usa: dict[str, str] = {}
+    usa_to_fpds: dict[str, str] = {}
+    try:
+        with db_cursor() as cur:
+            cur.execute(
+                "SELECT usaspending_code, fpds_department_id "
+                "FROM analytics_dims.usaspending_fpds_dept_crosswalk"
+            )
+            for row in cur.fetchall():
+                fpds_code: str = row["fpds_department_id"]
+                usa_code: str = row["usaspending_code"]
+                # Multiple USASpending codes may map to one FPDS dept (e.g. 097, 099 → 9700).
+                # Keep the first match for FPDS→USA direction.
+                if fpds_code not in fpds_to_usa:
+                    fpds_to_usa[fpds_code] = usa_code
+                # USASpending→FPDS is 1:1 (each USASpending code appears once).
+                usa_to_fpds[usa_code] = fpds_code
+    except Exception:
+        pass
+
+    _crosswalk_cache = {"fpds_to_usa": fpds_to_usa, "usa_to_fpds": usa_to_fpds}
+    return _crosswalk_cache
+
+
+def _resolve_department_code(value: str) -> dict[str, str]:
+    """Cross-walk a department code between 4-digit FPDS and 3-digit USASpending formats.
+
+    Args:
+        value: Department code string (e.g. "9700" or "097").
+
+    Returns:
+        Dict with keys "fpds_4digit", "usaspending_3digit", and "original".
+        Both format keys are always populated; if the value is not found in the
+        crosswalk, both return the original value unchanged.
+    """
+    crosswalk = _load_crosswalk()
+    result: dict[str, str] = {"fpds_4digit": value, "usaspending_3digit": value, "original": value}
+
+    if len(value) == 4 and value.isdigit():
+        usa = crosswalk["fpds_to_usa"].get(value)
+        if usa:
+            result["usaspending_3digit"] = usa
+    elif len(value) == 3 and value.isdigit():
+        fpds = crosswalk["usa_to_fpds"].get(value)
+        if fpds:
+            result["fpds_4digit"] = fpds
+
+    return result
+
+
+def _maybe_translate_dept_code(
+    value: Any, name: str, expected_format: str | None
+) -> Any:
+    """Auto-translate a department code if the input format doesn't match the dataset expectation.
+
+    Args:
+        value: The filter value passed by the user.
+        name: The filter field name.
+        expected_format: "fpds_4digit" or "usaspending_3digit" from the dataset catalog,
+            or None if the dataset doesn't declare a format.
+
+    Returns:
+        The possibly translated value, or the original value unchanged.
+    """
+    if expected_format is None or name not in DEPT_CODE_FIELDS:
+        return value
+
+    str_value = str(value).strip()
+
+    # 3-digit input → dataset expects 4-digit: translate
+    if len(str_value) == 3 and str_value.isdigit() and expected_format == "fpds_4digit":
+        return _resolve_department_code(str_value)["fpds_4digit"]
+
+    # 4-digit input → dataset expects 3-digit: translate
+    if len(str_value) == 4 and str_value.isdigit() and expected_format == "usaspending_3digit":
+        return _resolve_department_code(str_value)["usaspending_3digit"]
+
+    # Format matches or can't determine — pass through unchanged
+    return value
+
+
 def build_search_where(dataset: dict[str, Any], params: dict[str, str]) -> tuple[list[str], list[Any]]:
     raw_query = params.get("_search_q")
     if raw_query in (None, ""):
@@ -192,6 +296,8 @@ def build_where(dataset: dict[str, Any], params: dict[str, str]) -> tuple[list[s
     clauses: list[str] = []
     values: list[Any] = []
 
+    expected_format = dataset.get("department_code_format")
+
     for name, value in params.items():
         if value in (None, "") or name in CONTROL_PARAMS:
             continue
@@ -211,6 +317,10 @@ def build_where(dataset: dict[str, Any], params: dict[str, str]) -> tuple[list[s
                 param=name,
                 extra={"allowed_filters": sorted(allowed_filters)},
             )
+
+        # Auto-crosswalk department codes: if the user passes a 4-digit FPDS code
+        # but the dataset expects 3-digit USASpending (or vice versa), translate.
+        value = _maybe_translate_dept_code(value, name, expected_format)
 
         if name in PREFIX_FILTERS:
             target_column = PREFIX_FILTERS[name]

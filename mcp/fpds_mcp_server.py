@@ -218,6 +218,41 @@ class FPDSServer:
             }
         except ImportError:
             pass
+        # Add live catalog resources (generated from API)
+        try:
+            catalog = self.catalog()
+            resources["fpds://catalog/datasets"] = {
+                "uri": "fpds://catalog/datasets",
+                "name": "datasets",
+                "description": "Complete machine-readable catalog of all 88+ analytics datasets — fields, filters, grain, caveats, examples. Load this for session-wide dataset awareness.",
+                "mimeType": "application/json",
+                "text": json.dumps(catalog, indent=2),
+            }
+        except Exception as exc:
+            resources["fpds://catalog/datasets"] = {
+                "uri": "fpds://catalog/datasets",
+                "name": "datasets",
+                "description": "Complete machine-readable catalog of all 88+ analytics datasets — fields, filters, grain, caveats, examples. Load this for session-wide dataset awareness.",
+                "mimeType": "text/plain",
+                "text": f"Catalog not available: {exc}",
+            }
+        try:
+            dimensions = self.client.get("/v1/dimensions")
+            resources["fpds://catalog/dimensions"] = {
+                "uri": "fpds://catalog/dimensions",
+                "name": "dimensions",
+                "description": "Complete list of 17 code-lookup dimensions with key fields and filters.",
+                "mimeType": "application/json",
+                "text": json.dumps(dimensions, indent=2),
+            }
+        except Exception as exc:
+            resources["fpds://catalog/dimensions"] = {
+                "uri": "fpds://catalog/dimensions",
+                "name": "dimensions",
+                "description": "Complete list of 17 code-lookup dimensions with key fields and filters.",
+                "mimeType": "text/plain",
+                "text": f"Dimensions not available: {exc}",
+            }
         self._resources_cache = resources
         return resources
 
@@ -246,7 +281,7 @@ class FPDSServer:
             domain_summary = _domain_summary(catalog)
             dataset_listing = _dataset_summary(catalog)
             query_description = (
-                "Query bounded rows from a documented FPDS dataset. Use fpds_list_datasets or fpds_describe_dataset first to discover dataset IDs and allowed filters. Documented datasets only, allowlisted filters, bounded rows, no SQL.\n\nIMPORTANT: Always include at least one filter (e.g. contracting_dept_id, fiscal_year, principal_naics_code) to avoid query timeouts. Unfiltered queries on large datasets may time out. Use fpds_resolve to find filter values from names.\n\nDomains: "
+                "Query bounded rows from a documented FPDS dataset. Use fpds_list_datasets or fpds_describe_dataset first to discover dataset IDs and allowed filters. Documented datasets only, allowlisted filters, bounded rows, no SQL.\n\nIMPORTANT: Always include at least one filter (e.g. contracting_dept_id, fiscal_year, principal_naics_code) to avoid query timeouts. Unfiltered queries on large datasets may time out. Use fpds_resolve to find filter values from names.\n\nWhen querying vendor-grain datasets and you need obligation totals, consider using keyword_analytics(group_by=\"vendor\") for pre-aggregated vendor rankings by capability keyword — this avoids pulling raw rows and summing client-side.\n\nDomains: "
                 + domain_summary
                 + "\n\n"
                 + dataset_listing
@@ -263,7 +298,8 @@ class FPDSServer:
             _tool(
                 "fpds_list_datasets",
                 "List 88 documented FPDS analytics datasets across 17 intelligence domains. This is your primary discovery tool — call it first to browse available datasets by domain. Each dataset entry includes its ID, title, domain, description, allowed filters, sortable fields, examples, and caveats. Use the domain filter to narrow results (e.g. domain='competition' for competition-related datasets, domain='topics' for topic intelligence). After finding a dataset, use fpds_describe_dataset to inspect it in detail before querying.",
-                {"domain": {"type": "string", "description": "Optional domain filter: pricing, concentration, competition, naics, geography, customer, market, incumbent, set_aside, psc, acquisition, pipeline, seasonality, topics, contacts, entrants, funding."}},
+                {"domain": {"type": "string", "description": "Optional domain filter: pricing, concentration, competition, naics, geography, customer, market, incumbent, set_aside, psc, acquisition, pipeline, seasonality, topics, contacts, entrants, funding."},
+                 "q": {"type": "string", "description": "Optional substring search on dataset titles and descriptions to find relevant datasets by concept (e.g. 'vendor concentration', 'expiring contracts')."}},
             ),
             _tool(
                 "fpds_describe_dataset",
@@ -325,8 +361,28 @@ class FPDSServer:
                 },
             ),
             _tool(
+                "fpds_vendor_profile",
+                "Get a vendor intelligence profile by UEI. Returns vendor summary stats, agency footprint with ranks, NAICS concentration, cross-agency presence, and contracts in the recompete pipeline. Use this when you need a complete picture of a vendor's federal presence.",
+                {
+                    "uei": {"type": "string", "description": "Vendor UEI (Unique Entity Identifier, 12 characters)."},
+                    "contracting_dept_id": {"type": "string", "description": "Optional FPDS department code to scope results."},
+                    "contracting_agency_id": {"type": "string", "description": "Optional FPDS agency code to scope results."},
+                },
+                ["uei"],
+            ),
+            _tool(
+                "fpds_topic_profile",
+                "Get a topic intelligence profile for a federal department. Returns top procurement topics by assignment frequency, trend classifications (growing/stable/declining), competitive landscape per topic, NAICS decompositions, and links to strategic documents. Use this for deep sub-market analysis of what an agency actually buys.",
+                {
+                    "department_code": {"type": "string", "description": "Department code (USASpending 3-digit format, e.g. '097' for DoD, '036' for VA)."},
+                    "topic_id": {"type": "integer", "description": "Optional: focus on a specific topic ID for competitive and NAICS detail."},
+                    "q": {"type": "string", "description": "Optional: keyword filter to find topics matching a capability domain (e.g. 'cybersecurity', 'cloud')."},
+                },
+                ["department_code"],
+            ),
+            _tool(
                 "fpds_topic_search",
-                "Search procurement topics by keyword. Finds machine-derived sub-market topics matching a text query across 9,313 merged topics and 4,969 govwide canonical topics. Topics are a semantic dimension parallel to NAICS — they decompose broad classification codes into what agencies actually buy. Use fpds_resolve(types=['topics']) for quick canonical topic lookups, or this tool for comprehensive cross-corpus search with department scoping. Use when a user asks about specific procurement domains like 'cybersecurity', 'cloud migration', 'medical devices', etc.",
+                "Search procurement topics by keyword. Finds machine-derived sub-market topics matching a text query across 9,313 merged topics and 4,969 govwide canonical topics. Topics are a semantic dimension parallel to NAICS — they decompose broad classification codes into what agencies actually buy. Use fpds_resolve(types=['topics']) for quick canonical topic lookups, or this tool for comprehensive cross-corpus search with department scoping. Use when a user asks about specific procurement domains like 'cybersecurity', 'cloud migration', 'medical devices', etc.\n\nFor capability-level vendor rankings (e.g., 'who wins AI/ML contracts'), use keyword_analytics for pre-aggregated vendor rankings by keyword with obligation data. Topics provide sub-market decomposition; keywords provide capability-level vendor rankings.",
                 {
                     "q": {"type": "string", "description": "Topic search query — a procurement domain, technology, or capability (e.g. 'cybersecurity', 'cloud', 'medical devices')."},
                     "department_code": {"type": "string", "description": "Optional USASpending department code to scope results to one agency."},
@@ -349,8 +405,70 @@ class FPDSServer:
             ),
             _tool(
                 "fpds_onboarding",
-                "Getting-started guide and navigation map for FPDS Analytics. Returns a structured reference covering: what FPDS Analytics is, the 17 intelligence domains with what each answers, common workflow patterns (which datasets to use for specific questions), the recommended query sequence (resolve → describe → query), and pointers to available documentation resources. Call this when a user is new to the tool or asks 'what can I do with this?' or 'how do I get started?'. No arguments required.",
+                "Getting-started guide and navigation map for FPDS Analytics. Returns a structured reference covering: what FPDS Analytics is, the 17 intelligence domains with what each answers, common workflow patterns (which datasets to use for specific questions), the recommended query sequence (resolve → describe → query), how keyword-level analysis complements topic intelligence, and pointers to available documentation resources. Call this when a user is new to the tool or asks 'what can I do with this?' or 'how do I get started?'. No arguments required.",
                 {},
+            ),
+            # ── Keyword-level tools ─────────────────────────────────────
+            _tool(
+                "keyword_search",
+                "Search procurement keywords by text substring. Searches the keywords table (product_vendor, method_service, system_program categories by default — noise categories are excluded) and returns keyword metadata with link counts and top departments. Use this to discover capabilities, vendor names, or program names mentioned in contract descriptions.",
+                {
+                    "q": {"type": "string", "description": "Search query — substring match on keyword text."},
+                    "keyword_type": {"type": "array", "items": {"type": "string"}, "description": "Filter by keyword type: phrase, term. Default: both."},
+                    "category": {"type": "array", "items": {"type": "string"}, "description": "Filter by category: product_vendor, method_service, system_program. Default: all three."},
+                    "department_code": {"type": "string", "description": "USASpending department code filter (e.g. '070' for DHS)."},
+                    "min_link_count": {"type": "integer", "description": "Minimum total link count (popularity filter, default 2)."},
+                    "limit": {"type": "integer", "minimum": 1, "maximum": 100, "description": "Max results (default 25)."},
+                },
+                ["q"],
+            ),
+            _tool(
+                "keyword_analytics",
+                "Get procurement analytics for a specific keyword. Returns award count, total obligation dollars, breakdown by agency/vendor/fy/naics/set_aside, and FY spending trend. Uses pre-computed obligation data from keyword_link_metadata. Obligation data is reliable; award counts may be sparse for some departments.",
+                {
+                    "keyword_id": {"type": "integer", "description": "Keyword ID from keyword_search results."},
+                    "keyword_text": {"type": "string", "description": "Exact keyword text (case-insensitive match)."},
+                    "department_code": {"type": "string", "description": "USASpending department code filter (e.g. '070' for DHS)."},
+                    "fy_start": {"type": "integer", "description": "Start fiscal year (default 2018)."},
+                    "fy_end": {"type": "integer", "description": "End fiscal year (default 2026)."},
+                    "group_by": {"type": "string", "description": "Breakdown dimension: agency, vendor, fy, naics, set_aside. Default: agency."},
+                    "limit": {"type": "integer", "minimum": 1, "maximum": 100, "description": "Max rows in breakdown (default 25)."},
+                },
+            ),
+            _tool(
+                "keyword_vs_topic",
+                "Bridge keywords to BERTopic topics and vice versa. Two modes: (1) keyword → topics: provide keyword_id or keyword_text to see which topics the keyword maps to; (2) topic → keywords: provide topic_id to see which keywords are most associated with that topic. Department code scoping recommended — topic IDs are per-department.",
+                {
+                    "keyword_id": {"type": "integer", "description": "Keyword ID for keyword→topics mode."},
+                    "keyword_text": {"type": "string", "description": "Exact keyword text for keyword→topics mode."},
+                    "topic_id": {"type": "integer", "description": "Topic ID for topic→keywords mode."},
+                    "department_code": {"type": "string", "description": "Department filter (e.g. '097' for Army). Topic IDs are per-department."},
+                    "limit": {"type": "integer", "minimum": 1, "maximum": 100, "description": "Max results (default 15)."},
+                },
+            ),
+            _tool(
+                "keyword_compare",
+                "Compare multiple keywords side-by-side on procurement metrics. Returns award count, total obligation, unique vendors, unique agencies, FY trend, and top 3 agencies for each keyword. Useful for competitive positioning questions like 'Salesforce vs ServiceNow vs Oracle at DHS.'",
+                {
+                    "keywords": {"type": "array", "items": {"type": "string"}, "description": "List of keyword texts to compare (e.g. ['Salesforce', 'ServiceNow'])."},
+                    "keyword_ids": {"type": "array", "items": {"type": "integer"}, "description": "List of keyword IDs to compare."},
+                    "department_code": {"type": "string", "description": "USASpending department code filter (e.g. '070' for DHS)."},
+                    "fy_start": {"type": "integer", "description": "Start fiscal year (default 2018)."},
+                    "fy_end": {"type": "integer", "description": "End fiscal year (default 2026)."},
+                },
+            ),
+            _tool(
+                "keyword_vendor_profile",
+                "Get keyword profile for a vendor by UEI. Returns all keywords a vendor appears in across federal awards, with award counts, obligation amounts, agency coverage per keyword, and a summary with department coverage. Useful for questions like 'what capabilities does this vendor compete in?'",
+                {
+                    "uei": {"type": "string", "description": "Vendor UEI (Unique Entity Identifier, e.g. 'C6FQH2VLCVL9')."},
+                    "department_code": {"type": "string", "description": "USASpending department code filter (e.g. '070' for DHS)."},
+                    "category": {"type": "array", "items": {"type": "string"}, "description": "Keyword categories: product_vendor, method_service, system_program. Default: all three."},
+                    "fy_start": {"type": "integer", "description": "Start fiscal year (default 2018)."},
+                    "fy_end": {"type": "integer", "description": "End fiscal year (default 2026)."},
+                    "limit": {"type": "integer", "minimum": 1, "maximum": 200, "description": "Max keywords (default 50)."},
+                },
+                ["uei"],
             ),
         ]
 
@@ -435,7 +553,27 @@ class FPDSServer:
             "- Find contracting officers for a NAICS\n"
             "- Find growth NAICS with weak competition\n"
             "- Map vendor competitive landscape\n"
-            "- Find set-aside opportunities\n"
+            "- Find set-aside opportunities\n\n"
+            "## Keyword-Level Analysis\n\n"
+            "Keyword tools provide capability-level procurement intelligence built from\n"
+            "extracted phrases and terms found in contract descriptions. Keywords are categorized as\n"
+            "product_vendor (e.g. 'Microsoft Azure', 'Salesforce'), method_service (e.g. 'agile\n"
+            "development', 'penetration testing'), or system_program (e.g. 'Cerner EHR', 'JPAS').\n\n"
+            "### Keywords vs Topics — When to Use Which\n\n"
+            "- **Topics** decompose procurement into coherent sub-markets (BERTopic clusters). Use them\n"
+            "  to understand what an agency buys at a macro level ('this agency buys cloud migration\n"
+            "  services') and how sub-markets relate to each other.\n"
+            "- **Keywords** map specific capabilities, vendors, and technologies to awards. Use them for\n"
+            "  vendor rankings, capability-level competitive analysis, and precise market sizing.\n\n"
+            "### Available Keyword Tools\n\n"
+            "- **keyword_search** — Find keywords by text substring across any category.\n"
+            "- **keyword_analytics** — Vendor/agency/FY/NAICS/set-aside breakdowns by capability.\n"
+            "  Use group_by=\"vendor\" for server-side vendor rankings with obligation data.\n"
+            "- **keyword_compare** — Side-by-side comparison of multiple keywords (e.g.\n"
+            "  'Salesforce vs ServiceNow vs Oracle at DHS').\n"
+            "- **keyword_vs_topic** — Bridge keywords to BERTopic topics and vice versa.\n"
+            "  Provide a keyword to see which topics it maps to, or a topic to see associated keywords.\n"
+            "- **keyword_vendor_profile** — All keywords associated with a vendor by UEI.\n\n"
         )
 
     def prompts(self) -> list[dict[str, Any]]:
@@ -762,7 +900,12 @@ class FPDSServer:
 
     def call_tool(self, name: str, arguments: dict[str, Any]) -> dict[str, Any]:
         if name == "fpds_list_datasets":
-            return _json_text(self.client.get("/v1/catalog", {"domain": arguments.get("domain")}))
+            params: dict[str, Any] = {}
+            if arguments.get("domain"):
+                params["domain"] = arguments["domain"]
+            if arguments.get("q"):
+                params["q"] = arguments["q"]
+            return _json_text(self.client.get("/v1/catalog", params))
         if name == "fpds_describe_dataset":
             return _json_text(self.client.get(f"/v1/datasets/{self._require(arguments, 'dataset_id')}"))
         if name == "fpds_query_dataset":
@@ -789,6 +932,10 @@ class FPDSServer:
             return _json_text(self.resolve(arguments))
         if name == "fpds_customer_profile":
             return _json_text(self.client.get("/v1/profiles/customer", arguments))
+        if name == "fpds_vendor_profile":
+            return _json_text(self.client.get("/v1/profiles/vendor", arguments))
+        if name == "fpds_topic_profile":
+            return _json_text(self.client.get("/v1/profiles/topic", arguments))
         if name == "fpds_topic_search":
             return _json_text(self.topic_search(arguments))
         if name == "fpds_contract_history":
@@ -806,6 +953,23 @@ class FPDSServer:
             return _json_text(self.client.get("/v1/datasets/pipeline.contract_transactions/rows", params))
         if name == "fpds_onboarding":
             return {"content": [{"type": "text", "text": self._onboarding_guide()}]}
+        # ── Keyword tools ───────────────────────────────────────────────
+        if name == "keyword_search":
+            return _json_text(self.client.get("/v1/keywords/search", {
+                k: v for k, v in arguments.items()
+                if v is not None and k != "limit"
+            } | {"limit": arguments.get("limit", DEFAULT_LIMIT)}))
+        if name == "keyword_analytics":
+            return _json_text(self.client.get("/v1/keywords/analytics", arguments))
+        if name == "keyword_vs_topic":
+            return _json_text(self.client.get("/v1/keywords/vs-topic", arguments))
+        if name == "keyword_compare":
+            return _json_text(self.client.get("/v1/keywords/compare", arguments))
+        if name == "keyword_vendor_profile":
+            uei = self._require(arguments, "uei")
+            params = {k: v for k, v in arguments.items() if v is not None and k != "uei" and k != "limit"}
+            params["limit"] = arguments.get("limit", 50)
+            return _json_text(self.client.get(f"/v1/keywords/vendor/{uei}", params))
         raise ValueError(f"Unknown tool: {name}")
 
     @staticmethod
@@ -891,23 +1055,16 @@ class FPDSServer:
         return results
 
 
-def _success(request_id: Any, result: Any) -> dict[str, Any]:
-    return {"jsonrpc": "2.0", "id": request_id, "result": result}
-
-
-def _error(request_id: Any, code: int, message: str) -> dict[str, Any]:
-    return {"jsonrpc": "2.0", "id": request_id, "error": {"code": code, "message": message}}
-
-
 def handle_message(server: FPDSServer, message: dict[str, Any]) -> dict[str, Any] | None:
     method = message.get("method")
-    request_id = message.get("id")
+    msg_id = message.get("id")
     params = message.get("params") or {}
     try:
         if method == "initialize":
-            return _success(
-                request_id,
-                {
+            return {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "result": {
                     "protocolVersion": params.get("protocolVersion", "2025-03-26"),
                     "serverInfo": {"name": "fpds-os-analytics", "version": "0.2.0"},
                     "capabilities": {
@@ -916,32 +1073,30 @@ def handle_message(server: FPDSServer, message: dict[str, Any]) -> dict[str, Any
                         "resources": {},
                     },
                 },
-            )
+            }
         if method == "notifications/initialized":
             return None
         if method == "ping":
-            return _success(request_id, {})
+            return {"jsonrpc": "2.0", "id": msg_id, "result": {}}
         if method == "tools/list":
-            return _success(request_id, {"tools": server.tools()})
+            return {"jsonrpc": "2.0", "id": msg_id, "result": {"tools": server.tools()}}
         if method == "tools/call":
-            return _success(request_id, server.call_tool(params["name"], params.get("arguments") or {}))
+            return {"jsonrpc": "2.0", "id": msg_id, "result": server.call_tool(params["name"], params.get("arguments") or {})}
         if method == "prompts/list":
-            return _success(request_id, {"prompts": server.prompts()})
+            return {"jsonrpc": "2.0", "id": msg_id, "result": {"prompts": server.prompts()}}
         if method == "prompts/get":
-            return _success(request_id, server.get_prompt(params["name"], params.get("arguments") or {}))
+            return {"jsonrpc": "2.0", "id": msg_id, "result": server.get_prompt(params["name"], params.get("arguments") or {})}
         if method == "resources/list":
-            return _success(request_id, {"resources": server.resources()})
+            return {"jsonrpc": "2.0", "id": msg_id, "result": {"resources": server.resources()}}
         if method == "resources/read":
-            return _success(request_id, server.read_resource(params["uri"]))
-        return _error(request_id, -32601, f"Method not found: {method}")
-    except json.JSONDecodeError:
-        return _error(request_id, -32700, "Parse error")
+            return {"jsonrpc": "2.0", "id": msg_id, "result": server.read_resource(params["uri"])}
+        return {"jsonrpc": "2.0", "id": msg_id, "error": {"code": -32601, "message": f"Method not found: {method}"}}
     except KeyError as exc:
-        return _error(request_id, -32602, f"Invalid params: missing {exc}")
-    except ValueError:
-        return _error(request_id, -32602, "Invalid params")
+        return {"jsonrpc": "2.0", "id": msg_id, "error": {"code": -32602, "message": f"Invalid params: missing {exc}"}}
+    except ValueError as exc:
+        return {"jsonrpc": "2.0", "id": msg_id, "error": {"code": -32602, "message": str(exc)}}
     except Exception as exc:
-        return _error(request_id, -32603, str(exc))
+        return {"jsonrpc": "2.0", "id": msg_id, "error": {"code": -32603, "message": str(exc)}}
 
 
 def serve(server: FPDSServer) -> None:

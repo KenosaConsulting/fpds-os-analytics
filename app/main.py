@@ -9,11 +9,12 @@ from fastapi import FastAPI, Request
 from fastapi.exceptions import HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.catalog import load_catalog
 from app.errors import APIError
 from app.rate_limit import RateLimitMiddleware
-from app.routes import catalog, datasets, dimensions, exports, health, keys, mcp, profiles
+from app.routes import catalog, chat, datasets, dimensions, exports, health, keys, keywords, mcp, profiles
 from app import oauth
 
 
@@ -73,4 +74,11 @@ app.include_router(profiles.router)
 app.include_router(exports.router)
 app.include_router(keys.router)
 app.include_router(mcp.router)
+app.include_router(chat.router)
+app.include_router(keywords.router)
 app.include_router(oauth.router)
+
+# ── Static files: chat frontend ─────────────────────────────────────
+_static_dir = os.path.join(os.path.dirname(__file__), "static")
+if os.path.isdir(_static_dir):
+    app.mount("/chat", StaticFiles(directory=_static_dir, html=True), name="chat_frontend")

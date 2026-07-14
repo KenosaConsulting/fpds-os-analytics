@@ -59,6 +59,11 @@ _PUBLIC_TOOLS: set[str] = {
     "fpds_resolve",
     "fpds_topic_search",
     "fpds_onboarding",
+    "keyword_search",
+    "keyword_analytics",
+    "keyword_vs_topic",
+    "keyword_compare",
+    "keyword_vendor_profile",
 }
 
 # Datasets that require an API key (public_access=api_key in catalog).

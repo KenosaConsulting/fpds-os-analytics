@@ -84,6 +84,39 @@ def _customer_filters(params: dict[str, str]) -> dict[str, str]:
     return filters
 
 
+def _vendor_filters(params: dict[str, str]) -> dict[str, str]:
+    uei = params.get("uei")
+    if not uei:
+        raise APIError(
+            400,
+            "missing_required_filter",
+            "Profile requires uei.",
+            extra={"example_query": "/v1/profiles/vendor?uei=ABCDEFGHIJKL"},
+        )
+    filters = {"uei": uei}
+    for name in ("contracting_dept_id", "contracting_agency_id"):
+        value = params.get(name)
+        if value:
+            filters[name] = value
+    return filters
+
+
+def _topic_filters(params: dict[str, str]) -> dict[str, str]:
+    dept_code = params.get("department_code")
+    if not dept_code:
+        raise APIError(
+            400,
+            "missing_required_filter",
+            "Profile requires department_code.",
+            extra={"example_query": "/v1/profiles/topic?department_code=097"},
+        )
+    filters = {"department_code": dept_code}
+    topic_id = params.get("topic_id")
+    if topic_id:
+        filters["topic_id"] = topic_id
+    return filters
+
+
 def _narrative_hints(sections: dict[str, list[dict[str, Any]] | None]) -> list[str]:
     hints: list[str] = []
     spend = (sections.get("spend_trend") or [None])[0]
@@ -116,6 +149,59 @@ def _narrative_hints(sections: dict[str, list[dict[str, Any]] | None]) -> list[s
         remaining = first.get("remaining_months")
         if remaining is not None:
             hints.append(f"Nearest returned recompete signal is about {remaining} months from current completion.")
+
+    return hints
+
+
+def _vendor_narrative_hints(sections: dict[str, list[dict[str, Any]] | None]) -> list[str]:
+    hints: list[str] = []
+    summary = (sections.get("vendor_summary") or [None])[0]
+    if summary:
+        agencies = summary.get("agency_count")
+        tenure = summary.get("tenure_years")
+        if agencies is not None and tenure is not None:
+            hints.append(f"Vendor has served {int(agencies)} agencies over {int(tenure)} years.")
+
+    top_agencies = sections.get("top_agencies") or []
+    if top_agencies:
+        first = top_agencies[0]
+        name = first.get("contracting_dept_name") or first.get("contracting_agency_name") or "unknown"
+        obligated = first.get("net_obligated_amount") or first.get("total_obligated")
+        if obligated:
+            hints.append(f"Top agency is {name} with ${obligated} obligated.")
+
+    pipeline = sections.get("recompete_pipeline") or []
+    if pipeline:
+        hints.append(f"{len(pipeline)} contracts in recompete pipeline.")
+
+    return hints
+
+
+def _topic_narrative_hints(sections: dict[str, list[dict[str, Any]] | None]) -> list[str]:
+    hints: list[str] = []
+    trends = sections.get("trends") or []
+    growing = [t for t in trends if str(t.get("trend_classification", "")).lower() == "growing"]
+    if growing:
+        top_growing = sorted(growing, key=lambda t: _numeric(t.get("growth_pct")) or Decimal("0"), reverse=True)
+        first = top_growing[0]
+        label = first.get("label") or first.get("canonical_label") or "unknown"
+        growth = first.get("growth_pct")
+        if growth is not None:
+            hints.append(f"Top growing topic: {label} with {growth}% growth.")
+
+    landscape = sections.get("competitive_landscape") or []
+    if landscape:
+        by_concentration = sorted(
+            landscape,
+            key=lambda t: _numeric(t.get("top_vendor_share") or t.get("vendor_concentration_share")) or Decimal("0"),
+            reverse=True,
+        )
+        if by_concentration:
+            first = by_concentration[0]
+            label = first.get("label") or first.get("canonical_label") or "unknown"
+            share = first.get("top_vendor_share") or first.get("vendor_concentration_share")
+            if share is not None:
+                hints.append(f"Most concentrated topic: {label} — top vendor holds {share}%.")
 
     return hints
 
@@ -176,6 +262,127 @@ def customer_profile(
         "meta": {
             "api_version": catalog.version,
             "profile": "customer",
+            "filters": filters,
+            "sections": section_meta,
+            "notices": sorted(notices),
+            "caveats": caveats,
+            "access": "api_key" if access.is_authenticated else "public",
+            "api_key_id": access.key_id if access.is_authenticated else None,
+        },
+    }
+
+
+@router.get("/profiles/vendor")
+def vendor_profile(
+    request: Request,
+    access: APIAccess = Depends(optional_api_access),
+) -> dict[str, Any]:
+    catalog = load_catalog()
+    params = {key: value for key, value in request.query_params.items()}
+    filters = _vendor_filters(params)
+
+    sections: dict[str, list[dict[str, Any]] | None] = {}
+    section_meta: dict[str, dict[str, Any]] = {}
+
+    section_specs = {
+        "vendor_summary": ("concentration.vendor_market_leaders", {**filters}),
+        "top_agencies": ("incumbent.agency_vendor_leaders", {**filters}),
+        "cross_agency_footprint": ("concentration.vendor_cross_agency_rank", {**filters}),
+        "top_naics": ("incumbent.agency_naics_vendor_leaders", {**filters}),
+        "recompete_pipeline": ("pipeline.recompete_watchlist", {"vendor_uei": filters["uei"]}),
+    }
+
+    for section_name, (dataset_id, section_params) in section_specs.items():
+        data, meta = _section_query(catalog, dataset_id, section_params, access)
+        sections[section_name] = data
+        section_meta[section_name] = meta
+
+    caveats = [
+        "Composite profile sections are independent bounded dataset queries; null sections indicate a section-level query failure or unsupported grain.",
+        "Vendor profile sections are capped at 5 rows each; use fpds_query_dataset with uei to retrieve full results for any section.",
+    ]
+    notices = set()
+    for meta in section_meta.values():
+        dataset_id = meta.get("dataset_id")
+        if dataset_id in catalog.datasets:
+            notices.update(data_notices(catalog.get_dataset(str(dataset_id))))
+
+    return {
+        "notice": BRIEF_DATA_NOTICE,
+        "data": {
+            **sections,
+            "narrative_hints": _vendor_narrative_hints(sections),
+        },
+        "meta": {
+            "api_version": catalog.version,
+            "profile": "vendor",
+            "filters": filters,
+            "sections": section_meta,
+            "notices": sorted(notices),
+            "caveats": caveats,
+            "access": "api_key" if access.is_authenticated else "public",
+            "api_key_id": access.key_id if access.is_authenticated else None,
+        },
+    }
+
+
+@router.get("/profiles/topic")
+def topic_profile(
+    request: Request,
+    access: APIAccess = Depends(optional_api_access),
+) -> dict[str, Any]:
+    catalog = load_catalog()
+    params = {key: value for key, value in request.query_params.items()}
+    raw_q = params.pop("q", None)
+    filters = _topic_filters(params)
+
+    sections: dict[str, list[dict[str, Any]] | None] = {}
+    section_meta: dict[str, dict[str, Any]] = {}
+
+    catalog_params = {**filters, "sort": "-assignment_count"}
+    if raw_q:
+        catalog_params["_search_q"] = raw_q
+    if "topic_id" in filters:
+        catalog_params.pop("topic_id", None)
+
+    section_specs: list[tuple[str, str, dict[str, str]]] = [
+        ("topic_catalog", "topics.catalog", catalog_params),
+        ("agency_profile", "topics.agency_profile", {**filters}),
+        ("trends", "topics.trends", {**filters}),
+    ]
+
+    topic_id = filters.get("topic_id")
+    if topic_id:
+        section_specs.append(("competitive_landscape", "topics.competitive_landscape", {**filters}))
+        section_specs.append(("naics_decomposition", "topics.naics_decomposition", {**filters}))
+
+    section_specs.append(("document_links", "topics.document_links", {"department_code_document": filters["department_code"]}))
+
+    for section_name, dataset_id, section_params in section_specs:
+        data, meta = _section_query(catalog, dataset_id, section_params, access)
+        sections[section_name] = data
+        section_meta[section_name] = meta
+
+    caveats = [
+        "Composite profile sections are independent bounded dataset queries; null sections indicate a section-level query failure or unsupported grain.",
+        "Topic profile sections are capped at 5 rows each; use fpds_query_dataset to retrieve full results for any section.",
+        "Topic-level competitive and NAICS decomposition detail is only populated when topic_id is provided.",
+    ]
+    notices = set()
+    for meta in section_meta.values():
+        dataset_id = meta.get("dataset_id")
+        if dataset_id in catalog.datasets:
+            notices.update(data_notices(catalog.get_dataset(str(dataset_id))))
+
+    return {
+        "notice": BRIEF_DATA_NOTICE,
+        "data": {
+            **sections,
+            "narrative_hints": _topic_narrative_hints(sections),
+        },
+        "meta": {
+            "api_version": catalog.version,
+            "profile": "topic",
             "filters": filters,
             "sections": section_meta,
             "notices": sorted(notices),

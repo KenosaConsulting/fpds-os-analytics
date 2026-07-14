@@ -26,7 +26,7 @@ from app.rate_limit import MemoryRateLimitStore, RateLimit, _hashed_token  # noq
 from app.routes.catalog import describe_dataset, list_catalog, list_dimensions  # noqa: E402
 from app.routes.datasets import dataset_data_as_of, dataset_rows  # noqa: E402
 from app.routes.health import ai_assistant_guide, health, metadata  # noqa: E402
-from app.routes.profiles import customer_profile  # noqa: E402
+from app.routes.profiles import customer_profile, vendor_profile, topic_profile  # noqa: E402
 from mcp.fpds_mcp_server import FPDSServer, TYPE_TO_DIMENSION, _clean_params, handle_message  # noqa: E402
 
 
@@ -1408,3 +1408,253 @@ def test_mcp_clean_params_flattens_filters_and_lists() -> None:
         "fields": "risk_score,total_obligated_3yr",
         "limit": 5,
     }
+
+
+# ── Vendor Profile tests ─────────────────────────────────────────
+
+
+def test_vendor_profile_endpoint_requires_uei() -> None:
+    try:
+        vendor_profile(
+            SimpleNamespace(query_params={}),
+            APIAccess(key_id="public", is_authenticated=False),
+        )
+    except APIError as exc:
+        assert exc.status_code == 400
+        assert exc.detail["code"] == "missing_required_filter"
+        assert "uei" in exc.detail["message"]
+    else:
+        raise AssertionError("Expected missing_required_filter for uei")
+
+
+def test_topic_profile_endpoint_requires_department_code() -> None:
+    try:
+        topic_profile(
+            SimpleNamespace(query_params={}),
+            APIAccess(key_id="public", is_authenticated=False),
+        )
+    except APIError as exc:
+        assert exc.status_code == 400
+        assert exc.detail["code"] == "missing_required_filter"
+        assert "department_code" in exc.detail["message"]
+    else:
+        raise AssertionError("Expected missing_required_filter for department_code")
+
+
+def test_vendor_profile_returns_sections(monkeypatch) -> None:
+    class FakeCursor:
+        def execute(self, sql: str, values: list[object] | tuple[object, ...]) -> None:
+            self.sql = sql
+            assert "analytics_api" in sql
+
+        def fetchall(self) -> list[dict[str, object]]:
+            if "vendor_market_leaders" in self.sql:
+                return [
+                    {
+                        "vendor_name": "Test Corp",
+                        "total_obligated": Decimal("5000000"),
+                        "agency_count": 5,
+                        "tenure_years": 8,
+                    }
+                ]
+            if "agency_vendor_leaders" in self.sql:
+                return [
+                    {
+                        "contracting_dept_name": "Department of Defense",
+                        "net_obligated_amount": Decimal("3000000"),
+                    }
+                ]
+            if "vendor_cross_agency_rank" in self.sql:
+                return [{"contracting_dept_name": "DHS", "vendor_rank": 3, "obligation_share": Decimal("0.15")}]
+            if "pipeline_recompete_watchlist" in self.sql:
+                return [{"piid": "TEST123", "remaining_months": 6}, {"piid": "TEST456", "remaining_months": 4}]
+            return []
+
+    @contextmanager
+    def fake_db_cursor():
+        yield FakeCursor()
+
+    monkeypatch.setattr("app.routes.profiles.db_cursor", fake_db_cursor)
+    response = vendor_profile(
+        SimpleNamespace(query_params={"uei": "ABCDEFGHIJKL"}),
+        APIAccess(key_id="public", is_authenticated=False),
+    )
+    assert response["data"]["vendor_summary"][0]["vendor_name"] == "Test Corp"
+    assert response["data"]["top_agencies"][0]["contracting_dept_name"] == "Department of Defense"
+    assert response["data"]["cross_agency_footprint"][0]["contracting_dept_name"] == "DHS"
+    assert len(response["data"]["recompete_pipeline"]) == 2
+    assert response["meta"]["sections"]["vendor_summary"]["status"] == "ok"
+    # top_naics requires contracting_agency_id or contracting_dept_id — may be unavailable with uei only
+    assert any("5 agencies" in hint for hint in response["data"]["narrative_hints"])
+    assert any("2 contracts" in hint for hint in response["data"]["narrative_hints"])
+
+
+def test_vendor_profile_section_failure_is_partial(monkeypatch) -> None:
+    class FakeCursor:
+        def execute(self, sql: str, values: list[object] | tuple[object, ...]) -> None:
+            self.sql = sql
+            if "vendor_cross_agency_rank" in sql:
+                raise RuntimeError("section failed")
+
+        def fetchall(self) -> list[dict[str, object]]:
+            return []
+
+    @contextmanager
+    def fake_db_cursor():
+        yield FakeCursor()
+
+    monkeypatch.setattr("app.routes.profiles.db_cursor", fake_db_cursor)
+    response = vendor_profile(
+        SimpleNamespace(query_params={"uei": "ABCDEFGHIJKL"}),
+        APIAccess(key_id="public", is_authenticated=False),
+    )
+    assert response["data"]["cross_agency_footprint"] is None
+    assert response["meta"]["sections"]["cross_agency_footprint"]["status"] == "unavailable"
+    assert response["data"]["vendor_summary"] == []
+
+
+def test_topic_profile_returns_sections(monkeypatch) -> None:
+    class FakeCursor:
+        def execute(self, sql: str, values: list[object] | tuple[object, ...]) -> None:
+            self.sql = sql
+            assert "analytics_api" in sql
+
+        def fetchall(self) -> list[dict[str, object]]:
+            if "topics_catalog" in self.sql:
+                return [
+                    {
+                        "topic_id": 1,
+                        "label": "Cybersecurity Services",
+                        "assignment_count": 500,
+                    }
+                ]
+            if "topics_agency_profile" in self.sql:
+                return [
+                    {
+                        "topic_id": 1,
+                        "label": "Cybersecurity Services",
+                        "total_obligated": Decimal("50000000"),
+                    }
+                ]
+            if "topics_trends" in self.sql:
+                return [
+                    {
+                        "topic_id": 1,
+                        "label": "Cybersecurity Services",
+                        "trend_classification": "growing",
+                        "growth_pct": Decimal("25"),
+                    }
+                ]
+            if "topics_competitive_landscape" in self.sql:
+                return [
+                    {
+                        "topic_id": 1,
+                        "label": "Cybersecurity Services",
+                        "top_vendor_share": Decimal("42"),
+                    }
+                ]
+            if "topics_naics_decomposition" in self.sql:
+                return [{"principal_naics_code": "541512", "obligation_share": Decimal("0.60")}]
+            if "topics_document_links" in self.sql:
+                return [{"document_title": "VA Strategic Plan 2024", "relevance_score": Decimal("0.85")}]
+            return []
+
+    @contextmanager
+    def fake_db_cursor():
+        yield FakeCursor()
+
+    monkeypatch.setattr("app.routes.profiles.db_cursor", fake_db_cursor)
+    response = topic_profile(
+        SimpleNamespace(query_params={"department_code": "036", "topic_id": "1"}),
+        APIAccess(key_id="public", is_authenticated=False),
+    )
+    assert response["data"]["topic_catalog"][0]["label"] == "Cybersecurity Services"
+    assert response["data"]["agency_profile"][0]["label"] == "Cybersecurity Services"
+    assert response["data"]["competitive_landscape"][0]["top_vendor_share"] == "42"
+    assert response["data"]["naics_decomposition"][0]["principal_naics_code"] == "541512"
+    assert response["data"]["document_links"][0]["relevance_score"] == "0.85"
+    assert response["meta"]["sections"]["topic_catalog"]["status"] == "ok"
+    assert any("growing" in hint.lower() for hint in response["data"]["narrative_hints"])
+
+
+def test_topic_profile_without_topic_id_skips_competitive_and_naics(monkeypatch) -> None:
+    queries: list[str] = []
+
+    class FakeCursor:
+        def execute(self, sql: str, values: list[object] | tuple[object, ...]) -> None:
+            queries.append(sql)
+
+        def fetchall(self) -> list[dict[str, object]]:
+            return []
+
+    @contextmanager
+    def fake_db_cursor():
+        yield FakeCursor()
+
+    monkeypatch.setattr("app.routes.profiles.db_cursor", fake_db_cursor)
+    response = topic_profile(
+        SimpleNamespace(query_params={"department_code": "097"}),
+        APIAccess(key_id="public", is_authenticated=False),
+    )
+    sql_text = " ".join(queries)
+    assert "competitive_landscape" not in sql_text
+    assert "naics_decomposition" not in sql_text
+    assert "topics_catalog" in sql_text
+    assert "topics_agency_profile" in sql_text
+    assert "topics_document_links" in sql_text
+
+
+def test_vendor_profile_mcp_tool_registered() -> None:
+    class FakeClient:
+        def get(self, path: str, params: dict[str, object] | None = None) -> dict[str, object]:
+            if path == "/v1/catalog":
+                return {"data": []}
+            return {}
+
+    server = FPDSServer(FakeClient())
+    tools = server.tools()
+    tool_names = [t["name"] for t in tools]
+    assert "fpds_vendor_profile" in tool_names
+
+
+def test_topic_profile_mcp_tool_registered() -> None:
+    class FakeClient:
+        def get(self, path: str, params: dict[str, object] | None = None) -> dict[str, object]:
+            if path == "/v1/catalog":
+                return {"data": []}
+            return {}
+
+    server = FPDSServer(FakeClient())
+    tools = server.tools()
+    tool_names = [t["name"] for t in tools]
+    assert "fpds_topic_profile" in tool_names
+
+
+def test_mcp_vendor_profile_calls_endpoint() -> None:
+    class FakeClient:
+        def __init__(self) -> None:
+            self.calls: list[tuple[str, dict[str, object] | None]] = []
+
+        def get(self, path: str, params: dict[str, object] | None = None) -> dict[str, object]:
+            self.calls.append((path, params))
+            return {"data": [], "meta": {}}
+
+    client = FakeClient()
+    server = FPDSServer(client)
+    server.call_tool("fpds_vendor_profile", {"uei": "ABCDEFGHIJKL"})
+    assert client.calls == [("/v1/profiles/vendor", {"uei": "ABCDEFGHIJKL"})]
+
+
+def test_mcp_topic_profile_calls_endpoint() -> None:
+    class FakeClient:
+        def __init__(self) -> None:
+            self.calls: list[tuple[str, dict[str, object] | None]] = []
+
+        def get(self, path: str, params: dict[str, object] | None = None) -> dict[str, object]:
+            self.calls.append((path, params))
+            return {"data": [], "meta": {}}
+
+    client = FakeClient()
+    server = FPDSServer(client)
+    server.call_tool("fpds_topic_profile", {"department_code": "097"})
+    assert client.calls == [("/v1/profiles/topic", {"department_code": "097"})]
