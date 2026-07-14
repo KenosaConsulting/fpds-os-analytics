@@ -150,6 +150,7 @@ datasets:
       - dataset: pricing.agency_profile_fy
         on:
           contracting_dept_id: contracting_dept_id
+    related: [competition.sole_source_hotspots, market.entry_difficulty_score, incumbent.agency_vendor_leaders]
     public_access: public_bounded
     filters: [contracting_dept_id]
     sortable: [risk_score, total_obligated_3yr, cost_type_obligation_share, tm_obligation_share]
@@ -536,6 +537,7 @@ datasets:
       - dataset: incumbent.agency_vendor_leaders
         on:
           contracting_dept_id: contracting_agency_id
+    related: [pricing.risk_scorecard, competition.not_competed_reasons_fy]
     public_access: public_bounded
     filters: [contracting_dept_id]
     sortable: [not_competed_obligation_share_3yr, not_competed_obligated_3yr, total_obligated_3yr]
@@ -637,6 +639,7 @@ datasets:
     query_pattern: browse
     grain_keys:
       - principal_naics_code
+    related: [market.naics_customer_leaders, market.entry_difficulty_score, naics.agency_profile_fy]
     public_access: public_bounded
     filters: [principal_naics_code, naics_prefix, sector_code, prior_fy_obligated_min]
     sortable: [obligation_growth_rate, obligation_change, current_fy_obligated, prior_fy_obligated]
@@ -750,6 +753,7 @@ datasets:
     grain_keys:
       - vendor_state_code
       - pop_state_code
+    related: [geography.state_trend_fy, geography.place_profile_fy, geography.city_leaders]
     public_access: public_bounded
     filters: [vendor_state_code, pop_state_code, is_in_state]
     sortable: [total_obligated, total_action_count, total_distinct_vendor_count]
@@ -1289,6 +1293,7 @@ datasets:
       - dataset: concentration.agency_profile
         on:
           contracting_agency_id: contracting_agency_id
+    related: [pricing.risk_scorecard, competition.sole_source_hotspots, incumbent.agency_vendor_leaders, entrants.agency_cohort_fy]
     public_access: api_key
     required_filters_any: [contracting_dept_id, contracting_agency_id, principal_naics_code, naics_prefix, sector_code]
     filters: [contracting_dept_id, contracting_agency_id, principal_naics_code, naics_prefix, sector_code]
@@ -1348,6 +1353,7 @@ datasets:
         on:
           uei: uei
           contracting_agency_id: contracting_agency_id
+    related: [concentration.vendor_market_leaders, market.entry_difficulty_score, entrants.agency_cohort_fy]
     public_access: api_key
     required_filters_any: [contracting_agency_id, contracting_dept_id, uei]
     filters: [contracting_dept_id, contracting_agency_id, uei, is_small_business]
@@ -1657,6 +1663,7 @@ datasets:
       - contracting_agency_id
       - fiscal_year
     department_code_format: fpds_4digit
+    related: [set_aside.agency_mix_fy, set_aside.trend_fy, competition.agency_profile_fy]
     public_access: api_key
     required_filters_any: [fiscal_year, contracting_dept_id, contracting_agency_id]
     filters: [fiscal_year, fiscal_year_min, fiscal_year_max, contracting_dept_id, contracting_agency_id]
@@ -2308,6 +2315,7 @@ datasets:
       - dataset: pipeline.contract_transactions
         on:
           piid: piid
+    related: [contacts.recompete_handlers, pipeline.duration_profile, pipeline.contract_transactions]
     public_access: api_key
     required_filters_any: [contracting_agency_id, contracting_dept_id, contracting_office_id, vendor_uei, principal_naics_code, naics_prefix, expiration_bucket, recompete_confidence]
     filters:
@@ -2625,6 +2633,7 @@ datasets:
       - contracting_agency_id
       - fiscal_year
     department_code_format: fpds_4digit
+    related: [incumbent.agency_vendor_leaders, market.entry_difficulty_score, concentration.agency_profile]
     public_access: api_key
     required_filters_any: [contracting_dept_id, contracting_agency_id, fiscal_year]
     filters: [fiscal_year, fiscal_year_min, fiscal_year_max, contracting_dept_id, contracting_agency_id]
@@ -3141,6 +3150,7 @@ datasets:
           department_code: department_code
           contracting_office_id: contracting_office_id
           topic_id: topic_id
+    related: [topics.trends, topics.competitive_landscape, topics.naics_decomposition]
     public_access: public_bounded
     required_filters_any: [department_code, contracting_dept_id, contracting_office_id]
     filters: [department_code, contracting_dept_id, contracting_agency_id, contracting_office_id, model_id, topic_id]

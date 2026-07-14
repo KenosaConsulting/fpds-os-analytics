@@ -71,6 +71,8 @@ dimensions:
     filters: ["agency_id", "parent_department_id", "is_active"]
     searchable_columns: ["agency_id", "agency_name", "agency_short_name"]
     fields: ["agency_id", "agency_name", "agency_short_name", "parent_department_id", "is_active", "sort_order", "notes"]
+    notes:
+      - "Use parent_department_id to find all agencies under a department."
 
   - id: "contracting_offices"
     title: "Contracting Offices"
@@ -147,3 +149,17 @@ dimensions:
     key: "raw_code"
     filters: ["raw_code", "family", "is_positive_set_aside", "is_known_status"]
     fields: ["raw_code", "normalized_code", "label", "family", "status", "is_positive_set_aside", "is_known_status", "valid_from", "valid_to", "sort_order", "notes"]
+
+  - id: "canonical_topic_mapping"
+    title: "Canonical-to-Local Topic Crosswalk"
+    backing_view: "analytics_api.topics_canonical_mapping"
+    source_table: "topic_intelligence.canonical_topic_mapping"
+    key: "canonical_topic_id"
+    filters: ["canonical_topic_id", "member_topic_id", "member_department_code", "member_model_id"]
+    searchable_columns: ["canonical_label", "canonical_description", "member_label"]
+    fields: ["canonical_topic_id", "canonical_label", "canonical_description", "member_model_id", "member_topic_id", "member_label", "member_department_code", "similarity_to_centroid"]
+    caveats:
+      - "Bridges govwide canonical topics (9,313 rows) to per-department local topic IDs."
+      - "Use canonical_topic_id to find all local (member_topic_id, member_department_code) pairs."
+      - "Use member_topic_id + member_department_code to find the canonical topic."
+      - "Canonical topics are merged from per-department BERTopic clusters at cosine similarity >= 0.85."

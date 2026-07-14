@@ -52,6 +52,7 @@ def _cleanup_sessions() -> None:
 # Tools that work without authentication (public tier).
 # Any tool NOT in this set requires auth and triggers 401 + OAuth flow.
 _PUBLIC_TOOLS: set[str] = {
+    "fpds_health",
     "fpds_list_datasets",
     "fpds_describe_dataset",
     "fpds_list_dimensions",

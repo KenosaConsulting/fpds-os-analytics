@@ -49,10 +49,14 @@ class Catalog:
         except KeyError as exc:
             raise APIError(404, "dimension_not_found", f"Unknown dimension_id '{dimension_id}'.", param="dimension_id") from exc
 
-    def list_datasets(self, *, domain: str | None = None) -> list[dict[str, Any]]:
+    def list_datasets(self, *, domain: str | None = None, filter_name: str | None = None, field_name: str | None = None) -> list[dict[str, Any]]:
         datasets = list(self.datasets.values())
         if domain:
             datasets = [item for item in datasets if item.get("domain") == domain]
+        if filter_name:
+            datasets = [item for item in datasets if filter_name in (item.get("filters") or [])]
+        if field_name:
+            datasets = [item for item in datasets if field_name in (item.get("fields") or [])]
         return [public_dataset(item) for item in datasets]
 
 

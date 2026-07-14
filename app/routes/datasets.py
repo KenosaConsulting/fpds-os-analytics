@@ -20,6 +20,26 @@ from app.query_builder import build_rows_query, page_rows, selected_fields
 
 router = APIRouter(prefix="/v1")
 
+OBLIGATION_FIELDS = (
+    "total_obligated", "net_obligated_amount", "total_obligated_amount",
+    "obligated_amount", "total_obligated_3yr",
+)
+
+
+def _pick_obligation(row: dict[str, object]) -> object:
+    for field in OBLIGATION_FIELDS:
+        val = row.get(field)
+        if val is not None:
+            return val
+    return None
+
+
+def _find_prior_fy_row(data: list[dict[str, object]], prior_fy: int) -> dict[str, object] | None:
+    for row in data:
+        if row.get("fiscal_year") == prior_fy:
+            return row
+    return None
+
 
 def dataset_data_as_of(dataset: dict[str, object]) -> str | None:
     try:
@@ -104,6 +124,44 @@ def dataset_rows(
                 row["_negative_obligation"] = True
                 negative_count += 1
                 break
+    # Trend classification: compare each FY row against prior FY for obligation growth
+    dataset_fields = set(dataset.get("fields", []))
+    has_fiscal_year = "fiscal_year" in dataset_fields
+    has_obligation = bool(
+        set(obligation_fields)
+        & {field for row in data for field in row.keys()}
+    ) if data else False
+    if has_fiscal_year and has_obligation:
+        for row in data:
+            fy = row.get("fiscal_year")
+            if fy is None:
+                continue
+            ob_value = _pick_obligation(row)
+            if ob_value is None:
+                continue
+            prior_row = _find_prior_fy_row(data, int(fy) - 1)
+            if prior_row is None:
+                row["_trend_classification"] = "baseline"
+                continue
+            prior_ob = _pick_obligation(prior_row)
+            if prior_ob is None:
+                row["_trend_classification"] = "baseline"
+                continue
+            try:
+                current = Decimal(str(ob_value))
+                prior = Decimal(str(prior_ob))
+                if prior == 0:
+                    row["_trend_classification"] = "baseline"
+                elif current > prior * Decimal("1.10"):
+                    row["_trend_classification"] = "growing"
+                elif current < prior * Decimal("0.90"):
+                    row["_trend_classification"] = "declining"
+                else:
+                    row["_trend_classification"] = "stable"
+            except Exception:
+                row["_trend_classification"] = "baseline"
+    # Check for YTD flag on any row
+    ytd_present = any(row.get("is_current_fiscal_year_ytd") is True for row in data)
     if response_format == "csv":
         filename = f"{dataset_id.replace('.', '_')}_rows.csv"
         return StreamingResponse(
@@ -122,6 +180,13 @@ def dataset_rows(
         source_fiscal_years = [min(fiscal_years), max(fiscal_years)]
     else:
         source_fiscal_years = None
+    # Build notices list — append YTD warning if any row flags the current partial year
+    notices = data_notices(dataset)
+    if ytd_present:
+        notices = notices + [
+            "The queried fiscal year range includes the current partial year. "
+            "Rows with is_current_fiscal_year_ytd=true are year-to-date and may be incomplete."
+        ]
     return {
         "notice": BRIEF_DATA_NOTICE,
         "data": data,
@@ -137,7 +202,7 @@ def dataset_rows(
             "data_as_of": data_as_of,
             "row_count": len(data),
             "caveats": dataset.get("caveats", []),
-            "notices": data_notices(dataset),
+            "notices": notices,
             "access": "api_key" if access.is_authenticated else "public",
             "api_key_id": access.key_id if access.is_authenticated else None,
             "negative_obligation_count": negative_count if negative_count > 0 else None,

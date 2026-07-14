@@ -30,6 +30,8 @@ TYPE_TO_DIMENSION = {
     "vehicles": "vehicle_programs",
     "topics": "canonical_topics",
     "canonical_topics": "canonical_topics",
+    "topic_mapping": "canonical_topic_mapping",
+    "canonical_topic_mapping": "canonical_topic_mapping",
 }
 
 
@@ -162,6 +164,7 @@ class FPDSServer:
         self.client = client
         self._catalog_cache: dict[str, Any] | None = None
         self._resources_cache: dict[str, dict[str, Any]] | None = None
+        self._skill_cache: dict[str, str] | None = None
 
     def catalog(self) -> dict[str, Any]:
         if self._catalog_cache is None:
@@ -275,16 +278,38 @@ class FPDSServer:
             ]
         }
 
+    def _load_skills(self) -> dict[str, str]:
+        if self._skill_cache is not None:
+            return self._skill_cache
+        skills_dir = os.path.join(os.path.dirname(__file__), "..", "skills")
+        skill_names = [
+            "vendor-market-analysis",
+            "recompete-pipeline",
+            "contracting-officer-patterns",
+            "account-plan-builder",
+            "naics-opportunity-scan",
+            "cross-agency-opportunity-radar",
+            "teaming-partner-finder",
+            "vehicle-strategy-advisor",
+        ]
+        cache: dict[str, str] = {}
+        for name in skill_names:
+            filepath = os.path.join(skills_dir, name, "SKILL.md")
+            try:
+                with open(filepath, "r") as f:
+                    cache[name] = f.read()
+            except FileNotFoundError:
+                cache[name] = f"# {name}\n\nSkill file not found at {filepath}"
+        self._skill_cache = cache
+        return cache
+
     def tools(self) -> list[dict[str, Any]]:
         try:
             catalog = self.catalog()
             domain_summary = _domain_summary(catalog)
-            dataset_listing = _dataset_summary(catalog)
             query_description = (
-                "Query bounded rows from a documented FPDS dataset. Use fpds_list_datasets or fpds_describe_dataset first to discover dataset IDs and allowed filters. Documented datasets only, allowlisted filters, bounded rows, no SQL.\n\nIMPORTANT: Always include at least one filter (e.g. contracting_dept_id, fiscal_year, principal_naics_code) to avoid query timeouts. Unfiltered queries on large datasets may time out. Use fpds_resolve to find filter values from names.\n\nWhen querying vendor-grain datasets and you need obligation totals, consider using keyword_analytics(group_by=\"vendor\") for pre-aggregated vendor rankings by capability keyword — this avoids pulling raw rows and summing client-side.\n\nDomains: "
+                "Query bounded rows from a documented FPDS dataset. Use fpds_list_datasets or fpds_describe_dataset first to discover dataset IDs and allowed filters. Documented datasets only, allowlisted filters, bounded rows, no SQL.\n\nIMPORTANT: Always include at least one filter (e.g. contracting_dept_id, fiscal_year, principal_naics_code) to avoid query timeouts. Unfiltered queries on large datasets may time out. Use fpds_resolve to find filter values from names.\n\nWhen querying vendor-grain datasets and you need obligation totals, consider using keyword_analytics(group_by=\"vendor\") for pre-aggregated vendor rankings by capability keyword — this avoids pulling raw rows and summing client-side.\n\nUse fpds_list_datasets to browse all dataset IDs and descriptions.\n\nDomains: "
                 + domain_summary
-                + "\n\n"
-                + dataset_listing
             )
         except Exception:
             query_description = (
@@ -296,9 +321,16 @@ class FPDSServer:
             )
         return [
             _tool(
+                "fpds_health",
+                "Check API health and connectivity. Returns service status, catalog counts, and database connectivity. Use this to verify the API is operational before running queries.",
+                {},
+            ),
+            _tool(
                 "fpds_list_datasets",
                 "List 88 documented FPDS analytics datasets across 17 intelligence domains. This is your primary discovery tool — call it first to browse available datasets by domain. Each dataset entry includes its ID, title, domain, description, allowed filters, sortable fields, examples, and caveats. Use the domain filter to narrow results (e.g. domain='competition' for competition-related datasets, domain='topics' for topic intelligence). After finding a dataset, use fpds_describe_dataset to inspect it in detail before querying.",
                 {"domain": {"type": "string", "description": "Optional domain filter: pricing, concentration, competition, naics, geography, customer, market, incumbent, set_aside, psc, acquisition, pipeline, seasonality, topics, contacts, entrants, funding."},
+                 "filter_name": {"type": "string", "description": "Optional filter name to show only datasets that support a specific filter (e.g. 'contracting_dept_id')."},
+                 "field_name": {"type": "string", "description": "Optional field name to show only datasets that include a specific field (e.g. 'fiscal_year')."},
                  "q": {"type": "string", "description": "Optional substring search on dataset titles and descriptions to find relevant datasets by concept (e.g. 'vendor concentration', 'expiring contracts')."}},
             ),
             _tool(
@@ -469,6 +501,16 @@ class FPDSServer:
                     "limit": {"type": "integer", "minimum": 1, "maximum": 200, "description": "Max keywords (default 50)."},
                 },
                 ["uei"],
+            ),
+            _tool(
+                "fpds_vendor_compare",
+                "Compare two or more vendors side-by-side. Returns each vendor's summary stats, agency footprint, NAICS concentration, and identifies shared agencies and NAICS where they compete directly.",
+                {
+                    "ueis": {"type": "array", "items": {"type": "string"}, "description": "List of vendor UEIs to compare (e.g. ['ABC123', 'XYZ789'])."},
+                    "contracting_dept_id": {"type": "string", "description": "Optional FPDS department code to scope comparison."},
+                    "contracting_agency_id": {"type": "string", "description": "Optional FPDS agency code to scope comparison."},
+                },
+                ["ueis"],
             ),
         ]
 
@@ -645,10 +687,78 @@ class FPDSServer:
                     _prompt_arg("topic_keyword", "Optional: filter the topics analysis by keyword (e.g. 'IT', 'security', 'construction').", False),
                 ],
             },
+            {
+                "name": "vendor_market_analysis",
+                "description": "Analyze vendor market share and competitive landscape for a target agency and NAICS code. Answers: who are the top vendors, how concentrated is the market, how hard is it to enter, and do new vendors survive here.",
+                "arguments": [
+                    _prompt_arg("agency_name", "Target agency name (e.g. 'Army', 'DHS', 'VA').", True),
+                    _prompt_arg("naics_code", "6-digit NAICS code to scope analysis (e.g. '541512' for IT services).", True),
+                ],
+            },
+            {
+                "name": "recompete_pipeline",
+                "description": "Identify upcoming recompete opportunities and build a recompete watchlist for a target agency. Finds expiring contracts, enriches with modification history and contracting officer contacts, and prioritizes by value and timing.",
+                "arguments": [
+                    _prompt_arg("agency_name", "Target agency name (e.g. 'DHS', 'Army', 'Navy').", True),
+                    _prompt_arg("naics_code", "Optional: 6-digit NAICS code to filter by industry.", False),
+                    _prompt_arg("expiration_window", "How soon contracts should expire: '0-12 months' (default), '12-18 months', '18-24 months', '0-6 months', '6-12 months'.", False),
+                ],
+            },
+            {
+                "name": "contracting_officer_patterns",
+                "description": "Analyze contracting office buying patterns and contract officer behavior. Understand how a specific office buys — what they buy, when they buy it, and who does the buying.",
+                "arguments": [
+                    _prompt_arg("office_or_agency_name", "Office or agency name to analyze (e.g. 'DHS Office of Procurement Operations', 'Army PEO STRI').", True),
+                    _prompt_arg("naics_code", "Optional: 6-digit NAICS code to filter by industry.", False),
+                ],
+            },
+            {
+                "name": "account_plan_builder",
+                "description": "Build a structured account plan for a federal customer using FPDS analytics data. Synthesizes market analysis, recompete pipeline, contracting officer patterns, and competitive positioning into a single coherent document.",
+                "arguments": [
+                    _prompt_arg("agency_name", "Target department or agency name (e.g. 'Army', 'VA', 'DHS').", True),
+                    _prompt_arg("naics_code", "Optional: 6-digit focus NAICS code for your capability area.", False),
+                    _prompt_arg("your_uei", "Optional: your company's UEI for competitive positioning analysis.", False),
+                ],
+            },
+            {
+                "name": "naics_opportunity_scan",
+                "description": "Scan a NAICS code across agencies to find growth opportunities and emerging markets. Answers: which agencies are increasing spending in your NAICS, where are the geographic hotspots, and which agencies are the best targets for growth.",
+                "arguments": [
+                    _prompt_arg("naics_code", "6-digit NAICS code to scan (e.g. '541512' for IT services, '236220' for construction).", True),
+                    _prompt_arg("geographic_focus", "Optional: state or region to filter geographic analysis (e.g. 'Virginia', 'Texas').", False),
+                ],
+            },
+            {
+                "name": "cross_agency_opportunity_radar",
+                "description": "Collaborative-filtering engine that finds agencies a vendor should target based on NAICS similarity to agencies where they already win. Answers: which agencies should I be selling to that I'm not?",
+                "arguments": [
+                    _prompt_arg("vendor_uei", "The vendor's Unique Entity Identifier (12-character UEI).", True),
+                    _prompt_arg("small_business_only", "Optional: set to 'true' to limit results to small-business vendors only.", False),
+                ],
+            },
+            {
+                "name": "teaming_partner_finder",
+                "description": "Find primes to team with at a target agency — set-aside compatibility, NAICS alignment, and cross-agency reach. For small businesses entering or expanding in a federal agency market.",
+                "arguments": [
+                    _prompt_arg("agency_name", "Target agency or department name (e.g. 'VA', 'Army', 'Navy').", True),
+                    _prompt_arg("naics_code", "Your primary 6-digit NAICS code.", True),
+                    _prompt_arg("set_aside_type", "Your socioeconomic designation: '8(a)', 'sdvosb', 'wosb', 'hubzone', or 'small_business'.", True),
+                ],
+            },
+            {
+                "name": "vehicle_strategy_advisor",
+                "description": "Advise govcon companies on which contract vehicles (GWAC, Schedule, IDIQ, BPA) they need for a target agency, which specific programs the agency uses, and who is already winning on them.",
+                "arguments": [
+                    _prompt_arg("agency_name", "Target agency or department name (e.g. 'VA', 'DHS', 'Army').", True),
+                    _prompt_arg("office_name", "Optional: specific contracting office within the agency.", False),
+                    _prompt_arg("vehicle_family", "Optional: narrow to 'GWAC', 'Schedule', 'IDIQ', 'BPA', 'BOA', or 'Open Market'.", False),
+                ],
+            },
         ]
 
     def get_prompt(self, name: str, arguments: dict[str, Any]) -> dict[str, Any]:
-        prompts = {
+        prompts: dict[str, Any] = {
             "assess_market_entry_difficulty": self._prompt_assess_market_entry_difficulty,
             "find_expiring_contracts": self._prompt_find_expiring_contracts,
             "discover_what_agency_actually_buys": self._prompt_discover_what_agency_actually_buys,
@@ -657,11 +767,23 @@ class FPDSServer:
             "find_growth_naics_with_weak_competition": self._prompt_find_growth_naics_with_weak_competition,
             "map_vendor_competitive_landscape": self._prompt_map_vendor_competitive_landscape,
             "find_agency_set_aside_opportunities": self._prompt_find_agency_set_aside_opportunities,
+            # Skill prompts — loaded from skills/ directory
+            "vendor_market_analysis": "vendor-market-analysis",
+            "recompete_pipeline": "recompete-pipeline",
+            "contracting_officer_patterns": "contracting-officer-patterns",
+            "account_plan_builder": "account-plan-builder",
+            "naics_opportunity_scan": "naics-opportunity-scan",
+            "cross_agency_opportunity_radar": "cross-agency-opportunity-radar",
+            "teaming_partner_finder": "teaming-partner-finder",
+            "vehicle_strategy_advisor": "vehicle-strategy-advisor",
         }
         handler = prompts.get(name)
         if not handler:
             raise ValueError(f"Unknown prompt: {name}")
-        messages = handler(arguments)
+        if isinstance(handler, str):
+            messages = self._prompt_skill(name, handler, arguments)
+        else:
+            messages = handler(arguments)
         return {
             "description": messages[0]["content"]["text"].split("\n")[0] if messages else "",
             "messages": messages,
@@ -898,13 +1020,34 @@ class FPDSServer:
             },
         }]
 
+    def _prompt_skill(self, prompt_name: str, skill_name: str, args: dict[str, Any]) -> list[dict[str, Any]]:
+        skills = self._load_skills()
+        content = skills.get(skill_name, f"# {skill_name}\n\nSkill content not available.")
+        arg_lines = "\n".join(f"- **{k}**: {v}" for k, v in args.items() if v)
+        header = ""
+        if arg_lines:
+            header = f"**Provided inputs:**\n{arg_lines}\n\n---\n\n"
+        return [{
+            "role": "user",
+            "content": {
+                "type": "text",
+                "text": header + content,
+            },
+        }]
+
     def call_tool(self, name: str, arguments: dict[str, Any]) -> dict[str, Any]:
+        if name == "fpds_health":
+            return _json_text(self.client.get("/v1/health"))
         if name == "fpds_list_datasets":
             params: dict[str, Any] = {}
             if arguments.get("domain"):
                 params["domain"] = arguments["domain"]
             if arguments.get("q"):
                 params["q"] = arguments["q"]
+            if arguments.get("filter_name"):
+                params["filter_name"] = arguments["filter_name"]
+            if arguments.get("field_name"):
+                params["field_name"] = arguments["field_name"]
             return _json_text(self.client.get("/v1/catalog", params))
         if name == "fpds_describe_dataset":
             return _json_text(self.client.get(f"/v1/datasets/{self._require(arguments, 'dataset_id')}"))
@@ -953,6 +1096,14 @@ class FPDSServer:
             return _json_text(self.client.get("/v1/datasets/pipeline.contract_transactions/rows", params))
         if name == "fpds_onboarding":
             return {"content": [{"type": "text", "text": self._onboarding_guide()}]}
+        if name == "fpds_vendor_compare":
+            ueis = self._require(arguments, "ueis")
+            params: dict[str, Any] = {"ueis": ueis}
+            if arguments.get("contracting_dept_id"):
+                params["contracting_dept_id"] = arguments["contracting_dept_id"]
+            if arguments.get("contracting_agency_id"):
+                params["contracting_agency_id"] = arguments["contracting_agency_id"]
+            return _json_text(self.client.get("/v1/profiles/vendors/compare", params))
         # ── Keyword tools ───────────────────────────────────────────────
         if name == "keyword_search":
             return _json_text(self.client.get("/v1/keywords/search", {

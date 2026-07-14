@@ -5,7 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import Any
 
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter, Depends, Query, Request
 
 from app.auth import APIAccess, optional_api_access
 from app.catalog import load_catalog
@@ -384,6 +384,110 @@ def topic_profile(
             "api_version": catalog.version,
             "profile": "topic",
             "filters": filters,
+            "sections": section_meta,
+            "notices": sorted(notices),
+            "caveats": caveats,
+            "access": "api_key" if access.is_authenticated else "public",
+            "api_key_id": access.key_id if access.is_authenticated else None,
+        },
+    }
+
+
+@router.get("/profiles/vendors/compare")
+def vendor_compare(
+    request: Request,
+    ueis: list[str] = Query(..., description="List of vendor UEIs to compare"),
+    contracting_dept_id: str | None = Query(default=None, description="Optional FPDS department code to scope comparison."),
+    contracting_agency_id: str | None = Query(default=None, description="Optional FPDS agency code to scope comparison."),
+    access: APIAccess = Depends(optional_api_access),
+) -> dict[str, Any]:
+    catalog = load_catalog()
+    base_filters: dict[str, str] = {}
+    if contracting_dept_id:
+        base_filters["contracting_dept_id"] = contracting_dept_id
+    if contracting_agency_id:
+        base_filters["contracting_agency_id"] = contracting_agency_id
+
+    vendor_profiles: list[dict[str, Any]] = []
+    all_agencies_by_uei: dict[str, set[str]] = {}
+    all_naics_by_uei: dict[str, set[str]] = {}
+    section_meta: dict[str, dict[str, Any]] = {}
+
+    for uei in ueis:
+        uei_filters = {**base_filters, "uei": uei}
+        profile: dict[str, Any] = {"uei": uei, "sections": {}}
+
+        # 1. Vendor summary from concentration.vendor_market_leaders
+        summary_data, s_meta = _section_query(catalog, "concentration.vendor_market_leaders", uei_filters, access)
+        profile["sections"]["vendor_summary"] = summary_data
+        section_meta[f"{uei}_summary"] = s_meta
+
+        # 2. Cross-agency footprint from concentration.vendor_cross_agency_rank
+        agency_filters = {**uei_filters, "sort": "-obligated_amount"}
+        agency_data, a_meta = _section_query(catalog, "concentration.vendor_cross_agency_rank", agency_filters, access)
+        profile["sections"]["agency_footprint"] = agency_data
+        section_meta[f"{uei}_agencies"] = a_meta
+
+        if agency_data:
+            all_agencies_by_uei[uei] = {
+                str(r.get("contracting_dept_id") or r.get("contracting_agency_id", ""))
+                for r in agency_data
+                if r.get("contracting_dept_id") or r.get("contracting_agency_id")
+            }
+
+        # 3. NAICS concentration from incumbent.agency_naics_vendor_leaders
+        naics_data, n_meta = _section_query(catalog, "incumbent.agency_naics_vendor_leaders", uei_filters, access)
+        profile["sections"]["naics_concentration"] = naics_data
+        section_meta[f"{uei}_naics"] = n_meta
+
+        if naics_data:
+            all_naics_by_uei[uei] = {
+                str(r.get("principal_naics_code", ""))
+                for r in naics_data
+                if r.get("principal_naics_code")
+            }
+
+        vendor_profiles.append(profile)
+
+    # Compute shared agencies (appear in ALL vendors' footprints)
+    shared_agencies: list[str] = []
+    if all_agencies_by_uei and len(all_agencies_by_uei) == len(ueis):
+        shared_agencies = sorted(
+            set.intersection(*all_agencies_by_uei.values())
+            if len(all_agencies_by_uei) > 1
+            else (next(iter(all_agencies_by_uei.values())) if all_agencies_by_uei else set())
+        )
+
+    # Compute shared NAICS (appear in ALL vendors' NAICS concentrations)
+    shared_naics: list[str] = []
+    if all_naics_by_uei and len(all_naics_by_uei) == len(ueis):
+        shared_naics = sorted(
+            set.intersection(*all_naics_by_uei.values())
+            if len(all_naics_by_uei) > 1
+            else (next(iter(all_naics_by_uei.values())) if all_naics_by_uei else set())
+        )
+
+    caveats = [
+        "Vendor profiles are capped at 5 rows per section; use fpds_query_dataset to retrieve full results.",
+        "Shared agencies and NAICS are derived from the top 5 results per section — not exhaustive.",
+    ]
+    notices = set()
+    for meta in section_meta.values():
+        dataset_id = meta.get("dataset_id")
+        if dataset_id in catalog.datasets:
+            notices.update(data_notices(catalog.get_dataset(str(dataset_id))))
+
+    return {
+        "notice": BRIEF_DATA_NOTICE,
+        "data": {
+            "vendors": vendor_profiles,
+            "shared_agencies": shared_agencies,
+            "shared_naics": shared_naics,
+        },
+        "meta": {
+            "api_version": catalog.version,
+            "profile": "vendor_compare",
+            "filters": {k: v for k, v in {"ueis": ueis, "contracting_dept_id": contracting_dept_id, "contracting_agency_id": contracting_agency_id}.items() if v},
             "sections": section_meta,
             "notices": sorted(notices),
             "caveats": caveats,

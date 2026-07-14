@@ -80,7 +80,7 @@ async def _streaming_response_text(response) -> str:
 def test_catalog_has_expected_dataset_count() -> None:
     catalog = load_catalog()
     assert len(catalog.datasets) == 90
-    assert len(catalog.dimensions) == 17
+    assert len(catalog.dimensions) == 18
     assert {item["public_access"] for item in catalog.datasets.values()} == {"public_bounded", "api_key"}
 
 
@@ -1128,7 +1128,7 @@ def test_dataset_rows_defaults_to_json(monkeypatch) -> None:
         SimpleNamespace(query_params={"fields": "fiscal_year,total_obligated", "limit": "1"}),
         APIAccess(key_id="public", is_authenticated=False),
     )
-    assert response["data"] == [{"fiscal_year": 2024, "total_obligated": "10.50"}]
+    assert response["data"] == [{"fiscal_year": 2024, "total_obligated": "10.50", "_trend_classification": "baseline"}]
     assert response["pagination"]["limit"] == 1
     assert response["meta"]["source_fiscal_years"] == [2024, 2024]
 
@@ -1277,8 +1277,8 @@ def test_mcp_tools_embed_dataset_descriptions_and_handle_list() -> None:
     response = handle_message(server, {"jsonrpc": "2.0", "id": 1, "method": "tools/list"})
     tools = response["result"]["tools"]
     query_tool = next(tool for tool in tools if tool["name"] == "fpds_query_dataset")
-    assert "pricing.risk_scorecard: Pricing risk description from the catalog." in query_tool["description"]
-    assert "filters" in query_tool["inputSchema"]["properties"]
+    assert "Domains" in query_tool["description"]
+    assert "fpds_list_datasets" in query_tool["description"]
 
 
 def test_mcp_query_dataset_wraps_rows_endpoint() -> None:
