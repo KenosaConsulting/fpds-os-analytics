@@ -6,6 +6,57 @@
 
 ---
 
+## Session Progress
+
+### Session 1: 2026-07-13 — Audit + Code Integration (COMPLETE)
+
+**Completed:**
+- Full codebase and database audit → 35 findings across 9 themes
+- Keyword graph integrated natively (5 tools: search, analytics, vs-topic, compare, vendor_profile)
+- Catalog YAML enriched: `query_pattern`, `grain_keys`, `department_code_format`, `joins_to` on all 90 datasets
+- Department code auto-crosswalk (3-digit ↔ 4-digit) in query builder
+- Vendor profile + topic profile composite tools (API endpoints + MCP)
+- JSON-RPC dispatch consolidated (stdio delegates to FPDSServer)
+- MCP tool updates: `q` param on list_datasets, dynamic catalog resources, keyword guidance
+- User testing findings documented (Theme 8)
+- Keywords graph reassessment documented (Theme 9)
+
+**Deploy:** `7beb953` + hotfix `e18e735` (removed stale chat import)
+
+### Session 2: 2026-07-14 — Code-Only + Light Data Items (COMPLETE)
+
+**Completed:**
+- `_trend_classification` (growing/stable/declining/baseline) on dataset rows with FY data
+- YTD notice when current FY appears in results + `source_fiscal_years` metadata in describe_dataset
+- `filter_name` and `field_name` params on `list_datasets` for targeted discovery
+- `related` datasets field on 10 key catalog entries (drill-down siblings, cross-domain complements)
+- `canonical_topic_mapping` dimension (9,313 rows) — bridges canonical ↔ local topic IDs
+- `fpds_health` MCP tool (no auth)
+- `fpds_vendor_compare` MCP tool + `/v1/profiles/vendors/compare` endpoint (auth required)
+- 8 skills from `skills/` exposed as MCP prompts
+- Inline dataset listing trimmed from `fpds_query_dataset` tool description
+- `parent_department_id` caveat added to agencies dimension
+- Pre-existing YAML indentation bug fixed in dimensions.yaml
+
+**Blocked:**
+- `contacts.recompete_handlers` UEI column — source MV `mv_fpds_contract_contacts` has no UEI column. Requires MV modification (medium data work).
+
+**Deploy:** `1a9a110`
+
+### Remaining Work (for future sessions)
+
+**Medium Data Work (view alters, MV rebuilds):**
+- D.2 Obligation field naming — 50+ view ALTER statements, 3-phase approach
+- D.3 / BL-007 FY/NAICS filters — modify 7 source views, 1 MV redesign
+- D.4 / BL-010 SDVOSB flags — rebuild 2 MVs, update 4 views
+- 8.1.2 Topic crosswalk — done (canonical_topic_mapping dimension created), but `topics.lineage` view still broken
+
+**Heavy Data Work (new MVs):**
+- 8.1.4 Vendor-level PSC dataset — new MV: vendor × PSC × agency × FY
+- 8.1.3 Parent-company rollup — curate parent-UEI lookup (sql/008 migration exists)
+
+---
+
 ## Executive Summary
 
 FPDS Analytics is a mature, well-architected procurement intelligence platform. The MCP server works correctly, the data pipeline is sound, and the catalog-driven API design is forward-thinking. This audit identifies **7 themes** with **29 findings** prioritized by impact on the LLM+user experience.
@@ -790,3 +841,65 @@ Findings marked ~~strikethrough~~ are solved by the existing keywords graph.
 
 ¹ Reduced from Critical — keyword_vs_topic provides a 3-hop workaround.
 ² Reduced from High — keyword_vendor_profile provides a heuristic for grouping.
+
+---
+
+## Appendix D: Data Work Investigation (2026-07-14)
+
+Post-code-deploy investigation of the 4 "low effort" data items. All require view alters or MV rebuilds — none are catalog-only fixes.
+
+### D.1 UEI → vendor_name (5.2): ✅ NO GAPS
+
+S7-013 already resolved this. All 11 `analytics_api` views with UEI columns (`uei`, `vendor_uei`) already include `vendor_name`. All 13 catalog datasets listing a UEI field also list `vendor_name`. Zero work needed.
+
+Minor unrelated finding: `contacts.recompete_handlers` has `vendor_name` but no UEI column — cannot filter/join by UEI.
+
+### D.2 Obligation field naming (2.3): MEDIUM-HIGH EFFORT
+
+93 unique obligation-related field names across the catalog. ~53 variants lack the `_amount` suffix convention (e.g., `total_obligated` → `total_obligated_amount`). Catalog field names are 1:1 identical to view column names — **every rename requires an ALTER VIEW**. 50+ views would need ALTER statements.
+
+**Recommended phased approach:**
+- Phase 1: Core totals (~30 views) — `total_obligated` → `total_obligated_amount`
+- Phase 2: Subtype fields (~45 views) — `fixed_price_obligated` → `fixed_price_obligated_amount`, etc.
+- Phase 3: Edge cases — `total_net_obligated_amount` → `net_obligated_amount`, etc.
+
+**Deferred** — not low effort.
+
+### D.3 Missing FY/NAICS filters (2.5 / BL-007): MEDIUM EFFORT
+
+7 datasets identified. All 7 need **source view/MV modifications** — the columns don't exist in the underlying views. Zero catalog-only fixes.
+
+| Dataset | FY | NAICS | Fix |
+|---------|-----|-------|-----|
+| `pipeline.agency_recompete_summary` | Missing | Missing | View rebuild (grain change: agency → agency × FY × NAICS) |
+| `acquisition.agency_vehicle_mix_fy` | OK | Missing | Add NAICS to source view |
+| `acquisition.vehicle_program_vendors` | OK | Missing | Add NAICS to source view |
+| `set_aside.agency_profile_fy` | OK | Missing | Add NAICS to source view |
+| `set_aside.trend_fy` | OK | Missing | Add NAICS to source view (changes grain to FY × NAICS) |
+| `entrants.agency_cohort_fy` | OK | Missing | Add NAICS to source view |
+| `topics.competitive_landscape` | Missing | Missing | MV redesign (add FY accumulation) |
+| `topics.govwide_canonical` | N/A | N/A | Static vocabulary — no action |
+
+**Deferred** — requires source view modifications.
+
+### D.4 SDVOSB flags on NAICS-grain incumbent (5.3 / BL-010): MEDIUM EFFORT
+
+Root cause: 2 MVs were never updated when the office-grain MV was enhanced with full socioeconomic flags:
+
+| Flag | Office MV | Agency MV | NAICS MV |
+|------|-----------|-----------|----------|
+| `is_small_business` | ✓ | ✓ | ✓ |
+| `is_veteran_owned` | ✓ | ✓ | ✗ |
+| `is_women_owned` | ✓ | ✓ | ✗ |
+| `is_minority_owned` | ✓ | ✓ | ✗ |
+| `is_8a` | ✓ | ✗ | ✗ |
+| `is_hubzone` | ✓ | ✗ | ✗ |
+| `is_sdvosb` | ✓ | ✗ | ✗ |
+
+**Fix requires:**
+1. Rebuild `mv_fpds_vendor_agency_year` — add 3 `BOOL_OR` columns (is_8a, is_hubzone, is_sdvosb)
+2. Rebuild `mv_fpds_vendor_naics_agency_year` — add 6 `BOOL_OR` columns (all missing flags)
+3. Update 4 views (2 report_deck + 2 analytics_api)
+4. Update catalog YAML (fields + filters)
+
+**Deferred** — requires MV rebuilds.

@@ -412,7 +412,7 @@ def test_naics_growth_leaders_applies_default_prior_year_base_floor() -> None:
     catalog = load_catalog()
     dataset = catalog.get_dataset("naics.growth_leaders")
     sql, values, _limit, _offset = build_rows_query(dataset, {"limit": "5"})
-    assert '"prior_fy_obligated" >= %s' in sql
+    assert '"prior_fy_obligated_amount" >= %s' in sql
     assert values[0] == Decimal("10000000")
 
 
@@ -421,9 +421,9 @@ def test_naics_growth_leaders_min_base_filter_overrides_default_floor() -> None:
     dataset = catalog.get_dataset("naics.growth_leaders")
     sql, values, _limit, _offset = build_rows_query(
         dataset,
-        {"prior_fy_obligated_min": "1000000", "limit": "5"},
+        {"prior_fy_obligated_amount_min": "1000000", "limit": "5"},
     )
-    assert sql.count('"prior_fy_obligated" >= %s') == 1
+    assert sql.count('"prior_fy_obligated_amount" >= %s') == 1
     assert values[0] == Decimal("1000000")
 
 
@@ -818,9 +818,9 @@ def test_bl023_source_fiscal_years_reflects_actual_rows(monkeypatch) -> None:
 
         def fetchall(self):
             return [
-                {"fiscal_year": 2023, "total_obligated": Decimal("1.0")},
-                {"fiscal_year": 2024, "total_obligated": Decimal("2.0")},
-                {"fiscal_year": 2025, "total_obligated": Decimal("3.0")},
+                {"fiscal_year": 2023, "total_obligated_amount": Decimal("1.0")},
+                {"fiscal_year": 2024, "total_obligated_amount": Decimal("2.0")},
+                {"fiscal_year": 2025, "total_obligated_amount": Decimal("3.0")},
             ]
 
         def fetchone(self):
@@ -904,8 +904,8 @@ def test_bl022_negative_obligations_flagged_in_response(monkeypatch) -> None:
 
         def fetchall(self):
             return [
-                {"fiscal_year": 2024, "total_obligated": Decimal("-5000000.00"), "contracting_dept_id": "7500"},
-                {"fiscal_year": 2023, "total_obligated": Decimal("10000000.00"), "contracting_dept_id": "7500"},
+                {"fiscal_year": 2024, "total_obligated_amount": Decimal("-5000000.00"), "contracting_dept_id": "7500"},
+                {"fiscal_year": 2023, "total_obligated_amount": Decimal("10000000.00"), "contracting_dept_id": "7500"},
             ]
 
         def fetchone(self):
@@ -935,7 +935,7 @@ def test_bl022_no_negative_count_when_all_positive(monkeypatch) -> None:
             self.values = values
 
         def fetchall(self):
-            return [{"fiscal_year": 2024, "total_obligated": Decimal("1000000.00")}]
+            return [{"fiscal_year": 2024, "total_obligated_amount": Decimal("1000000.00")}]
 
         def fetchone(self):
             return None
@@ -1113,7 +1113,7 @@ def test_dataset_rows_defaults_to_json(monkeypatch) -> None:
         def fetchall(self) -> list[dict[str, object]]:
             assert 'from "analytics_api"."pricing_trend_fy"' in self.sql
             assert self.values[-2:] == [2, 0]
-            return [{"fiscal_year": 2024, "total_obligated": Decimal("10.50")}]
+            return [{"fiscal_year": 2024, "total_obligated_amount": Decimal("10.50")}]
 
         def fetchone(self) -> None:
             return None
@@ -1125,10 +1125,10 @@ def test_dataset_rows_defaults_to_json(monkeypatch) -> None:
     monkeypatch.setattr("app.routes.datasets.db_cursor", fake_db_cursor)
     response = dataset_rows(
         "pricing.trend_fy",
-        SimpleNamespace(query_params={"fields": "fiscal_year,total_obligated", "limit": "1"}),
+        SimpleNamespace(query_params={"fields": "fiscal_year,total_obligated_amount", "limit": "1"}),
         APIAccess(key_id="public", is_authenticated=False),
     )
-    assert response["data"] == [{"fiscal_year": 2024, "total_obligated": "10.50", "_trend_classification": "baseline"}]
+    assert response["data"] == [{"fiscal_year": 2024, "total_obligated_amount": "10.50", "_trend_classification": "baseline"}]
     assert response["pagination"]["limit"] == 1
     assert response["meta"]["source_fiscal_years"] == [2024, 2024]
 
@@ -1143,9 +1143,9 @@ def test_dataset_rows_csv_uses_same_bounds_and_escapes(monkeypatch) -> None:
             assert 'from "analytics_api"."pricing_trend_fy"' in self.sql
             assert self.values[-2:] == [3, 0]
             return [
-                {"fiscal_year": 2025, "total_obligated": '12, "quoted"'},
-                {"fiscal_year": 2024, "total_obligated": Decimal("10.50")},
-                {"fiscal_year": 2023, "total_obligated": Decimal("9.25")},
+                {"fiscal_year": 2025, "total_obligated_amount": '12, "quoted"'},
+                {"fiscal_year": 2024, "total_obligated_amount": Decimal("10.50")},
+                {"fiscal_year": 2023, "total_obligated_amount": Decimal("9.25")},
             ]
 
     @contextmanager
@@ -1156,14 +1156,14 @@ def test_dataset_rows_csv_uses_same_bounds_and_escapes(monkeypatch) -> None:
     response = dataset_rows(
         "pricing.trend_fy",
         SimpleNamespace(
-            query_params={"fields": "fiscal_year,total_obligated", "limit": "2", "format": "csv"},
+            query_params={"fields": "fiscal_year,total_obligated_amount", "limit": "2", "format": "csv"},
         ),
         APIAccess(key_id="public", is_authenticated=False),
     )
     assert response.media_type == "text/csv; charset=utf-8"
     assert response.headers["content-disposition"] == 'attachment; filename="pricing_trend_fy_rows.csv"'
     text = asyncio.run(_streaming_response_text(response))
-    assert text == 'fiscal_year,total_obligated\r\n2025,"12, ""quoted"""\r\n2024,10.50\r\n'
+    assert text == 'fiscal_year,total_obligated_amount\r\n2025,"12, ""quoted"""\r\n2024,10.50\r\n'
 
 
 def test_customer_profile_orchestrates_existing_dataset_queries(monkeypatch) -> None:
@@ -1194,7 +1194,7 @@ def test_customer_profile_orchestrates_existing_dataset_queries(monkeypatch) -> 
             if "pipeline_recompete_watchlist" in self.sql:
                 return [{"piid": "W912345", "remaining_months": 4}]
             if "pricing_risk_scorecard" in self.sql:
-                return [{"risk_score": Decimal("72"), "total_obligated_3yr": Decimal("3000000")}]
+                return [{"risk_score": Decimal("72"), "total_obligated_amount_3yr": Decimal("3000000")}]
             return []
 
     @contextmanager
@@ -1399,13 +1399,13 @@ def test_mcp_clean_params_flattens_filters_and_lists() -> None:
     assert _clean_params(
         {
             "filters": {"contracting_dept_id": "9700"},
-            "fields": ["risk_score", "total_obligated_3yr"],
+            "fields": ["risk_score", "total_obligated_amount_3yr"],
             "limit": 5,
             "cursor": None,
         }
     ) == {
         "contracting_dept_id": "9700",
-        "fields": "risk_score,total_obligated_3yr",
+        "fields": "risk_score,total_obligated_amount_3yr",
         "limit": 5,
     }
 
@@ -1452,7 +1452,7 @@ def test_vendor_profile_returns_sections(monkeypatch) -> None:
                 return [
                     {
                         "vendor_name": "Test Corp",
-                        "total_obligated": Decimal("5000000"),
+                        "total_obligated_amount": Decimal("5000000"),
                         "agency_count": 5,
                         "tenure_years": 8,
                     }
@@ -1533,7 +1533,7 @@ def test_topic_profile_returns_sections(monkeypatch) -> None:
                     {
                         "topic_id": 1,
                         "label": "Cybersecurity Services",
-                        "total_obligated": Decimal("50000000"),
+                        "total_obligated_amount": Decimal("50000000"),
                     }
                 ]
             if "topics_trends" in self.sql:

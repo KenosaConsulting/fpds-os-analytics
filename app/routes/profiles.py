@@ -121,7 +121,7 @@ def _narrative_hints(sections: dict[str, list[dict[str, Any]] | None]) -> list[s
     hints: list[str] = []
     spend = (sections.get("spend_trend") or [None])[0]
     if spend:
-        obligated = spend.get("net_obligated_amount") or spend.get("total_obligated")
+        obligated = spend.get("net_obligated_amount") or spend.get("total_obligated_amount")
         fiscal_year = spend.get("fiscal_year")
         if obligated and fiscal_year:
             hints.append(f"Most recent profile row is FY{fiscal_year} with about ${obligated} obligated.")
@@ -166,7 +166,7 @@ def _vendor_narrative_hints(sections: dict[str, list[dict[str, Any]] | None]) ->
     if top_agencies:
         first = top_agencies[0]
         name = first.get("contracting_dept_name") or first.get("contracting_agency_name") or "unknown"
-        obligated = first.get("net_obligated_amount") or first.get("total_obligated")
+        obligated = first.get("net_obligated_amount") or first.get("total_obligated_amount")
         if obligated:
             hints.append(f"Top agency is {name} with ${obligated} obligated.")
 

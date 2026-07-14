@@ -21,8 +21,8 @@ from app.query_builder import build_rows_query, page_rows, selected_fields
 router = APIRouter(prefix="/v1")
 
 OBLIGATION_FIELDS = (
-    "total_obligated", "net_obligated_amount", "total_obligated_amount",
-    "obligated_amount", "total_obligated_3yr",
+    "total_obligated_amount", "net_obligated_amount",
+    "obligated_amount", "total_obligated_amount_3yr",
 )
 
 
@@ -112,9 +112,10 @@ def dataset_rows(
     data, next_cursor = page_rows(raw_rows, limit=limit, offset=offset)
     # BL-022: Flag rows with negative obligations to prevent misleading metrics
     obligation_fields = (
-        "total_obligated", "net_obligated_amount", "total_obligated_3yr",
-        "obligated_amount", "cost_type_obligated_3yr", "tm_obligated_3yr",
-        "not_competed_obligated_3yr",
+        "total_obligated_amount", "net_obligated_amount",
+        "obligated_amount", "total_obligated_amount_3yr",
+        "cost_type_obligated_amount_3yr", "tm_obligated_amount_3yr",
+        "not_competed_obligated_amount_3yr",
     )
     negative_count = 0
     for row in data:

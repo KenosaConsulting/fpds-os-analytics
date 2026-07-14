@@ -2,19 +2,35 @@
 
 Improvements and enhancements tracked for future sprints.
 
+**Last updated:** 2026-07-14 — Session 2 complete. See `audit-2026-07-13-utility.md` for full status.
+
 ---
 
-## Open
+## Recently Resolved (Sessions 1-2, 2026-07-13 to 2026-07-14)
 
-### BL-001: Resolve UEIs to vendor names across datasets
+| Item | Resolution |
+|------|-----------|
+| BL-001 (UEI→vendor_name) | S7-013 fixed all 11 views. No gaps remain. |
+| BL-002 (NAICS prefix filter) | Shipped in Sprint 7. |
+| BL-003 (NAICS group dataset) | Shipped in Sprint 7. |
+| BL-004 (Row limit/pagination) | Shipped in Sprint 7. |
+| BL-014 (limit capped at 25) | Fixed — public default raised to 100. |
+| BL-015 (Documented filters rejected) | Fixed. |
+| BL-016 (resolve numeric NAICS) | Fixed. |
+| Keyword graph integration | 5 keyword tools native in fpds-os-analytics |
+| Department code auto-crosswalk | 3↔4 digit translation in query builder |
+| Catalog enrichment | query_pattern, grain_keys, dept_code_format, joins_to on 90 datasets |
+| Vendor/topic profiles | fpds_vendor_profile + fpds_topic_profile tools + endpoints |
+| JSON-RPC consolidation | stdio handle_message delegates to FPDSServer |
+| Trend classification | _trend_classification on FY-grain dataset rows |
+| Canonical topic crosswalk | canonical_topic_mapping dimension (9,313 rows) |
+| Skills → MCP prompts | 8 skills exposed as MCP prompts |
+| Vendor comparison | fpds_vendor_compare tool + endpoint |
+| Health tool | fpds_health MCP tool |
 
-**Priority:** High
-**Reported:** 2026-06-13
-**Context:** Several datasets return `uei` but not `vendor_name` — the name field isn't populated in those views. Users need human-readable company names, not just UEI codes.
+---
 
-**Proposed fix:** The `vendor_market_leaders` dataset already carries `vendor_name` keyed by `uei`. Join against that lookup (or the underlying MV/table) in any view that exposes UEIs without names. Audit all datasets for this gap and patch consistently.
-
-**Affected datasets:** TBD — audit needed across all 58 datasets for views that expose `uei` without a corresponding `vendor_name`.
+## Open**Affected datasets:** TBD — audit needed across all 58 datasets for views that expose `uei` without a corresponding `vendor_name`.
 
 ---
 
