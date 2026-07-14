@@ -2773,11 +2773,14 @@ datasets:
   grain_keys:
   - vehicle_family
   - fiscal_year
+  - principal_naics_code
   public_access: public_bounded
   filters:
   - fiscal_year
   - fiscal_year_min
   - fiscal_year_max
+  - principal_naics_code
+  - naics_prefix
   - vehicle_family
   sortable:
   - fiscal_year
@@ -2788,6 +2791,8 @@ datasets:
   fields:
   - vehicle_family
   - fiscal_year
+  - principal_naics_code
+  - principal_naics_description
   - is_current_fiscal_year_ytd
   - total_action_count
   - net_obligated_amount
@@ -2814,12 +2819,13 @@ datasets:
       Year using catalog-supported filters.
   backing_view: analytics_api.acquisition_agency_vehicle_mix_fy
   source_view: competition_dynamics.report_deck_vehicle_mix_agency_fy
-  grain: contracting_agency_id x vehicle_family x fiscal_year
+  grain: contracting_agency_id x vehicle_family x fiscal_year x principal_naics_code
   query_pattern: ranked
   grain_keys:
   - contracting_agency_id
   - vehicle_family
   - fiscal_year
+  - principal_naics_code
   department_code_format: fpds_4digit
   public_access: api_key
   required_filters_any:
@@ -2833,6 +2839,8 @@ datasets:
   - contracting_dept_id
   - contracting_agency_id
   - vehicle_family
+  - principal_naics_code
+  - naics_prefix
   sortable:
   - fiscal_year
   - net_obligated_amount
@@ -2849,6 +2857,8 @@ datasets:
   - vehicle_family
   - fiscal_year
   - is_current_fiscal_year_ytd
+  - principal_naics_code
+  - principal_naics_description
   - total_action_count
   - net_obligated_amount
   - distinct_vendor_count
@@ -2876,6 +2886,7 @@ datasets:
   - contracting_office_id
   - vehicle_family
   - fiscal_year
+  - principal_naics_code
   department_code_format: fpds_4digit
   public_access: api_key
   required_filters_any:
@@ -2889,6 +2900,8 @@ datasets:
   - contracting_dept_id
   - contracting_agency_id
   - contracting_office_id
+  - principal_naics_code
+  - naics_prefix
   - vehicle_family
   sortable:
   - fiscal_year
@@ -2905,6 +2918,8 @@ datasets:
   - vehicle_family
   - fiscal_year
   - is_current_fiscal_year_ytd
+  - principal_naics_code
+  - principal_naics_description
   - total_action_count
   - net_obligated_amount
   - distinct_vendor_count
@@ -3525,11 +3540,12 @@ datasets:
     explanation: Show award-size distribution across NAICS markets for one contracting
       agency.
   field_descriptions:
-    p25_total_obligated_amount: 25th percentile of positive total obligations per contract
+    p25_total_obligated_amount: 25th percentile of positive total obligations per
+      contract family.
+    median_total_obligated_amount: Median positive total obligations per contract
       family.
-    median_total_obligated_amount: Median positive total obligations per contract family.
-    p75_total_obligated_amount: 75th percentile of positive total obligations per contract
-      family.
+    p75_total_obligated_amount: 75th percentile of positive total obligations per
+      contract family.
     share_under_sat: Share of contract families under $250,000, a simplified-acquisition-threshold
       proxy.
     share_under_micro_purchase: Share of contract families under $10,000, a micro-purchase
@@ -3731,8 +3747,8 @@ datasets:
   - query: /v1/datasets/entrants.agency_cohort_fy/rows?contracting_agency_id=9700&limit=25
     explanation: Show yearly new-vendor cohorts for one contracting agency.
   field_descriptions:
-    median_first_year_obligated_amount: Median first-year net obligations among vendors whose
-      first active year at the agency is this fiscal year.
+    median_first_year_obligated_amount: Median first-year net obligations among vendors
+      whose first active year at the agency is this fiscal year.
     set_aside_first_year_obligation_share: Share of derivable first-year contract-family
       obligations using a non-empty set-aside code.
     survival_2fy_rate: Share of cohort vendors still active at the same agency two
