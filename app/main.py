@@ -14,7 +14,7 @@ from fastapi.staticfiles import StaticFiles
 from app.catalog import load_catalog
 from app.errors import APIError
 from app.rate_limit import RateLimitMiddleware
-from app.routes import catalog, chat, datasets, dimensions, exports, health, keys, keywords, mcp, profiles
+from app.routes import catalog, datasets, dimensions, exports, health, keys, keywords, mcp, profiles
 from app import oauth
 
 
@@ -74,7 +74,6 @@ app.include_router(profiles.router)
 app.include_router(exports.router)
 app.include_router(keys.router)
 app.include_router(mcp.router)
-app.include_router(chat.router)
 app.include_router(keywords.router)
 app.include_router(oauth.router)
 
