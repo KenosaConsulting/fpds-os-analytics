@@ -100,6 +100,45 @@ def _base_url(request: Request) -> str:
     return _OAUTH_ISSUER
 
 
+def _error_page(title: str, message: str) -> str:
+    """Styled error page matching the authorize form design."""
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{title} — FPDS Analytics</title>
+    <style>
+        body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+               background: #0f172a; color: #e2e8f0; display: flex; justify-content: center;
+               align-items: center; min-height: 100vh; margin: 0; }}
+        .card {{ background: #1e293b; border-radius: 12px; padding: 2rem; max-width: 520px; width: 100%; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }}
+        h1 {{ color: #f87171; font-size: 1.4rem; margin: 0 0 1rem; }}
+        p {{ color: #94a3b8; font-size: 0.9rem; line-height: 1.6; }}
+        .help {{ background: #1a2332; border-radius: 8px; padding: 1rem; margin-top: 1.5rem; }}
+        .help h2 {{ color: #60a5fa; font-size: 0.85rem; margin: 0 0 0.5rem; }}
+        .help ul {{ color: #94a3b8; font-size: 0.82rem; line-height: 1.6; padding-left: 1.2rem; margin: 0; }}
+        .footer {{ text-align: center; margin-top: 1.5rem; font-size: 0.75rem; color: #64748b; }}
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>{title}</h1>
+        <p>{message}</p>
+        <div class="help">
+            <h2>What you can do</h2>
+            <ul>
+                <li>Use Claude Desktop or Claude.ai — add FPDS Analytics as a custom connector and OAuth starts automatically</li>
+                <li>Use the REST API directly — <a href="https://analytics-api.kenosaconsulting.com/v1/signup" style="color:#60a5fa">get an API key</a> and pass it as X-Api-Key header</li>
+                <li>Connect via MCP — point any MCP client at <code style="color:#cbd5e1">https://analytics-api.kenosaconsulting.com/v1/mcp</code></li>
+            </ul>
+        </div>
+        <div class="footer">Kenosa Consulting · FPDS Analytics</div>
+    </div>
+</body>
+</html>"""
+
+
 def _jwt_secret() -> str:
     """Get the signing secret, deriving one if not configured."""
     global _JWT_SECRET
@@ -304,13 +343,26 @@ def authorize_get(
     # Validate client
     client = _registered_clients.get(client_id)
     if not client:
-        return HTMLResponse("<h1>Error</h1><p>Unknown client.</p>", status_code=400)
+        return HTMLResponse(_error_page("Unknown Client", (
+            "This authorization request came from an unrecognized application. "
+            "FPDS Analytics uses OAuth 2.0 Dynamic Client Registration — "
+            "applications like Claude.ai register automatically when you add "
+            "them as a custom connector. If you're testing this URL directly, "
+            "the client must first register via the OAuth metadata flow."
+        )), status_code=400)
 
     if redirect_uri not in client["redirect_uris"]:
-        return HTMLResponse("<h1>Error</h1><p>Redirect URI not registered.</p>", status_code=400)
+        return HTMLResponse(_error_page("Invalid Redirect", (
+            f"The redirect URI is not registered for client <strong>{client['client_name']}</strong>. "
+            "This is a security measure to prevent open redirect attacks. "
+            "If you believe this is an error, re-add the connector to trigger re-registration."
+        )), status_code=400)
 
     if response_type != "code":
-        return HTMLResponse("<h1>Error</h1><p>Only 'code' response type is supported.</p>", status_code=400)
+        return HTMLResponse(_error_page("Unsupported", (
+            "Only the 'code' response type (Authorization Code flow with PKCE) "
+            "is supported. Your client requested an unsupported response type."
+        )), status_code=400)
 
     # Render a simple HTML form for API key entry
     html = f"""<!DOCTYPE html>
@@ -357,7 +409,7 @@ def authorize_get(
             <button type="submit">Authorize</button>
         </form>
         <div class="signup">
-            <a href="https://analytics-api.kenosaconsulting.com/v1/keys/request" target="_blank">
+            <a href="https://analytics-api.kenosaconsulting.com/v1/signup" target="_blank">
                 Don't have an API key? Request one free →
             </a>
         </div>

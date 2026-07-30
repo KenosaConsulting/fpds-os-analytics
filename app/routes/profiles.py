@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError, as_completed
 from decimal import Decimal
 from typing import Any
 
@@ -17,8 +19,9 @@ from app.query_builder import build_rows_query, page_rows
 
 router = APIRouter(prefix="/v1")
 
-
 SECTION_LIMIT = 5
+_SECTION_TIMEOUT = int(os.environ.get("FPDS_PROFILE_SECTION_TIMEOUT", "12"))
+_MAX_PARALLEL_WORKERS = int(os.environ.get("FPDS_PROFILE_MAX_WORKERS", "4"))
 
 
 def _numeric(value: Any) -> Decimal | None:
@@ -66,6 +69,59 @@ def _unavailable_section(dataset_id: str, reason: str) -> tuple[None, dict[str, 
         "status": "unavailable",
         "reason": reason,
     }
+
+
+def _run_sections(
+    catalog,
+    section_specs: list[tuple[str, str, dict[str, str]]],
+    access: APIAccess,
+) -> tuple[dict[str, list[dict[str, Any]] | None], dict[str, dict[str, Any]]]:
+    """Run section queries in parallel with per-section timeouts.
+
+    Each section runs in its own thread with its own DB connection.
+    Sections that time out or fail are marked unavailable instead of
+    blocking the entire profile response.
+    """
+    sections: dict[str, list[dict[str, Any]] | None] = {}
+    section_meta: dict[str, dict[str, Any]] = {}
+
+    if len(section_specs) <= 1:
+        # Sequential for single section (no overhead)
+        for section_name, dataset_id, params in section_specs:
+            data, meta = _section_query(catalog, dataset_id, params, access)
+            sections[section_name] = data
+            section_meta[section_name] = meta
+        return sections, section_meta
+
+    # Parallel execution
+    with ThreadPoolExecutor(max_workers=min(len(section_specs), _MAX_PARALLEL_WORKERS)) as executor:
+        futures = {}
+        for section_name, dataset_id, params in section_specs:
+            future = executor.submit(_section_query, catalog, dataset_id, params, access)
+            futures[future] = section_name
+
+        for future in as_completed(futures):
+            section_name = futures[future]
+            try:
+                data, meta = future.result(timeout=_SECTION_TIMEOUT)
+                sections[section_name] = data
+                section_meta[section_name] = meta
+            except FutureTimeoutError:
+                sections[section_name] = None
+                section_meta[section_name] = {
+                    "dataset_id": section_name,
+                    "status": "timeout",
+                    "reason": f"Section query exceeded {_SECTION_TIMEOUT}s timeout.",
+                }
+            except Exception as exc:
+                sections[section_name] = None
+                section_meta[section_name] = {
+                    "dataset_id": section_name,
+                    "status": "unavailable",
+                    "error": exc.__class__.__name__,
+                }
+
+    return sections, section_meta
 
 
 def _customer_filters(params: dict[str, str]) -> dict[str, str]:
@@ -215,23 +271,17 @@ def customer_profile(
     params = {key: value for key, value in request.query_params.items()}
     filters = _customer_filters(params)
 
-    sections: dict[str, list[dict[str, Any]] | None] = {}
-    section_meta: dict[str, dict[str, Any]] = {}
+    section_specs: list[tuple[str, str, dict[str, str]]] = [
+        ("spend_trend", "customer.agency_profile_fy", {**filters, "sort": "-fiscal_year"}),
+        ("top_naics", "market.agency_naics_fy", {**filters, "sort": "-net_obligated_amount"}),
+        ("competition_posture", "customer.agency_profile_fy", {**filters, "sort": "-fiscal_year", "limit": "1"}),
+        ("set_aside_mix", "set_aside.agency_mix_fy", {**filters}),
+        ("top_incumbents", "incumbent.agency_vendor_leaders", {**filters}),
+        ("vehicle_mix", "acquisition.agency_vehicle_mix_fy", {**filters, "sort": "-net_obligated_amount"}),
+        ("recompete_signals", "pipeline.recompete_watchlist", {**filters, "sort": "remaining_months"}),
+    ]
 
-    section_specs = {
-        "spend_trend": ("customer.agency_profile_fy", {**filters, "sort": "-fiscal_year"}),
-        "top_naics": ("market.agency_naics_fy", {**filters, "sort": "-net_obligated_amount"}),
-        "competition_posture": ("customer.agency_profile_fy", {**filters, "sort": "-fiscal_year", "limit": "1"}),
-        "set_aside_mix": ("set_aside.agency_mix_fy", {**filters}),
-        "top_incumbents": ("incumbent.agency_vendor_leaders", {**filters}),
-        "vehicle_mix": ("acquisition.agency_vehicle_mix_fy", {**filters, "sort": "-net_obligated_amount"}),
-        "recompete_signals": ("pipeline.recompete_watchlist", {**filters, "sort": "remaining_months"}),
-    }
-
-    for section_name, (dataset_id, section_params) in section_specs.items():
-        data, meta = _section_query(catalog, dataset_id, section_params, access)
-        sections[section_name] = data
-        section_meta[section_name] = meta
+    sections, section_meta = _run_sections(catalog, section_specs, access)
 
     if filters.get("contracting_dept_id"):
         data, meta = _section_query(catalog, "pricing.risk_scorecard", {"contracting_dept_id": filters["contracting_dept_id"], "limit": "1"}, access)
@@ -284,18 +334,15 @@ def vendor_profile(
     sections: dict[str, list[dict[str, Any]] | None] = {}
     section_meta: dict[str, dict[str, Any]] = {}
 
-    section_specs = {
-        "vendor_summary": ("concentration.vendor_market_leaders", {**filters}),
-        "top_agencies": ("incumbent.agency_vendor_leaders", {**filters}),
-        "cross_agency_footprint": ("concentration.vendor_cross_agency_rank", {**filters}),
-        "top_naics": ("incumbent.agency_naics_vendor_leaders", {**filters}),
-        "recompete_pipeline": ("pipeline.recompete_watchlist", {"vendor_uei": filters["uei"]}),
-    }
+    section_specs: list[tuple[str, str, dict[str, str]]] = [
+        ("vendor_summary", "concentration.vendor_market_leaders", {**filters}),
+        ("top_agencies", "incumbent.agency_vendor_leaders", {**filters}),
+        ("cross_agency_footprint", "concentration.vendor_cross_agency_rank", {**filters}),
+        ("top_naics", "incumbent.agency_naics_vendor_leaders", {**filters}),
+        ("recompete_pipeline", "pipeline.recompete_watchlist", {"vendor_uei": filters["uei"]}),
+    ]
 
-    for section_name, (dataset_id, section_params) in section_specs.items():
-        data, meta = _section_query(catalog, dataset_id, section_params, access)
-        sections[section_name] = data
-        section_meta[section_name] = meta
+    sections, section_meta = _run_sections(catalog, section_specs, access)
 
     caveats = [
         "Composite profile sections are independent bounded dataset queries; null sections indicate a section-level query failure or unsupported grain.",

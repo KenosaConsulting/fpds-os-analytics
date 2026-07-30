@@ -2773,14 +2773,11 @@ datasets:
   grain_keys:
   - vehicle_family
   - fiscal_year
-  - principal_naics_code
   public_access: public_bounded
   filters:
   - fiscal_year
   - fiscal_year_min
   - fiscal_year_max
-  - principal_naics_code
-  - naics_prefix
   - vehicle_family
   sortable:
   - fiscal_year
@@ -2791,15 +2788,13 @@ datasets:
   fields:
   - vehicle_family
   - fiscal_year
-  - principal_naics_code
-  - principal_naics_description
   - is_current_fiscal_year_ytd
   - total_action_count
   - net_obligated_amount
   - distinct_vendor_count
   - competed_action_count
   - not_competed_action_count
-  - small_biz_obligated_amount
+  - small_biz_obligated
   - small_biz_obligation_share
   - competed_action_share
   - distinct_agency_count
@@ -2819,13 +2814,12 @@ datasets:
       Year using catalog-supported filters.
   backing_view: analytics_api.acquisition_agency_vehicle_mix_fy
   source_view: competition_dynamics.report_deck_vehicle_mix_agency_fy
-  grain: contracting_agency_id x vehicle_family x fiscal_year x principal_naics_code
+  grain: contracting_agency_id x vehicle_family x fiscal_year
   query_pattern: ranked
   grain_keys:
   - contracting_agency_id
   - vehicle_family
   - fiscal_year
-  - principal_naics_code
   department_code_format: fpds_4digit
   public_access: api_key
   required_filters_any:
@@ -2839,8 +2833,6 @@ datasets:
   - contracting_dept_id
   - contracting_agency_id
   - vehicle_family
-  - principal_naics_code
-  - naics_prefix
   sortable:
   - fiscal_year
   - net_obligated_amount
@@ -2857,14 +2849,12 @@ datasets:
   - vehicle_family
   - fiscal_year
   - is_current_fiscal_year_ytd
-  - principal_naics_code
-  - principal_naics_description
   - total_action_count
   - net_obligated_amount
   - distinct_vendor_count
   - competed_action_count
   - not_competed_action_count
-  - small_biz_obligated_amount
+  - small_biz_obligated
   - small_biz_obligation_share
   - competed_action_share
 - id: acquisition.office_vehicle_mix_fy
@@ -2886,7 +2876,6 @@ datasets:
   - contracting_office_id
   - vehicle_family
   - fiscal_year
-  - principal_naics_code
   department_code_format: fpds_4digit
   public_access: api_key
   required_filters_any:
@@ -2900,8 +2889,6 @@ datasets:
   - contracting_dept_id
   - contracting_agency_id
   - contracting_office_id
-  - principal_naics_code
-  - naics_prefix
   - vehicle_family
   sortable:
   - fiscal_year
@@ -2918,14 +2905,12 @@ datasets:
   - vehicle_family
   - fiscal_year
   - is_current_fiscal_year_ytd
-  - principal_naics_code
-  - principal_naics_description
   - total_action_count
   - net_obligated_amount
   - distinct_vendor_count
   - competed_action_count
   - not_competed_action_count
-  - small_biz_obligated_amount
+  - small_biz_obligated
   - avg_offers_received
   - small_biz_obligation_share
   - competed_action_share
