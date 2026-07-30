@@ -223,6 +223,18 @@ def request_api_key(body: KeyRequest, request: Request) -> dict:
         logger.error("Key creation failed: %s", exc)
         raise APIError(503, "service_unavailable", "Key provisioning is temporarily unavailable.") from exc
 
+    # Send the key via email (non-blocking, gracefully skips if SMTP not configured)
+    try:
+        from app.email import send_api_key_email
+        send_api_key_email(
+            body.email,
+            row["plaintext_key"],
+            row["tier"],
+            row["expires_at"].isoformat() if row["expires_at"] else None,
+        )
+    except Exception:
+        logger.exception("Email delivery failed for %s — key still created", body.email)
+
     return {
         "status": "created",
         "api_key": row["plaintext_key"],
