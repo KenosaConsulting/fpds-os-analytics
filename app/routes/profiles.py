@@ -273,7 +273,7 @@ def customer_profile(
 
     section_specs: list[tuple[str, str, dict[str, str]]] = [
         ("spend_trend", "customer.agency_profile_fy", {**filters, "sort": "-fiscal_year"}),
-        ("top_naics", "market.agency_naics_fy", {**filters, "sort": "-net_obligated_amount"}),
+        ("top_naics", "market.agency_naics_fy", {**filters, "sort": "-net_obligated_amount", "fiscal_year": "2025"}),
         ("competition_posture", "customer.agency_profile_fy", {**filters, "sort": "-fiscal_year", "limit": "1"}),
         ("set_aside_mix", "set_aside.agency_mix_fy", {**filters}),
         ("top_incumbents", "incumbent.agency_vendor_leaders", {**filters}),
