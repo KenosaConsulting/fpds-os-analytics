@@ -402,6 +402,495 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExportJob'
+  # ── Profiles ─────────────────────────────────────────────────────────
+  /v1/profiles/vendor:
+    get:
+      summary: Vendor intelligence profile
+      description: Composite vendor 360 — summary stats, top agencies, cross-agency
+        footprint, NAICS concentration, and recompete pipeline.
+      parameters:
+      - name: uei
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Vendor Unique Entity Identifier (12 characters).
+      - name: contracting_dept_id
+        in: query
+        schema:
+          type: string
+        description: Optional FPDS department code to scope results.
+      - name: contracting_agency_id
+        in: query
+        schema:
+          type: string
+        description: Optional FPDS agency code to scope results.
+      responses:
+        '200':
+          description: Vendor profile with sections and narrative hints.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/profiles/topic:
+    get:
+      summary: Topic intelligence profile
+      description: Top procurement topics for a department, trend classifications,
+        competitive landscape, NAICS decomposition, and document links.
+      parameters:
+      - name: department_code
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Department code (USASpending 3-digit or FPDS 4-digit format).
+      - name: topic_id
+        in: query
+        schema:
+          type: integer
+        description: Optional — focus on a specific topic.
+      - name: q
+        in: query
+        schema:
+          type: string
+        description: Optional keyword filter for topic search.
+      responses:
+        '200':
+          description: Topic profile with sections and narrative hints.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/profiles/vendors/compare:
+    get:
+      summary: Side-by-side vendor comparison
+      description: Compare multiple vendors — summary stats, agency footprint, NAICS
+        concentration, shared agencies, and shared NAICS codes.
+      parameters:
+      - name: ueis
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+        description: List of vendor UEIs to compare.
+      - name: contracting_dept_id
+        in: query
+        schema:
+          type: string
+      - name: contracting_agency_id
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Vendor comparison with shared market analysis.
+          content:
+            application/json:
+              schema:
+                type: object
+  # ── Keywords ─────────────────────────────────────────────────────────
+  /v1/keywords/search:
+    get:
+      summary: Search procurement keywords
+      description: Substring search on keyword text across product_vendor, method_service,
+        and system_program categories.
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: keyword_type
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+            enum: [phrase, term]
+      - name: category
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+            enum: [product_vendor, method_service, system_program]
+      - name: department_code
+        in: query
+        schema:
+          type: string
+      - name: min_link_count
+        in: query
+        schema:
+          type: integer
+          default: 2
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 25
+      responses:
+        '200':
+          description: Keyword search results with link counts and top departments.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/keywords/analytics:
+    get:
+      summary: Keyword procurement analytics
+      description: Award count, total obligation, breakdown by agency/vendor/FY/NAICS/set-aside,
+        and FY spending trend for a keyword.
+      parameters:
+      - name: keyword_id
+        in: query
+        schema:
+          type: integer
+      - name: keyword_text
+        in: query
+        schema:
+          type: string
+      - name: department_code
+        in: query
+        schema:
+          type: string
+      - name: fy_start
+        in: query
+        schema:
+          type: integer
+          default: 2018
+      - name: fy_end
+        in: query
+        schema:
+          type: integer
+          default: 2026
+      - name: group_by
+        in: query
+        schema:
+          type: string
+          enum: [agency, vendor, fy, naics, set_aside]
+          default: agency
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 25
+      responses:
+        '200':
+          description: Keyword analytics with obligation data and breakdowns.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/keywords/vs-topic:
+    get:
+      summary: Keyword-to-topic bridge
+      description: Bidirectional bridge — keyword → topics (provide keyword_id or
+        keyword_text) or topic → keywords (provide topic_id).
+      parameters:
+      - name: keyword_id
+        in: query
+        schema:
+          type: integer
+      - name: keyword_text
+        in: query
+        schema:
+          type: string
+      - name: topic_id
+        in: query
+        schema:
+          type: integer
+      - name: department_code
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 15
+      responses:
+        '200':
+          description: Keyword-topic mapping results.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/keywords/compare:
+    get:
+      summary: Multi-keyword comparison
+      description: Compare multiple keywords side-by-side — award count, total obligation,
+        unique vendors, unique agencies, FY trend, and top 3 agencies each.
+      parameters:
+      - name: keywords
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      - name: keyword_ids
+        in: query
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: department_code
+        in: query
+        schema:
+          type: string
+      - name: fy_start
+        in: query
+        schema:
+          type: integer
+          default: 2018
+      - name: fy_end
+        in: query
+        schema:
+          type: integer
+          default: 2026
+      responses:
+        '200':
+          description: Side-by-side keyword comparison.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/keywords/vendor/{uei}:
+    get:
+      summary: Vendor keyword profile
+      description: All keywords a vendor appears in across federal awards, with award
+        counts, obligation amounts, and agency coverage.
+      parameters:
+      - name: uei
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: department_code
+        in: query
+        schema:
+          type: string
+      - name: category
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      - name: fy_start
+        in: query
+        schema:
+          type: integer
+          default: 2018
+      - name: fy_end
+        in: query
+        schema:
+          type: integer
+          default: 2026
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+      responses:
+        '200':
+          description: Vendor keyword profile with department summary.
+          content:
+            application/json:
+              schema:
+                type: object
+  # ── Key Management ────────────────────────────────────────────────────
+  /v1/signup:
+    get:
+      summary: API key signup form
+      description: Browser-based HTML signup form for self-service API key creation.
+      security: []
+      responses:
+        '200':
+          description: HTML signup form.
+          content:
+            text/html:
+              schema:
+                type: string
+  /v1/keys/request:
+    post:
+      summary: Request an API key
+      description: Self-service API key signup. Returns a beta-tier key valid for 90 days.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email:
+                  type: string
+                  format: email
+                name:
+                  type: string
+                organization:
+                  type: string
+                intended_use:
+                  type: string
+      responses:
+        '200':
+          description: API key created. Plaintext key shown once.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/keys/list:
+    post:
+      summary: List active API keys
+      description: List active keys for an email address. Never returns plaintext keys.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email:
+                  type: string
+                  format: email
+                key_prefix:
+                  type: string
+      responses:
+        '200':
+          description: List of active keys with tier and limits.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/keys/revoke:
+    post:
+      summary: Revoke an API key
+      description: Revoke a key by email + key_prefix. Email is a verification gate.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, key_prefix]
+              properties:
+                email:
+                  type: string
+                  format: email
+                key_prefix:
+                  type: string
+      responses:
+        '200':
+          description: Key revoked.
+          content:
+            application/json:
+              schema:
+                type: object
+  # ── MCP Transport ─────────────────────────────────────────────────────
+  /v1/mcp:
+    get:
+      summary: MCP endpoint discovery
+      description: Returns MCP server name, version, protocol version, and capabilities.
+      security: []
+      responses:
+        '200':
+          description: MCP server discovery info.
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      summary: MCP JSON-RPC endpoint
+      description: Streamable HTTP transport for MCP protocol. Supports tools/list,
+        tools/call, prompts/*, resources/*. Public tools pass through without auth;
+        tier-gated tools require Authorization header.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: JSON-RPC response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Authentication required for protected tool.
+  # ── OAuth ──────────────────────────────────────────────────────────────
+  /.well-known/oauth-protected-resource:
+    get:
+      summary: OAuth protected resource metadata
+      description: RFC 9728 protected resource metadata for Claude.ai custom connector
+        OAuth flow discovery.
+      security: []
+      responses:
+        '200':
+          description: Protected resource metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+  /.well-known/oauth-authorization-server:
+    get:
+      summary: OAuth authorization server metadata
+      description: RFC 8414 authorization server metadata.
+      security: []
+      responses:
+        '200':
+          description: Authorization server metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/oauth/authorize:
+    get:
+      summary: OAuth authorization page
+      description: HTML form for entering an API key to authorize a client.
+      security: []
+      responses:
+        '200':
+          description: Authorization form.
+          content:
+            text/html:
+              schema:
+                type: string
+    post:
+      summary: Process OAuth authorization
+      description: Validate API key, issue authorization code, redirect to client.
+      security: []
+      responses:
+        '302':
+          description: Redirect with authorization code.
+  /v1/oauth/token:
+    post:
+      summary: OAuth token endpoint
+      description: Exchange authorization code for access token (PKCE), or refresh
+        token for new access token.
+      security: []
+      responses:
+        '200':
+          description: Access token response.
+          content:
+            application/json:
+              schema:
+                type: object
 components:
   securitySchemes:
     ApiKeyAuth:

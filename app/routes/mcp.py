@@ -25,6 +25,7 @@ from fastapi import APIRouter, Request
 from fastapi.responses import JSONResponse, StreamingResponse
 
 from mcp.fpds_mcp_server import FPDSServer
+from mcp.tools import PUBLIC_TOOLS, TIER_TOOLS, TIER_LABELS, TIER_ORDER
 
 logger = logging.getLogger("fpds.mcp")
 
@@ -49,23 +50,42 @@ def _cleanup_sessions() -> None:
             _sessions.pop(k, None)
 
 # ── Lazy authentication ─────────────────────────────────────────────────
-# Tools that work without authentication (public tier).
-# Any tool NOT in this set requires auth and triggers 401 + OAuth flow.
-_PUBLIC_TOOLS: set[str] = {
-    "fpds_health",
-    "fpds_list_datasets",
-    "fpds_describe_dataset",
-    "fpds_list_dimensions",
-    "fpds_lookup_dimension",
-    "fpds_resolve",
-    "fpds_topic_search",
-    "fpds_onboarding",
-    "keyword_search",
-    "keyword_analytics",
-    "keyword_vs_topic",
-    "keyword_compare",
-    "keyword_vendor_profile",
-}
+# Public tools + tier definitions imported from mcp.tools
+
+def _resolve_token_tier(token: str | None) -> str | None:
+    """Resolve a bearer token to its tier (tier1/tier2/tier3).
+    
+    Strategy:
+      1. Token prefix convention: fpds_sk_<tier>_<random> → extract tier
+      2. OAuth tokens (fpds_at_*) → resolve to API key, then check tier
+      3. Legacy tokens without prefix → tier3 (backward compat)
+    """
+    if not token:
+        return None
+    parts = token.split("_")
+    for part in parts:
+        if part in {"tier1", "tier2", "tier3"}:
+            return part
+    return "tier3"
+
+
+def _get_allowed_tools(tier: str) -> set[str]:
+    """Get cumulative tool set for a tier (includes all lower tiers)."""
+    tools: set[str] = set()
+    for t in TIER_ORDER:
+        tools.update(TIER_TOOLS.get(t, set()))
+        if t == tier:
+            break
+    return tools
+
+
+def _find_required_tier(tool_name: str) -> str | None:
+    """Find the lowest tier that grants access to this tool."""
+    for tier in TIER_ORDER:
+        allowed = _get_allowed_tools(tier)
+        if tool_name in allowed:
+            return tier
+    return None
 
 # Datasets that require an API key (public_access=api_key in catalog).
 # None = not yet loaded. Empty set = catalog failed to load (fail-closed).
@@ -104,11 +124,9 @@ def _is_gated_dataset(dataset_id: str) -> bool:
 def _calls_protected_tool(body: dict[str, Any] | list) -> bool:
     """Check if a JSON-RPC request calls a tool that requires authentication.
     
-    This implements Claude's lazy authentication pattern:
-    - Public tools (list, describe, resolve, etc.) work without auth
-    - Protected tools (query_dataset on gated data, customer_profile) require auth
-    
-    Returns True if the request targets a protected tool without auth.
+    Public tools pass through. All others require a bearer token with
+    the appropriate tier. Returns True if the request targets a protected
+    tool without auth (triggers 401 + OAuth flow).
     """
     messages = body if isinstance(body, list) else [body]
     for msg in messages:
@@ -117,18 +135,52 @@ def _calls_protected_tool(body: dict[str, Any] | list) -> bool:
         if msg.get("method") != "tools/call":
             continue
         tool_name = (msg.get("params") or {}).get("name", "")
-        if tool_name in _PUBLIC_TOOLS:
-            continue  # Public tool — no auth needed
+        if tool_name in PUBLIC_TOOLS:
+            continue
         # fpds_query_dataset is conditionally protected:
         # public_bounded datasets work without auth, api_key datasets don't
         if tool_name == "fpds_query_dataset":
             dataset_id = (msg.get("params") or {}).get("arguments", {}).get("dataset_id", "")
             if dataset_id and _is_gated_dataset(dataset_id):
-                return True  # Gated dataset — auth required
-            continue  # public_bounded dataset — no auth needed
-        # All other tools (fpds_customer_profile, etc.) require auth
+                return True
+            continue
+        # Any non-public tool requires auth
         return True
     return False
+
+
+def _check_tier_access(tool_name: str, token: str | None) -> tuple[bool, str | None]:
+    """Check if a token has sufficient tier for a tool.
+    
+    Returns (allowed, error_message_or_None).
+    """
+    if not token:
+        return False, (
+            f"Tool '{tool_name}' requires authentication. "
+            "Provide a bearer token via the Authorization header. "
+            "Get a token at https://kenosaconsulting.com/pricing"
+        )
+    
+    tier = _resolve_token_tier(token)
+    if tier is None:
+        return False, (
+            "Your API token was not recognized. "
+            "Please verify your token or get a new one at "
+            "https://kenosaconsulting.com/pricing"
+        )
+    
+    allowed = _get_allowed_tools(tier)
+    if tool_name not in allowed:
+        tier_label = TIER_LABELS.get(tier, tier)
+        required_tier = _find_required_tier(tool_name)
+        required_label = TIER_LABELS.get(required_tier, required_tier or "?")
+        return False, (
+            f"Tool '{tool_name}' requires {required_label} tier. "
+            f"Your token has {tier_label} tier. "
+            f"Upgrade at https://kenosaconsulting.com/pricing"
+        )
+    
+    return True, None
 
 router = APIRouter(prefix="/v1/mcp", tags=["mcp"])
 
@@ -284,6 +336,29 @@ async def mcp_handle(
         return _unauthorized_response(request)
     if not has_auth and not is_initialize and _calls_protected_tool(body):
         return _unauthorized_response(request)
+
+    # ── Tier-based access check ────────────────────────────────────────
+    # For authenticated users calling tools, verify the token has the
+    # required tier. Return tier-upgrade error if insufficient.
+    if has_auth and not is_initialize:
+        method = body.get("method", "") if isinstance(body, dict) else ""
+        if method == "tools/call":
+            tool_name = (body.get("params") or {}).get("name", "")
+            if tool_name not in _PUBLIC_TOOLS:
+                token = api_key  # api_key is the resolved bearer/API key
+                allowed, error_msg = _check_tier_access(tool_name, token)
+                if not allowed:
+                    return JSONResponse(
+                        status_code=403,
+                        content={
+                            "jsonrpc": "2.0",
+                            "id": body.get("id"),
+                            "error": {
+                                "code": -32603,
+                                "message": error_msg or "Insufficient tier access.",
+                            },
+                        },
+                    )
 
     server = _build_server(request)
     accept = request.headers.get("Accept", "")
