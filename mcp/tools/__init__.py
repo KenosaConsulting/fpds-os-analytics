@@ -77,6 +77,7 @@ def collect_tool_schemas(client_type: str = "rest") -> list[dict[str, Any]]:
 
 # Tier definitions for auth middleware
 TIER_TOOLS: dict[str, set[str]] = {
+    "t05": set(),
     "tier1": {
         "fpds_customer_profile",
         "fpds_vendor_profile",
@@ -98,12 +99,13 @@ TIER_TOOLS: dict[str, set[str]] = {
 }
 
 TIER_LABELS: dict[str, str] = {
+    "t05": "Explorer",
     "tier1": "Essentials",
     "tier2": "Professional",
     "tier3": "Enterprise",
 }
 
-TIER_ORDER = ["tier1", "tier2", "tier3"]
+TIER_ORDER = ["t05", "tier1", "tier2", "tier3"]
 
 PUBLIC_TOOLS: set[str] = {
     "fpds_health",

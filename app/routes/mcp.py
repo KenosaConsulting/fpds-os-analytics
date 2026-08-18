@@ -64,7 +64,7 @@ def _resolve_token_tier(token: str | None) -> str | None:
         return None
     parts = token.split("_")
     for part in parts:
-        if part in {"tier1", "tier2", "tier3"}:
+        if part in {"t05", "tier1", "tier2", "tier3"}:
             return part
     return "tier3"
 
