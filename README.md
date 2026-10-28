@@ -9,6 +9,16 @@
                     
 ```
 
+> **Scope of this repository.** This repo is the public reference for the SQL
+> and analytical definitions behind the datasets served by the hosted REST API
+> and MCP server — use it to see exactly how each view is derived. It is **not**
+> the source of the deployed service: the live API, account/billing system, and
+> MCP server are built from `KenosaConsulting/fpds` →
+> `services/analytics-api` and `services/fpds_mcp`. Application code here,
+> particularly the API key and account routes, is historical and does not
+> reflect production behavior. Treat the dataset SQL as authoritative and
+> anything under `app/` as reference only.
+
 | | |
 |---|---|
 | **Datasets** | 88 analytics datasets across 17 domains |
